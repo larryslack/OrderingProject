@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseLayer
 {
-    public class Class1
+    public class Nwind
     {
     }
 }
