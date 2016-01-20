@@ -1,4 +1,5 @@
-# Visual Studio User Properties #
-#################################
+# Visual Studio Cache/User files #
+##################################
 *.suo
+.vs/
 *.cache
