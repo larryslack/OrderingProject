@@ -1,0 +1,2 @@
+C:\Users\slack\Documents\GitHub\OrderingProject\InterfaceLayer\bin\Debug\InterfaceLayer.exe.config
+C:\Users\slack\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.exe.config
