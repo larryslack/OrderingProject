@@ -1,3 +1,8 @@
+# Compiled Source #
+###################
+*.dll
+*.exe
+
 # Visual Studio Cache/User files #
 ##################################
 *.suo
