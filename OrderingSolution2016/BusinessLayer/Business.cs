@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
-    public class Buisness
+    public class Business
     {
 
         //This is a Test
