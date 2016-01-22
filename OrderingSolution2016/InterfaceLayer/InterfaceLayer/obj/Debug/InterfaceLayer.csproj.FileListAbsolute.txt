@@ -4,7 +4,20 @@ D:\Brett\GitHub\orderingproject\OrderingSolution2016\InterfaceLayer\InterfaceLay
 C:\Users\Nathan\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.exe.config
 C:\Users\Admin\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.exe.config
 <<<<<<< HEAD
+<<<<<<< HEAD
 D:\larry\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.exe.config
 =======
 C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.exe.config
 >>>>>>> 7eadf67151f26d973ed3b909e5d8480b27fb0363
+=======
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.exe.config
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.exe
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.AddingForm.resources
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.MainInterface.resources
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.Properties.Resources.resources
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.csproj.GenerateResource.Cache
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.exe
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
+>>>>>>> 5dffe8229abb7c7cb9eb48f4697a6e6de5f0508e

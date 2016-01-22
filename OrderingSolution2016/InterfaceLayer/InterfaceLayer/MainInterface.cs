@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace InterfaceLayer
 {
-    public partial class Form1 : Form
+    public partial class MainInterface : Form
     {
-        public Form1()
+        public MainInterface()
         {
             InitializeComponent();
         }
@@ -20,6 +20,12 @@ namespace InterfaceLayer
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCompNameChange_Click(object sender, EventArgs e)
+        {
+            AddingForm ad = new AddingForm();
+            
         }
     }
 }
