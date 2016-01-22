@@ -1,6 +1,6 @@
 ﻿namespace InterfaceLayer
 {
-    partial class Form1
+    partial class MainInterface
     {
         /// <summary>
         /// Required designer variable.
@@ -87,6 +87,7 @@
             this.btnCompNameChange.TabIndex = 4;
             this.btnCompNameChange.Text = "chnage name";
             this.btnCompNameChange.UseVisualStyleBackColor = true;
+            this.btnCompNameChange.Click += new System.EventHandler(this.btnCompNameChange_Click);
             // 
             // txtCompID
             // 
@@ -170,7 +171,7 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "for";
             // 
-            // Form1
+            // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -190,7 +191,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCompName);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Form1";
+            this.Name = "MainInterface";
             this.Text = "Forrn1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -4,3 +4,12 @@ D:\Brett\GitHub\orderingproject\OrderingSolution2016\InterfaceLayer\InterfaceLay
 C:\Users\Nathan\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.exe.config
 C:\Users\Admin\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.exe.config
 C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.exe.config
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.exe
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\bin\Debug\InterfaceLayer.pdb
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.csprojResolveAssemblyReference.cache
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.AddingForm.resources
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.MainInterface.resources
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.Properties.Resources.resources
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.csproj.GenerateResource.Cache
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.exe
+C:\Users\Shohei.Saito\Documents\GitHub\OrderingProject\OrderingSolution2016\InterfaceLayer\InterfaceLayer\obj\Debug\InterfaceLayer.pdb
