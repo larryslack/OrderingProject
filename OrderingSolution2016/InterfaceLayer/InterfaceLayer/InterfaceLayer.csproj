@@ -59,14 +59,20 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
 =======
+=======
+>>>>>>> 5dffe8229abb7c7cb9eb48f4697a6e6de5f0508e
     <EmbeddedResource Include="AddingForm.resx">
       <DependentUpon>AddingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>
+<<<<<<< HEAD
+>>>>>>> 5dffe8229abb7c7cb9eb48f4697a6e6de5f0508e
+=======
 >>>>>>> 5dffe8229abb7c7cb9eb48f4697a6e6de5f0508e
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
