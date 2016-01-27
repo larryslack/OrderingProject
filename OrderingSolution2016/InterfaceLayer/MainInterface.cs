@@ -12,6 +12,7 @@ namespace InterfaceLayer
 {
     public partial class MainInterface : Form
     {
+        AddingForm ad = new AddingForm();
         public MainInterface()
         {
             InitializeComponent();
@@ -24,8 +25,15 @@ namespace InterfaceLayer
 
         private void btnCompNameChange_Click(object sender, EventArgs e)
         {
-            AddingForm ad = new AddingForm();
             
+            ad.ShowDialog();
+            
+            
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

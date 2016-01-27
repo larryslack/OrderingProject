@@ -29,42 +29,35 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtCompName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddComp = new System.Windows.Forms.Button();
-            this.btnCompNameChange = new System.Windows.Forms.Button();
-            this.txtCompID = new System.Windows.Forms.TextBox();
             this.txtCompPhone = new System.Windows.Forms.TextBox();
             this.txtCompAdd = new System.Windows.Forms.TextBox();
             this.txtCompFor = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtCompID = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 215);
+            this.dataGridView1.Location = new System.Drawing.Point(7, 149);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(444, 175);
+            this.dataGridView1.Size = new System.Drawing.Size(444, 241);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // txtCompName
-            // 
-            this.txtCompName.Location = new System.Drawing.Point(91, 15);
-            this.txtCompName.Name = "txtCompName";
-            this.txtCompName.Size = new System.Drawing.Size(100, 20);
-            this.txtCompName.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 18);
+            this.label1.Location = new System.Drawing.Point(235, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 2;
@@ -72,110 +65,121 @@
             // 
             // btnAddComp
             // 
-            this.btnAddComp.Location = new System.Drawing.Point(15, 139);
+            this.btnAddComp.Location = new System.Drawing.Point(12, 91);
             this.btnAddComp.Name = "btnAddComp";
-            this.btnAddComp.Size = new System.Drawing.Size(112, 31);
+            this.btnAddComp.Size = new System.Drawing.Size(112, 23);
             this.btnAddComp.TabIndex = 3;
-            this.btnAddComp.Text = "Add new Company";
+            this.btnAddComp.Text = "New Order";
             this.btnAddComp.UseVisualStyleBackColor = true;
-            // 
-            // btnCompNameChange
-            // 
-            this.btnCompNameChange.Location = new System.Drawing.Point(91, 41);
-            this.btnCompNameChange.Name = "btnCompNameChange";
-            this.btnCompNameChange.Size = new System.Drawing.Size(100, 23);
-            this.btnCompNameChange.TabIndex = 4;
-            this.btnCompNameChange.Text = "chnage name";
-            this.btnCompNameChange.UseVisualStyleBackColor = true;
-            this.btnCompNameChange.Click += new System.EventHandler(this.btnCompNameChange_Click);
-            // 
-            // txtCompID
-            // 
-            this.txtCompID.Location = new System.Drawing.Point(91, 70);
-            this.txtCompID.Name = "txtCompID";
-            this.txtCompID.Size = new System.Drawing.Size(100, 20);
-            this.txtCompID.TabIndex = 5;
             // 
             // txtCompPhone
             // 
-            this.txtCompPhone.Location = new System.Drawing.Point(344, 11);
+            this.txtCompPhone.Location = new System.Drawing.Point(323, 39);
             this.txtCompPhone.Name = "txtCompPhone";
             this.txtCompPhone.Size = new System.Drawing.Size(100, 20);
             this.txtCompPhone.TabIndex = 6;
             // 
             // txtCompAdd
             // 
-            this.txtCompAdd.Location = new System.Drawing.Point(344, 78);
+            this.txtCompAdd.Location = new System.Drawing.Point(323, 117);
             this.txtCompAdd.Name = "txtCompAdd";
             this.txtCompAdd.Size = new System.Drawing.Size(100, 20);
             this.txtCompAdd.TabIndex = 7;
             // 
             // txtCompFor
             // 
-            this.txtCompFor.Location = new System.Drawing.Point(344, 121);
+            this.txtCompFor.Location = new System.Drawing.Point(323, 91);
             this.txtCompFor.Name = "txtCompFor";
             this.txtCompFor.Size = new System.Drawing.Size(100, 20);
             this.txtCompFor.TabIndex = 8;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(15, 186);
+            this.button1.Location = new System.Drawing.Point(12, 120);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(112, 23);
             this.button1.TabIndex = 9;
-            this.button1.Text = "Edit";
+            this.button1.Text = "Edit Order";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(369, 186);
+            this.button2.Location = new System.Drawing.Point(130, 120);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 10;
-            this.button2.Text = "read supplier";
+            this.button2.Text = "Re Order";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Company ID";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(254, 14);
+            this.label3.Location = new System.Drawing.Point(222, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 13);
+            this.label3.Size = new System.Drawing.Size(95, 13);
             this.label3.TabIndex = 12;
-            this.label3.Text = "Contact Number";
+            this.label3.Text = "Company Phone #";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(303, 85);
+            this.label4.Location = new System.Drawing.Point(285, 120);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 13);
+            this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 13;
-            this.label4.Text = "add";
+            this.label4.Text = "Email";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(303, 124);
+            this.label5.Location = new System.Drawing.Point(293, 94);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(19, 13);
+            this.label5.Size = new System.Drawing.Size(24, 13);
             this.label5.TabIndex = 14;
-            this.label5.Text = "for";
+            this.label5.Text = "Fax";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(323, 12);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(242, 68);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Contact Name";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // txtCompID
+            // 
+            this.txtCompID.Location = new System.Drawing.Point(323, 65);
+            this.txtCompID.Name = "txtCompID";
+            this.txtCompID.Size = new System.Drawing.Size(100, 20);
+            this.txtCompID.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Rockwell", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(12, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(144, 36);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Interface";
             // 
             // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(456, 394);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -186,10 +190,8 @@
             this.Controls.Add(this.txtCompAdd);
             this.Controls.Add(this.txtCompPhone);
             this.Controls.Add(this.txtCompID);
-            this.Controls.Add(this.btnCompNameChange);
             this.Controls.Add(this.btnAddComp);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtCompName);
             this.Controls.Add(this.dataGridView1);
             this.Name = "MainInterface";
             this.Text = "Forrn1";
@@ -203,20 +205,20 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox txtCompName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddComp;
-        private System.Windows.Forms.Button btnCompNameChange;
-        private System.Windows.Forms.TextBox txtCompID;
         private System.Windows.Forms.TextBox txtCompPhone;
         private System.Windows.Forms.TextBox txtCompAdd;
         private System.Windows.Forms.TextBox txtCompFor;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtCompID;
+        private System.Windows.Forms.Label label6;
     }
 }
 
