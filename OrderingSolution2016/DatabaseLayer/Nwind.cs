@@ -9,7 +9,7 @@ using BaseLayer;
 
 namespace DatabaseLayer
 {
-    public class Nwind
+    public class DB
     {
         private static SqlConnection sqlCon;
         private static string connectionString = "Server=B231WIN7-INST; Database=nwindsql; user=sa; Password=SQL_2012; Timeout=2";
