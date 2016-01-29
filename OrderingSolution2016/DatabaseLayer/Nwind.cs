@@ -14,7 +14,7 @@ namespace DatabaseLayer
         private static SqlConnection sqlCon;
         private static string connectionString = "Server=B231WIN7-INST; Database=nwindsql; user=sa; Password=SQL_2012; Timeout=2";
 
-        public static List<Customer> GetCustomers()
+        public static List<Customer> CustomerList()
         {
             List<Customer> CusList = new List<Customer>();
             string Procedure = "CustomersTable";
