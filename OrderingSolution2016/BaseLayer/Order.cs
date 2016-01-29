@@ -23,6 +23,7 @@ namespace BaseLayer
         public object ShipRegion { get; set; }//could be null
         public int ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
+        //public List<OrderDetail> OrderDetails(){get; set;}
 
         #endregion
         #region Construction
