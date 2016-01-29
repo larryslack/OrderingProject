@@ -20,7 +20,11 @@ namespace BaseLayer
         #region Construction
         public OrderDetail(int OrderID,int ProductID,decimal UnitPrice,short Quantity,float Discount)
         {
-
+            this.OrderID = OrderID;
+            this.ProductID = ProductID;
+            this.UnitPrice = UnitPrice;
+            this.Quantity = Quantity;
+            this.Discount = Discount;
         }
         #endregion
     }
