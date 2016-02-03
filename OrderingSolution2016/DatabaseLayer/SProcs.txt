@@ -1,0 +1,109 @@
+﻿     private const string PROC_CUS_TABLE = "CustomersTable";
+-------Procedure Title---------
+	 USE [nwindsql]
+GO
+/****** Object:  StoredProcedure [dbo].[CustomerList]    Script Date: 03/02/2016 2:56:22 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Brad.Mckay
+-- Create date: Jan 22, 2010
+-- Description:	Gets all customers
+-- =============================================
+ALTER PROCEDURE [dbo].[CustomerList] 
+	-- Add the parameters for the stored procedure here
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT CustomerID, CompanyName, ContactName, Country, Phone FROM Customers Order BY CompanyName
+END
+
+
+
+	 -------Procedure Seperator---------
+USE [NwindSQL]
+GO
+/****** Object:  StoredProcedure [dbo].[CustomerOrders]    Script Date: 03/02/2016 3:07:19 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[CustomerOrders]
+
+	@CustomerID as nvarchar(5)
+
+AS
+BEGIN
+	
+	select *
+	from Orders
+	where CustomerID = @CustomerID
+	order by OrderID
+
+END
+
+-------Procedure Seperator--------
+-------Procedure Title---------
+
+USE [nwindsql]
+GO
+/****** Object:  StoredProcedure [dbo].[OrdersForOneCustomer]    Script Date: 03/02/2016 3:01:18 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Curtis (taken from 2009 project)
+-- Create date: Jan 22, 2010
+-- Description:	Gets all orders for one customer (most recent first)
+-- =============================================
+ALTER PROCEDURE [dbo].[OrdersForOneCustomer]
+
+	(
+	@CustomerID nvarchar(5) 
+	)
+
+AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM  Orders
+	WHERE  CustomerID = @CustomerID
+  ORDER BY OrderID Desc
+	RETURN
+-------Procedure Seperator---------
+-------Procedure Title---------
+USE [NwindSQL]
+GO
+/****** Object:  StoredProcedure [dbo].[OrderDetails]    Script Date: 03/02/2016 3:28:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Alter PROCEDURE CustomerOrderDetails
+	
+	(
+		@CustomerID int 
+	)
+	
+AS
+ 	
+ SET NOCOUNT ON;
+
+ SELECT CustomerID, [Order Details].*
+ FROM [Order Details] Inner Join Orders on [Order Details].OrderID = Orders.OrderID
+ WHERE CustomerID = @CustomerID;
+
+RETURN
+-------Procedure Seperator---------
