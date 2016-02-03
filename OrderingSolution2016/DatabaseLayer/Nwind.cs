@@ -13,7 +13,7 @@ namespace DatabaseLayer
     {
         private const string PROC_CUS_TABLE = "CustomersTable";
         private const string PROC_CUS_ORDER = "CustomerOrders";
-
+        private const string PROC_UPDATE_CUS = "UpdateCustomer";
 
         private static SqlConnection sqlCon;
         private static string connectionString = "Server=Win7B228-INST; Database=nwindsql; user=sa; Password=SQL_2012; Timeout=2";
@@ -144,9 +144,9 @@ namespace DatabaseLayer
                 // Start: These will always have a value and will never equal a null.
                 int OrderID = (int)row["OrderID"];
                 string CustomerID = (string)row["CustomerID"];
-                int EmployeeID = (int)row["EmployeeID"];
                 // End.
 
+                int? EmployeeID;
                 DateTime? OrderDate;
                 DateTime? RequiredDate;
                 DateTime? ShippedDate;
@@ -158,6 +158,11 @@ namespace DatabaseLayer
                 string ShipRegion;
                 string ShipPostalCode;
                 string ShipCountry;
+
+                if (row["EmployeeID"] == DBNull.Value)
+                    EmployeeID = null;
+                else
+                    EmployeeID = (int)row["EmployeeID"];
 
                 if (row["OrderDate"] == DBNull.Value)
                     OrderDate = null;
@@ -238,7 +243,15 @@ namespace DatabaseLayer
 
         public static void UpdateCustomer()
         {
+            sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
 
+            SqlCommand cmd = new SqlCommand(PROC_UPDATE_CUS, sqlCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add()
+            
+
+            sqlCon.Close();
         }
     }
 }
