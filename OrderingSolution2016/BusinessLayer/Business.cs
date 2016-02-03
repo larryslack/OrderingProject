@@ -11,7 +11,7 @@ namespace BusinessLayer
     {
         public static  List<Customer>CustomerList()
         {
-            return DatabaseLayer.CustomerList;
+            return DB.CustomerList();
 
 
          }

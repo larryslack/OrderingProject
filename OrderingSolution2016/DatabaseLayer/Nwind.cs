@@ -12,7 +12,7 @@ namespace DatabaseLayer
     public class DB
     {
         private static SqlConnection sqlCon;
-        private static string connectionString = "Server=B231WIN7-INST; Database=nwindsql; user=sa; Password=SQL_2012; Timeout=2";
+        private static string connectionString = "Server=Win7B228-INST; Database=nwindsql; user=sa; Password=SQL_2012; Timeout=2";
 
         public static List<Customer> CustomerList()
         {

@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using BaseLayer;
+using BusinessLayer;
 namespace InterfaceLayer
 {
     public partial class MainInterface : Form
@@ -16,8 +17,15 @@ namespace InterfaceLayer
         public MainInterface()
         {
             InitializeComponent();
+            FillCombos();
         }
+        void FillCombos()
+        {
+            cmbCustomers.DataSource = Business.CustomerList();
+            cmbCustomers.DisplayMember = "CompanyName";
+            cmbCustomers.ValueMember = "CustomerID";
 
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
 

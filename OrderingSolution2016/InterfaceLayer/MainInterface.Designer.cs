@@ -39,7 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbCustomers = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCompID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -61,7 +61,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Company Name";
+            this.label1.Text = "Customer Name";
             // 
             // btnAddComp
             // 
@@ -138,13 +138,13 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "Fax";
             // 
-            // comboBox1
+            // cmbCustomers
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(323, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 15;
+            this.cmbCustomers.FormattingEnabled = true;
+            this.cmbCustomers.Location = new System.Drawing.Point(323, 12);
+            this.cmbCustomers.Name = "cmbCustomers";
+            this.cmbCustomers.Size = new System.Drawing.Size(121, 21);
+            this.cmbCustomers.TabIndex = 15;
             // 
             // label2
             // 
@@ -179,7 +179,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(456, 394);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbCustomers);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -215,7 +215,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbCustomers;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtCompID;
         private System.Windows.Forms.Label label6;
