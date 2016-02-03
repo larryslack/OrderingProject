@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BaseLayer
 {
-    class Product
+    public class Product
     {
         #region properties
 

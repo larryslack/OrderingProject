@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BaseLayer
 {
-    class OrderDetail
+    public class OrderDetail
     {
         #region Propertise
         public int OrderID { get; private set; }

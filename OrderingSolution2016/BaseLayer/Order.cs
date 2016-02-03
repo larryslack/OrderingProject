@@ -6,28 +6,28 @@ using System.Threading.Tasks;
 
 namespace BaseLayer
 {
-    class Order
+    public class Order
     {
         #region Properties
         public int? OrderID { get; private set; }
         public string CustomerID { get; set; }
         public int? EmployeeID { get; set; }
-        public DateTime OrderDate { get; set; }
-        public DateTime RequiredDate { get; set; }
-        public DateTime ShippedDate { get; set; }
-        public int ShipVia { get; set; }
-        public decimal Freight { get; set; }
+        public DateTime? OrderDate { get; set; }
+        public DateTime? RequiredDate { get; set; }
+        public DateTime? ShippedDate { get; set; }
+        public int? ShipVia { get; set; }
+        public decimal? Freight { get; set; }
         public string ShipName { get; set; }
         public string ShipAddress { get; set; }
         public string ShipCity { get; set; }
-        public object ShipRegion { get; set; }//could be null
-        public int ShipPostalCode { get; set; }
+        public string ShipRegion { get; set; }//could be null
+        public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
         //public List<OrderDetail> OrderDetails(){get; set;}
 
         #endregion
         #region Construction
-        public Order(int?OrderID,string CustomerID,int?EmployeeID,DateTime OrderDate,DateTime RequiredDate,DateTime         ShippedDate,int ShipVia,decimal Freight,string ShipName,string ShipAddress,string ShipCity,string                    ShipRegion,int ShipPostalCode,string ShipCountry )
+        public Order(int?OrderID,string CustomerID,int?EmployeeID,DateTime? OrderDate,DateTime? RequiredDate,DateTime?         ShippedDate,int? ShipVia,decimal? Freight,string ShipName,string ShipAddress,string ShipCity,string                    ShipRegion,string ShipPostalCode,string ShipCountry )
         {
             this.OrderID = OrderID;
             this.CustomerID = CustomerID;
@@ -46,6 +46,7 @@ namespace BaseLayer
 
         }
 
+ 
         #endregion
     }
 }

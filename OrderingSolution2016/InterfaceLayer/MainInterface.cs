@@ -14,6 +14,8 @@ namespace InterfaceLayer
     public partial class MainInterface : Form
     {
         AddingForm ad = new AddingForm();
+        Customer CurCustomer;
+        List<Customer> CustomerList;
         public MainInterface()
         {
             InitializeComponent();
@@ -21,7 +23,8 @@ namespace InterfaceLayer
         }
         void FillCombos()
         {
-            cmbCustomers.DataSource = Business.CustomerList();
+            CustomerList = Business.CustomerList();
+            cmbCustomers.DataSource = CustomerList;
             cmbCustomers.DisplayMember = "CompanyName";
             cmbCustomers.ValueMember = "CustomerID";
 
@@ -41,6 +44,13 @@ namespace InterfaceLayer
 
         private void label2_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void cmbCustomers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CurCustomer = CustomerList[cmbCustomers.SelectedIndex];
+            txtCompID.Text = CurCustomer.ContactName;
 
         }
     }
