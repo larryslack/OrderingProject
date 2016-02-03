@@ -9,9 +9,9 @@ namespace BaseLayer
     public class Order
     {
         #region Properties
-        public int? OrderID { get; private set; }
+        public int OrderID { get; private set; }
         public string CustomerID { get; set; }
-        public int? EmployeeID { get; set; }
+        public int EmployeeID { get; set; }
         public DateTime? OrderDate { get; set; }
         public DateTime? RequiredDate { get; set; }
         public DateTime? ShippedDate { get; set; }
@@ -27,12 +27,18 @@ namespace BaseLayer
 
         #endregion
         #region Construction
-        public Order(int?OrderID,string CustomerID,int?EmployeeID,DateTime? OrderDate,DateTime? RequiredDate,DateTime?         ShippedDate,int? ShipVia,decimal? Freight,string ShipName,string ShipAddress,string ShipCity,string                    ShipRegion,string ShipPostalCode,string ShipCountry )
+
+        public Order(int OrderID)
+        {
+            this.OrderID = OrderID;
+        }
+
+        public Order(int OrderID, string CustomerID, int EmployeeID, DateTime? OrderDate, DateTime? RequiredDate, DateTime? ShippedDate, int? ShipVia, decimal? Freight, string ShipName, string ShipAddress, string ShipCity, string ShipRegion, string ShipPostalCode, string ShipCountry)
         {
             this.OrderID = OrderID;
             this.CustomerID = CustomerID;
             this.EmployeeID = EmployeeID;
-            this.OrderDate=OrderDate;
+            this.OrderDate = OrderDate;
             this.RequiredDate = RequiredDate;
             this.ShippedDate = ShippedDate;
             this.ShipVia = ShipVia;
@@ -46,7 +52,7 @@ namespace BaseLayer
 
         }
 
- 
+
         #endregion
     }
 }

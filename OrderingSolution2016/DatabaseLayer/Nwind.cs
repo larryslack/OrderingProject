@@ -11,20 +11,23 @@ namespace DatabaseLayer
 {
     public class DB
     {
+        private const string PROC_CUS_TABLE = "CustomersTable";
+        private const string PROC_CUS_ORDER = "CustomerOrers";
+
+
         private static SqlConnection sqlCon;
         private static string connectionString = "Server=Win7B228-INST; Database=nwindsql; user=sa; Password=SQL_2012; Timeout=2";
 
         public static List<Customer> CustomerList()
         {
             List<Customer> CusList = new List<Customer>();
-            string Procedure = "CustomersTable";
 
             sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
 
             SqlDataAdapter da;
             DataTable dt = new DataTable();
-            SqlCommand cmd = new SqlCommand(Procedure, sqlCon);
+            SqlCommand cmd = new SqlCommand(PROC_CUS_TABLE, sqlCon);
             cmd.CommandType = CommandType.StoredProcedure;
 
             da = new SqlDataAdapter(cmd);
@@ -36,8 +39,11 @@ namespace DatabaseLayer
 
             foreach (DataRow row in dt.Rows)
             {
+                // Start: These will always have a value and will never equal a null.
                 string CustomerID = (string)row["CustomerID"];
                 string CompanyName = (string)row["CompanyName"];
+                // End
+
                 string ContactName;
                 string ContactTitle;
                 string Address;
@@ -110,6 +116,124 @@ namespace DatabaseLayer
             }
 
             return CusList;
+        }
+        public static List<Order> CustomerOrders(string CusID)
+        {
+            List<Order> OrdList = new List<Order>();
+
+            sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
+
+            SqlDataAdapter da;
+            DataTable dt = new DataTable();
+            SqlCommand cmd = new SqlCommand(PROC_CUS_ORDER, sqlCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@CustomerID", CusID));
+
+            da = new SqlDataAdapter(cmd);
+            da.FillSchema(dt, SchemaType.Source);
+            da.Fill(dt);
+
+            sqlCon.Close();
+
+
+
+            // Modify
+            foreach (DataRow row in dt.Rows)
+            {
+                // Start: These will always have a value and will never equal a null.
+                int OrderID = (int)row["OrderID"];
+                string CustomerID = (string)row["CustomerID"];
+                int EmployeeID = (int)row["EmployeeID"];
+                // End.
+
+                DateTime? OrderDate;
+                DateTime? RequiredDate;
+                DateTime? ShippedDate;
+                int? ShipVia;
+                decimal? Freight;
+                string ShipName;
+                string ShipAddress;
+                string ShipCity;
+                string ShipRegion;
+                string ShipPostalCode;
+                string ShipCountry;
+
+                if (row["OrderDate"] == DBNull.Value)
+                    OrderDate = null;
+                else
+                    OrderDate = (DateTime)row["OrderDate"];
+
+                if (row["RequiredDate"] == DBNull.Value)
+                    RequiredDate = null;
+                else
+                    RequiredDate = (DateTime)row["RequiredDate"];
+
+                if (row["ShippedDate"] == DBNull.Value)
+                    ShippedDate = null;
+                else
+                    ShippedDate = (DateTime)row["ShippedDate"];
+
+                if (row["ShipVia"] == DBNull.Value)
+                    ShipVia = null;
+                else
+                    ShipVia = (int)row["ShipVia"];
+
+                if (row["Freight"] == DBNull.Value)
+                    Freight = null;
+                else
+                    Freight = (decimal)row["Freight"];
+
+                if (row["ShipName"] == DBNull.Value)
+                    ShipName = null;
+                else
+                    ShipName = (string)row["ShipName"];
+
+                if (row["ShipAddress"] == DBNull.Value)
+                    ShipAddress = null;
+                else
+                    ShipAddress = (string)row["ShipAddress"];
+
+                if (row["ShipCity"] == DBNull.Value)
+                    ShipCity = null;
+                else
+                    ShipCity = (string)row["ShipCity"];
+
+                if (row["ShipRegion"] == DBNull.Value)
+                    ShipRegion = null;
+                else
+                    ShipRegion = (string)row["ShipRegion"];
+
+                if (row["ShipPostalCode"] == DBNull.Value)
+                    ShipPostalCode = null;
+                else
+                    ShipPostalCode = (string)row["ShipPostalCode"];
+
+                if (row["ShipCountry"] == DBNull.Value)
+                    ShipCountry = null;
+                else
+                    ShipCountry = (string)row["ShipCountry"];
+
+                Order O = new Order(OrderID);
+
+                O.CustomerID = CustomerID;
+                O.EmployeeID = EmployeeID;
+                O.OrderDate = OrderDate;
+                O.RequiredDate = RequiredDate;
+                O.ShippedDate = ShippedDate;
+                O.ShipVia = ShipVia;
+                O.Freight = Freight;
+                O.ShipName = ShipName;
+                O.ShipAddress = ShipAddress;
+                O.ShipCity = ShipCity;
+                O.ShipRegion = ShipRegion;
+                O.ShipPostalCode = ShipPostalCode;
+                O.ShipCountry = ShipCountry;
+
+                OrdList.Add(O);
+            }
+
+            return OrdList;
         }
     }
 }
