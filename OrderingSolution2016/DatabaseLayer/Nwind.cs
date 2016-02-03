@@ -248,7 +248,7 @@ namespace DatabaseLayer
 
             SqlCommand cmd = new SqlCommand(PROC_UPDATE_CUS, sqlCon);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add()
+            //cmd.Parameters.Add();
             
 
             sqlCon.Close();
