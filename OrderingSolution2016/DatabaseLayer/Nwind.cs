@@ -12,7 +12,7 @@ namespace DatabaseLayer
     public class DB
     {
         private const string PROC_CUS_TABLE = "CustomersTable";
-        private const string PROC_CUS_ORDER = "CustomerOrers";
+        private const string PROC_CUS_ORDER = "CustomerOrders";
 
 
         private static SqlConnection sqlCon;
@@ -234,6 +234,11 @@ namespace DatabaseLayer
             }
 
             return OrdList;
+        }
+
+        public static void UpdateCustomer()
+        {
+
         }
     }
 }
