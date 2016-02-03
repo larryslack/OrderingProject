@@ -15,7 +15,16 @@ namespace BusinessLayer
 
 
          }
-      
 
+        public static List<Order> OrderList()
+        {
+            string CustomerID ="";
+            foreach (Customer tmp in CustomerList())
+            {
+                CustomerID = tmp.CustomerID;
+               
+            }
+            return DB.CustomerOrders(CustomerID);
+        }
     }
 }

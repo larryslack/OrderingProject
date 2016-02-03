@@ -9,7 +9,7 @@ namespace BaseLayer
     public class Order
     {
         #region Properties
-        public int OrderID { get; private set; }
+        public int OrderID { get;  set; }
         public string CustomerID { get; set; }
         public int EmployeeID { get; set; }
         public DateTime? OrderDate { get; set; }

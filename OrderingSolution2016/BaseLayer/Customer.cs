@@ -9,7 +9,7 @@ namespace BaseLayer
     public class Customer
     {
         #region Properties
-        public string CustomerID { get; private set; }
+        public string CustomerID { get;  set; }
         public string CompanyName { get; set; }
         public string ContactTitle { get; set; }
         public string ContactName { get; set; }
