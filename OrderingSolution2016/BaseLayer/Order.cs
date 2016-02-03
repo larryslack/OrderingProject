@@ -11,7 +11,7 @@ namespace BaseLayer
         #region Properties
         public int OrderID { get;  set; }
         public string CustomerID { get; set; }
-        public int EmployeeID { get; set; }
+        public int? EmployeeID { get; set; }
         public DateTime? OrderDate { get; set; }
         public DateTime? RequiredDate { get; set; }
         public DateTime? ShippedDate { get; set; }
@@ -33,7 +33,7 @@ namespace BaseLayer
             this.OrderID = OrderID;
         }
 
-        public Order(int OrderID, string CustomerID, int EmployeeID, DateTime? OrderDate, DateTime? RequiredDate, DateTime? ShippedDate, int? ShipVia, decimal? Freight, string ShipName, string ShipAddress, string ShipCity, string ShipRegion, string ShipPostalCode, string ShipCountry)
+        public Order(int OrderID, string CustomerID, int? EmployeeID, DateTime? OrderDate, DateTime? RequiredDate, DateTime? ShippedDate, int? ShipVia, decimal? Freight, string ShipName, string ShipAddress, string ShipCity, string ShipRegion, string ShipPostalCode, string ShipCountry)
         {
             this.OrderID = OrderID;
             this.CustomerID = CustomerID;
