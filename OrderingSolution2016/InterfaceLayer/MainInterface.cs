@@ -16,6 +16,8 @@ namespace InterfaceLayer
         AddingForm ad = new AddingForm();
         Customer CurCustomer;
         List<Customer> CustomerList;
+        List<Order> CustomerOrderList;
+
         public MainInterface()
         {
             InitializeComponent();
@@ -51,7 +53,9 @@ namespace InterfaceLayer
         {
             CurCustomer = CustomerList[cmbCustomers.SelectedIndex];
             txtCompID.Text = CurCustomer.ContactName;
-
+            //get the orders for this customer and display in the grid
+            CustomerOrderList = Business.OrderList(CurCustomer);
+            OrderGrid.DataSource = CustomerOrderList;
         }
     }
 }

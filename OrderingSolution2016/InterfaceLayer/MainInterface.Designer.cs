@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.OrderGrid = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddComp = new System.Windows.Forms.Button();
             this.txtCompPhone = new System.Windows.Forms.TextBox();
@@ -43,16 +43,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCompID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // OrderGrid
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 149);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(444, 241);
-            this.dataGridView1.TabIndex = 0;
+            this.OrderGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OrderGrid.Location = new System.Drawing.Point(7, 149);
+            this.OrderGrid.Name = "OrderGrid";
+            this.OrderGrid.Size = new System.Drawing.Size(444, 241);
+            this.OrderGrid.TabIndex = 0;
             // 
             // label1
             // 
@@ -193,11 +193,11 @@
             this.Controls.Add(this.txtCompID);
             this.Controls.Add(this.btnAddComp);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.OrderGrid);
             this.Name = "MainInterface";
             this.Text = "Forrn1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,7 +205,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView OrderGrid;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddComp;
         private System.Windows.Forms.TextBox txtCompPhone;
