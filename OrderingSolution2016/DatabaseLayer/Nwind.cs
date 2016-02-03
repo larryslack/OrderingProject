@@ -9,7 +9,7 @@ using BaseLayer;
 
 namespace DatabaseLayer
 {
-    public class DB
+    public partial class DB
     {
         private const string PROC_CUS_TABLE = "CustomersTable";
         private const string PROC_CUS_ORDER = "CustomerOrders";
