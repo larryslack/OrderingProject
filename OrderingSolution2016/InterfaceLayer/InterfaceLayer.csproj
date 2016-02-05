@@ -56,6 +56,15 @@
     <Compile Include="MainInterface.Designer.cs">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderingForm.Designer.cs">
+      <DependentUpon>OrderingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddingForm.resx">
@@ -63,6 +72,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderingForm.resx">
+      <DependentUpon>OrderingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
