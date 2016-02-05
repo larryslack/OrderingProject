@@ -14,7 +14,7 @@ namespace BaseLayer
         public decimal UnitPrice { get; set; }
         public short Quantity { get; set; }
         public float Discount {get;set;}
-
+        public string ProductName { get; set; }
 
         #endregion
         #region Construction
@@ -25,6 +25,7 @@ namespace BaseLayer
             this.UnitPrice = UnitPrice;
             this.Quantity = Quantity;
             this.Discount = Discount;
+            this.ProductName = ProductName;
         }
         #endregion
     }
