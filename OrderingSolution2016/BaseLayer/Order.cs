@@ -20,9 +20,11 @@ namespace BaseLayer
         public string ShipName { get; set; }
         public string ShipAddress { get; set; }
         public string ShipCity { get; set; }
-        public string ShipRegion { get; set; }//could be null
+        public string ShipRegion { get; set; }
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
+        public string EmployeeName { get; set; }
+        public string ShippperName { get; set; }
         //public List<OrderDetail> OrderDetails(){get; set;}
 
         #endregion
@@ -49,7 +51,7 @@ namespace BaseLayer
             this.ShipRegion = ShipRegion;
             this.ShipPostalCode = ShipPostalCode;
             this.ShipCountry = ShipCountry;
-
+            this.EmployeeName = EmployeeName;
         }
 
 

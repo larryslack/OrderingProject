@@ -57,5 +57,10 @@ namespace InterfaceLayer
             CustomerOrderList = Business.OrderList(CurCustomer);
             OrderGrid.DataSource = CustomerOrderList;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
