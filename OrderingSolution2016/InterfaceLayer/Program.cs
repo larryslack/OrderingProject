@@ -16,7 +16,7 @@ namespace InterfaceLayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainInterface());
+            Application.Run(new OrderingForm());
         }
     }
 }
