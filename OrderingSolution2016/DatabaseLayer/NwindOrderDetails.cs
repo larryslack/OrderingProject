@@ -11,9 +11,9 @@ namespace DatabaseLayer
 {
     public partial class DB
     {
-        private const string PROC_ORD_DETAILS = "CustomerOrderDetails";
+        private const string PROC_ORD_DETAILS = "OrderDetails";
 
-        public static List<OrderDetail> OrderDetailList(string CustomerID)
+        public static List<OrderDetail> OrderDetailList(int OrderID)
         {
             //Copied code from Nwind.cs VVVV
             List<OrderDetail> OrdDetList = new List<OrderDetail>();
@@ -25,7 +25,7 @@ namespace DatabaseLayer
             DataTable dt = new DataTable();
             SqlCommand cmd = new SqlCommand(PROC_ORD_DETAILS, sqlCon);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add(new SqlParameter("@CustomerID", CustomerID));
+            cmd.Parameters.Add(new SqlParameter("@OrderID", OrderID));
 
             da = new SqlDataAdapter(cmd);
             da.FillSchema(dt, SchemaType.Source);
@@ -35,7 +35,8 @@ namespace DatabaseLayer
             //Copied code^^^^
             foreach (DataRow row in dt.Rows)
             {
-                int OrderID = (int)row["OrderID"];
+                //int OrderID = (int)row["OrderID"];
+                //string ProductName = (string)row["ProductName"];
                 int ProductID = (int)row["ProductID"];
                 decimal UnitPrice = (decimal)row["UnitPrice"];
                 short Quantity = (short)row["Quantity"];
