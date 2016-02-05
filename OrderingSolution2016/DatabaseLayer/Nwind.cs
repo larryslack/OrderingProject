@@ -14,6 +14,7 @@ namespace DatabaseLayer
         private const string PROC_CUS_TABLE = "CustomersTable";
         private const string PROC_CUS_ORDER = "CustomerOrders";
         private const string PROC_UPDATE_CUS = "UpdateCustomer";
+        private const string PROC_MAKE_ORDER = "MakeOrder";
 
         private static SqlConnection sqlCon;
         private static string connectionString = "Server=Win7B228-INST; Database=nwindsql; user=sa; Password=SQL_2012; Timeout=2";
@@ -136,8 +137,6 @@ namespace DatabaseLayer
 
             sqlCon.Close();
 
-
-
             // Modify
             foreach (DataRow row in dt.Rows)
             {
@@ -241,7 +240,36 @@ namespace DatabaseLayer
             return OrdList;
         }
 
-        public static void UpdateCustomer()
+        public static void MakeOrder(Order newOrder)
+        {
+            sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
+
+            SqlCommand cmd = new SqlCommand(PROC_MAKE_ORDER, sqlCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter p = new SqlParameter();
+            p.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(new SqlParameter("@CustomerID", newOrder.CustomerID));
+            cmd.Parameters.Add(new SqlParameter("@EmployeeID", newOrder.EmployeeID));
+            cmd.Parameters.Add(new SqlParameter("@OrderDate", newOrder.OrderDate));
+            cmd.Parameters.Add(new SqlParameter("@RequiredDate", newOrder.RequiredDate));
+            cmd.Parameters.Add(new SqlParameter("@ShippedDate", newOrder.ShippedDate));
+            cmd.Parameters.Add(new SqlParameter("@ShipVia", newOrder.ShipVia));
+            cmd.Parameters.Add(new SqlParameter("@Freight", newOrder.Freight));
+            cmd.Parameters.Add(new SqlParameter("@ShipName", newOrder.ShipName));
+            cmd.Parameters.Add(new SqlParameter("@ShipAddress", newOrder.ShipAddress));
+            cmd.Parameters.Add(new SqlParameter("@ShipCity", newOrder.ShipCity));
+            cmd.Parameters.Add(new SqlParameter("@ShipRegion", newOrder.ShipRegion));
+            cmd.Parameters.Add(new SqlParameter("@ShipPostalCode", newOrder.ShipPostalCode));
+            cmd.Parameters.Add(new SqlParameter("@ShipCountry", newOrder.ShipCountry));
+
+            cmd.ExecuteNonQuery();
+
+            sqlCon.Close();
+        }
+
+        public static void UpdateCustomer(string EmployeeID)
         {
             sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
