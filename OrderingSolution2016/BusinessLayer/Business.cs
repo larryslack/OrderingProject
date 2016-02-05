@@ -24,5 +24,9 @@ namespace BusinessLayer
         {
             return DB.OrderDetailList(OrderID);
         }
+        public static List<Product> ProductList()
+        {
+            return DB.ProductList();
+        }
     }
 }
