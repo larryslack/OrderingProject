@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Nwind.cs" />
     <Compile Include="NwindOrderDetails.cs" />
+    <Compile Include="NwindProductList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
