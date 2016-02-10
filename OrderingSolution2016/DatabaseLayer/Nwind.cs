@@ -240,7 +240,7 @@ namespace DatabaseLayer
             return OrdList;
         }
 
-        public static int MakeOrder(Order newOrder)
+        public static void MakeOrder(Order newOrder)
         {
             object obj;
             
@@ -267,9 +267,8 @@ namespace DatabaseLayer
             cmd.Parameters.Add(new SqlParameter("@ShipCountry", newOrder.ShipCountry));
 
             obj = cmd.ExecuteScalar();
+            newOrder.OrderID = Convert.ToInt32(obj);
             sqlCon.Close();
-
-            return Convert.ToInt32(obj);
         }
 
         public static void UpdateCustomer(string EmployeeID)
