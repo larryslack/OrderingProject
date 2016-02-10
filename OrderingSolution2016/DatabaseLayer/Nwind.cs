@@ -271,6 +271,109 @@ namespace DatabaseLayer
             sqlCon.Close();
         }
 
+        public static List<Customer> getCustomers()
+        {
+            List<Customer> CustList = new List<Customer>();
+
+            sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
+
+            SqlDataAdapter da;
+            DataTable dt = new DataTable();
+            SqlCommand cmd = new SqlCommand(PROC_CUS_TABLE, sqlCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+            da = new SqlDataAdapter(cmd);
+            da.FillSchema(dt, SchemaType.Source);
+            da.Fill(dt);
+
+            sqlCon.Close();
+
+            // Modify
+            foreach (DataRow row in dt.Rows)
+            {
+                // Start: These will always have a value and will never equal a null.
+                string CustomerID = (string)row["CustomerID"];
+                // End.
+
+                string CompanyName;
+                string ContactName;
+                string ContactTitle;
+                string Address;
+                string City;
+                string Region;
+                string PostalCode;
+                string Country;
+                string Phone;
+                string Fax;
+
+                if (row["CompanyName"] == DBNull.Value)
+                    CompanyName = null;
+                else
+                    CompanyName = (string)row["CompanyName"];
+
+                if (row["ContactName"] == DBNull.Value)
+                    ContactName = null;
+                else
+                    ContactName = (string)row["ContactName"];
+
+                if (row["ContactTitle"] == DBNull.Value)
+                    ContactTitle = null;
+                else
+                    ContactTitle = (string)row["ContactTitle"];
+
+                if (row["Address"] == DBNull.Value)
+                    Address = null;
+                else
+                    Address = (string)row["Address"];
+
+                if (row["City"] == DBNull.Value)
+                    City = null;
+                else
+                    City = (string)row["City"];
+
+                if (row["Region"] == DBNull.Value)
+                    Region = null;
+                else
+                    Region = (string)row["Region"];
+
+                if (row["PostalCode"] == DBNull.Value)
+                    PostalCode = null;
+                else
+                    PostalCode = (string)row["PostalCode"];
+
+                if (row["Country"] == DBNull.Value)
+                    Country = null;
+                else
+                    Country = (string)row["Country"];
+
+                if (row["Phone"] == DBNull.Value)
+                    Phone = null;
+                else
+                    Phone = (string)row["Phone"];
+
+                if (row["Fax"] == DBNull.Value)
+                    Fax = null;
+                else
+                    Fax = (string)row["Fax"];
+
+                Customer C = new Customer(CustomerID);
+
+                C.CustomerID = CustomerID;
+                C.CompanyName = CompanyName;
+                C.ContactTitle = ContactTitle;
+                C.Address = Address;
+                C.City = City;
+                C.Region = Region;
+                C.PostalCode = PostalCode;
+                C.Country = Country;
+                C.Phone = Phone;
+                C.Fax = Fax;
+                CustList.Add(C);
+            }
+
+            return CustList;
+        }
+
         public static void UpdateCustomer(string EmployeeID)
         {
             sqlCon = new SqlConnection(connectionString);

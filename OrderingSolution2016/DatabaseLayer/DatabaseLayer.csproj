@@ -51,6 +51,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="StoredProcedures\CommitOrder.txt" />
     <Content Include="StoredProcedures\OrderDetails.txt" />
     <Content Include="StoredProcedures\Copy %283%29 of Copy %283%29 of SProcs.txt" />
     <Content Include="StoredProcedures\CustomerOrderDetails.txt" />

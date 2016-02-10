@@ -1,0 +1,35 @@
+﻿USE [NwindSQL]
+GO
+/****** Object:  StoredProcedure [dbo].[CommitOrder]    Script Date: 10/02/2016 2:53:55 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[CommitOrder]
+	@CustomerID as nvarchar(5),
+	@EmployeeID as int,
+	@OrderDate as DateTime,
+	@RequiredDate as DateTime,
+	@ShippedDate as DateTime,
+	@ShipVia as int,
+	@Freight as money,
+	@ShipName as nvarchar(40),
+	@ShipAddress as nvarchar(60),
+	@ShipCity as nvarchar(15),
+	@ShipRegion as nvarchar(15),
+	@ShipPostalCode as nvarchar(10),
+	@ShipCountry as nvarchar(15)
+AS
+BEGIN
+
+	 
+	INSERT INTO [Orders](CustomerID, EmployeeID, OrderDate, RequiredDate, ShippedDate, ShipVia, Freight,ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry)
+	Values(@CustomerID, @EmployeeID, @OrderDate,@RequiredDate,@ShippedDate,@ShipVia, @Freight, @ShipName,@ShipAddress, @ShipCity, @ShipRegion, @ShipPostalCode, @ShipCountry)
+	
+	return @@Identity
+END
