@@ -10,11 +10,11 @@ namespace InterfaceLayer
     class ProductPanel : Panel
     {
         #region Protected Fields
-        protected ComboBox comboProduct;
-        protected TextBox txtPrice;
-        protected TextBox txtQuantity;
-        protected TextBox txtDiscount;
-        protected Button btnDelete;
+        public ComboBox comboProduct;
+        public TextBox txtPrice;
+        public TextBox txtQuantity;
+        public TextBox txtDiscount;
+        public Button btnDelete;
 
         protected Panel Addto = new Panel();
 
@@ -22,7 +22,7 @@ namespace InterfaceLayer
 
         public ProductPanel(Panel add2, int locationy)
         {
-            ComboBox comboProduct = new ComboBox();
+            comboProduct = new ComboBox();
             comboProduct.FormattingEnabled = true;
             comboProduct.Location = new System.Drawing.Point(4, 4);
             comboProduct.Name = "comboBox1";
@@ -62,6 +62,10 @@ namespace InterfaceLayer
             btnDelete.TabIndex = 4;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.BackColor = System.Drawing.Color.LightPink;
+            btnDelete.TabStop = false;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.FlatAppearance.BorderSize = 0;
 
             this.Controls.Add(comboProduct);
             this.Controls.Add(txtPrice);
