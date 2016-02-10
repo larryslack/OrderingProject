@@ -13,7 +13,7 @@ namespace DatabaseLayer
     {
         private const string PROC_PROD_LIST = "ProductListAllRows";
 
-        public static List<Product> ProductList()
+        public static List<Product> ProductList(Product p)
         {
             //Copied code from Nwind.cs VVVV
             List<Product> ProdList = new List<Product>();
@@ -58,24 +58,25 @@ namespace DatabaseLayer
                 if (row["UnitInStock"] != DBNull.Value)
                     UnitInStock = (short)row["UnitInStock"];
                 else
-                    UnitInStock = null; 
+                    UnitInStock = null;
 
                 short? UnitOnOrder;
                 if (row["UnitOnOrder"] != DBNull.Value)
                     UnitOnOrder = (short)row["UnitOnOrder"];
                 else
-                    UnitOnOrder = null; 
+                    UnitOnOrder = null;
 
                 int? ReorderLevel;
-                if (row["ReorderLevel"] != DBNull.Value) 
+                if (row["ReorderLevel"] != DBNull.Value)
                     ReorderLevel = (int)row["ReorderLevel"];
                 else
                     ReorderLevel = null;
 
-                Product Prod = new Product(ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitInStock,UnitOnOrder,ReorderLevel,Discountinued);
+                Product Prod = new Product(ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitInStock, UnitOnOrder, ReorderLevel, Discountinued);
                 ProdList.Add(Prod);
             }
-      /*put code here */
+            /*put code here */
             return ProdList;
+        }
     }
 }
