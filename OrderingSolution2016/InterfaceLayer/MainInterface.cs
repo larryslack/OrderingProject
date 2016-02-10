@@ -80,6 +80,20 @@ namespace InterfaceLayer
                 ShipCountry = ord.ShipCountry,
                 Freight = ord.Freight                
             }).ToList();
+
+            OrderGrid.Columns[0].Width = 50;
+            OrderGrid.Columns[1].Width = 50;
+            OrderGrid.Columns[2].Width = 70;
+            OrderGrid.Columns[3].Width = 90;
+            OrderGrid.Columns[4].Width = 80;
+            OrderGrid.Columns[5].Width = 50;
+            OrderGrid.Columns[7].Width = 70;
+            OrderGrid.Columns[8].Width = 60;
+            OrderGrid.Columns[9].Width = 50;
+            OrderGrid.Columns[10].Width = 50;
+            OrderGrid.Columns[11].Width = 60;
+            OrderGrid.Columns[12].Width = 50;
+            
         }
 
         private void btnEditOrder_Click(object sender, EventArgs e)
