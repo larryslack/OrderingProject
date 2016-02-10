@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace InterfaceLayer
 {
-    public partial class AddingForm : Form
+    public partial class EditingForm : Form
     {
-        public AddingForm()
+        public EditingForm()
         {
             InitializeComponent();
         }

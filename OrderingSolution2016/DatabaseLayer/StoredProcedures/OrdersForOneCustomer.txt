@@ -1,0 +1,25 @@
+﻿USE [nwindsql]
+GO
+/****** Object:  StoredProcedure [dbo].[OrdersForOneCustomer]    Script Date: 03/02/2016 3:01:18 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Curtis (taken from 2009 project)
+-- Create date: Jan 22, 2010
+-- Description:	Gets all orders for one customer (most recent first)
+-- =============================================
+ALTER PROCEDURE [dbo].[OrdersForOneCustomer]
+
+	(
+	@CustomerID nvarchar(5) 
+	)
+
+AS
+	SET NOCOUNT ON
+	SELECT * 
+	FROM  Orders
+	WHERE  CustomerID = @CustomerID
+  ORDER BY OrderID Desc
+	RETURN

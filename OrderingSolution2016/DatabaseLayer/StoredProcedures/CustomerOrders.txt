@@ -1,0 +1,25 @@
+﻿USE [NwindSQL]
+GO
+/****** Object:  StoredProcedure [dbo].[CustomerOrders]    Script Date: 03/02/2016 3:07:19 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[CustomerOrders]
+
+	@CustomerID as nvarchar(5)
+
+AS
+BEGIN
+	
+	select *
+	from Orders
+	where CustomerID = @CustomerID
+	order by OrderID
+
+END

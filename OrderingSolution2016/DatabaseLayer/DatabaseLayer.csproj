@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Nwind.cs" />
     <Compile Include="NwindOrderDetails.cs" />
+    <Compile Include="NwindProductList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,7 +51,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SProcs.txt" />
+    <Content Include="StoredProcedures\OrderDetails.txt" />
+    <Content Include="StoredProcedures\Copy %283%29 of Copy %283%29 of SProcs.txt" />
+    <Content Include="StoredProcedures\CustomerOrderDetails.txt" />
+    <Content Include="StoredProcedures\CustomerOrders.txt" />
+    <Content Include="StoredProcedures\OrdersForOneCustomer.txt" />
+    <Content Include="StoredProcedures\CustomerList.txt" />
+    <Content Include="StoredProcedures\Full SProcs list.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

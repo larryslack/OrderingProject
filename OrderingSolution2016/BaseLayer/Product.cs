@@ -10,7 +10,7 @@ namespace BaseLayer
     {
         #region properties
 
-        public int? ProductID { get; private set; }
+        public int ProductID { get; private set; }
         public string ProductName { get; set; }
         public int? SupplierID { get; set; }
         public int? CategoryID { get; set; }
@@ -24,7 +24,7 @@ namespace BaseLayer
 
         #region Constrction
 
-        public Product(int? ProductID, string ProductName, int? SupplierID, int? CategoryID, string QuantityPerUnit, decimal UnitOrice, short? UnitInStock, short? UnitOnOrder,
+        public Product(int ProductID, string ProductName, int? SupplierID, int? CategoryID, string QuantityPerUnit, decimal UnitPrice, short? UnitInStock, short? UnitOnOrder,
             int? ReOrderLevel, bool Discontinued)
         {
             this.ProductID = ProductID;

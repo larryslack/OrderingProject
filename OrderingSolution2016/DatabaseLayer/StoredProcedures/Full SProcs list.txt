@@ -1,5 +1,4 @@
-﻿     private const string PROC_CUS_TABLE = "CustomersTable";
--------Procedure Title---------
+﻿-------Procedure Title---------
 	 USE [nwindsql]
 GO
 /****** Object:  StoredProcedure [dbo].[CustomerList]    Script Date: 03/02/2016 2:56:22 PM ******/
@@ -132,3 +131,31 @@ AS
 	RETURN
 	
 -------Procedure Seperator---------
+-------Procedure Title---------
+USE [NwindSQL]
+GO
+/****** Object:  StoredProcedure [dbo].[ProductListAllRows]    Script Date: 10/02/2016 1:20:43 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Brent>
+-- Create date: <Feb something'th, 2016>
+-- Description:	<ProductList>
+-- =============================================
+ALTER PROCEDURE [dbo].[ProductListAllRows]
+	-- Add the parameters for the stored procedure here
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+SELECT *
+FROM Products
+END
+-------Procedure Seperator---------
+
+

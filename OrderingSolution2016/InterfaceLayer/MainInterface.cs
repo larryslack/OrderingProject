@@ -13,7 +13,7 @@ namespace InterfaceLayer
 {
     public partial class MainInterface : Form
     {
-        AddingForm ad = new AddingForm();
+        EditingForm ad = new EditingForm();
         Customer CurCustomer;
         List<Customer> CustomerList;
         List<Order> CustomerOrderList;
@@ -53,12 +53,46 @@ namespace InterfaceLayer
         {
             CurCustomer = CustomerList[cmbCustomers.SelectedIndex];
             txtCompID.Text = CurCustomer.ContactName;
+            txtCompPhone.Text = CurCustomer.Phone;
+            txtCompID.Text = CurCustomer.CustomerID;
+            txtCompFax.Text = CurCustomer.Fax;
+            txtCompMail.Text = CurCustomer.PostalCode;
+            
             //get the orders for this customer and display in the grid
             CustomerOrderList = Business.OrderList(CurCustomer);
-            OrderGrid.DataSource = CustomerOrderList;
+           // OrderGrid.DataSource = CustomerOrderList;
+
+            //Where to look for way to choose columns
+            //http://stackoverflow.com/questions/14793990/how-to-show-only-certain-columns-in-a-datagridview-with-custom-objects
+
+            OrderGrid.DataSource = CustomerOrderList.Select(ord => new 
+            {   OrderID = ord.OrderID, 
+                Employee = ord.EmployeeName, 
+                OrderDate = ord.OrderDate,
+                RequiredDate = ord.RequiredDate,
+                ShippedDate = ord.ShippedDate,
+                ShipperName = ord.ShippperName,
+                ShipName = ord.ShipName,
+                ShipAddress = ord.ShipAddress,
+                ShipCity = ord.ShipCity,
+                ShipRegion = ord.ShipRegion,
+                ShipPostalCode = ord.ShipPostalCode,
+                ShipCountry = ord.ShipCountry,
+                Freight = ord.Freight                
+            }).ToList();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnEditOrder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNewOrder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReOrder_Click(object sender, EventArgs e)
         {
 
         }
