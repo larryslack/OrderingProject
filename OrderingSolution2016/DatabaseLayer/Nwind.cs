@@ -240,10 +240,8 @@ namespace DatabaseLayer
             return OrdList;
         }
 
-        public static void MakeOrder(Order newOrder)
-        {
-            object obj;
-            
+        public static void CommitOrder(Order newOrder)
+        {            
             sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
 
@@ -266,8 +264,10 @@ namespace DatabaseLayer
             cmd.Parameters.Add(new SqlParameter("@ShipPostalCode", newOrder.ShipPostalCode));
             cmd.Parameters.Add(new SqlParameter("@ShipCountry", newOrder.ShipCountry));
 
-            obj = cmd.ExecuteScalar();
-            newOrder.OrderID = Convert.ToInt32(obj);
+            cmd.ExecuteNonQuery();
+            // Change the OrderID of the order that is passed in to its new ID
+
+            newOrder.OrderID = (int)p.Value;
             sqlCon.Close();
         }
 
