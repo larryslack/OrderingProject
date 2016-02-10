@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BaseLayer;
 
 namespace InterfaceLayer
 {
@@ -20,7 +21,7 @@ namespace InterfaceLayer
 
         #endregion
 
-        public ProductPanel(Panel add2, int locationy)
+        public ProductPanel(Panel add2, int locationy, List<Product> productlist)
         {
             comboProduct = new ComboBox();
             comboProduct.FormattingEnabled = true;
@@ -28,6 +29,9 @@ namespace InterfaceLayer
             comboProduct.Name = "comboBox1";
             comboProduct.Size = new System.Drawing.Size(121, 21);
             comboProduct.TabIndex = 0;
+            comboProduct.DataSource = productlist;
+            comboProduct.DisplayMember = "ProductName";
+            comboProduct.ValueMember = "ProductID";
             // 
             // textBox1
             // 

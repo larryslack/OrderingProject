@@ -38,10 +38,15 @@ namespace DatabaseLayer
                 //Cant be Null
                 int ProductID = (int)row["ProductID"];
                 string ProductName = (string)row["ProductName"];
-                string QuantityPerUnit = (string)row["QuantityPerUnit"];
                 decimal UnitPrice = (decimal)row["UnitPrice"];
-                bool Discountinued = (bool)row["Discountinued"];
+                bool Discountinued = (bool)row["Discontinued"];
                 //Nullable
+                string QuantityPerUnit;
+                if (row["QuantityPerUnit"] != DBNull.Value)
+                    QuantityPerUnit = (string)row["QuantityPerUnit"];
+                else
+                    QuantityPerUnit = null;
+
                 int? SupplierID;
                 if (row["SupplierID"] != DBNull.Value)
                     SupplierID = (int)row["SupplierID"];
@@ -55,20 +60,20 @@ namespace DatabaseLayer
                     CategoryID = null;
 
                 short? UnitInStock;
-                if (row["UnitInStock"] != DBNull.Value)
-                    UnitInStock = (short)row["UnitInStock"];
+                if (row["UnitsInStock"] != DBNull.Value)
+                    UnitInStock = (short)row["UnitsInStock"];
                 else
                     UnitInStock = null;
 
                 short? UnitOnOrder;
-                if (row["UnitOnOrder"] != DBNull.Value)
-                    UnitOnOrder = (short)row["UnitOnOrder"];
+                if (row["UnitsOnOrder"] != DBNull.Value)
+                    UnitOnOrder = (short)row["UnitsOnOrder"];
                 else
                     UnitOnOrder = null;
 
-                int? ReorderLevel;
+                short? ReorderLevel;
                 if (row["ReorderLevel"] != DBNull.Value)
-                    ReorderLevel = (int)row["ReorderLevel"];
+                    ReorderLevel = (short)row["ReorderLevel"];
                 else
                     ReorderLevel = null;
 
