@@ -25,19 +25,28 @@ namespace InterfaceLayer
 
         private void OrderingForm_Load(object sender, EventArgs e)
         {
-
-
-            int ylocation = 4;
-            ProductPanel temp = new ProductPanel(panelProducts, ylocation, productList);
-            temp.BringToFront();
-            listProductPanel.Add(temp);
-
-
+            GenerateProductPanel();
 
             decimal zero = 0;
             txtTotalCost.Text = zero.ToString("C");
             txtTotalQuantity.Text = zero.ToString();
             txtTotalDiscount.Text = zero.ToString("C");
+        }
+
+        private void comboProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool allUsed = true;
+            foreach (ProductPanel item in listProductPanel)
+            {
+                if (item.comboProduct.Text == "")
+                {
+                    allUsed = false;
+                }
+            }
+            if (allUsed)
+            {
+                GenerateProductPanel();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -57,6 +66,8 @@ namespace InterfaceLayer
             ProductPanel temp = new ProductPanel(panelProducts, ylocation, productList);
             temp.BringToFront();
             listProductPanel.Add(temp);
+            temp.comboProduct.SelectedItem = null;
+            temp.comboProduct.SelectedIndexChanged += comboProduct_SelectedIndexChanged;
         }
 
         private void textBox9_TextChanged(object sender, EventArgs e)

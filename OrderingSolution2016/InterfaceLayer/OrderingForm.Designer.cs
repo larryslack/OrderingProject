@@ -59,6 +59,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtTotalDiscount = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -341,11 +342,20 @@
             this.label15.TabIndex = 29;
             this.label15.Text = "Total Discount";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(12, 12);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 30;
+            // 
             // OrderingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 458);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.txtTotalDiscount);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtTotalQuantity);
@@ -362,7 +372,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panelProducts);
             this.Name = "OrderingForm";
-            this.Text = "OrderingForm";
             this.Load += new System.EventHandler(this.OrderingForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -406,5 +415,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtTotalDiscount;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
