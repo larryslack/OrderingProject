@@ -1,6 +1,6 @@
 ﻿USE [NwindSQL]
 GO
-/****** Object:  StoredProcedure [dbo].[CustomerOrders]    Script Date: 03/02/2016 3:07:19 PM ******/
+/****** Object:  StoredProcedure [dbo].[CustomerOrders]    Script Date: 10/02/2016 3:40:34 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -18,7 +18,7 @@ AS
 BEGIN
 	
 	select *
-	from Orders
+	from Orders inner join Shippers on Orders.ShipVia = Shippers.ShipperID
 	where CustomerID = @CustomerID
 	order by OrderID
 

@@ -24,7 +24,7 @@ namespace BaseLayer
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
         public string EmployeeName { get; set; }
-        public string ShippperName { get; set; }
+        public string ShipperName { get; set; }
         //public List<OrderDetail> OrderDetails(){get; set;}
 
         #endregion

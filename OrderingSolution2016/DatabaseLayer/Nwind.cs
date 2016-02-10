@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using BaseLayer;
 
 namespace DatabaseLayer
@@ -13,6 +14,7 @@ namespace DatabaseLayer
     {
         private const string PROC_CUS_TABLE = "CustomersTable";
         private const string PROC_CUS_ORDER = "CustomerOrders";
+        private const string PROC_EMP_TABLE = "EmployeeTable";
         private const string PROC_UPDATE_CUS = "UpdateCustomer";
         private const string PROC_MAKE_ORDER = "MakeOrder";
 
@@ -157,6 +159,7 @@ namespace DatabaseLayer
                 string ShipRegion;
                 string ShipPostalCode;
                 string ShipCountry;
+                string ShipperName;
 
                 if (row["EmployeeID"] == DBNull.Value)
                     EmployeeID = null;
@@ -218,6 +221,11 @@ namespace DatabaseLayer
                 else
                     ShipCountry = (string)row["ShipCountry"];
 
+                if (row["ShipName"] == DBNull.Value)
+                    ShipperName = null;
+                else
+                    ShipperName = (string)row["ShipName"];
+
                 Order O = new Order(OrderID);
 
                 O.CustomerID = CustomerID;
@@ -233,6 +241,7 @@ namespace DatabaseLayer
                 O.ShipRegion = ShipRegion;
                 O.ShipPostalCode = ShipPostalCode;
                 O.ShipCountry = ShipCountry;
+                O.ShipperName = ShipperName;
 
                 OrdList.Add(O);
             }
@@ -271,16 +280,16 @@ namespace DatabaseLayer
             sqlCon.Close();
         }
 
-        public static List<Customer> getCustomers()
+        public static List<Employee> getCustomers()
         {
-            List<Customer> CustList = new List<Customer>();
+            List<Employee> EmployList = new List<Employee>();
 
             sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
 
             SqlDataAdapter da;
             DataTable dt = new DataTable();
-            SqlCommand cmd = new SqlCommand(PROC_CUS_TABLE, sqlCon);
+            SqlCommand cmd = new SqlCommand(PROC_EMP_TABLE, sqlCon);
             cmd.CommandType = CommandType.StoredProcedure;
             da = new SqlDataAdapter(cmd);
             da.FillSchema(dt, SchemaType.Source);
@@ -292,34 +301,52 @@ namespace DatabaseLayer
             foreach (DataRow row in dt.Rows)
             {
                 // Start: These will always have a value and will never equal a null.
-                string CustomerID = (string)row["CustomerID"];
+                string EmployeeID = (string)row["EmployeeID"];
                 // End.
 
-                string CompanyName;
-                string ContactName;
-                string ContactTitle;
+                string FirstName;
+                string LastName;
+                string Title;
+                string TitleOfCourtesy;
+                DateTime? BirthDate;
+                DateTime? HireDate;
                 string Address;
                 string City;
                 string Region;
                 string PostalCode;
                 string Country;
-                string Phone;
-                string Fax;
-
-                if (row["CompanyName"] == DBNull.Value)
-                    CompanyName = null;
+                string HomePhone;
+                string Extension;
+                
+                if (row["FirstName"] == DBNull.Value)
+                    FirstName = null;
                 else
-                    CompanyName = (string)row["CompanyName"];
+                    FirstName = (string)row["FirstName"];
 
-                if (row["ContactName"] == DBNull.Value)
-                    ContactName = null;
+                if (row["LastName"] == DBNull.Value)
+                    LastName = null;
                 else
-                    ContactName = (string)row["ContactName"];
+                    LastName = (string)row["LastName"];
 
-                if (row["ContactTitle"] == DBNull.Value)
-                    ContactTitle = null;
+                if (row["Title"] == DBNull.Value)
+                    Title = null;
                 else
-                    ContactTitle = (string)row["ContactTitle"];
+                    Title = (string)row["Title"];
+
+                if (row["TitleOfCourtesy"] == DBNull.Value)
+                    TitleOfCourtesy = null;
+                else
+                    TitleOfCourtesy = (string)row["TitleOfCourtesy"];
+
+                if (row["BirthDate"] == DBNull.Value)
+                    BirthDate = null;
+                else
+                    BirthDate = (DateTime)row["BirthDate"];
+
+                if (row["HireDate"] == DBNull.Value)
+                    HireDate = null;
+                else
+                    HireDate = (DateTime)row["HireDate"];
 
                 if (row["Address"] == DBNull.Value)
                     Address = null;
@@ -346,33 +373,45 @@ namespace DatabaseLayer
                 else
                     Country = (string)row["Country"];
 
-                if (row["Phone"] == DBNull.Value)
-                    Phone = null;
+                if (row["HomePhone"] == DBNull.Value)
+                    HomePhone = null;
                 else
-                    Phone = (string)row["Phone"];
+                    HomePhone = (string)row["HomePhone"];
 
-                if (row["Fax"] == DBNull.Value)
-                    Fax = null;
+                if (row["Extension"] == DBNull.Value)
+                    Extension = null;
                 else
-                    Fax = (string)row["Fax"];
+                    Extension = (string)row["Extension"];
 
-                Customer C = new Customer(CustomerID);
+                Employee E = new Employee(CustomerID);
 
-                C.CustomerID = CustomerID;
-                C.CompanyName = CompanyName;
-                C.ContactTitle = ContactTitle;
-                C.Address = Address;
-                C.City = City;
-                C.Region = Region;
-                C.PostalCode = PostalCode;
-                C.Country = Country;
-                C.Phone = Phone;
-                C.Fax = Fax;
-                CustList.Add(C);
+                E.EmployeeID = EmployeeID;
+                E.FirstName = FirstName;
+                E.LastName = LastName;
+                E.Title = Title;
+                E.TitleOfCourtesy = TitleOfCourtesy;
+                E.BirthDate = BirthDate;
+                E.PostalCode = HireDate;
+                E.Address = Address;
+                E.City = City;
+                E.Region = Region;
+                E.PostalCode = PostalCode;
+                E.Country = Country;
+                E.HomePhone = HomePhone;
+                E.Extension = Extension;
+
+                EmployList.Add(E);
             }
 
-            return CustList;
+            return EmployList;
         }
+
+        // Make a method for SaveDetails(int OrderID, List<OrderDetail> orderDetailList)
+
+        public static void UpdateOrder(Order Ord)
+        {
+
+        } 
 
         public static void UpdateCustomer(string EmployeeID)
         {
