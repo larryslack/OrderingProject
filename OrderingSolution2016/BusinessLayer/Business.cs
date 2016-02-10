@@ -12,8 +12,6 @@ namespace BusinessLayer
         public static  List<Customer>CustomerList()
         {
             return DB.CustomerList();
-
-
          }
 
         public static List<Order> OrderList(Customer c)
@@ -29,9 +27,9 @@ namespace BusinessLayer
         //    //return DB.ProductList();
         //}
 
-        public static void SaveOrder(Order o)
+        public static void SaveOrder(Order o) // check to make sure customer ID, ship Name,PostalCode,address,city,order date, employee Id arent null
         {
-            if (o.CustomerID != null)
+            if (o.CustomerID != null && o.EmployeeID != null && o.OrderDate != null && o.ShipAddress != null && o.ShipName != null && o.ShipPostalCode != null && o.ShipCity != null)
            {
                 DB.CommitOrder(o);
            }
