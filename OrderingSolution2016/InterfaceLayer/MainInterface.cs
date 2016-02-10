@@ -53,12 +53,27 @@ namespace InterfaceLayer
         {
             CurCustomer = CustomerList[cmbCustomers.SelectedIndex];
             txtCompID.Text = CurCustomer.ContactName;
+            txtCompPhone.Text = CurCustomer.Phone;
+            txtCompID.Text = CurCustomer.CustomerID;
+            txtCompFax.Text = CurCustomer.Fax;
+            txtCompMail.Text = CurCustomer.PostalCode;
+            
             //get the orders for this customer and display in the grid
             CustomerOrderList = Business.OrderList(CurCustomer);
             OrderGrid.DataSource = CustomerOrderList;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnEditOrder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNewOrder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReOrder_Click(object sender, EventArgs e)
         {
 
         }

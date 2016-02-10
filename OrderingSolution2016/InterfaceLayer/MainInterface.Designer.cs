@@ -30,12 +30,12 @@
         {
             this.OrderGrid = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnAddComp = new System.Windows.Forms.Button();
+            this.btnNewOrder = new System.Windows.Forms.Button();
             this.txtCompPhone = new System.Windows.Forms.TextBox();
-            this.txtCompAdd = new System.Windows.Forms.TextBox();
-            this.txtCompFor = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtCompMail = new System.Windows.Forms.TextBox();
+            this.txtCompFax = new System.Windows.Forms.TextBox();
+            this.btnEditOrder = new System.Windows.Forms.Button();
+            this.btnReOrder = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -63,14 +63,15 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Customer Name";
             // 
-            // btnAddComp
+            // btnNewOrder
             // 
-            this.btnAddComp.Location = new System.Drawing.Point(12, 91);
-            this.btnAddComp.Name = "btnAddComp";
-            this.btnAddComp.Size = new System.Drawing.Size(112, 23);
-            this.btnAddComp.TabIndex = 3;
-            this.btnAddComp.Text = "New Order";
-            this.btnAddComp.UseVisualStyleBackColor = true;
+            this.btnNewOrder.Location = new System.Drawing.Point(12, 91);
+            this.btnNewOrder.Name = "btnNewOrder";
+            this.btnNewOrder.Size = new System.Drawing.Size(112, 23);
+            this.btnNewOrder.TabIndex = 3;
+            this.btnNewOrder.Text = "New Order";
+            this.btnNewOrder.UseVisualStyleBackColor = true;
+            this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
             // 
             // txtCompPhone
             // 
@@ -79,38 +80,39 @@
             this.txtCompPhone.Size = new System.Drawing.Size(100, 20);
             this.txtCompPhone.TabIndex = 6;
             // 
-            // txtCompAdd
+            // txtCompMail
             // 
-            this.txtCompAdd.Location = new System.Drawing.Point(323, 117);
-            this.txtCompAdd.Name = "txtCompAdd";
-            this.txtCompAdd.Size = new System.Drawing.Size(100, 20);
-            this.txtCompAdd.TabIndex = 7;
+            this.txtCompMail.Location = new System.Drawing.Point(323, 117);
+            this.txtCompMail.Name = "txtCompMail";
+            this.txtCompMail.Size = new System.Drawing.Size(100, 20);
+            this.txtCompMail.TabIndex = 7;
             // 
-            // txtCompFor
+            // txtCompFax
             // 
-            this.txtCompFor.Location = new System.Drawing.Point(323, 91);
-            this.txtCompFor.Name = "txtCompFor";
-            this.txtCompFor.Size = new System.Drawing.Size(100, 20);
-            this.txtCompFor.TabIndex = 8;
+            this.txtCompFax.Location = new System.Drawing.Point(323, 91);
+            this.txtCompFax.Name = "txtCompFax";
+            this.txtCompFax.Size = new System.Drawing.Size(100, 20);
+            this.txtCompFax.TabIndex = 8;
             // 
-            // button1
+            // btnEditOrder
             // 
-            this.button1.Location = new System.Drawing.Point(12, 120);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Edit Order";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnEditOrder.Location = new System.Drawing.Point(12, 120);
+            this.btnEditOrder.Name = "btnEditOrder";
+            this.btnEditOrder.Size = new System.Drawing.Size(112, 23);
+            this.btnEditOrder.TabIndex = 9;
+            this.btnEditOrder.Text = "Edit Order";
+            this.btnEditOrder.UseVisualStyleBackColor = true;
+            this.btnEditOrder.Click += new System.EventHandler(this.btnEditOrder_Click);
             // 
-            // button2
+            // btnReOrder
             // 
-            this.button2.Location = new System.Drawing.Point(130, 120);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Re Order";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnReOrder.Location = new System.Drawing.Point(130, 120);
+            this.btnReOrder.Name = "btnReOrder";
+            this.btnReOrder.Size = new System.Drawing.Size(75, 23);
+            this.btnReOrder.TabIndex = 10;
+            this.btnReOrder.Text = "Re Order";
+            this.btnReOrder.UseVisualStyleBackColor = true;
+            this.btnReOrder.Click += new System.EventHandler(this.btnReOrder_Click);
             // 
             // label3
             // 
@@ -186,13 +188,13 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.txtCompFor);
-            this.Controls.Add(this.txtCompAdd);
+            this.Controls.Add(this.btnReOrder);
+            this.Controls.Add(this.btnEditOrder);
+            this.Controls.Add(this.txtCompFax);
+            this.Controls.Add(this.txtCompMail);
             this.Controls.Add(this.txtCompPhone);
             this.Controls.Add(this.txtCompID);
-            this.Controls.Add(this.btnAddComp);
+            this.Controls.Add(this.btnNewOrder);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.OrderGrid);
             this.Name = "MainInterface";
@@ -208,12 +210,12 @@
 
         private System.Windows.Forms.DataGridView OrderGrid;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAddComp;
+        private System.Windows.Forms.Button btnNewOrder;
         private System.Windows.Forms.TextBox txtCompPhone;
-        private System.Windows.Forms.TextBox txtCompAdd;
-        private System.Windows.Forms.TextBox txtCompFor;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtCompMail;
+        private System.Windows.Forms.TextBox txtCompFax;
+        private System.Windows.Forms.Button btnEditOrder;
+        private System.Windows.Forms.Button btnReOrder;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
