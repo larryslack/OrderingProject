@@ -13,7 +13,7 @@ namespace InterfaceLayer
 {
     public partial class MainInterface : Form
     {
-        AddingForm ad = new AddingForm();
+        EditingForm ad = new EditingForm();
         Customer CurCustomer;
         List<Customer> CustomerList;
         List<Order> CustomerOrderList;

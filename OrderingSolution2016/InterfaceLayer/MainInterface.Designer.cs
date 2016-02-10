@@ -48,6 +48,9 @@
             // 
             // OrderGrid
             // 
+            this.OrderGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.OrderGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.OrderGrid.Location = new System.Drawing.Point(7, 149);
             this.OrderGrid.Name = "OrderGrid";
@@ -56,6 +59,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(235, 15);
             this.label1.Name = "label1";
@@ -75,6 +79,7 @@
             // 
             // txtCompPhone
             // 
+            this.txtCompPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCompPhone.Location = new System.Drawing.Point(323, 39);
             this.txtCompPhone.Name = "txtCompPhone";
             this.txtCompPhone.Size = new System.Drawing.Size(100, 20);
@@ -82,6 +87,7 @@
             // 
             // txtCompMail
             // 
+            this.txtCompMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCompMail.Location = new System.Drawing.Point(323, 117);
             this.txtCompMail.Name = "txtCompMail";
             this.txtCompMail.Size = new System.Drawing.Size(100, 20);
@@ -89,6 +95,7 @@
             // 
             // txtCompFax
             // 
+            this.txtCompFax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCompFax.Location = new System.Drawing.Point(323, 91);
             this.txtCompFax.Name = "txtCompFax";
             this.txtCompFax.Size = new System.Drawing.Size(100, 20);
@@ -116,6 +123,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(222, 42);
             this.label3.Name = "label3";
@@ -125,15 +133,17 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(285, 120);
+            this.label4.Location = new System.Drawing.Point(247, 120);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 13;
-            this.label4.Text = "Email";
+            this.label4.Text = "Postal Code?";
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(293, 94);
             this.label5.Name = "label5";
@@ -143,6 +153,7 @@
             // 
             // cmbCustomers
             // 
+            this.cmbCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbCustomers.FormattingEnabled = true;
             this.cmbCustomers.Location = new System.Drawing.Point(323, 12);
             this.cmbCustomers.Name = "cmbCustomers";
@@ -152,6 +163,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(242, 68);
             this.label2.Name = "label2";
@@ -162,6 +174,7 @@
             // 
             // txtCompID
             // 
+            this.txtCompID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCompID.Location = new System.Drawing.Point(323, 65);
             this.txtCompID.Name = "txtCompID";
             this.txtCompID.Size = new System.Drawing.Size(100, 20);
