@@ -28,5 +28,13 @@ namespace BusinessLayer
         //{
         //    //return DB.ProductList();
         //}
+
+        public static void SaveOrder(Order o)
+        {
+            if (o.CustomerID != null)
+           {
+                DB.CommitOrder(o);
+           }
+        }  
     }
 }
