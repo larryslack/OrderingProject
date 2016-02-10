@@ -21,7 +21,14 @@ namespace InterfaceLayer
 
         private void OrderingForm_Load(object sender, EventArgs e)
         {
-
+            int ylocation = 4;
+            ProductPanel temp = new ProductPanel(panelProducts, ylocation);
+            temp.BringToFront();
+            listProductPanel.Add(temp);
+            decimal zero = 0;
+            txtTotalCost.Text = zero.ToString("C");
+            txtTotalQuantity.Text = zero.ToString();
+            txtTotalDiscount.Text = zero.ToString("C");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,6 +48,16 @@ namespace InterfaceLayer
             ProductPanel temp = new ProductPanel(panelProducts, ylocation);
             temp.BringToFront();
             listProductPanel.Add(temp);
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
