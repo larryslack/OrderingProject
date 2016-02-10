@@ -60,7 +60,26 @@ namespace InterfaceLayer
             
             //get the orders for this customer and display in the grid
             CustomerOrderList = Business.OrderList(CurCustomer);
-            OrderGrid.DataSource = CustomerOrderList;
+           // OrderGrid.DataSource = CustomerOrderList;
+
+            //Where to look for way to choose columns
+            //http://stackoverflow.com/questions/14793990/how-to-show-only-certain-columns-in-a-datagridview-with-custom-objects
+
+            OrderGrid.DataSource = CustomerOrderList.Select(ord => new 
+            {   OrderID = ord.OrderID, 
+                Employee = ord.EmployeeName, 
+                OrderDate = ord.OrderDate,
+                RequiredDate = ord.RequiredDate,
+                ShippedDate = ord.ShippedDate,
+                ShipperName = ord.ShippperName,
+                ShipName = ord.ShipName,
+                ShipAddress = ord.ShipAddress,
+                ShipCity = ord.ShipCity,
+                ShipRegion = ord.ShipRegion,
+                ShipPostalCode = ord.ShipPostalCode,
+                ShipCountry = ord.ShipCountry,
+                Freight = ord.Freight                
+            }).ToList();
         }
 
         private void btnEditOrder_Click(object sender, EventArgs e)
