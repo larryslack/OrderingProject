@@ -7,12 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLayer;
+using BaseLayer;
 
 namespace InterfaceLayer
 {
     public partial class OrderingForm : Form
     {
         List<ProductPanel> listProductPanel = new List<ProductPanel>();
+        List<Product> productList = Business.ProductList();
+
 
         public OrderingForm()
         {
@@ -21,10 +25,15 @@ namespace InterfaceLayer
 
         private void OrderingForm_Load(object sender, EventArgs e)
         {
+
+
             int ylocation = 4;
-            ProductPanel temp = new ProductPanel(panelProducts, ylocation);
+            ProductPanel temp = new ProductPanel(panelProducts, ylocation, productList);
             temp.BringToFront();
             listProductPanel.Add(temp);
+
+
+
             decimal zero = 0;
             txtTotalCost.Text = zero.ToString("C");
             txtTotalQuantity.Text = zero.ToString();
@@ -45,7 +54,7 @@ namespace InterfaceLayer
                 ylocation += 28;
             }
 
-            ProductPanel temp = new ProductPanel(panelProducts, ylocation);
+            ProductPanel temp = new ProductPanel(panelProducts, ylocation, productList);
             temp.BringToFront();
             listProductPanel.Add(temp);
         }
