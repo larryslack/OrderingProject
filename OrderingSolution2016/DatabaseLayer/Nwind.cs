@@ -240,8 +240,10 @@ namespace DatabaseLayer
             return OrdList;
         }
 
-        public static void MakeOrder(Order newOrder)
+        public static int MakeOrder(Order newOrder)
         {
+            object obj;
+            
             sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
 
@@ -264,9 +266,10 @@ namespace DatabaseLayer
             cmd.Parameters.Add(new SqlParameter("@ShipPostalCode", newOrder.ShipPostalCode));
             cmd.Parameters.Add(new SqlParameter("@ShipCountry", newOrder.ShipCountry));
 
-            cmd.ExecuteNonQuery();
-
+            obj = cmd.ExecuteScalar();
             sqlCon.Close();
+
+            return Convert.ToInt32(obj);
         }
 
         public static void UpdateCustomer(string EmployeeID)
