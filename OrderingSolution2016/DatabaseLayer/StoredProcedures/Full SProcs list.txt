@@ -1,5 +1,4 @@
-﻿     private const string PROC_CUS_TABLE = "CustomersTable";
--------Procedure Title---------
+﻿-------Procedure Title---------
 	 USE [nwindsql]
 GO
 /****** Object:  StoredProcedure [dbo].[CustomerList]    Script Date: 03/02/2016 2:56:22 PM ******/

@@ -13,7 +13,7 @@ namespace DatabaseLayer
     {
         private const string PROC_PROD_LIST = "ProductListAllRows";
 
-        public static List<Product> OrderDetailList(int OrderID)
+        public static List<Product> ProductList()
         {
             //Copied code from Nwind.cs VVVV
             List<Product> ProdList = new List<Product>();

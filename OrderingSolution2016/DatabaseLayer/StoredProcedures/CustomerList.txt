@@ -1,0 +1,24 @@
+﻿USE [nwindsql]
+GO
+/****** Object:  StoredProcedure [dbo].[CustomerList]    Script Date: 03/02/2016 2:56:22 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Brad.Mckay
+-- Create date: Jan 22, 2010
+-- Description:	Gets all customers
+-- =============================================
+ALTER PROCEDURE [dbo].[CustomerList] 
+	-- Add the parameters for the stored procedure here
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT CustomerID, CompanyName, ContactName, Country, Phone FROM Customers Order BY CompanyName
+END

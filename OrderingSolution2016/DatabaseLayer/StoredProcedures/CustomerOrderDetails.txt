@@ -1,0 +1,23 @@
+﻿USE [NwindSQL]
+GO
+/****** Object:  StoredProcedure [dbo].[OrderDetails]    Script Date: 03/02/2016 3:28:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Alter PROCEDURE CustomerOrderDetails
+	
+	(
+		@CustomerID int 
+	)
+	
+AS
+ 	
+ SET NOCOUNT ON;
+
+ SELECT CustomerID, [Order Details].*
+ FROM [Order Details] Inner Join Orders on [Order Details].OrderID = Orders.OrderID
+ WHERE CustomerID = @CustomerID;
+
+RETURN
+-------Procedure Seperator---------
