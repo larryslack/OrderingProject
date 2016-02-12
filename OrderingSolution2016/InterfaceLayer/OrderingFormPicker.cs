@@ -12,15 +12,27 @@ namespace InterfaceLayer
 {
     public partial class OrderingFormPicker : Form
     {
-        public OrderingFormPicker()
+        string CustomerID = null;
+        int EmployeeID = 0;
+
+        public OrderingFormPicker(string CustomerID, int EmployeeID)
         {
             InitializeComponent();
+
+            this.CustomerID = CustomerID;
+            this.EmployeeID = EmployeeID;
         }
 
         private void btnBrett_Click(object sender, EventArgs e)
         {
-            OrderingFormBrett OFB = new OrderingFormBrett();
+            OrderingFormBrett OFB = new OrderingFormBrett(CustomerID, EmployeeID);
             OFB.Show();
+        }
+
+        private void btnMatt_Click(object sender, EventArgs e)
+        {
+            OrderingForm OFM = new OrderingForm(CustomerID, EmployeeID);
+            OFM.Show();
         }
     }
 }

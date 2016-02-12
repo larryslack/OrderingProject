@@ -103,7 +103,7 @@ namespace InterfaceLayer
 
         private void btnNewOrder_Click(object sender, EventArgs e)
         {
-            OrderingFormPicker OFP = new OrderingFormPicker();
+            OrderingFormPicker OFP = new OrderingFormPicker(CurCustomer.CustomerID, 2);
             OFP.Show();
         }
 

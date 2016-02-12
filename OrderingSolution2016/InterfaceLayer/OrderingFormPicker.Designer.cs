@@ -40,6 +40,7 @@
             this.btnMatt.TabIndex = 0;
             this.btnMatt.Text = "Matt";
             this.btnMatt.UseVisualStyleBackColor = true;
+            this.btnMatt.Click += new System.EventHandler(this.btnMatt_Click);
             // 
             // btnBrett
             // 

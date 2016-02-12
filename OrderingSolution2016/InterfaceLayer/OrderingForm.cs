@@ -18,7 +18,7 @@ namespace InterfaceLayer
         List<Product> productList = Business.ProductList();
 
 
-        public OrderingForm()
+        public OrderingForm(string CustomerID, int EmployeeID)
         {
             InitializeComponent();
         }
