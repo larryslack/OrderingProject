@@ -33,6 +33,11 @@ namespace BusinessLayer
            {
                 DB.CommitOrder(o);
            }
-        }  
+        }
+
+        public static void SaveDetails(int OrderID, List<OrderDetail> ordDetailList)
+        {
+            DB.SaveDetails(OrderID, ordDetailList);
+        }
     }
 }
