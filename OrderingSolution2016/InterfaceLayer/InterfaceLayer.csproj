@@ -62,6 +62,18 @@
     <Compile Include="OrderingForm.Designer.cs">
       <DependentUpon>OrderingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderingFormPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderingFormPicker.Designer.cs">
+      <DependentUpon>OrderingFormPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderingFormBrett.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderingFormBrett.Designer.cs">
+      <DependentUpon>OrderingFormBrett.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -75,6 +87,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrderingForm.resx">
       <DependentUpon>OrderingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderingFormPicker.resx">
+      <DependentUpon>OrderingFormPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderingFormBrett.resx">
+      <DependentUpon>OrderingFormBrett.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

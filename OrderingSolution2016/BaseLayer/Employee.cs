@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BaseLayer
 {
-    class Employee
+    public class Employee
     {
         #region Properties
         public int EmployeeID { get; set; }
@@ -16,13 +16,13 @@ namespace BaseLayer
         public string TitleOfCourtesy { get; set; }
         public DateTime? BirthDate { get; set; }
         public DateTime? HireDate { get; set; }
-        public string ?Address { get; set; }
-        public string ?City{ get; set; }
-        public string ?Region { get; set; }
-        public string ?PostalCode{ get; set; }
-        public string ?Country { get; set; }
-        public string ?HomePhone { get; set; }
-        public string ?Extension{get;set;}
+        public string Address { get; set; }
+        public string City{ get; set; }
+        public string Region { get; set; }
+        public string PostalCode{ get; set; }
+        public string Country { get; set; }
+        public string HomePhone { get; set; }
+        public string Extension{get;set;}
     
         #endregion
          #region Construction
@@ -32,7 +32,7 @@ namespace BaseLayer
             this.EmployeeID = EmployeeID;
         }
 
-        public Employee(int EmployeeID, string LastName, string FirstName, string Title, string TitleOfCourtesy, DateTime? BirthDate, DateTime? HireDate, string? Address, string? City, string? Region, string? PostalCode, string? Country, string? HomePhone, string Extensio)
+        public Employee(int EmployeeID, string LastName, string FirstName, string Title, string TitleOfCourtesy, DateTime? BirthDate, DateTime? HireDate, string Address, string City, string Region, string PostalCode, string Country, string HomePhone, string Extensio)
         {
             this.EmployeeID = EmployeeID;
             this.LastName = LastName;

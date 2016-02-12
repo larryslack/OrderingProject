@@ -301,7 +301,7 @@ namespace DatabaseLayer
             foreach (DataRow row in dt.Rows)
             {
                 // Start: These will always have a value and will never equal a null.
-                string EmployeeID = (string)row["EmployeeID"];
+                int EmployeeID = (int)row["EmployeeID"];
                 // End.
 
                 string FirstName;
@@ -383,15 +383,15 @@ namespace DatabaseLayer
                 else
                     Extension = (string)row["Extension"];
 
-                Employee E = new Employee(CustomerID);
-
-                E.EmployeeID = EmployeeID;
+                Employee E = new Employee(EmployeeID);
+                
                 E.FirstName = FirstName;
                 E.LastName = LastName;
                 E.Title = Title;
                 E.TitleOfCourtesy = TitleOfCourtesy;
                 E.BirthDate = BirthDate;
-                E.PostalCode = HireDate;
+                E.HireDate = HireDate;
+                E.PostalCode = PostalCode;
                 E.Address = Address;
                 E.City = City;
                 E.Region = Region;

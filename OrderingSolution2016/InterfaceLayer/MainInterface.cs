@@ -71,7 +71,7 @@ namespace InterfaceLayer
                 OrderDate = ord.OrderDate,
                 RequiredDate = ord.RequiredDate,
                 ShippedDate = ord.ShippedDate,
-                ShipperName = ord.ShippperName,
+                ShipperName = ord.ShipperName,
                 ShipName = ord.ShipName,
                 ShipAddress = ord.ShipAddress,
                 ShipCity = ord.ShipCity,
@@ -103,7 +103,8 @@ namespace InterfaceLayer
 
         private void btnNewOrder_Click(object sender, EventArgs e)
         {
-
+            OrderingFormPicker OFP = new OrderingFormPicker();
+            OFP.Show();
         }
 
         private void btnReOrder_Click(object sender, EventArgs e)
