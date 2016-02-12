@@ -16,9 +16,9 @@ namespace DatabaseLayer
         private const string PROC_CUS_ORDER = "CustomerOrders";
         private const string PROC_EMP_TABLE = "EmployeeTable";
         private const string PROC_UPDATE_CUS = "UpdateCustomer";
-        private const string PROC_MAKE_ORDER = "MakeOrder";
+        private const string PROC_COMMIT_ORDER = "CommitOrder";
         private const string PROC_SAVE_DETAILS = "SaveDetails";
-
+        private const string PROC_DELETE_DETAILS = "DeleteDetails";
         private static SqlConnection sqlCon;
         private static string connectionString = "Server=PROG280SERVER\\PROG280; Database=nwindsql; user=sa; Password=SQL_2012; Timeout=2";
 
@@ -251,22 +251,30 @@ namespace DatabaseLayer
         }
 
         public static void CommitOrder(Order newOrder)
-        {            
+        {
             sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
-
-            SqlCommand cmd = new SqlCommand(PROC_MAKE_ORDER, sqlCon);
+            object obj;
+            SqlCommand cmd = new SqlCommand(PROC_COMMIT_ORDER, sqlCon);
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter p = new SqlParameter();
             p.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(p);
             cmd.Parameters.Add(new SqlParameter("@CustomerID", newOrder.CustomerID));
-            cmd.Parameters.Add(new SqlParameter("@EmployeeID", newOrder.EmployeeID));
-            cmd.Parameters.Add(new SqlParameter("@OrderDate", newOrder.OrderDate));
-            cmd.Parameters.Add(new SqlParameter("@RequiredDate", newOrder.RequiredDate));
-            cmd.Parameters.Add(new SqlParameter("@ShippedDate", newOrder.ShippedDate));
-            cmd.Parameters.Add(new SqlParameter("@ShipVia", newOrder.ShipVia));
-            cmd.Parameters.Add(new SqlParameter("@Freight", newOrder.Freight));
+            obj = newOrder.EmployeeID;
+            cmd.Parameters.Add(new SqlParameter("@EmployeeID", newOrder.EmployeeID != null ? obj : DBNull.Value));
+            obj = newOrder.OrderDate;
+            cmd.Parameters.Add(new SqlParameter("@OrderDate", newOrder.OrderDate != null ? obj : DBNull.Value));
+            obj = newOrder.RequiredDate;
+            cmd.Parameters.Add(new SqlParameter("@RequiredDate", newOrder.RequiredDate != null ? obj : DBNull.Value));
+            obj = newOrder.ShippedDate;
+            cmd.Parameters.Add(new SqlParameter("@ShippedDate", newOrder.ShippedDate != null ? obj : DBNull.Value));
+            obj = newOrder.ShipVia;
+            cmd.Parameters.Add(new SqlParameter("@ShipVia", newOrder.ShipVia != null ? obj : DBNull.Value));
+            obj = newOrder.Freight;
+            cmd.Parameters.Add(new SqlParameter("@Freight", newOrder.Freight != null ? obj : DBNull.Value));
+            //Business Layer does not allow these last ones to be null
             cmd.Parameters.Add(new SqlParameter("@ShipName", newOrder.ShipName));
             cmd.Parameters.Add(new SqlParameter("@ShipAddress", newOrder.ShipAddress));
             cmd.Parameters.Add(new SqlParameter("@ShipCity", newOrder.ShipCity));
@@ -318,7 +326,7 @@ namespace DatabaseLayer
                 string Country;
                 string HomePhone;
                 string Extension;
-                
+
                 if (row["FirstName"] == DBNull.Value)
                     FirstName = null;
                 else
@@ -385,7 +393,7 @@ namespace DatabaseLayer
                     Extension = (string)row["Extension"];
 
                 Employee E = new Employee(EmployeeID);
-                
+
                 E.FirstName = FirstName;
                 E.LastName = LastName;
                 E.Title = Title;
@@ -407,17 +415,23 @@ namespace DatabaseLayer
             return EmployList;
         }
 
-        public static void SaveDetails(int OrderID, List<OrderDetail> ordDetailsList)
+        public static void ReplaceDetails(int OrderID, List<OrderDetail> ordDetailsList)
         {
             sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
+            //first remove all previous details for this order
+            SqlCommand cmdA = new SqlCommand(PROC_DELETE_DETAILS, sqlCon);
+            cmdA.CommandType = CommandType.StoredProcedure;
+            cmdA.Parameters.Add(new SqlParameter("@OrderID", OrderID));
+            cmdA.ExecuteNonQuery();
 
+            //and replace them with ones from the list supplied
             foreach (OrderDetail od in ordDetailsList)
             {
                 SqlCommand cmd = new SqlCommand(PROC_SAVE_DETAILS, sqlCon);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("@OrderID", od.OrderID));
+                cmd.Parameters.Add(new SqlParameter("@OrderID", OrderID)); //safer to take from OrderID
                 cmd.Parameters.Add(new SqlParameter("@ProductID", od.ProductID));
                 cmd.Parameters.Add(new SqlParameter("@UnitPrice", od.UnitPrice));
                 cmd.Parameters.Add(new SqlParameter("@Quantity", od.Quantity));
@@ -426,14 +440,14 @@ namespace DatabaseLayer
                 cmd.ExecuteNonQuery();
             }
 
-            sqlCon.Close();        
+            sqlCon.Close();
         }
 
 
         public static void UpdateOrder(Order Ord)
         {
 
-        } 
+        }
 
         public static void UpdateCustomer(string EmployeeID)
         {
@@ -443,7 +457,7 @@ namespace DatabaseLayer
             SqlCommand cmd = new SqlCommand(PROC_UPDATE_CUS, sqlCon);
             cmd.CommandType = CommandType.StoredProcedure;
             //cmd.Parameters.Add();
-            
+
 
             sqlCon.Close();
         }

@@ -44,7 +44,7 @@ namespace InterfaceLayer
                 NewOrderDetail = new OrderDetail(NewOrder.OrderID, 33, 33.33m, 200, .2f);
                 DetailList.Add(NewOrderDetail);
                 Business.SaveDetails(NewOrder.OrderID, DetailList);
-
+                ls.Items.Add("Order and 2 details were saved Yeah!!!!!!");
 
             }
             catch (Exception ex)

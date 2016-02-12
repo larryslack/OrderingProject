@@ -37,7 +37,7 @@ namespace BusinessLayer
 
         public static void SaveDetails(int OrderID, List<OrderDetail> ordDetailList)
         {
-            DB.SaveDetails(OrderID, ordDetailList);
+            DB.ReplaceDetails(OrderID, ordDetailList);
         }
     }
 }
