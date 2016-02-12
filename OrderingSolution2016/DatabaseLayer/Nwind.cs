@@ -17,9 +17,10 @@ namespace DatabaseLayer
         private const string PROC_EMP_TABLE = "EmployeeTable";
         private const string PROC_UPDATE_CUS = "UpdateCustomer";
         private const string PROC_MAKE_ORDER = "MakeOrder";
+        private const string PROC_SAVE_DETAILS = "SaveDetails";
 
         private static SqlConnection sqlCon;
-        private static string connectionString = "Server=Win7B228-INST; Database=nwindsql; user=sa; Password=SQL_2012; Timeout=2";
+        private static string connectionString = "Server=PROG280SERVER\\PROG280; Database=nwindsql; user=sa; Password=SQL_2012; Timeout=2";
 
         public static List<Customer> CustomerList()
         {
@@ -406,7 +407,28 @@ namespace DatabaseLayer
             return EmployList;
         }
 
-        // Make a method for SaveDetails(int OrderID, List<OrderDetail> orderDetailList)
+        public static void SaveDetails(int OrderID, List<OrderDetail> ordDetailsList)
+        {
+            sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
+
+            foreach (OrderDetail od in ordDetailsList)
+            {
+                SqlCommand cmd = new SqlCommand(PROC_SAVE_DETAILS, sqlCon);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@OrderID", od.OrderID));
+                cmd.Parameters.Add(new SqlParameter("@ProductID", od.ProductID));
+                cmd.Parameters.Add(new SqlParameter("@UnitPrice", od.UnitPrice));
+                cmd.Parameters.Add(new SqlParameter("@Quantity", od.Quantity));
+                cmd.Parameters.Add(new SqlParameter("@Discount", od.Discount));
+
+                cmd.ExecuteNonQuery();
+            }
+
+            sqlCon.Close();        
+        }
+
 
         public static void UpdateOrder(Order Ord)
         {
