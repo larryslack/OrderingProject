@@ -62,6 +62,12 @@
     <Compile Include="OrderingForm.Designer.cs">
       <DependentUpon>OrderingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderingFormKate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderingFormKate.Designer.cs">
+      <DependentUpon>OrderingFormKate.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderingFormPicker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrderingForm.resx">
       <DependentUpon>OrderingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderingFormKate.resx">
+      <DependentUpon>OrderingFormKate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderingFormPicker.resx">
       <DependentUpon>OrderingFormPicker.cs</DependentUpon>
