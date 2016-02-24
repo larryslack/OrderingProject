@@ -15,10 +15,19 @@ namespace InterfaceLayer
 
         string CustomerID;
         string CompsnyName;
+        int EmployeeID;
 
-        public OrderingFormKate()
+        public OrderingFormKate(string CustomerID, int EmployeeID)
         {
             InitializeComponent();
+            this.CustomerID = CustomerID;
+            this.EmployeeID = EmployeeID;
+
+        }
+
+        private void OrderingFormKate_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
