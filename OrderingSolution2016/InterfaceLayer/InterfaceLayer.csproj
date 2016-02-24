@@ -74,7 +74,9 @@
     <Compile Include="OrderingFormKate.Designer.cs">
       <DependentUpon>OrderingFormKate.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderingFormNathan.cs" />
+    <Compile Include="OrderingFormNathan.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="OrderingFormNathan.Designer.cs">
       <DependentUpon>OrderingFormNathan.cs</DependentUpon>
     </Compile>
