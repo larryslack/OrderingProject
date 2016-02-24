@@ -56,6 +56,12 @@
     <Compile Include="MainInterface.Designer.cs">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderingFormDaylend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderingFormDaylend.Designer.cs">
+      <DependentUpon>OrderingFormDaylend.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderingFormDaylend.resx">
+      <DependentUpon>OrderingFormDaylend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderingForm.resx">
       <DependentUpon>OrderingForm.cs</DependentUpon>
