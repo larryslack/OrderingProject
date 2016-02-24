@@ -12,7 +12,7 @@ namespace InterfaceLayer
 {
     public partial class OrderingFormDaylend : Form
     {
-        public OrderingFormDaylend()
+        public OrderingFormDaylend(string CustomerID, int EmployeeID)
         {
             InitializeComponent();
         }
