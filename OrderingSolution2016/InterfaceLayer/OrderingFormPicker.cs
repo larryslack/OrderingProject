@@ -39,43 +39,43 @@ namespace InterfaceLayer
         }
         private void btnBrent_Click(object sender, EventArgs e)
         {
-            OrderingFormBrett OFB = new OrderingFormBrett(CustomerID, EmployeeID);
+            OrderingFormBrent OFB = new OrderingFormBrent(CustomerID, EmployeeID);
             OFB.Show();
 
         }
 
         private void brnNathan_Click(object sender, EventArgs e)
         {
-           // OrderingFormBrett OFB = new OrderingFormNathan(CustomerID, EmployeeID);
-           // OFB.Show();
+            OrderingFormNathan OFB = new OrderingFormNathan(CustomerID, EmployeeID);
+            OFB.Show();
 
         }
 
         private void btnDaylend_Click(object sender, EventArgs e)
         {
-           // OrderingFormBrett OFB = new OrderingFormDaylend(CustomerID, EmployeeID);
-           // OFB.Show();
+            OrderingFormDaylend OFB = new OrderingFormDaylend(CustomerID, EmployeeID);
+            OFB.Show();
 
         }
 
         private void btnLinda_Click(object sender, EventArgs e)
         {
-           // OrderingFormBrett OFB = new OrderingFormLinda(CustomerID, EmployeeID);
-           // OFB.Show();
+            OrderingFormLinda OFB = new OrderingFormLinda(CustomerID, EmployeeID);
+            OFB.Show();
 
         }
 
         private void btnKate_Click(object sender, EventArgs e)
         {
-           // OrderingFormBrett OFB = new OrderingFormKate(CustomerID, EmployeeID);
-          //  OFB.Show();
+            OrderingFormKate OFB = new OrderingFormKate(CustomerID, EmployeeID);
+            OFB.Show();
 
         }
 
         private void btnShohei_Click(object sender, EventArgs e)
         {
-          //  OrderingFormBrett OFB = new OrderingFormShohei(CustomerID, EmployeeID);
-          //  OFB.Show();
+            OrderingFormShohei OFB = new OrderingFormShohei(CustomerID, EmployeeID);
+            OFB.Show();
 
         }
     }
