@@ -33,16 +33,20 @@
             this.lblEmployeeID = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.ls = new System.Windows.Forms.ListBox();
+            this.pnlContainer = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnRandomOrder
             // 
-            this.btnRandomOrder.Location = new System.Drawing.Point(95, 109);
+            this.btnRandomOrder.Location = new System.Drawing.Point(281, 442);
             this.btnRandomOrder.Name = "btnRandomOrder";
-            this.btnRandomOrder.Size = new System.Drawing.Size(193, 23);
+            this.btnRandomOrder.Size = new System.Drawing.Size(385, 23);
             this.btnRandomOrder.TabIndex = 0;
-            this.btnRandomOrder.Text = "Make Random Order";
+            this.btnRandomOrder.Text = "Commit Order";
             this.btnRandomOrder.UseVisualStyleBackColor = true;
             this.btnRandomOrder.Click += new System.EventHandler(this.btnRandomOrder_Click);
             // 
@@ -82,28 +86,65 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "EmployeeID:";
             // 
-            // ls
+            // pnlContainer
             // 
-            this.ls.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ls.FormattingEnabled = true;
-            this.ls.Location = new System.Drawing.Point(12, 184);
-            this.ls.Name = "ls";
-            this.ls.Size = new System.Drawing.Size(486, 212);
-            this.ls.TabIndex = 5;
+            this.pnlContainer.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pnlContainer.Location = new System.Drawing.Point(212, 65);
+            this.pnlContainer.Name = "pnlContainer";
+            this.pnlContainer.Size = new System.Drawing.Size(514, 371);
+            this.pnlContainer.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(247, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Product";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(409, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Quantity";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(548, 44);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Discount";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(665, 44);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(31, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Price";
             // 
             // OrderingFormBrett
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(510, 408);
-            this.Controls.Add(this.ls);
+            this.ClientSize = new System.Drawing.Size(738, 479);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnRandomOrder);
+            this.Controls.Add(this.pnlContainer);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblEmployeeID);
             this.Controls.Add(this.lblCustomerID);
-            this.Controls.Add(this.btnRandomOrder);
             this.Name = "OrderingFormBrett";
             this.Text = "OrderingFromBrett";
             this.Load += new System.EventHandler(this.OrderingFormBrett_Load);
@@ -119,6 +160,10 @@
         private System.Windows.Forms.Label lblEmployeeID;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox ls;
+        private System.Windows.Forms.Panel pnlContainer;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
