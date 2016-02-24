@@ -211,7 +211,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.OrderGrid);
             this.Name = "MainInterface";
-            this.Text = "Forrn1";
+            this.Text = "89";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.OrderGrid)).EndInit();
             this.ResumeLayout(false);
