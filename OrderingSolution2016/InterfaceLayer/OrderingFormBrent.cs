@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BaseLayer;
 using BusinessLayer;
-using DatabaseLayer;
+//using DatabaseLayer;
 
 namespace InterfaceLayer
 {
@@ -18,7 +18,7 @@ namespace InterfaceLayer
         string CurrentCustomer;
         int CurrentEmployee;
 
-        List<Product> fer = DB.ProductList();
+        //List<Product> fer = DB.ProductList();
 
         public OrderingFormBrent()
         {
@@ -32,10 +32,10 @@ namespace InterfaceLayer
             CurrentCustomer = CustomerID;
             CurrentEmployee = EmployeeID;
             //ProductBox.Items
-            foreach (Product er in fer)
-            {
-                ProductBox.Items.Add(er.ProductName);
-            }
+            //foreach (Product er in fer)
+            //{
+            //    ProductBox.Items.Add(er.ProductName);
+            //}
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace InterfaceLayer
 
         private void ProductBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string thing = fer.items
+            //string thing = fer.items
         }
 
     }

@@ -45,9 +45,10 @@ namespace InterfaceLayer
                 orderPnl.Top = 5;
             orderPnl.Left = 4;
             orderPnl.BorderStyle = BorderStyle.FixedSingle;
-            AddPanelControls(orderPnl);
+
 
             pnlContainer.Controls.Add(orderPnl);
+            AddPanelControls(orderPnl);
         }
 
         private void AddPanelControls(Panel pnl)
@@ -90,6 +91,19 @@ namespace InterfaceLayer
             btnRemove.Text = "Remove";
             btnRemove.ForeColor = Color.Black;
             btnRemove.BackColor = Color.PaleVioletRed;
+            btnRemove.Name = "del" + (pnlContainer.Controls.Count - 1).ToString();
+
+            btnRemove.Click += (sender, e) =>
+            {
+                int index = Convert.ToInt16(((Button)sender).Name.Substring(3, cmb.Name.Length - 3));
+                if (index > 0)
+                {
+                    if (index == (pnlContainer.Controls.Count - 1))
+                    {
+                        pnlContainer.Controls.RemoveAt(index);
+                    }
+                }
+            };
 
             // Add all of the new controls to the panel
             pnl.Controls.Add(cmb);
@@ -105,10 +119,14 @@ namespace InterfaceLayer
             cmb.DisplayMember = "ProductName";
             cmb.ValueMember = "ProductID";
             cmb.SelectedItem = null;
+            cmb.Name = "cmb" + (pnlContainer.Controls.Count - 1).ToString();
 
             cmb.SelectedIndexChanged += (sender, e) =>
             {
-
+                if (Convert.ToInt16(((ComboBox)sender).Name.Substring(3, cmb.Name.Length - 3)) == (pnlContainer.Controls.Count - 1))
+                {
+                    AddPanel();
+                }
             };
         }
 
