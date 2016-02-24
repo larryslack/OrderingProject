@@ -77,6 +77,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "OrderingFormKate";
             this.Text = "OrderingFormKate";
+            this.Load += new System.EventHandler(this.OrderingFormKate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

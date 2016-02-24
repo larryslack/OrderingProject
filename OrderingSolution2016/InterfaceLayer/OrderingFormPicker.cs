@@ -67,8 +67,8 @@ namespace InterfaceLayer
 
         private void btnKate_Click(object sender, EventArgs e)
         {
-            //OrderingFormKate OFB = new OrderingFormKate(CustomerID, EmployeeID);
-            //OFB.Show();
+            OrderingFormKate OFB = new OrderingFormKate(CustomerID, EmployeeID);
+            OFB.Show();
 
         }
 
