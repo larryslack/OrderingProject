@@ -15,8 +15,8 @@ namespace InterfaceLayer
 
         int n = 0;
 
-        int t = 0;
-        int l = 0;
+        int t = 5;
+        int l = 5;
         public OrderingFormShohei(string CustomerID, int EmployeeID)
         {
             InitializeComponent();
@@ -38,6 +38,21 @@ namespace InterfaceLayer
             p.Top = t;
             p.Left = l;
             p.Tag = n;
+
+            Button b = new Button();
+            b.Text = "Cancel order";
+            pnlProducts.Controls.Add(b);
+            b.Top = t;
+            b.Left = l + 50;
+            p.Tag = n;
+            b.Click += Cancel_Order;
+
+            t += 30;
+        }
+
+        void Cancel_Order(object sender, EventArgs e)
+        {
+            
         }
     }
 }

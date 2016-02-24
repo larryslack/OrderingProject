@@ -39,9 +39,9 @@
             // 
             // btnNewP
             // 
-            this.btnNewP.Location = new System.Drawing.Point(185, 6);
+            this.btnNewP.Location = new System.Drawing.Point(154, 6);
             this.btnNewP.Name = "btnNewP";
-            this.btnNewP.Size = new System.Drawing.Size(75, 23);
+            this.btnNewP.Size = new System.Drawing.Size(106, 23);
             this.btnNewP.TabIndex = 0;
             this.btnNewP.Text = "new Product";
             this.btnNewP.UseVisualStyleBackColor = true;
@@ -50,9 +50,9 @@
             // pnlProducts
             // 
             this.pnlProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlProducts.Location = new System.Drawing.Point(185, 35);
+            this.pnlProducts.Location = new System.Drawing.Point(154, 35);
             this.pnlProducts.Name = "pnlProducts";
-            this.pnlProducts.Size = new System.Drawing.Size(276, 257);
+            this.pnlProducts.Size = new System.Drawing.Size(307, 257);
             this.pnlProducts.TabIndex = 1;
             // 
             // button2
