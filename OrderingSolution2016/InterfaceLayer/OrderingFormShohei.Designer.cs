@@ -49,6 +49,10 @@
             // 
             // pnlProducts
             // 
+            this.pnlProducts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlProducts.AutoScroll = true;
             this.pnlProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlProducts.Location = new System.Drawing.Point(154, 35);
             this.pnlProducts.Name = "pnlProducts";
