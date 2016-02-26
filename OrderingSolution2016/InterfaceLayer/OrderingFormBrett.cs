@@ -17,6 +17,8 @@ namespace InterfaceLayer
         string CustomerID;
         int EmployeeID;
         List<OrderDetail> DetailList = new List<OrderDetail>();
+        List<Panel> pnlList = new List<Panel>();
+        Customer currentCustomer;
 
         public OrderingFormBrett(string CustomerID, int EmployeeID)
         {
@@ -33,7 +35,7 @@ namespace InterfaceLayer
             pnlContainer.VerticalScroll.Visible = true;
             AddPanel();
         }
-
+        
         private void AddPanel()
         {
             Panel orderPnl = new Panel();
@@ -46,8 +48,8 @@ namespace InterfaceLayer
             orderPnl.Left = 4;
             orderPnl.BorderStyle = BorderStyle.FixedSingle;
 
-
             pnlContainer.Controls.Add(orderPnl);
+            pnlList.Add(orderPnl);
             AddPanelControls(orderPnl);
         }
 
@@ -63,7 +65,7 @@ namespace InterfaceLayer
             cmb.Height = standardHeight;
             cmb.Top = PosY;
             cmb.Left = PosX;
-            SetupCombo(cmb);
+            SetupCombo(cmb, pnl);
 
             TextBox txtPrice = new TextBox();
             txtPrice.Width = standardWidth;
@@ -91,39 +93,62 @@ namespace InterfaceLayer
             btnRemove.Text = "Remove";
             btnRemove.ForeColor = Color.Black;
             btnRemove.BackColor = Color.PaleVioletRed;
-            btnRemove.Name = "del" + (pnlContainer.Controls.Count - 1).ToString();
 
             btnRemove.Click += (sender, e) =>
             {
-                int index = Convert.ToInt16(((Button)sender).Name.Substring(3, cmb.Name.Length - 3));
-                if (index > 0)
+                if (pnlContainer.Controls.Count > 1)
                 {
-                    if (index == (pnlContainer.Controls.Count - 1))
+                    for (int i = 0; i < pnlList.Count; i++)
                     {
-                        pnlContainer.Controls.RemoveAt(index);
+                        if (pnlList[i] == pnl)
+                        {
+                            int setPosY;
+                            for (int k = pnlList.Count - 1; k > i; k--)
+                            {
+                                setPosY = pnlList[k - 1].Top;
+                                pnlList[k].Top = setPosY;
+                            }
+
+                            pnlContainer.Controls.Remove(pnl);
+                            pnlList.Remove(pnl);
+                        }
                     }
                 }
             };
 
             // Add all of the new controls to the panel
             pnl.Controls.Add(cmb);
+            cmb.SelectedIndex = -1;
             pnl.Controls.Add(txtPrice);
             pnl.Controls.Add(txtQuantity);
             pnl.Controls.Add(txtDiscount);
             pnl.Controls.Add(btnRemove);
         }
 
-        private void SetupCombo(ComboBox cmb)
+        private void SetupCombo(ComboBox cmb, Panel pnl)
         {
             cmb.DataSource = Business.ProductList();
             cmb.DisplayMember = "ProductName";
             cmb.ValueMember = "ProductID";
-            cmb.SelectedItem = null;
-            cmb.Name = "cmb" + (pnlContainer.Controls.Count - 1).ToString();
+            cmb.DropDownStyle = ComboBoxStyle.DropDownList;
 
             cmb.SelectedIndexChanged += (sender, e) =>
             {
-                if (Convert.ToInt16(((ComboBox)sender).Name.Substring(3, cmb.Name.Length - 3)) == (pnlContainer.Controls.Count - 1))
+                if (cmb.SelectedIndex == -1)
+                    return;
+
+                int currentPanelIndex = 0;
+                int panelIndexCount = pnlList.Count - 1;
+
+                for (int i = 0; i < pnlList.Count; i++)
+                {
+                    if (pnl == pnlList[i])
+                    {
+                        currentPanelIndex = i;
+                    }
+                }
+
+                if (currentPanelIndex == panelIndexCount)
                 {
                     AddPanel();
                 }
