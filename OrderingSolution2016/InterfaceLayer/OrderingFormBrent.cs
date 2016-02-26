@@ -17,7 +17,7 @@ namespace InterfaceLayer
         string CurrentCustomer;
         int CurrentEmployee;
 
-        //List<Product> fer = DB.ProductList();
+        List<Product> fer = Business.ProductList();
 
         public OrderingFormBrent()
         {
@@ -32,10 +32,10 @@ namespace InterfaceLayer
             CurrentCustomer = CustomerID;
             CurrentEmployee = EmployeeID;
             //ProductBox.Items
-            //foreach (Product er in fer)
-            //{
-            //    ProductBox.Items.Add(er.ProductName);
-            //}
+            foreach (Product er in fer)
+            {
+                ProductBox.Items.Add(er.ProductName);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
