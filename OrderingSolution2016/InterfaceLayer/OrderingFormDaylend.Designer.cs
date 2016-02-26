@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblCustomerName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -41,23 +41,25 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Customer Name:";
             // 
-            // comboBox1
+            // lblCustomerName
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(103, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
+            this.lblCustomerName.AutoSize = true;
+            this.lblCustomerName.Location = new System.Drawing.Point(132, 9);
+            this.lblCustomerName.Name = "lblCustomerName";
+            this.lblCustomerName.Size = new System.Drawing.Size(35, 13);
+            this.lblCustomerName.TabIndex = 1;
+            this.lblCustomerName.Text = "label2";
             // 
             // OrderingFormDaylend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 473);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.lblCustomerName);
             this.Controls.Add(this.label1);
             this.Name = "OrderingFormDaylend";
             this.Text = "OrderFormDaylend";
+            this.Load += new System.EventHandler(this.OrderingFormDaylend_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -66,6 +68,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label lblCustomerName;
     }
 }
