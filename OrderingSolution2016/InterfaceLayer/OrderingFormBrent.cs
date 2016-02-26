@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BaseLayer;
 using BusinessLayer;
-//using DatabaseLayer;
 
 namespace InterfaceLayer
 {
@@ -22,6 +21,7 @@ namespace InterfaceLayer
 
         public OrderingFormBrent()
         {
+            //List<Product> = 
             InitializeComponent();
             //ProductBox.Items = 
         }
