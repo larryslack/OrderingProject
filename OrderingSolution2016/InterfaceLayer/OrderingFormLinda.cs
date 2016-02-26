@@ -36,5 +36,10 @@ namespace InterfaceLayer
         {
 
         }
+
+        private void lblCustomerID_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
