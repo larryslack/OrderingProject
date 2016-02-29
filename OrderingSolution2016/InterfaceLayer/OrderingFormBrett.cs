@@ -34,6 +34,15 @@ namespace InterfaceLayer
             pnlContainer.BorderStyle = BorderStyle.FixedSingle;
             pnlContainer.VerticalScroll.Visible = true;
             AddPanel();
+
+            currentCustomer = Business.GetCustomer(CustomerID);
+
+            txtPostalCode.Text = currentCustomer.PostalCode;
+            txtRegion.Text = currentCustomer.Region;
+            txtShipAddress.Text = currentCustomer.Address;
+            txtShipCity.Text = currentCustomer.City;
+            txtShipCountry.Text = currentCustomer.Country;
+            txtRegion.Text = currentCustomer.Region;
         }
         
         private void AddPanel()
@@ -159,18 +168,14 @@ namespace InterfaceLayer
         {
             try
             {
-                AddPanel();
-                //Order NewOrder = new Order(0, CustomerID, EmployeeID, DateTime.Now, DateTime.Now + new TimeSpan(7, 0, 0, 0), null, null, null, CustomerID + "Name", "123 4 St", "Medicine Hat", "AB", "T1A 7A7", "Canada");
-                //Business.SaveOrder(NewOrder);
-                //ls.Items.Add("The new order number is " + NewOrder.OrderID.ToString());
-                //OrderDetail NewOrderDetail = new OrderDetail(NewOrder.OrderID, 22, 10.22m, 100, 0);
-                //DetailList.Add(NewOrderDetail);
-
-                //NewOrderDetail = new OrderDetail(NewOrder.OrderID, 33, 33.33m, 200, .2f);
-                //DetailList.Add(NewOrderDetail);
-                //Business.SaveDetails(NewOrder.OrderID, DetailList);
-                //ls.Items.Add("Order and 2 details were saved Yeah!!!!!!");
-
+                Order o = new Order(1);
+                o.CustomerID = lblCustomerID.Text;
+                o.EmployeeID = Convert.ToInt32(lblEmployeeID.Text);
+                o.OrderDate = DateTime.Now;
+                o.RequiredDate = Convert.ToDateTime(txtRequiredDate.Text);
+                o.ShippedDate = null;
+                o.ShipVia = Convert.ToInt32(txtShipVia.Text);
+                o.Freight = Convert.ToDecimal(txtFreight.Text);
             }
             catch (Exception ex)
             {
