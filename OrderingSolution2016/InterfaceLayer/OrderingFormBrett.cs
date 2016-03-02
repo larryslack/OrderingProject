@@ -43,6 +43,14 @@ namespace InterfaceLayer
             txtShipCity.Text = currentCustomer.City;
             txtShipCountry.Text = currentCustomer.Country;
             txtRegion.Text = currentCustomer.Region;
+            txtFax.Text = currentCustomer.Fax;
+            txtPhone.Text = currentCustomer.Phone;
+
+            cmbShipVia.DataSource = BrettBusiness.ShipperTable();
+            cmbShipVia.ValueMember = "ShipperID";
+            cmbShipVia.DisplayMember = "CompanyName";
+            cmbShipVia.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbShipVia.SelectedIndex = -1;
         }
         
         private void AddPanel()
@@ -74,19 +82,12 @@ namespace InterfaceLayer
             cmb.Height = standardHeight;
             cmb.Top = PosY;
             cmb.Left = PosX;
-            SetupCombo(cmb, pnl);
-
-            TextBox txtPrice = new TextBox();
-            txtPrice.Width = standardWidth;
-            txtPrice.Height = standardHeight;
-            txtPrice.Top = PosY;
-            txtPrice.Left = cmb.Left + standardWidth + PosX;
 
             TextBox txtQuantity = new TextBox();
             txtQuantity.Width = standardWidth;
             txtQuantity.Height = standardHeight;
             txtQuantity.Top = PosY;
-            txtQuantity.Left = txtPrice.Left + standardWidth + PosX;
+            txtQuantity.Left = cmb.Left + standardWidth + PosX;
 
             TextBox txtDiscount = new TextBox();
             txtDiscount.Width = standardWidth;
@@ -94,6 +95,13 @@ namespace InterfaceLayer
             txtDiscount.Top = PosY;
             txtDiscount.Left = txtQuantity.Left + standardWidth + PosX;
 
+            TextBox txtPrice = new TextBox();
+            txtPrice.Width = standardWidth;
+            txtPrice.Height = standardHeight;
+            txtPrice.Top = PosY;
+            txtPrice.Left = txtDiscount.Left + standardWidth + PosX;
+            txtPrice.ReadOnly = true;
+            
             Button btnRemove = new Button();
             btnRemove.Width = standardWidth;
             btnRemove.Height = standardHeight;
@@ -125,6 +133,7 @@ namespace InterfaceLayer
                 }
             };
 
+            SetupCombo(cmb, pnl, txtQuantity, txtDiscount, txtPrice);
             // Add all of the new controls to the panel
             pnl.Controls.Add(cmb);
             cmb.SelectedIndex = -1;
@@ -134,9 +143,10 @@ namespace InterfaceLayer
             pnl.Controls.Add(btnRemove);
         }
 
-        private void SetupCombo(ComboBox cmb, Panel pnl)
+        private void SetupCombo(ComboBox cmb, Panel pnl, TextBox txtQuantity, TextBox txtDiscount, TextBox txtPrice)
         {
-            cmb.DataSource = Business.ProductList();
+            List<Product> productList = Business.ProductList();
+            cmb.DataSource = productList;
             cmb.DisplayMember = "ProductName";
             cmb.ValueMember = "ProductID";
             cmb.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -145,6 +155,10 @@ namespace InterfaceLayer
             {
                 if (cmb.SelectedIndex == -1)
                     return;
+
+                int index = Convert.ToInt32(cmb.SelectedValue);
+
+                txtPrice.Text = (productList[index].UnitPrice * Convert.ToDecimal(txtQuantity.Text) * Convert.ToDecimal(txtDiscount.Text)).ToString();
 
                 int currentPanelIndex = 0;
                 int panelIndexCount = pnlList.Count - 1;
@@ -172,15 +186,37 @@ namespace InterfaceLayer
                 o.CustomerID = lblCustomerID.Text;
                 o.EmployeeID = Convert.ToInt32(lblEmployeeID.Text);
                 o.OrderDate = DateTime.Now;
-                o.RequiredDate = Convert.ToDateTime(txtRequiredDate.Text);
+                //o.RequiredDate = Convert.ToDateTime(txtRequiredDate.Text);
+                // A test
+                o.RequiredDate = DateTime.Now;
                 o.ShippedDate = null;
-                o.ShipVia = Convert.ToInt32(txtShipVia.Text);
-                o.Freight = Convert.ToDecimal(txtFreight.Text);
+                o.ShipVia = Convert.ToInt32(cmbShipVia.SelectedValue);
+                //o.Freight = Convert.ToDecimal(txtFreight.Text); //Retrieve later.
+                o.ShipName = currentCustomer.CompanyName;
+                o.ShipAddress = txtShipAddress.Text;
+                o.ShipCity = txtShipCity.Text;
+                o.ShipRegion = txtRegion.Text;
+                o.ShipPostalCode = txtPostalCode.Text;
+                o.ShipCountry = txtShipCountry.Text;
+                o.EmployeeName = null; // I need the employee name.
+                o.ShipperName = cmbShipVia.Text;
+
+                // Test
+
+                o.Freight = 10;
+
+                Business.SaveOrder(o);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public int CalculateFreight()
+        {
+
+            return 0;
         }
     }
 }
