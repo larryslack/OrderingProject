@@ -35,7 +35,6 @@ namespace InterfaceLayer
             productList = Business.ProductList();
 
             pnlContainer.BorderStyle = BorderStyle.FixedSingle;
-            pnlContainer.VerticalScroll.Visible = true;
             AddPanel();
 
             currentCustomer = Business.GetCustomer(CustomerID);
@@ -77,13 +76,13 @@ namespace InterfaceLayer
 
         private void AddPanelControls(Panel pnl)
         {
-            int standardWidth = pnl.Width / 5 - 7; //Yay magic numbers.
+            int standardWidth = 100; //Yay magic numbers.
             int standardHeight = pnl.Height - 18;
             int PosY = (pnl.Height / 4) - 2;
             int PosX = 5;
 
             ComboBox cmb = new ComboBox();
-            cmb.Width = standardWidth;
+            cmb.Width = standardWidth * 2;
             cmb.Height = standardHeight;
             cmb.Top = PosY;
             cmb.Left = PosX;
@@ -92,7 +91,7 @@ namespace InterfaceLayer
             txtQuantity.Width = standardWidth;
             txtQuantity.Height = standardHeight;
             txtQuantity.Top = PosY;
-            txtQuantity.Left = cmb.Left + standardWidth + PosX;
+            txtQuantity.Left = cmb.Left + cmb.Width + PosX;
             txtQuantity.Text = "0";
             txtQuantity.Name = "txtQuantity" + pnlContainer.Controls.Count;
 
@@ -121,6 +120,12 @@ namespace InterfaceLayer
             btnRemove.Text = "Remove";
             btnRemove.ForeColor = Color.Black;
             btnRemove.BackColor = Color.PaleVioletRed;
+
+            // This code is so ugly :<
+            lblProduct.Left = (pnlContainer.Left + cmb.Left + (cmb.Width / 2) - PosX * 3);
+            lblQuantity.Left = (pnlContainer.Left + txtQuantity.Left + (txtQuantity.Width / 2) - PosX * 3);
+            lblDiscount.Left = (pnlContainer.Left + txtDiscount.Left + (txtDiscount.Width / 2) - PosX * 3);
+            lblPrice.Left = (pnlContainer.Left + txtPrice.Left + (txtPrice.Width / 2) - PosX * 3);
 
             btnRemove.Click += (sender, e) =>
             {
@@ -159,13 +164,20 @@ namespace InterfaceLayer
                     decimal discount = 0;
                     int index = Convert.ToInt32(cmb.SelectedValue);
 
+                    lblError.Text = "";
+
                     if (txtQuantity.Text == "")
+                    {
+                        txtQuantity.Text = "1";
                         throw new Exception("Please enter a quantity");
+                    }
                     else
                         quantity = Convert.ToInt32(txtQuantity.Text);
 
                     if (txtDiscount.Text == "")
-                        txtDiscount.Text = "0";
+                    {
+                        txtDiscount.Text = "1";
+                    }
                     else
                         discount = Convert.ToInt32(txtDiscount.Text);
 
@@ -186,8 +198,13 @@ namespace InterfaceLayer
                     decimal discount = 0;
                     int index = Convert.ToInt32(cmb.SelectedValue);
 
+                    lblError.Text = "";
+
                     if (txtQuantity.Text == "")
+                    {
+                        txtQuantity.Text = "1";
                         throw new Exception("Please enter a quantity");
+                    }
                     else
                         quantity = Convert.ToInt32(txtQuantity.Text);
 
@@ -228,6 +245,7 @@ namespace InterfaceLayer
                 if (cmb.SelectedIndex == -1)
                     return;
 
+                txtQuantity.Text = "1";
                 int quantity = Convert.ToInt32(txtQuantity.Text);
                 decimal discount = Convert.ToDecimal(txtDiscount.Text);
                 int index = Convert.ToInt32(cmb.SelectedValue);
@@ -307,7 +325,7 @@ namespace InterfaceLayer
 
                                 if (cntrl.Name.Contains("txtDiscount"))
                                 {
-                                    discount = Convert.ToSingle(((TextBox)cntrl).Text);
+                                    discount = Convert.ToSingle(((TextBox)cntrl).Text) / 100;
                                 }
                             }
                         }
@@ -333,10 +351,6 @@ namespace InterfaceLayer
             if (discount == 0)
             {
                 discount = 1;
-            }
-            else if (discount < 0)
-            {
-                MessageBox.Show("Can't have a discount less than 0. Please change value to atleast 0");
             }
             else if (discount > 0)
             {

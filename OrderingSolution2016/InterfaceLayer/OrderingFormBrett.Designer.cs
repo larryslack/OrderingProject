@@ -34,10 +34,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pnlContainer = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblProduct = new System.Windows.Forms.Label();
+            this.lblQuantity = new System.Windows.Forms.Label();
+            this.lblDiscount = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
             this.txtRequiredDate = new System.Windows.Forms.TextBox();
             this.txtShipAddress = new System.Windows.Forms.TextBox();
             this.txtShipCity = new System.Windows.Forms.TextBox();
@@ -109,54 +109,55 @@
             // 
             // pnlContainer
             // 
+            this.pnlContainer.AutoScroll = true;
             this.pnlContainer.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pnlContainer.Location = new System.Drawing.Point(212, 65);
+            this.pnlContainer.Location = new System.Drawing.Point(244, 60);
             this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(514, 371);
+            this.pnlContainer.Size = new System.Drawing.Size(682, 371);
             this.pnlContainer.TabIndex = 5;
             // 
-            // label1
+            // lblProduct
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(247, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Product";
+            this.lblProduct.AutoSize = true;
+            this.lblProduct.Location = new System.Drawing.Point(247, 44);
+            this.lblProduct.Name = "lblProduct";
+            this.lblProduct.Size = new System.Drawing.Size(44, 13);
+            this.lblProduct.TabIndex = 6;
+            this.lblProduct.Text = "Product";
             // 
-            // label2
+            // lblQuantity
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(334, 44);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Quantity";
+            this.lblQuantity.AutoSize = true;
+            this.lblQuantity.Location = new System.Drawing.Point(334, 44);
+            this.lblQuantity.Name = "lblQuantity";
+            this.lblQuantity.Size = new System.Drawing.Size(46, 13);
+            this.lblQuantity.TabIndex = 7;
+            this.lblQuantity.Text = "Quantity";
             // 
-            // label5
+            // lblDiscount
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(426, 44);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Discount";
+            this.lblDiscount.AutoSize = true;
+            this.lblDiscount.Location = new System.Drawing.Point(426, 44);
+            this.lblDiscount.Name = "lblDiscount";
+            this.lblDiscount.Size = new System.Drawing.Size(49, 13);
+            this.lblDiscount.TabIndex = 8;
+            this.lblDiscount.Text = "Discount";
             // 
-            // label6
+            // lblPrice
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(526, 44);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Price";
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Location = new System.Drawing.Point(526, 44);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(31, 13);
+            this.lblPrice.TabIndex = 9;
+            this.lblPrice.Text = "Price";
             // 
             // txtRequiredDate
             // 
             this.txtRequiredDate.ForeColor = System.Drawing.Color.Gray;
             this.txtRequiredDate.Location = new System.Drawing.Point(95, 82);
             this.txtRequiredDate.Name = "txtRequiredDate";
-            this.txtRequiredDate.Size = new System.Drawing.Size(100, 20);
+            this.txtRequiredDate.Size = new System.Drawing.Size(143, 20);
             this.txtRequiredDate.TabIndex = 10;
             this.txtRequiredDate.Text = "DD/MM/YYYY";
             // 
@@ -164,21 +165,21 @@
             // 
             this.txtShipAddress.Location = new System.Drawing.Point(95, 160);
             this.txtShipAddress.Name = "txtShipAddress";
-            this.txtShipAddress.Size = new System.Drawing.Size(100, 20);
+            this.txtShipAddress.Size = new System.Drawing.Size(143, 20);
             this.txtShipAddress.TabIndex = 12;
             // 
             // txtShipCity
             // 
             this.txtShipCity.Location = new System.Drawing.Point(95, 186);
             this.txtShipCity.Name = "txtShipCity";
-            this.txtShipCity.Size = new System.Drawing.Size(100, 20);
+            this.txtShipCity.Size = new System.Drawing.Size(143, 20);
             this.txtShipCity.TabIndex = 13;
             // 
             // txtRegion
             // 
             this.txtRegion.Location = new System.Drawing.Point(95, 212);
             this.txtRegion.Name = "txtRegion";
-            this.txtRegion.Size = new System.Drawing.Size(100, 20);
+            this.txtRegion.Size = new System.Drawing.Size(143, 20);
             this.txtRegion.TabIndex = 14;
             // 
             // txtFreight
@@ -186,7 +187,7 @@
             this.txtFreight.Location = new System.Drawing.Point(95, 134);
             this.txtFreight.Name = "txtFreight";
             this.txtFreight.ReadOnly = true;
-            this.txtFreight.Size = new System.Drawing.Size(100, 20);
+            this.txtFreight.Size = new System.Drawing.Size(143, 20);
             this.txtFreight.TabIndex = 15;
             this.txtFreight.Text = "0.00";
             // 
@@ -194,14 +195,14 @@
             // 
             this.txtPostalCode.Location = new System.Drawing.Point(95, 238);
             this.txtPostalCode.Name = "txtPostalCode";
-            this.txtPostalCode.Size = new System.Drawing.Size(100, 20);
+            this.txtPostalCode.Size = new System.Drawing.Size(143, 20);
             this.txtPostalCode.TabIndex = 16;
             // 
             // txtShipCountry
             // 
             this.txtShipCountry.Location = new System.Drawing.Point(95, 264);
             this.txtShipCountry.Name = "txtShipCountry";
-            this.txtShipCountry.Size = new System.Drawing.Size(100, 20);
+            this.txtShipCountry.Size = new System.Drawing.Size(143, 20);
             this.txtShipCountry.TabIndex = 17;
             // 
             // label7
@@ -281,7 +282,7 @@
             this.cmbShipVia.FormattingEnabled = true;
             this.cmbShipVia.Location = new System.Drawing.Point(95, 107);
             this.cmbShipVia.Name = "cmbShipVia";
-            this.cmbShipVia.Size = new System.Drawing.Size(100, 21);
+            this.cmbShipVia.Size = new System.Drawing.Size(143, 21);
             this.cmbShipVia.TabIndex = 27;
             // 
             // label10
@@ -297,7 +298,7 @@
             // 
             this.txtFax.Location = new System.Drawing.Point(95, 316);
             this.txtFax.Name = "txtFax";
-            this.txtFax.Size = new System.Drawing.Size(100, 20);
+            this.txtFax.Size = new System.Drawing.Size(143, 20);
             this.txtFax.TabIndex = 28;
             // 
             // label16
@@ -313,7 +314,7 @@
             // 
             this.txtPhone.Location = new System.Drawing.Point(95, 290);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(100, 20);
+            this.txtPhone.Size = new System.Drawing.Size(143, 20);
             this.txtPhone.TabIndex = 30;
             // 
             // lblError
@@ -329,7 +330,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 479);
+            this.ClientSize = new System.Drawing.Size(936, 479);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.txtFax);
             this.Controls.Add(this.label16);
@@ -352,10 +353,10 @@
             this.Controls.Add(this.txtShipCity);
             this.Controls.Add(this.txtShipAddress);
             this.Controls.Add(this.txtRequiredDate);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblPrice);
+            this.Controls.Add(this.lblDiscount);
+            this.Controls.Add(this.lblQuantity);
+            this.Controls.Add(this.lblProduct);
             this.Controls.Add(this.pnlContainer);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -377,10 +378,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel pnlContainer;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblProduct;
+        private System.Windows.Forms.Label lblQuantity;
+        private System.Windows.Forms.Label lblDiscount;
+        private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.TextBox txtRequiredDate;
         private System.Windows.Forms.TextBox txtShipAddress;
         private System.Windows.Forms.TextBox txtShipCity;
