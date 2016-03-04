@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panelProducts = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -59,9 +58,14 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtTotalDiscount = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblCustomerID = new System.Windows.Forms.Label();
+            this.lblEmployeeID = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelProducts
@@ -72,16 +76,6 @@
             this.panelProducts.Name = "panelProducts";
             this.panelProducts.Size = new System.Drawing.Size(443, 256);
             this.panelProducts.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(411, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -267,7 +261,7 @@
             this.groupBox1.Size = new System.Drawing.Size(185, 182);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Address";
+            this.groupBox1.Text = "Ship To";
             // 
             // groupBox2
             // 
@@ -280,7 +274,7 @@
             this.groupBox2.Size = new System.Drawing.Size(185, 100);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Shipping";
+            this.groupBox2.Text = "Ship From";
             // 
             // button2
             // 
@@ -289,7 +283,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(443, 23);
             this.button2.TabIndex = 24;
-            this.button2.Text = "Submit";
+            this.button2.Text = "Submit Order";
             this.button2.UseVisualStyleBackColor = false;
             // 
             // label13
@@ -342,20 +336,59 @@
             this.label15.TabIndex = 29;
             this.label15.Text = "Total Discount";
             // 
-            // comboBox1
+            // groupBox3
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 30;
+            this.groupBox3.Controls.Add(this.lblEmployeeID);
+            this.groupBox3.Controls.Add(this.lblCustomerID);
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Location = new System.Drawing.Point(12, 83);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(185, 70);
+            this.groupBox3.TabIndex = 30;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 16);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(65, 13);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "CustomerID:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 40);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(67, 13);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "EmployeeID:";
+            // 
+            // lblCustomerID
+            // 
+            this.lblCustomerID.AutoSize = true;
+            this.lblCustomerID.Location = new System.Drawing.Point(77, 16);
+            this.lblCustomerID.Name = "lblCustomerID";
+            this.lblCustomerID.Size = new System.Drawing.Size(0, 13);
+            this.lblCustomerID.TabIndex = 9;
+            // 
+            // lblEmployeeID
+            // 
+            this.lblEmployeeID.AutoSize = true;
+            this.lblEmployeeID.Location = new System.Drawing.Point(79, 40);
+            this.lblEmployeeID.Name = "lblEmployeeID";
+            this.lblEmployeeID.Size = new System.Drawing.Size(0, 13);
+            this.lblEmployeeID.TabIndex = 10;
             // 
             // OrderingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 458);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.txtTotalDiscount);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtTotalQuantity);
@@ -369,7 +402,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.panelProducts);
             this.Name = "OrderingForm";
             this.Load += new System.EventHandler(this.OrderingForm_Load);
@@ -377,6 +409,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,7 +419,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelProducts;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -415,6 +448,10 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtTotalDiscount;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblEmployeeID;
+        private System.Windows.Forms.Label lblCustomerID;
     }
 }

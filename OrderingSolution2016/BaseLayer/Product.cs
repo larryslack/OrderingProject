@@ -36,11 +36,8 @@ namespace BaseLayer
             this.UnitOnOrder = UnitOnOrder;
             this.ReOrderLevel = ReOrderLevel;
             this.Discontinued = Discontinued;
+            this.UnitPrice = UnitPrice;
         }
-
-
-
-
 
         #endregion
 

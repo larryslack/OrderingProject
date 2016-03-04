@@ -13,22 +13,23 @@ namespace DatabaseLayer
     public partial class DB
     {
         private const string PROC_CUS_TABLE = "CustomersTable";
-       private const string PROC_CUS = "GetCustomer";
+        private const string PROC_CUS = "GetCustomer";
         private const string PROC_CUS_ORDER = "CustomerOrders";
         private const string PROC_EMP_TABLE = "EmployeeTable";
         private const string PROC_UPDATE_CUS = "UpdateCustomer";
         private const string PROC_COMMIT_ORDER = "CommitOrder";
         private const string PROC_SAVE_DETAILS = "SaveDetails";
         private const string PROC_DELETE_DETAILS = "DeleteDetails";
-         private static SqlConnection sqlCon;
-        private static string connectionString = "Server=PROG280SERVER\\PROG280; Database=nwindsql; user=sa; Password=SQL_2012; Timeout=2";
+        private const string PROC_SHIPPER_LIST = "ShipperList";
+        private static SqlConnection sqlCon;
+        private static string connectionString = "Server=PROG280SERVER\\PROG280; Database=nwindsql; user=sa; Password=SQL_2012;"; 
+        //private static string connectionString = "server=BrettsPCMasterR;database=NwindSQL;integrated security=true;Timeout=2"; // Bretts home comp
 
-       
         public static Customer GetCustomer(string CustomerID)
         {
 
-         sqlCon = new SqlConnection(connectionString);
-             sqlCon.Open();
+            sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
 
             SqlDataAdapter da;
             DataTable dt = new DataTable();
@@ -39,10 +40,11 @@ namespace DatabaseLayer
             da = new SqlDataAdapter(cmd);
             da.FillSchema(dt, SchemaType.Source);
             da.Fill(dt);
-             sqlCon.Close();
-             if (dt.Rows.Count == 0)
-                 throw new Exception("DBLayer.GetCustomer: CustomerID " + CustomerID + " not found");
-           DataRow row = dt.Rows[0];
+            sqlCon.Close();
+
+            if (dt.Rows.Count == 0)
+                throw new Exception("DBLayer.GetCustomer: CustomerID " + CustomerID + " not found");
+            DataRow row = dt.Rows[0];
 
             // Start: These will always have a value and will never equal a null.
             string CompanyName = (string)row["CompanyName"];
@@ -118,6 +120,7 @@ namespace DatabaseLayer
             return c;
 
         }
+
         public static List<Customer> CustomerList()
         {
             List<Customer> CusList = new List<Customer>();
@@ -217,6 +220,7 @@ namespace DatabaseLayer
 
             return CusList;
         }
+
         public static List<Order> CustomerOrders(string CusID)
         {
             List<Order> OrdList = new List<Order>();
@@ -539,6 +543,23 @@ namespace DatabaseLayer
             sqlCon.Close();
         }
 
+        public static DataTable GetShipper()
+        {
+            sqlCon = new SqlConnection(connectionString);
+            sqlCon.Open();
+
+            SqlDataAdapter da;
+            DataTable dt = new DataTable();
+            SqlCommand cmd = new SqlCommand(PROC_SHIPPER_LIST, sqlCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+            da = new SqlDataAdapter(cmd);
+            da.FillSchema(dt, SchemaType.Source);
+            da.Fill(dt);
+
+            sqlCon.Close();
+
+            return dt;
+        }
 
         public static void UpdateOrder(Order Ord)
         {

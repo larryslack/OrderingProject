@@ -48,6 +48,7 @@
             this.lblCustomerID.Size = new System.Drawing.Size(35, 13);
             this.lblCustomerID.TabIndex = 0;
             this.lblCustomerID.Text = "label1";
+            this.lblCustomerID.Click += new System.EventHandler(this.lblCustomerID_Click);
             // 
             // lblCompanyName
             // 
