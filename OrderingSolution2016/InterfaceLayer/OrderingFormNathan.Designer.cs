@@ -32,6 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblEmID = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAddtoOrder = new System.Windows.Forms.Button();
             this.txtfUnitPrice = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.btnDel = new System.Windows.Forms.Button();
@@ -69,7 +70,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnAddtoOrder = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -119,6 +119,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(666, 318);
             this.panel1.TabIndex = 4;
+            // 
+            // btnAddtoOrder
+            // 
+            this.btnAddtoOrder.Location = new System.Drawing.Point(522, 31);
+            this.btnAddtoOrder.Name = "btnAddtoOrder";
+            this.btnAddtoOrder.Size = new System.Drawing.Size(58, 48);
+            this.btnAddtoOrder.TabIndex = 12;
+            this.btnAddtoOrder.Text = "Add to Order";
+            this.btnAddtoOrder.UseVisualStyleBackColor = true;
+            this.btnAddtoOrder.Click += new System.EventHandler(this.btnAddtoOrder_Click);
             // 
             // txtfUnitPrice
             // 
@@ -446,16 +456,6 @@
             this.label10.Size = new System.Drawing.Size(110, 13);
             this.label10.TabIndex = 14;
             this.label10.Text = "Final Cost After Taxes";
-            // 
-            // btnAddtoOrder
-            // 
-            this.btnAddtoOrder.Location = new System.Drawing.Point(522, 31);
-            this.btnAddtoOrder.Name = "btnAddtoOrder";
-            this.btnAddtoOrder.Size = new System.Drawing.Size(58, 48);
-            this.btnAddtoOrder.TabIndex = 12;
-            this.btnAddtoOrder.Text = "Add to Order";
-            this.btnAddtoOrder.UseVisualStyleBackColor = true;
-            this.btnAddtoOrder.Click += new System.EventHandler(this.btnAddtoOrder_Click);
             // 
             // OrderingFormNathan
             // 
