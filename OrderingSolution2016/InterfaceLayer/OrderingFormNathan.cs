@@ -17,7 +17,9 @@ namespace InterfaceLayer
         string CustomerID;
         int EmployeeID = 0;
 
-        List<OrderDetail> DetailsList = new List<OrderDetail>();
+        List<OrderDetail> DetailsList;
+        Customer currentCustomer;
+        List<Product> ProductList;
         
         
         public OrderingFormNathan(string CustomerID, int EmployeeID)
@@ -31,6 +33,27 @@ namespace InterfaceLayer
             cbProducts.DisplayMember = "ProductName";
             cbProducts.ValueMember = "ProductID";
             
+        }
+
+        private void btnAddOrd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            DetailsList.RemoveAt(cbProducts.SelectedIndex);
+            cbProducts.SelectedIndex = -1;
+            txtQuantity.Text = "0";
+            lblBaseCost.Text = "";
+            txtDisc.Text = "0";
+            txtfUnitPrice.Text = "";
+            
+        }
+
+        private void btnAddtoOrder_Click(object sender, EventArgs e)
+        {
+            //DetailsList.Add(new OrderDetail())
         }
     }
 }
