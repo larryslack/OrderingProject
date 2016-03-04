@@ -58,6 +58,7 @@
             this.txtFax = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
+            this.lblError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnRandomOrder
@@ -152,10 +153,12 @@
             // 
             // txtRequiredDate
             // 
+            this.txtRequiredDate.ForeColor = System.Drawing.Color.Gray;
             this.txtRequiredDate.Location = new System.Drawing.Point(95, 82);
             this.txtRequiredDate.Name = "txtRequiredDate";
             this.txtRequiredDate.Size = new System.Drawing.Size(100, 20);
             this.txtRequiredDate.TabIndex = 10;
+            this.txtRequiredDate.Text = "DD/MM/YYYY";
             // 
             // txtShipAddress
             // 
@@ -185,6 +188,7 @@
             this.txtFreight.ReadOnly = true;
             this.txtFreight.Size = new System.Drawing.Size(100, 20);
             this.txtFreight.TabIndex = 15;
+            this.txtFreight.Text = "0.00";
             // 
             // txtPostalCode
             // 
@@ -312,11 +316,21 @@
             this.txtPhone.Size = new System.Drawing.Size(100, 20);
             this.txtPhone.TabIndex = 30;
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.lblError.Location = new System.Drawing.Point(212, 443);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 13);
+            this.lblError.TabIndex = 32;
+            // 
             // OrderingFormBrett
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(738, 479);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.txtFax);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.txtPhone);
@@ -387,5 +401,6 @@
         private System.Windows.Forms.TextBox txtFax;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.Label lblError;
     }
 }

@@ -16,9 +16,10 @@ namespace InterfaceLayer
     {
         string CustomerID;
         int EmployeeID;
-        List<OrderDetail> DetailList = new List<OrderDetail>();
+        List<OrderDetail> DetailList;
         List<Panel> pnlList = new List<Panel>();
         Customer currentCustomer;
+        List<Product> productList;
 
         public OrderingFormBrett(string CustomerID, int EmployeeID)
         {
@@ -31,6 +32,8 @@ namespace InterfaceLayer
 
         private void OrderingFormBrett_Load(object sender, EventArgs e)
         {
+            productList = Business.ProductList();
+
             pnlContainer.BorderStyle = BorderStyle.FixedSingle;
             pnlContainer.VerticalScroll.Visible = true;
             AddPanel();
@@ -51,8 +54,10 @@ namespace InterfaceLayer
             cmbShipVia.DisplayMember = "CompanyName";
             cmbShipVia.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbShipVia.SelectedIndex = -1;
+
+            TxtRequiredDateMethods();
         }
-        
+
         private void AddPanel()
         {
             Panel orderPnl = new Panel();
@@ -88,12 +93,16 @@ namespace InterfaceLayer
             txtQuantity.Height = standardHeight;
             txtQuantity.Top = PosY;
             txtQuantity.Left = cmb.Left + standardWidth + PosX;
+            txtQuantity.Text = "0";
+            txtQuantity.Name = "txtQuantity" + pnlContainer.Controls.Count;
 
             TextBox txtDiscount = new TextBox();
             txtDiscount.Width = standardWidth;
             txtDiscount.Height = standardHeight;
             txtDiscount.Top = PosY;
             txtDiscount.Left = txtQuantity.Left + standardWidth + PosX;
+            txtDiscount.Text = "0";
+            txtDiscount.Name = "txtDiscount" + pnlContainer.Controls.Count;
 
             TextBox txtPrice = new TextBox();
             txtPrice.Width = standardWidth;
@@ -101,23 +110,25 @@ namespace InterfaceLayer
             txtPrice.Top = PosY;
             txtPrice.Left = txtDiscount.Left + standardWidth + PosX;
             txtPrice.ReadOnly = true;
-            
+            txtPrice.Text = "0.00";
+            txtPrice.Name = "txtPrice" + pnlContainer.Controls.Count;
+
             Button btnRemove = new Button();
             btnRemove.Width = standardWidth;
             btnRemove.Height = standardHeight;
             btnRemove.Top = PosY;
-            btnRemove.Left = txtDiscount.Left + standardWidth + PosX;
+            btnRemove.Left = txtPrice.Left + standardWidth + PosX;
             btnRemove.Text = "Remove";
             btnRemove.ForeColor = Color.Black;
             btnRemove.BackColor = Color.PaleVioletRed;
 
             btnRemove.Click += (sender, e) =>
             {
-                if (pnlContainer.Controls.Count > 1)
+                for (int i = 0; i < pnlList.Count; i++)
                 {
-                    for (int i = 0; i < pnlList.Count; i++)
+                    if (pnlList[i] == pnl)
                     {
-                        if (pnlList[i] == pnl)
+                        if (i != pnlList.Count - 1)
                         {
                             int setPosY;
                             for (int k = pnlList.Count - 1; k > i; k--)
@@ -129,7 +140,68 @@ namespace InterfaceLayer
                             pnlContainer.Controls.Remove(pnl);
                             pnlList.Remove(pnl);
                         }
+                        else
+                        {
+                            cmb.SelectedIndex = -1;
+                            txtQuantity.Text = "0";
+                            txtDiscount.Text = "0";
+                            txtPrice.Text = "0.00";
+                        }
                     }
+                }
+            };
+
+            txtQuantity.TextChanged += (sender, e) =>
+            {
+                try
+                {
+                    int quantity = 0;
+                    decimal discount = 0;
+                    int index = Convert.ToInt32(cmb.SelectedValue);
+
+                    if (txtQuantity.Text == "")
+                        throw new Exception("Please enter a quantity");
+                    else
+                        quantity = Convert.ToInt32(txtQuantity.Text);
+
+                    if (txtDiscount.Text == "")
+                        txtDiscount.Text = "0";
+                    else
+                        discount = Convert.ToInt32(txtDiscount.Text);
+
+                    txtPrice.Text = CalculatePrice(quantity, discount, index).ToString("###0.00");
+                    CalculateFreight();
+                }
+                catch (Exception ex)
+                {
+                    lblError.Text = ex.Message;
+                }
+            };
+
+            txtDiscount.TextChanged += (sender, e) =>
+            {
+                try
+                {
+                    int quantity = 0;
+                    decimal discount = 0;
+                    int index = Convert.ToInt32(cmb.SelectedValue);
+
+                    if (txtQuantity.Text == "")
+                        throw new Exception("Please enter a quantity");
+                    else
+                        quantity = Convert.ToInt32(txtQuantity.Text);
+
+                    if (txtDiscount.Text == "") // Needs regex.
+                        txtDiscount.Text = "0";
+                    else
+                        discount = Convert.ToInt32(txtDiscount.Text);
+
+                    txtPrice.Text = CalculatePrice(quantity, discount, index).ToString("###0.00");
+                    CalculateFreight();
+                }
+                catch (Exception ex)
+                {
+                    lblError.Text = ex.Message;
                 }
             };
 
@@ -145,7 +217,7 @@ namespace InterfaceLayer
 
         private void SetupCombo(ComboBox cmb, Panel pnl, TextBox txtQuantity, TextBox txtDiscount, TextBox txtPrice)
         {
-            List<Product> productList = Business.ProductList();
+            List<Product> productList = new List<Product>(this.productList);
             cmb.DataSource = productList;
             cmb.DisplayMember = "ProductName";
             cmb.ValueMember = "ProductID";
@@ -156,9 +228,12 @@ namespace InterfaceLayer
                 if (cmb.SelectedIndex == -1)
                     return;
 
+                int quantity = Convert.ToInt32(txtQuantity.Text);
+                decimal discount = Convert.ToDecimal(txtDiscount.Text);
                 int index = Convert.ToInt32(cmb.SelectedValue);
 
-                txtPrice.Text = (productList[index].UnitPrice * Convert.ToDecimal(txtQuantity.Text) * Convert.ToDecimal(txtDiscount.Text)).ToString();
+                txtPrice.Text = CalculatePrice(quantity, discount, index).ToString("###0.00");
+                CalculateFreight();
 
                 int currentPanelIndex = 0;
                 int panelIndexCount = pnlList.Count - 1;
@@ -186,12 +261,10 @@ namespace InterfaceLayer
                 o.CustomerID = lblCustomerID.Text;
                 o.EmployeeID = Convert.ToInt32(lblEmployeeID.Text);
                 o.OrderDate = DateTime.Now;
-                //o.RequiredDate = Convert.ToDateTime(txtRequiredDate.Text);
-                // A test
-                o.RequiredDate = DateTime.Now;
+                o.RequiredDate = Convert.ToDateTime(txtRequiredDate.Text);
                 o.ShippedDate = null;
                 o.ShipVia = Convert.ToInt32(cmbShipVia.SelectedValue);
-                //o.Freight = Convert.ToDecimal(txtFreight.Text); //Retrieve later.
+                o.Freight = Convert.ToDecimal(txtFreight.Text); //Retrieve later.
                 o.ShipName = currentCustomer.CompanyName;
                 o.ShipAddress = txtShipAddress.Text;
                 o.ShipCity = txtShipCity.Text;
@@ -201,11 +274,50 @@ namespace InterfaceLayer
                 o.EmployeeName = null; // I need the employee name.
                 o.ShipperName = cmbShipVia.Text;
 
-                // Test
-
-                o.Freight = 10;
-
                 Business.SaveOrder(o);
+                DetailList = new List<OrderDetail>();
+
+                foreach (Panel pnl in pnlContainer.Controls)
+                {
+                    int productID = -1;
+                    decimal unitPrice = 0;
+                    short quantity = 0;
+                    float discount = 0;
+
+                    foreach (Control cntrl in pnl.Controls)
+                    {
+                        if (((ComboBox)pnl.Controls[0]).SelectedIndex != -1)
+                        {
+                            if (cntrl is ComboBox)
+                            {
+                                productID = Convert.ToInt32(((ComboBox)cntrl).SelectedValue);
+                            }
+
+                            if (cntrl is TextBox)
+                            {
+                                if (cntrl.Name.Contains("txtQuantity"))
+                                {
+                                    quantity = Convert.ToInt16(((TextBox)cntrl).Text);
+                                }
+
+                                if (cntrl.Name.Contains("txtPrice"))
+                                {
+                                    unitPrice = Convert.ToDecimal(((TextBox)cntrl).Text);
+                                }
+
+                                if (cntrl.Name.Contains("txtDiscount"))
+                                {
+                                    discount = Convert.ToSingle(((TextBox)cntrl).Text);
+                                }
+                            }
+                        }
+                    }
+
+                    if (productID != -1 && quantity > 0)
+                        DetailList.Add(new OrderDetail(o.OrderID, productID, unitPrice, quantity, discount));
+                }
+
+                Business.SaveDetails(o.OrderID, DetailList);
             }
             catch (Exception ex)
             {
@@ -213,10 +325,70 @@ namespace InterfaceLayer
             }
         }
 
-        public int CalculateFreight()
+        public decimal CalculatePrice(int quantity, decimal discount, int index)
         {
+            decimal discountPrice = 0;
+            decimal totalPrice = 0;
 
-            return 0;
+            if (discount == 0)
+            {
+                discount = 1;
+            }
+            else if (discount < 0)
+            {
+                MessageBox.Show("Can't have a discount less than 0. Please change value to atleast 0");
+            }
+            else if (discount > 0)
+            {
+                // Puts the discount into percentage. Then adds one so when it is used it will take the percentage off.
+                discount = discount / 100m;
+                discountPrice = productList[index].UnitPrice * quantity * discount;
+            }
+
+            totalPrice = (productList[index].UnitPrice * quantity) - discountPrice;
+
+            return totalPrice;
+        }
+
+        public void CalculateFreight()
+        {
+            decimal freight = 0;
+            foreach (Panel pnl in pnlContainer.Controls)
+            {
+                foreach (Control cntrl in pnl.Controls)
+                {
+                    if (cntrl is TextBox)
+                    {
+                        if (cntrl.Name.Contains("txtPrice"))
+                        {
+                            freight += Convert.ToDecimal(cntrl.Text);
+                        }
+                    }
+                }
+            }
+
+            txtFreight.Text = freight.ToString();
+        }
+
+        public void TxtRequiredDateMethods()
+        {
+            txtRequiredDate.Enter += (sender, e) =>
+            {
+                if (txtRequiredDate.Text == "DD/MM/YYYY")
+                {
+                    txtRequiredDate.ForeColor = Color.FromKnownColor(KnownColor.WindowText);
+                    txtRequiredDate.Text = "";
+                }
+            };
+
+            txtRequiredDate.Leave += (sender, e) =>
+            {
+                if (txtRequiredDate.Text == "")
+                {
+                    txtRequiredDate.ForeColor = Color.Gray;
+                    txtRequiredDate.Text = "DD/MM/YYYY";
+                }
+            };
         }
     }
 }
