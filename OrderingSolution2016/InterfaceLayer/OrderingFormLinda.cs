@@ -29,7 +29,7 @@ namespace InterfaceLayer
                 if (C.CustomerID == CustomerID)
                     Cust = C;
             }
-            lblCompanyName.Text = Cust.CompanyName;
+            .Text = Cust.CompanyName;
         }
 
         private void OrderingFormLinda_Load(object sender, EventArgs e)
