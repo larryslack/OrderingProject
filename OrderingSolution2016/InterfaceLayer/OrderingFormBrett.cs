@@ -245,6 +245,30 @@ namespace InterfaceLayer
                 if (cmb.SelectedIndex == -1)
                     return;
 
+
+                bool blnFoundSame = false;
+                foreach (Panel conPnl in pnlContainer.Controls)
+                {
+                    foreach (Control cntrl in conPnl.Controls)
+                    {
+                        if (cntrl is ComboBox)
+                        {
+                            if (cntrl != cmb)
+                            {
+                                if (((ComboBox)cntrl).SelectedValue == cmb.SelectedValue)
+                                {
+                                    blnFoundSame = true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (blnFoundSame)
+                    pnl.BackColor = Color.Red;
+                else
+                    pnl.BackColor = Color.FromKnownColor(KnownColor.Window);
+
                 txtQuantity.Text = "1";
                 int quantity = Convert.ToInt32(txtQuantity.Text);
                 decimal discount = Convert.ToDecimal(txtDiscount.Text);
