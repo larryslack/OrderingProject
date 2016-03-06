@@ -21,6 +21,7 @@ namespace InterfaceLayer
 
         public OrderingFormKate(string CustomerID, int EmployeeID)
         {
+            this.CompanyName = "lkjlkj";
             InitializeComponent();
             this.CustomerID = CustomerID;
             this.EmployeeID = EmployeeID;

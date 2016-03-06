@@ -22,7 +22,8 @@ namespace DatabaseLayer
         private const string PROC_DELETE_DETAILS = "DeleteDetails";
         private const string PROC_SHIPPER_LIST = "ShipperList";
         private static SqlConnection sqlCon;
-        private static string connectionString = "Server=PROG280SERVER\\PROG280; Database=nwindsql; user=sa; Password=SQL_2012;"; 
+        private static string connectionString = "Server=172.18.29.17\\PROG280; Database=nwindsql; user=sa; Password=SQL_2012;";
+        //private static string connectionString = "Server=PROG280SERVER\\PROG280; Database=nwindsql; user=sa; Password=SQL_2012;";
         //private static string connectionString = "server=BrettsPCMasterR;database=NwindSQL;integrated security=true;Timeout=2"; // Bretts home comp
 
         public static Customer GetCustomer(string CustomerID)
