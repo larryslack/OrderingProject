@@ -52,11 +52,13 @@ namespace InterfaceLayer
         private void cmbCustomers_SelectedIndexChanged(object sender, EventArgs e)
         {
             CurCustomer = CustomerList[cmbCustomers.SelectedIndex];
-            txtCompID.Text = CurCustomer.ContactName;
+            txtCustomerID.Text = CurCustomer.CustomerID;
+            txtContactName.Text = CurCustomer.ContactName;
             txtCompPhone.Text = CurCustomer.Phone;
-            txtCompID.Text = CurCustomer.CustomerID;
+            txtContactName.Text = CurCustomer.ContactName;
             txtCompFax.Text = CurCustomer.Fax;
             txtCompMail.Text = CurCustomer.PostalCode;
+            
             
             //get the orders for this customer and display in the grid
             CustomerOrderList = Business.OrderList(CurCustomer);
@@ -103,7 +105,7 @@ namespace InterfaceLayer
 
         private void btnNewOrder_Click(object sender, EventArgs e)
         {
-            OrderingFormPicker OFP = new OrderingFormPicker(CurCustomer.CustomerID, 2);
+            OrderingFormPicker OFP = new OrderingFormPicker(CurCustomer.CustomerID, 11);
             OFP.Show();
         }
 
