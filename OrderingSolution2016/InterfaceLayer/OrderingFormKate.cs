@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BaseLayer;
 using BusinessLayer;
+using DatabaseLayer;
 namespace InterfaceLayer
 {
     public partial class OrderingFormKate : Form
@@ -46,6 +47,13 @@ namespace InterfaceLayer
         {
             List<Product> ProductList = Business.ProductList();
             ProductPanel pp = new ProductPanel(pnlDetails, 5, ProductList);
+            cmbShipVia.DataSource = DB.GetShipper();
+            cmbShipVia.ValueMember = "ShipperID";
+            cmbShipVia.DisplayMember = "CompanyName";
+            cmbShipVia.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbShipVia.SelectedIndex = -1;
+
+
            
         }
 
@@ -87,6 +95,11 @@ namespace InterfaceLayer
 
 
             Business.SaveDetails(NewOrderID, DetailList);
+        }
+
+        private void cmbShipVia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

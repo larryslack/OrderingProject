@@ -121,6 +121,7 @@
             this.cmbShipVia.Name = "cmbShipVia";
             this.cmbShipVia.Size = new System.Drawing.Size(216, 21);
             this.cmbShipVia.TabIndex = 14;
+            this.cmbShipVia.SelectedIndexChanged += new System.EventHandler(this.cmbShipVia_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -411,7 +412,7 @@
             this.lblNewOrderID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNewOrderID.Location = new System.Drawing.Point(347, 3);
             this.lblNewOrderID.Name = "lblNewOrderID";
-            this.lblNewOrderID.Size = new System.Drawing.Size(0, 25);
+            this.lblNewOrderID.Size = new System.Drawing.Size(0, 24);
             this.lblNewOrderID.TabIndex = 36;
             // 
             // btnSaveDetails
