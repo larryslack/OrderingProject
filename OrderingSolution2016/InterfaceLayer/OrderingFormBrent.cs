@@ -46,8 +46,6 @@ namespace InterfaceLayer
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            if ((ProductBox.SelectedIndex >= 0) == false) //weird way to do it but im too lazy to look it up
-                return;
             string AddToOrder = "";
             AddToOrder += ProductBox.SelectedItem.ToString();
             AddToOrder += " (" + QuantityUpdown.Value + ") : ";
@@ -61,17 +59,50 @@ namespace InterfaceLayer
         private void ProductBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //string thing = fer.items
-            QuantityUpdown.Value = 1;
+            InStockBox.Text = fer[ProductBox.SelectedIndex].UnitInStock.ToString();
+            SupplierBox.Text = fer[ProductBox.SelectedIndex].SupplierID.ToString();
+            if (InStockBox.Text == "0")
+            {
+                QuantityUpdown.Value = 0;
+                AddBtn.Enabled = false;
+            }
+            else
+            {
+                QuantityUpdown.Value = 1;
+                AddBtn.Enabled = true;
+            }
+            DiscountUpDown.Value = 0;
             decimal IShouldRenameThat = fer[ProductBox.SelectedIndex].UnitPrice;
+            string IShouldRenameThisToo;
+            //if (fer[ProductBox.SelectedIndex].QuantityPerUnit == null)
+            IShouldRenameThisToo = fer[ProductBox.SelectedIndex].QuantityPerUnit;
+            QPUBox.Text = IShouldRenameThisToo;
             PriceBox.Text = IShouldRenameThat.ToString("c");
         }
 
         private void QuantityUpdown_ValueChanged(object sender, EventArgs e)
         {
-            decimal DaPrice = fer[ProductBox.SelectedIndex].UnitPrice;
-            DaPrice = (DaPrice * QuantityUpdown.Value);
-            PriceBox.Text = DaPrice.ToString("c");
+            if ((ProductBox.SelectedIndex >= 0) == false) //weird way to do it but im too lazy to look it up
+                return;
+            if (QuantityUpdown.Value > Convert.ToInt16(InStockBox.Text))
+                QuantityUpdown.Value--;
+            //decimal DaPrice = fer[ProductBox.SelectedIndex].UnitPrice;
+            //DaPrice = (DaPrice * QuantityUpdown.Value);
+            PriceBox.Text = CalculatePrice().ToString("c");
         }
 
+        private void DiscountUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            PriceBox.Text = CalculatePrice().ToString("c");
+        }
+
+        private decimal CalculatePrice()
+        {
+            if ((ProductBox.SelectedIndex >= 0) == false) //weird way to do it but im too lazy to look it up
+                return 0;
+            decimal TooLazyToRenameThem = fer[ProductBox.SelectedIndex].UnitPrice;
+            TooLazyToRenameThem = TooLazyToRenameThem * QuantityUpdown.Value * (1 - DiscountUpDown.Value);
+            return TooLazyToRenameThem;
+        }
     }
 }
