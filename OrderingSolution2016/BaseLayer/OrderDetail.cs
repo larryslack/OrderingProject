@@ -8,9 +8,9 @@ namespace BaseLayer
 {
     public class OrderDetail
     {
-        #region Propertise
+        #region Properties
         public int OrderID { get; private set; }
-        public int ProductID { get; private set; }
+        public int ProductID { get; set; }
         public decimal UnitPrice { get; set; }
         public short Quantity { get; set; }
         public float Discount {get;set;}

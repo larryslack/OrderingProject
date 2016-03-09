@@ -50,6 +50,9 @@
     <Compile Include="EditingForm.Designer.cs">
       <DependentUpon>EditingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="KateDetailPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
