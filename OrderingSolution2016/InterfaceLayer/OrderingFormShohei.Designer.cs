@@ -186,14 +186,14 @@
             this.ShipList.FormattingEnabled = true;
             this.ShipList.Location = new System.Drawing.Point(66, 86);
             this.ShipList.Name = "ShipList";
-            this.ShipList.Size = new System.Drawing.Size(100, 21);
+            this.ShipList.Size = new System.Drawing.Size(136, 21);
             this.ShipList.TabIndex = 11;
             // 
             // txtFreight
             // 
             this.txtFreight.Location = new System.Drawing.Point(66, 110);
             this.txtFreight.Name = "txtFreight";
-            this.txtFreight.Size = new System.Drawing.Size(100, 20);
+            this.txtFreight.Size = new System.Drawing.Size(136, 20);
             this.txtFreight.TabIndex = 12;
             // 
             // txtAddress

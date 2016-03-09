@@ -22,6 +22,7 @@ namespace InterfaceLayer
         int employeeID;
         Customer custerd;
         List<Product> ProductList = new List<Product>();
+        List<OrderDetail> OrderList = new List<OrderDetail>();
 
         public OrderingFormShohei(string CustomerID, int EmployeeID)
         {
