@@ -66,6 +66,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblNewOrderID = new System.Windows.Forms.Label();
             this.btnSaveDetails = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gbxCustomer.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -280,10 +281,9 @@
             // 
             this.pnlDetails.AutoScroll = true;
             this.pnlDetails.BackColor = System.Drawing.Color.Silver;
-            this.pnlDetails.Enabled = false;
             this.pnlDetails.Location = new System.Drawing.Point(352, 91);
             this.pnlDetails.Name = "pnlDetails";
-            this.pnlDetails.Size = new System.Drawing.Size(699, 324);
+            this.pnlDetails.Size = new System.Drawing.Size(762, 324);
             this.pnlDetails.TabIndex = 27;
             // 
             // lblProduct
@@ -298,7 +298,7 @@
             // lblQuantity
             // 
             this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Location = new System.Drawing.Point(566, 67);
+            this.lblQuantity.Location = new System.Drawing.Point(747, 67);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(46, 13);
             this.lblQuantity.TabIndex = 29;
@@ -307,7 +307,7 @@
             // lblQuantityPrerUnit
             // 
             this.lblQuantityPrerUnit.AutoSize = true;
-            this.lblQuantityPrerUnit.Location = new System.Drawing.Point(788, 67);
+            this.lblQuantityPrerUnit.Location = new System.Drawing.Point(516, 67);
             this.lblQuantityPrerUnit.Name = "lblQuantityPrerUnit";
             this.lblQuantityPrerUnit.Size = new System.Drawing.Size(81, 13);
             this.lblQuantityPrerUnit.TabIndex = 30;
@@ -316,7 +316,7 @@
             // lblDiscount
             // 
             this.lblDiscount.AutoSize = true;
-            this.lblDiscount.Location = new System.Drawing.Point(651, 67);
+            this.lblDiscount.Location = new System.Drawing.Point(832, 67);
             this.lblDiscount.Name = "lblDiscount";
             this.lblDiscount.Size = new System.Drawing.Size(49, 13);
             this.lblDiscount.TabIndex = 31;
@@ -325,7 +325,7 @@
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(499, 67);
+            this.lblPrice.Location = new System.Drawing.Point(680, 67);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(31, 13);
             this.lblPrice.TabIndex = 32;
@@ -333,7 +333,8 @@
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(964, 48);
+            this.btnNew.Enabled = false;
+            this.btnNew.Location = new System.Drawing.Point(1007, 34);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(75, 23);
             this.btnNew.TabIndex = 33;
@@ -412,7 +413,7 @@
             this.lblNewOrderID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.74545F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNewOrderID.Location = new System.Drawing.Point(347, 3);
             this.lblNewOrderID.Name = "lblNewOrderID";
-            this.lblNewOrderID.Size = new System.Drawing.Size(0, 24);
+            this.lblNewOrderID.Size = new System.Drawing.Size(0, 25);
             this.lblNewOrderID.TabIndex = 36;
             // 
             // btnSaveDetails
@@ -425,11 +426,21 @@
             this.btnSaveDetails.UseVisualStyleBackColor = true;
             this.btnSaveDetails.Click += new System.EventHandler(this.btnSaveDetails_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(914, 67);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 13);
+            this.label6.TabIndex = 38;
+            this.label6.Text = "Total Price";
+            // 
             // OrderingFormKate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1063, 497);
+            this.ClientSize = new System.Drawing.Size(1135, 497);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnSaveDetails);
             this.Controls.Add(this.lblNewOrderID);
             this.Controls.Add(this.label3);
@@ -498,5 +509,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtContactName;
         private System.Windows.Forms.Button btnSaveDetails;
+        private System.Windows.Forms.Label label6;
     }
 }
