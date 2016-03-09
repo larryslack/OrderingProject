@@ -44,8 +44,12 @@
             this.InStockBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.SupplierBox = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label8881 = new System.Windows.Forms.Label();
+            this.RequiredDatePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUpdown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiscountUpDown)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ProductBox
@@ -217,11 +221,39 @@
             this.SupplierBox.TabIndex = 17;
             this.SupplierBox.Text = "0";
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label8881);
+            this.panel1.Controls.Add(this.RequiredDatePicker);
+            this.panel1.Location = new System.Drawing.Point(-1, 260);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(614, 265);
+            this.panel1.TabIndex = 55;
+            this.panel1.TabStop = true;
+            // 
+            // label8881
+            // 
+            this.label8881.AutoSize = true;
+            this.label8881.Location = new System.Drawing.Point(5, 13);
+            this.label8881.Name = "label8881";
+            this.label8881.Size = new System.Drawing.Size(76, 13);
+            this.label8881.TabIndex = 20;
+            this.label8881.Text = "Required Date";
+            // 
+            // RequiredDatePicker
+            // 
+            this.RequiredDatePicker.Location = new System.Drawing.Point(79, 7);
+            this.RequiredDatePicker.Name = "RequiredDatePicker";
+            this.RequiredDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.RequiredDatePicker.TabIndex = 19;
+            // 
             // OrderingFormBrent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 262);
+            this.ClientSize = new System.Drawing.Size(602, 521);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.SupplierBox);
             this.Controls.Add(this.InStockBox);
             this.Controls.Add(this.label6);
@@ -242,6 +274,8 @@
             this.Text = "OrderingFormBrent";
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUpdown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiscountUpDown)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,5 +299,8 @@
         private System.Windows.Forms.TextBox InStockBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox SupplierBox;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label8881;
+        private System.Windows.Forms.DateTimePicker RequiredDatePicker;
     }
 }
