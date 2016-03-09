@@ -46,7 +46,8 @@ namespace InterfaceLayer
         {
             int ShipperNameID = (int)cbShipVia.SelectedValue;
             string shippername = Shippers[ShipperNameID].CompanyName.ToString();
-           // Order Commit = new Order(Test.OrderID, lblCustId.Text, Convert.ToInt32(lblEmID.Text), Convert.ToDateTime(lblTDate.Text), Convert.ToDateTime(txtRDate.Text), Convert.ToDateTime(txtSDate.Text), Convert.ToInt32(cbShipVia.SelectedValue.ToString()), Convert.ToDecimal(lblFin.Text),shippername.ToString,txtAddress.Text,txtCity.Text,txtRegion.Text,txtPostal.Text,txtCountry.Text);
+            Order Commit = new Order(Test.OrderID, lblCustId.Text, Convert.ToInt32(lblEmID.Text), Convert.ToDateTime(lblTDate.Text), Convert.ToDateTime(txtRDate.Text), Convert.ToDateTime(txtSDate.Text), Convert.ToInt32(cbShipVia.SelectedValue.ToString()), Convert.ToDecimal(lblFin.Text),shippername.ToString(),txtAddress.Text,txtCity.Text,txtRegion.Text,txtPostal.Text,txtCountry.Text);
+            BusinessLayer.Business.SaveOrder(Commit);
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -69,6 +70,11 @@ namespace InterfaceLayer
             txtDisc.Text = "";
             txtQuantity.Text = "";
             lsDetails.Items.Add(DetailsList);
+        }
+
+        private void OrderingFormNathan_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            BusinessLayer.Business.SaveDetails(Test.OrderID, DetailsList);
         }
     }
 }
