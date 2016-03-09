@@ -41,8 +41,10 @@ namespace InterfaceLayer
         private void OrderingFormShohei_Load(object sender, EventArgs e)
         {
             ProductList = Business.ProductList();
-            //ShipList.DataSource = BrettBusiness.ShipperTable();
-            //ShipList.di
+            ShipList.DataSource = Business.ShipperTable();
+
+            
+            
         }
 
         private void btnNewP_Click(object sender, EventArgs e)
