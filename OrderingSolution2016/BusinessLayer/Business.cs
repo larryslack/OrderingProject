@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BaseLayer;
 using DatabaseLayer;
+using System.Data;
+using System.Data.Sql;
 namespace BusinessLayer
 {
     public class Business
@@ -44,7 +46,7 @@ namespace BusinessLayer
             DB.ReplaceDetails(OrderID, ordDetailList);
         }
 
-        //public static DataTable ShipperTable()
+        //public static Shipper ShipperTable()
         //{
         //    return DB.GetShipper();
         //}
