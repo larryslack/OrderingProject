@@ -37,13 +37,19 @@ namespace InterfaceLayer
 
         }
 
-//<<<<<<< HEAD
-//        void EditCustomerInfo()
-//=======
-//        private void lblCustomerID_Click(object sender, EventArgs e)
-//>>>>>>> ea4f5609415680521876e64ab9c1e7934a632d75
-      //{
+        void EditCustomerInfo()
+        {
 
-      //  }
+        }
+
+        void PlacingOrder()
+        {
+
+        }
+
+        private void lblCustomerID_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

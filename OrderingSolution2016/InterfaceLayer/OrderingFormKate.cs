@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BaseLayer;
 using BusinessLayer;
+using DatabaseLayer;
 namespace InterfaceLayer
 {
     public partial class OrderingFormKate : Form
@@ -25,7 +26,7 @@ namespace InterfaceLayer
 
         public OrderingFormKate(string CustomerID, int EmployeeID)
         {
-             InitializeComponent();
+            InitializeComponent();
             this.CustomerID = CustomerID;
             this.EmployeeID = EmployeeID;
             Cust = BusinessLayer.Business.GetCustomer(CustomerID);
@@ -45,16 +46,23 @@ namespace InterfaceLayer
         private void OrderingFormKate_Load(object sender, EventArgs e)
         {
             List<Product> ProductList = Business.ProductList();
-            ProductPanel pp = new ProductPanel(pnlDetails, 5, ProductList);
-           
+            // KateDetailPanel pp = new KateDetailPanel(pnlDetails, 5, NewOrderID, ProductList);
+            cmbShipVia.DataSource = DB.GetShipper();
+            cmbShipVia.ValueMember = "ShipperID";
+            cmbShipVia.DisplayMember = "CompanyName";
+            cmbShipVia.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbShipVia.SelectedIndex = -1;
+
+
+
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
             DetailCount += 1;
             List<Product> ProductList = Business.ProductList();
-            ProductPanel pp = new ProductPanel(pnlDetails, 5 + 40 * DetailCount, ProductList);
- 
+            KateDetailPanel pp = new KateDetailPanel(pnlDetails, 5 + 40 * DetailCount, NewOrderID, ProductList);
+
         }
 
         private void btnSaveNewOrder_Click(object sender, EventArgs e)
@@ -66,14 +74,14 @@ namespace InterfaceLayer
                 Business.SaveOrder(NewOrder);
                 NewOrderID = NewOrder.OrderID;
                 lblNewOrderID.Text = NewOrderID.ToString();
-                pnlDetails.Enabled = true;
+                btnNew.Enabled = true;
                 btnSaveNewOrder.Enabled = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-               
-            } 
+
+            }
 
         }
 
@@ -82,11 +90,28 @@ namespace InterfaceLayer
             // make sure the information is okay 
 
             // create the details list
+            DetailList = new List<OrderDetail>();
+            try
+            {
+                foreach (KateDetailPanel panel in pnlDetails.Controls)
+                {
+                    if (panel.OD.ProductID > 0)
+                    DetailList.Add(panel.OD);
+                }
 
+                Business.SaveDetails(NewOrderID, DetailList);
 
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-            Business.SaveDetails(NewOrderID, DetailList);
+        private void cmbShipVia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
