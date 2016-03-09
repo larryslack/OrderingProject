@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BaseLayer;
@@ -20,7 +21,8 @@ namespace InterfaceLayer
         List<OrderDetail> DetailsList;
        // Customer currentCustomer;
         List<Product> ProductList = new List<Product>();
-        
+        Order Test = new Order(50000);
+        List<Shipper> Shippers = new List<Shipper>();
         
         public OrderingFormNathan(string CustomerID, int EmployeeID)
         {
@@ -29,15 +31,23 @@ namespace InterfaceLayer
             this.EmployeeID = EmployeeID;
             lblEmID.Text = EmployeeID.ToString();
             lblCustId.Text = CustomerID;
+            lblTDate.Text = DateTime.Now.ToString("d/MM/yyyy");
+            cbShipVia.DataSource = BusinessLayer.Business.ShipperTable();
+            cbShipVia.DisplayMember = "CompanyName";
+            cbShipVia.ValueMember = "ShipperID";
             cbProducts.DataSource = BusinessLayer.Business.ProductList();
             cbProducts.DisplayMember = "ProductName";
             cbProducts.ValueMember = "ProductID";
             Order test = new Order(OrderId);
+            Shippers = BusinessLayer.Business.ShipperTable();
         }
 
         private void btnAddOrd_Click(object sender, EventArgs e)
         {
-
+            int ShipperNameID = (int)cbShipVia.SelectedValue;
+            string shippername = Shippers[ShipperNameID].CompanyName.ToString();
+            Order Commit = new Order(Test.OrderID, lblCustId.Text, Convert.ToInt32(lblEmID.Text), Convert.ToDateTime(lblTDate.Text), Convert.ToDateTime(txtRDate.Text), Convert.ToDateTime(txtSDate.Text), Convert.ToInt32(cbShipVia.SelectedValue.ToString()), Convert.ToDecimal(lblFin.Text),shippername.ToString(),txtAddress.Text,txtCity.Text,txtRegion.Text,txtPostal.Text,txtCountry.Text);
+            BusinessLayer.Business.SaveOrder(Commit);
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -45,20 +55,26 @@ namespace InterfaceLayer
             DetailsList.RemoveAt(cbProducts.SelectedIndex);
             cbProducts.SelectedIndex = -1;
             txtQuantity.Text = "0";
-            lblBaseCost.Text = "";
             txtDisc.Text = "0";
-            txtfUnitPrice.Text = "";
-            
+       
         }
 
         private void btnAddtoOrder_Click(object sender, EventArgs e)
         {
             int ProductId = (int)cbProducts.SelectedValue;
             
-
             DetailsList = new List<OrderDetail>();
-            //DetailsList.Add(new OrderDetail())
+            Product tmp = ProductList[ProductId];
+            DetailsList.Add(new OrderDetail(Test.OrderID, tmp.ProductID, tmp.UnitPrice, Convert.ToInt16(txtQuantity.Text), Convert.ToInt32(txtDisc.Text)));
+            cbProducts.SelectedValue = -1;
+            txtDisc.Text = "";
+            txtQuantity.Text = "";
+            lsDetails.Items.Add(DetailsList);
+        }
 
+        private void OrderingFormNathan_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            BusinessLayer.Business.SaveDetails(Test.OrderID, DetailsList);
         }
     }
 }

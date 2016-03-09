@@ -21,6 +21,7 @@ namespace InterfaceLayer
         Customer Cust;
         int NewOrderID;
         int DetailCount = 0;
+        int OrderDiscount;
         Order NewOrder;
         List<OrderDetail> DetailList;
 
@@ -100,6 +101,8 @@ namespace InterfaceLayer
                 }
 
                 Business.SaveDetails(NewOrderID, DetailList);
+
+                MessageBox.Show("Your order has been saved!");
 
             }
             catch (Exception ex)
