@@ -54,14 +54,14 @@
             this.OrderGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.OrderGrid.Location = new System.Drawing.Point(7, 149);
             this.OrderGrid.Name = "OrderGrid";
-            this.OrderGrid.Size = new System.Drawing.Size(444, 241);
+            this.OrderGrid.Size = new System.Drawing.Size(891, 225);
             this.OrderGrid.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(235, 15);
+            this.label1.Location = new System.Drawing.Point(682, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 2;
@@ -80,7 +80,7 @@
             // txtCompPhone
             // 
             this.txtCompPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCompPhone.Location = new System.Drawing.Point(323, 39);
+            this.txtCompPhone.Location = new System.Drawing.Point(770, 39);
             this.txtCompPhone.Name = "txtCompPhone";
             this.txtCompPhone.Size = new System.Drawing.Size(100, 20);
             this.txtCompPhone.TabIndex = 6;
@@ -88,7 +88,7 @@
             // txtCompMail
             // 
             this.txtCompMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCompMail.Location = new System.Drawing.Point(323, 117);
+            this.txtCompMail.Location = new System.Drawing.Point(770, 117);
             this.txtCompMail.Name = "txtCompMail";
             this.txtCompMail.Size = new System.Drawing.Size(100, 20);
             this.txtCompMail.TabIndex = 7;
@@ -96,7 +96,7 @@
             // txtCompFax
             // 
             this.txtCompFax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCompFax.Location = new System.Drawing.Point(323, 91);
+            this.txtCompFax.Location = new System.Drawing.Point(770, 91);
             this.txtCompFax.Name = "txtCompFax";
             this.txtCompFax.Size = new System.Drawing.Size(100, 20);
             this.txtCompFax.TabIndex = 8;
@@ -125,7 +125,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(222, 42);
+            this.label3.Location = new System.Drawing.Point(669, 42);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 13);
             this.label3.TabIndex = 12;
@@ -135,7 +135,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(247, 120);
+            this.label4.Location = new System.Drawing.Point(694, 120);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 13;
@@ -145,7 +145,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(293, 94);
+            this.label5.Location = new System.Drawing.Point(740, 94);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(24, 13);
             this.label5.TabIndex = 14;
@@ -155,7 +155,7 @@
             // 
             this.cmbCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbCustomers.FormattingEnabled = true;
-            this.cmbCustomers.Location = new System.Drawing.Point(323, 12);
+            this.cmbCustomers.Location = new System.Drawing.Point(770, 12);
             this.cmbCustomers.Name = "cmbCustomers";
             this.cmbCustomers.Size = new System.Drawing.Size(121, 21);
             this.cmbCustomers.TabIndex = 15;
@@ -165,7 +165,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(242, 68);
+            this.label2.Location = new System.Drawing.Point(689, 68);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 13);
             this.label2.TabIndex = 11;
@@ -175,7 +175,7 @@
             // txtCompID
             // 
             this.txtCompID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCompID.Location = new System.Drawing.Point(323, 65);
+            this.txtCompID.Location = new System.Drawing.Point(770, 65);
             this.txtCompID.Name = "txtCompID";
             this.txtCompID.Size = new System.Drawing.Size(100, 20);
             this.txtCompID.TabIndex = 5;
@@ -194,7 +194,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(456, 394);
+            this.ClientSize = new System.Drawing.Size(903, 378);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbCustomers);
             this.Controls.Add(this.label5);

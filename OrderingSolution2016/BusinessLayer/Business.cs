@@ -13,6 +13,10 @@ namespace BusinessLayer
         {
             return DB.CustomerList();
          }
+        public static Customer GetCustomer(string CustomerID)
+        {
+            return DB.GetCustomer( CustomerID);
+        }
 
         public static List<Order> OrderList(Customer c)
         {  
@@ -39,5 +43,10 @@ namespace BusinessLayer
         {
             DB.ReplaceDetails(OrderID, ordDetailList);
         }
+
+        //public static DataTable ShipperTable()
+        //{
+        //    return DB.GetShipper();
+        //}
     }
 }

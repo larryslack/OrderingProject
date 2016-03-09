@@ -14,6 +14,9 @@ namespace InterfaceLayer
 {
     public partial class OrderingForm : Form
     {
+
+        string CustomerID;
+        int EmployeeID;
         List<ProductPanel> listProductPanel = new List<ProductPanel>();
         List<Product> productList = Business.ProductList();
 
@@ -21,6 +24,10 @@ namespace InterfaceLayer
         public OrderingForm(string CustomerID, int EmployeeID)
         {
             InitializeComponent();
+            this.CustomerID = CustomerID;
+            this.EmployeeID = EmployeeID;
+            lblCustomerID.Text = CustomerID;
+            lblEmployeeID.Text = EmployeeID.ToString();
         }
 
         private void OrderingForm_Load(object sender, EventArgs e)
@@ -38,7 +45,7 @@ namespace InterfaceLayer
             bool allUsed = true;
             foreach (ProductPanel item in listProductPanel)
             {
-                if (item.comboProduct.Text == "")
+                if (item.comboProduct.SelectedIndex == 0)
                 {
                     allUsed = false;
                 }
@@ -76,6 +83,11 @@ namespace InterfaceLayer
         }
 
         private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
         {
 
         }

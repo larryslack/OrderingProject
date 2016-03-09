@@ -39,8 +39,8 @@ namespace InterfaceLayer
         }
         private void btnBrent_Click(object sender, EventArgs e)
         {
-            //OrderingFormBrent OFB = new OrderingFormBrent(CustomerID, EmployeeID);
-           // OFB.Show();
+            OrderingFormBrent OFB = new OrderingFormBrent(CustomerID, EmployeeID);
+            OFB.Show();
 
         }
 
@@ -60,8 +60,8 @@ namespace InterfaceLayer
 
         private void btnLinda_Click(object sender, EventArgs e)
         {
-            //OrderingFormLinda OFB = new OrderingFormLinda(CustomerID, EmployeeID);
-            //OFB.Show();
+            OrderingFormLinda OFB = new OrderingFormLinda(CustomerID, EmployeeID);
+            OFB.Show();
 
         }
 

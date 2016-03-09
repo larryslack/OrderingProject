@@ -50,11 +50,23 @@
     <Compile Include="EditingForm.Designer.cs">
       <DependentUpon>EditingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainInterface.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainInterface.Designer.cs">
       <DependentUpon>MainInterface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderingFormBrent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderingFormBrent.Designer.cs">
+      <DependentUpon>OrderingFormBrent.cs</DependentUpon>
     </Compile>
     <Compile Include="OrderingFormDaylend.cs">
       <SubType>Form</SubType>
@@ -73,6 +85,12 @@
     </Compile>
     <Compile Include="OrderingFormKate.Designer.cs">
       <DependentUpon>OrderingFormKate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderingFormLinda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderingFormLinda.Designer.cs">
+      <DependentUpon>OrderingFormLinda.cs</DependentUpon>
     </Compile>
     <Compile Include="OrderingFormNathan.cs">
       <SubType>Form</SubType>
@@ -106,8 +124,14 @@
     <EmbeddedResource Include="EditingForm.resx">
       <DependentUpon>EditingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderingFormBrent.resx">
+      <DependentUpon>OrderingFormBrent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderingFormDaylend.resx">
       <DependentUpon>OrderingFormDaylend.cs</DependentUpon>
@@ -117,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrderingFormKate.resx">
       <DependentUpon>OrderingFormKate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderingFormLinda.resx">
+      <DependentUpon>OrderingFormLinda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderingFormNathan.resx">
       <DependentUpon>OrderingFormNathan.cs</DependentUpon>
@@ -162,6 +189,10 @@
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
       <Project>{f8dacf49-f06f-4ce9-b455-cc3e34d144f6}</Project>
       <Name>BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj">
+      <Project>{f298fcab-9e6d-4676-9514-068e2b478a31}</Project>
+      <Name>DatabaseLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
