@@ -42,6 +42,8 @@ namespace InterfaceLayer
         {
             ProductList = Business.ProductList();
             ShipList.DataSource = Business.ShipperTable();
+            ShipList.DisplayMember = "CompanyName";
+            ShipList.ValueMember = "ShipperID";
 
             
             

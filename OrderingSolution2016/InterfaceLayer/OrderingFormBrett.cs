@@ -48,7 +48,7 @@ namespace InterfaceLayer
             txtFax.Text = currentCustomer.Fax;
             txtPhone.Text = currentCustomer.Phone;
 
-            cmbShipVia.DataSource = BrettBusiness.ShipperTable();
+            cmbShipVia.DataSource = Business.ShipperTable();
             cmbShipVia.ValueMember = "ShipperID";
             cmbShipVia.DisplayMember = "CompanyName";
             cmbShipVia.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -59,177 +59,36 @@ namespace InterfaceLayer
 
         private void AddPanel()
         {
-            Panel orderPnl = new Panel();
-            orderPnl.Width = pnlContainer.Width - 25;
-            orderPnl.Height = 40;
-            if (pnlContainer.Controls.Count > 0)
-                orderPnl.Top = pnlContainer.Controls[pnlContainer.Controls.Count - 1].Height + pnlContainer.Controls[pnlContainer.Controls.Count - 1].Top + 5;
-            else
-                orderPnl.Top = 5;
-            orderPnl.Left = 4;
-            orderPnl.BorderStyle = BorderStyle.FixedSingle;
+            try
+            {
+                lblError.Text = "";
+                BrettProductPanel BPP = new BrettProductPanel(productList, pnlContainer.Width, pnlContainer.Height, pnlContainer.Left);
+                pnlContainer.Controls.Add(BPP);
+                BPP.RemovePanel += RemovePanel;
 
-            pnlContainer.Controls.Add(orderPnl);
-            pnlList.Add(orderPnl);
-            AddPanelControls(orderPnl);
+                // Things I need to destroy.
+                //Panel orderPnl = new Panel();
+                //orderPnl.Width = pnlContainer.Width - 25;
+                //orderPnl.Height = 40;
+                //if (pnlContainer.Controls.Count > 0)
+                //    orderPnl.Top = pnlContainer.Controls[pnlContainer.Controls.Count - 1].Height + pnlContainer.Controls[pnlContainer.Controls.Count - 1].Top + 5;
+                //else
+                //    orderPnl.Top = 5;
+                //orderPnl.Left = 4;
+                //orderPnl.BorderStyle = BorderStyle.FixedSingle;
+
+                //pnlContainer.Controls.Add(orderPnl);
+                //pnlList.Add(orderPnl);
+                //AddPanelControls(orderPnl);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
         }
 
         private void AddPanelControls(Panel pnl)
         {
-            int standardWidth = 100; //Yay magic numbers.
-            int standardHeight = pnl.Height - 18;
-            int PosY = (pnl.Height / 4) - 2;
-            int PosX = 5;
-
-            ComboBox cmb = new ComboBox();
-            cmb.Width = standardWidth * 2;
-            cmb.Height = standardHeight;
-            cmb.Top = PosY;
-            cmb.Left = PosX;
-
-            TextBox txtQuantity = new TextBox();
-            txtQuantity.Width = standardWidth;
-            txtQuantity.Height = standardHeight;
-            txtQuantity.Top = PosY;
-            txtQuantity.Left = cmb.Left + cmb.Width + PosX;
-            txtQuantity.Text = "0";
-            txtQuantity.Name = "txtQuantity" + pnlContainer.Controls.Count;
-
-            TextBox txtDiscount = new TextBox();
-            txtDiscount.Width = standardWidth;
-            txtDiscount.Height = standardHeight;
-            txtDiscount.Top = PosY;
-            txtDiscount.Left = txtQuantity.Left + standardWidth + PosX;
-            txtDiscount.Text = "0";
-            txtDiscount.Name = "txtDiscount" + pnlContainer.Controls.Count;
-
-            TextBox txtPrice = new TextBox();
-            txtPrice.Width = standardWidth;
-            txtPrice.Height = standardHeight;
-            txtPrice.Top = PosY;
-            txtPrice.Left = txtDiscount.Left + standardWidth + PosX;
-            txtPrice.ReadOnly = true;
-            txtPrice.Text = "0.00";
-            txtPrice.Name = "txtPrice" + pnlContainer.Controls.Count;
-
-            Button btnRemove = new Button();
-            btnRemove.Width = standardWidth;
-            btnRemove.Height = standardHeight;
-            btnRemove.Top = PosY;
-            btnRemove.Left = txtPrice.Left + standardWidth + PosX;
-            btnRemove.Text = "Remove";
-            btnRemove.ForeColor = Color.Black;
-            btnRemove.BackColor = Color.PaleVioletRed;
-
-            // This code is so ugly :<
-            lblProduct.Left = (pnlContainer.Left + cmb.Left + (cmb.Width / 2) - PosX * 3);
-            lblQuantity.Left = (pnlContainer.Left + txtQuantity.Left + (txtQuantity.Width / 2) - PosX * 3);
-            lblDiscount.Left = (pnlContainer.Left + txtDiscount.Left + (txtDiscount.Width / 2) - PosX * 3);
-            lblPrice.Left = (pnlContainer.Left + txtPrice.Left + (txtPrice.Width / 2) - PosX * 3);
-
-            btnRemove.Click += (sender, e) =>
-            {
-                for (int i = 0; i < pnlList.Count; i++)
-                {
-                    if (pnlList[i] == pnl)
-                    {
-                        if (i != pnlList.Count - 1)
-                        {
-                            int setPosY;
-                            for (int k = pnlList.Count - 1; k > i; k--)
-                            {
-                                setPosY = pnlList[k - 1].Top;
-                                pnlList[k].Top = setPosY;
-                            }
-
-                            pnlContainer.Controls.Remove(pnl);
-                            pnlList.Remove(pnl);
-                        }
-                        else
-                        {
-                            cmb.SelectedIndex = -1;
-                            txtQuantity.Text = "0";
-                            txtDiscount.Text = "0";
-                            txtPrice.Text = "0.00";
-                        }
-                    }
-                }
-            };
-
-            txtQuantity.TextChanged += (sender, e) =>
-            {
-                try
-                {
-                    int quantity = 0;
-                    decimal discount = 0;
-                    int index = Convert.ToInt32(cmb.SelectedValue);
-
-                    lblError.Text = "";
-
-                    if (txtQuantity.Text == "")
-                    {
-                        txtQuantity.Text = "1";
-                        throw new Exception("Please enter a quantity");
-                    }
-                    else
-                        quantity = Convert.ToInt32(txtQuantity.Text);
-
-                    if (txtDiscount.Text == "")
-                    {
-                        txtDiscount.Text = "1";
-                    }
-                    else
-                        discount = Convert.ToInt32(txtDiscount.Text);
-
-                    txtPrice.Text = CalculatePrice(quantity, discount, index).ToString("###0.00");
-                    CalculateFreight();
-                }
-                catch (Exception ex)
-                {
-                    lblError.Text = ex.Message;
-                }
-            };
-
-            txtDiscount.TextChanged += (sender, e) =>
-            {
-                try
-                {
-                    int quantity = 0;
-                    decimal discount = 0;
-                    int index = Convert.ToInt32(cmb.SelectedValue);
-
-                    lblError.Text = "";
-
-                    if (txtQuantity.Text == "")
-                    {
-                        txtQuantity.Text = "1";
-                        throw new Exception("Please enter a quantity");
-                    }
-                    else
-                        quantity = Convert.ToInt32(txtQuantity.Text);
-
-                    if (txtDiscount.Text == "") // Needs regex.
-                        txtDiscount.Text = "0";
-                    else
-                        discount = Convert.ToInt32(txtDiscount.Text);
-
-                    txtPrice.Text = CalculatePrice(quantity, discount, index).ToString("###0.00");
-                    CalculateFreight();
-                }
-                catch (Exception ex)
-                {
-                    lblError.Text = ex.Message;
-                }
-            };
-
-            SetupCombo(cmb, pnl, txtQuantity, txtDiscount, txtPrice);
-            // Add all of the new controls to the panel
-            pnl.Controls.Add(cmb);
-            cmb.SelectedIndex = -1;
-            pnl.Controls.Add(txtPrice);
-            pnl.Controls.Add(txtQuantity);
-            pnl.Controls.Add(txtDiscount);
-            pnl.Controls.Add(btnRemove);
         }
 
         private void SetupCombo(ComboBox cmb, Panel pnl, TextBox txtQuantity, TextBox txtDiscount, TextBox txtPrice)
@@ -427,6 +286,11 @@ namespace InterfaceLayer
                     txtRequiredDate.Text = "DD/MM/YYYY";
                 }
             };
+        }
+
+        public void RemovePanel(BrettProductPanel BPP)
+        {
+            pnlContainer.Controls.Remove(BPP);
         }
     }
 }
