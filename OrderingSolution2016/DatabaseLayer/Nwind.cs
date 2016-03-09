@@ -546,8 +546,10 @@ namespace DatabaseLayer
             sqlCon.Close();
         }
 
-        public static DataTable GetShipper()
+        public static List<Shipper> GetShipper()
         {
+            List<Shipper> shipperList = new List<Shipper>();
+
             sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
 
@@ -561,7 +563,24 @@ namespace DatabaseLayer
 
             sqlCon.Close();
 
-            return dt;
+            foreach (DataRow row in dt.Rows)
+            {
+                int shipperID = -1;
+                string companyName = null;
+                string phone = "";
+
+                shipperID = (int)row["ShipperID"];
+                
+                if (!(row["CompanyName"] == DBNull.Value))
+                    companyName = (string)row["CompanyName"];
+
+                if (!(row["Phone"] == DBNull.Value))
+                    phone = (string)row["Phone"];
+
+                shipperList.Add(new Shipper(shipperID, companyName, phone));
+            }
+
+            return shipperList;
         }
 
         public static void UpdateOrder(Order Ord)
