@@ -63,7 +63,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(260, 12);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(181, 238);
+            this.listBox1.Size = new System.Drawing.Size(337, 238);
             this.listBox1.TabIndex = 2;
             // 
             // button1
@@ -79,7 +79,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 123);
+            this.label1.Location = new System.Drawing.Point(12, 137);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 5;
@@ -88,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 92);
+            this.label2.Location = new System.Drawing.Point(12, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 6;
@@ -96,7 +96,12 @@
             // 
             // QuantityUpdown
             // 
-            this.QuantityUpdown.Location = new System.Drawing.Point(64, 90);
+            this.QuantityUpdown.Location = new System.Drawing.Point(64, 107);
+            this.QuantityUpdown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.QuantityUpdown.Name = "QuantityUpdown";
             this.QuantityUpdown.Size = new System.Drawing.Size(47, 20);
             this.QuantityUpdown.TabIndex = 7;
@@ -105,11 +110,12 @@
             0,
             0,
             0});
+            this.QuantityUpdown.ValueChanged += new System.EventHandler(this.QuantityUpdown_ValueChanged);
             // 
             // PriceBox
             // 
             this.PriceBox.BackColor = System.Drawing.SystemColors.Info;
-            this.PriceBox.Location = new System.Drawing.Point(49, 120);
+            this.PriceBox.Location = new System.Drawing.Point(49, 134);
             this.PriceBox.Name = "PriceBox";
             this.PriceBox.ReadOnly = true;
             this.PriceBox.Size = new System.Drawing.Size(100, 20);
@@ -120,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 262);
+            this.ClientSize = new System.Drawing.Size(609, 262);
             this.Controls.Add(this.PriceBox);
             this.Controls.Add(this.QuantityUpdown);
             this.Controls.Add(this.label2);

@@ -64,7 +64,7 @@
             this.btnBrent.Name = "btnBrent";
             this.btnBrent.Size = new System.Drawing.Size(75, 23);
             this.btnBrent.TabIndex = 2;
-            this.btnBrent.Text = "BreNt";
+            this.btnBrent.Text = "Brent";
             this.btnBrent.UseVisualStyleBackColor = true;
             this.btnBrent.Click += new System.EventHandler(this.btnBrent_Click);
             // 
