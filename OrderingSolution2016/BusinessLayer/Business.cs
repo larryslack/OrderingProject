@@ -46,9 +46,9 @@ namespace BusinessLayer
             DB.ReplaceDetails(OrderID, ordDetailList);
         }
 
-        //public static Shipper ShipperTable()
-        //{
-        //    return DB.GetShipper();
-        //}
+        public static List<Shipper> ShipperTable()
+        {
+            return DB.GetShipper();
+        }
     }
 }
