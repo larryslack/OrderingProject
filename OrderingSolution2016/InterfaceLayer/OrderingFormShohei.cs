@@ -70,6 +70,8 @@ namespace InterfaceLayer
             b.Text = "Cancel Item";
             pnlProducts.Controls.Add(b);
             b.Top = t;
+            b.Left = l + 100;
+            p.Tag = n;
             b.Left = l + 300;
             b.Tag = n;
             b.Click += Cancel_Order;
