@@ -67,6 +67,7 @@ namespace InterfaceLayer
                 pnlList.Add(BPP);
                 BPP.RemovePanel += RemovePanel;
                 BPP.AddProductPanel += AddNewProductPanel;
+                BPP.CalcFreight += CalculateFreight;
                 BPP.WowSelectedIndexIsAnnoying();
 
                 lblProduct.Left = BrettProductPanel.lblProductX;
@@ -104,45 +105,51 @@ namespace InterfaceLayer
                 Business.SaveOrder(o);
                 DetailList = new List<OrderDetail>();
 
-                foreach (Panel pnl in pnlContainer.Controls)
+                foreach (BrettProductPanel pnl in pnlList)
                 {
-                    int productID = -1;
-                    decimal unitPrice = 0;
-                    short quantity = 0;
-                    float discount = 0;
-
-                    foreach (Control cntrl in pnl.Controls)
-                    {
-                        if (((ComboBox)pnl.Controls[0]).SelectedIndex != -1)
-                        {
-                            if (cntrl is ComboBox)
-                            {
-                                productID = Convert.ToInt32(((ComboBox)cntrl).SelectedValue);
-                            }
-
-                            if (cntrl is TextBox)
-                            {
-                                if (cntrl.Name.Contains("txtQuantity"))
-                                {
-                                    quantity = Convert.ToInt16(((TextBox)cntrl).Text);
-                                }
-
-                                if (cntrl.Name.Contains("txtPrice"))
-                                {
-                                    unitPrice = Convert.ToDecimal(((TextBox)cntrl).Text);
-                                }
-
-                                if (cntrl.Name.Contains("txtDiscount"))
-                                {
-                                    discount = Convert.ToSingle(((TextBox)cntrl).Text) / 100;
-                                }
-                            }
-                        }
-                    }
-
-                    if (productID != -1 && quantity > 0)
-                        DetailList.Add(new OrderDetail(o.OrderID, productID, unitPrice, quantity, discount));
+                    if (pnl.selectedProductID != -1 && pnl.quantity > 0)
+                        DetailList.Add(new OrderDetail(o.OrderID, pnl.selectedProductID, pnl.price, pnl.quantity, pnl.discount));
                 }
+
+                //foreach (Panel pnl in pnlContainer.Controls)
+                //{
+                //    int productID = -1;
+                //    decimal unitPrice = 0;
+                //    short quantity = 0;
+                //    float discount = 0;
+
+                //    foreach (Control cntrl in pnl.Controls)
+                //    {
+                //        if (((ComboBox)pnl.Controls[0]).SelectedIndex != -1)
+                //        {
+                //            if (cntrl is ComboBox)
+                //            {
+                //                productID = Convert.ToInt32(((ComboBox)cntrl).SelectedValue);
+                //            }
+
+                //            if (cntrl is TextBox)
+                //            {
+                //                if (cntrl.Name.Contains("txtQuantity"))
+                //                {
+                //                    quantity = Convert.ToInt16(((TextBox)cntrl).Text);
+                //                }
+
+                //                if (cntrl.Name.Contains("txtPrice"))
+                //                {
+                //                    unitPrice = Convert.ToDecimal(((TextBox)cntrl).Text);
+                //                }
+
+                //                if (cntrl.Name.Contains("txtDiscount"))
+                //                {
+                //                    discount = Convert.ToSingle(((TextBox)cntrl).Text) / 100;
+                //                }
+                //            }
+                //        }
+                //    }
+
+                //    if (productID != -1 && quantity > 0)
+                //        DetailList.Add(new OrderDetail(o.OrderID, productID, unitPrice, quantity, discount));
+                //}
 
                 Business.SaveDetails(o.OrderID, DetailList);
             }

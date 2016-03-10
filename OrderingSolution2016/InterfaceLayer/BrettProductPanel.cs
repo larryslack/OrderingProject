@@ -18,6 +18,9 @@ namespace InterfaceLayer
         public delegate void AddNewProductPanel();
         public event AddNewProductPanel AddProductPanel;
 
+        public delegate void CalculateFreight();
+        public event CalculateFreight CalcFreight;
+
         #region Fields
 
         private ComboBox cmbProducts;
@@ -34,7 +37,7 @@ namespace InterfaceLayer
         #region Properties
 
         public int selectedProductID { get; private set; }
-        public int quantity { get; private set; }
+        public short quantity { get; private set; }
         public int discount { get; private set; }
         public decimal price { get; private set; }
         public decimal freight { get; private set; }
@@ -230,7 +233,7 @@ namespace InterfaceLayer
                     throw new Exception("You can only use non positive whole numbers");
                 }
                 else
-                    quantity = Convert.ToInt32(txtQuantity.Text);
+                    quantity = Convert.ToInt16(txtQuantity.Text);
 
                 if (txtDiscount.Text == "") // Needs regex.
                     txtDiscount.Text = "0";
@@ -262,16 +265,17 @@ namespace InterfaceLayer
 
             price = (productList[index].UnitPrice * quantity) - discountPrice;
             txtPrice.Text = price.ToString("###0.00");
+            CalcFreight();
         }
 
-        private void CalculateFreight()
-        {
-            freight = 0;
-            foreach (BrettProductPanel pnl in panelList)
-            {
-                freight += pnl.price;
-            }
-        }
+        //private void CalculateFreight()
+        //{
+        //    freight = 0;
+        //    foreach (BrettProductPanel pnl in panelList)
+        //    {
+        //        freight += pnl.price;
+        //    }
+        //}
 
 
         /// <summary>
