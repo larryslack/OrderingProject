@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BaseLayer;
 using BusinessLayer;
-using DatabaseLayer;
+
 namespace InterfaceLayer
 {
     public partial class OrderingFormKate : Form
@@ -44,11 +44,11 @@ namespace InterfaceLayer
             dtpRequiredDate.Value = DateTime.Now + new TimeSpan(7, 0, 0, 0);
         }
 
-        private void OrderingFormKate_Load(object sender, EventArgs e)
+        private void OrderingFormKate_Load(object sender, EventArgs e) 
         {
             List<Product> ProductList = Business.ProductList();
             // KateDetailPanel pp = new KateDetailPanel(pnlDetails, 5, NewOrderID, ProductList);
-            cmbShipVia.DataSource = DB.GetShipper();
+            //cmbShipVia.DataSource = BusinessLayer.GetShipper();
             cmbShipVia.ValueMember = "ShipperID";
             cmbShipVia.DisplayMember = "CompanyName";
             cmbShipVia.DropDownStyle = ComboBoxStyle.DropDownList;
