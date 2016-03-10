@@ -15,14 +15,18 @@ namespace InterfaceLayer
         public delegate void RemoveProductPanel(BrettProductPanel BPP);
         public event RemoveProductPanel RemovePanel;
 
+        public delegate void AddNewProductPanel();
+        public event AddNewProductPanel AddProductPanel;
+
         #region Fields
 
         private ComboBox cmbProducts;
         private TextBox txtQuantity;
         private TextBox txtDiscount;
         private TextBox txtPrice;
+        private Button btnRemove;
         private List<Product> productList = new List<Product>();
-        private static List<BrettProductPanel> panelList = new List<BrettProductPanel>();
+        private List<BrettProductPanel> panelList = new List<BrettProductPanel>();
         private int containerX = 0;
 
         #endregion
@@ -32,8 +36,8 @@ namespace InterfaceLayer
         public int selectedProductID { get; private set; }
         public int quantity { get; private set; }
         public int discount { get; private set; }
-        public int price { get; private set; }
-        public bool blnLastPanel { get; private set; }
+        public decimal price { get; private set; }
+        public decimal freight { get; private set; }
 
         public static int lblProductX { get; private set; }
         public static int lblQuantityX { get; private set; }
@@ -42,8 +46,10 @@ namespace InterfaceLayer
 
         #endregion
 
-        public BrettProductPanel(List<Product> productList, int containerWidth, int containerHeight, int containerLeft)
+        public BrettProductPanel(List<BrettProductPanel> panelList, List<Product> productList, int containerWidth, int containerHeight, int containerLeft)
         {
+            this.panelList = panelList;
+            this.productList = new List<Product>(productList);
             int panelCount = panelList.Count;
             containerX = containerLeft;
 
@@ -58,9 +64,6 @@ namespace InterfaceLayer
             this.Left = 4;
             this.BorderStyle = BorderStyle.FixedSingle;
 
-            this.productList = new List<Product>(productList);
-            panelList.Add(this);
-
             SetupControls();
             SetupComboBox();
             AddContols();
@@ -73,29 +76,29 @@ namespace InterfaceLayer
             int PosY = (this.Height / 4) - 2;
             int PosX = 5;
 
-            ComboBox cmb = new ComboBox();
-            cmb.Width = standardWidth * 2;
-            cmb.Height = standardHeight;
-            cmb.Top = PosY;
-            cmb.Left = PosX;
+            cmbProducts = new ComboBox();
+            cmbProducts.Width = standardWidth * 2;
+            cmbProducts.Height = standardHeight;
+            cmbProducts.Top = PosY;
+            cmbProducts.Left = PosX;
 
-            TextBox txtQuantity = new TextBox();
+            txtQuantity = new TextBox();
             txtQuantity.Width = standardWidth;
             txtQuantity.Height = standardHeight;
             txtQuantity.Top = PosY;
-            txtQuantity.Left = cmb.Left + cmb.Width + PosX;
-            txtQuantity.Text = "0";
+            txtQuantity.Left = cmbProducts.Left + cmbProducts.Width + PosX;
+            txtQuantity.Text = "1";
             txtQuantity.Name = "txtQuantity" + panelList.Count;
 
-            TextBox txtDiscount = new TextBox();
+            txtDiscount = new TextBox();
             txtDiscount.Width = standardWidth;
             txtDiscount.Height = standardHeight;
             txtDiscount.Top = PosY;
             txtDiscount.Left = txtQuantity.Left + standardWidth + PosX;
-            txtDiscount.Text = "0";
+            txtDiscount.Text = "1";
             txtDiscount.Name = "txtDiscount" + panelList.Count;
 
-            TextBox txtPrice = new TextBox();
+            txtPrice = new TextBox();
             txtPrice.Width = standardWidth;
             txtPrice.Height = standardHeight;
             txtPrice.Top = PosY;
@@ -104,7 +107,7 @@ namespace InterfaceLayer
             txtPrice.Text = "0.00";
             txtPrice.Name = "txtPrice" + panelList.Count;
 
-            Button btnRemove = new Button();
+            btnRemove = new Button();
             btnRemove.Width = standardWidth;
             btnRemove.Height = standardHeight;
             btnRemove.Top = PosY;
@@ -114,7 +117,7 @@ namespace InterfaceLayer
             btnRemove.BackColor = Color.PaleVioletRed;
 
             // This code is so ugly :<
-            lblProductX = (containerX + cmb.Left + (cmb.Width / 2) - PosX * 3);
+            lblProductX = (containerX + cmbProducts.Left + (cmbProducts.Width / 2) - PosX * 3);
             lblQuantityX = (containerX + txtQuantity.Left + (txtQuantity.Width / 2) - PosX * 3);
             lblDiscountX = (containerX + txtDiscount.Left + (txtDiscount.Width / 2) - PosX * 3);
             lblPriceX = (containerX + txtPrice.Left + (txtPrice.Width / 2) - PosX * 3);
@@ -135,13 +138,12 @@ namespace InterfaceLayer
                             }
 
                             RemovePanel(this);
-                            panelList.Remove(this);
                         }
                         else
                         {
-                            cmb.SelectedIndex = -1;
-                            txtQuantity.Text = "0";
-                            txtDiscount.Text = "0";
+                            cmbProducts.SelectedIndex = -1;
+                            txtQuantity.Text = "1";
+                            txtDiscount.Text = "1";
                             txtPrice.Text = "0.00";
                         }
                     }
@@ -150,68 +152,26 @@ namespace InterfaceLayer
 
             txtQuantity.TextChanged += (sender, e) =>
             {
-                int quantity = 0;
-                decimal discount = 0;
-                int index = Convert.ToInt32(cmb.SelectedValue);
-
-                if (txtQuantity.Text == "")
-                {
-                    txtQuantity.Text = "1";
-                    throw new Exception("Please enter a quantity");
-                }
-                else
-                    quantity = Convert.ToInt32(txtQuantity.Text);
-
-                if (txtDiscount.Text == "")
-                {
-                    txtDiscount.Text = "1";
-                }
-                else
-                    discount = Convert.ToInt32(txtDiscount.Text);
-
-                //txtPrice.Text = CalculatePrice(quantity, discount, index).ToString("###0.00");
-                //CalculateFreight();
+                PrepForCalculation();
             };
 
             txtDiscount.TextChanged += (sender, e) =>
             {
-                int quantity = 0;
-                decimal discount = 0;
-                int index = Convert.ToInt32(cmb.SelectedValue);
-
-                if (txtQuantity.Text == "")
-                {
-                    txtQuantity.Text = "1";
-                    throw new Exception("Please enter a quantity");
-                }
-                else
-                    quantity = Convert.ToInt32(txtQuantity.Text);
-
-                if (txtDiscount.Text == "") // Needs regex.
-                    txtDiscount.Text = "0";
-                else
-                    discount = Convert.ToInt32(txtDiscount.Text);
-
-                //txtPrice.Text = CalculatePrice(quantity, discount, index).ToString("###0.00");
-                //CalculateFreight();
+                PrepForCalculation();
             };
-
-            //SetupCombo(cmb, pnl, txtQuantity, txtDiscount, txtPrice);
-            //pnl.Controls.Add(btnRemove);
         }
 
         private void SetupComboBox()
         {
-            cmbProducts.SelectedIndexChanged += cmbProductsSelected;
+            cmbProducts.SelectedIndexChanged += cmbProductsProductsSelected;
             cmbProducts.DataSource = productList;
             cmbProducts.DisplayMember = "ProductName";
             cmbProducts.ValueMember = "ProductID";
             cmbProducts.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-        private void cmbProductsSelected(object sender, EventArgs e)
+        private void cmbProductsProductsSelected(object sender, EventArgs e)
         {
-            bool blnLastPanel = false;
             int currentPanelIndex = 0;
             int panelIndexCount = panelList.Count - 1;
 
@@ -230,22 +190,21 @@ namespace InterfaceLayer
 
             if (currentPanelIndex == panelIndexCount)
             {
-                blnLastPanel = true;
+                AddProductPanel();
             }
 
-            this.blnLastPanel = blnLastPanel;
+            PrepForCalculation();
         }
 
         private void AddContols()
         {
             // Add all of the new controls to the panel
-            this.Controls.Add(cmbProducts);
-            cmbProducts.SelectedIndex = -1;
             this.Controls.Add(txtPrice);
             this.Controls.Add(txtQuantity);
             this.Controls.Add(txtDiscount);
-
+            this.Controls.Add(btnRemove);
             this.Controls.Add(cmbProducts);
+            cmbProducts.SelectedIndex = -1;
         }
 
         public void FoundSameProduct(bool blnFoundSame)
@@ -256,10 +215,39 @@ namespace InterfaceLayer
                 this.BackColor = Color.FromKnownColor(KnownColor.Window);
         }
 
-        public decimal CalculatePrice(int quantity, decimal discount, int index)
+        private void PrepForCalculation()
+        {
+            try
+            {
+                quantity = 0;
+                discount = 0;
+
+                int index = Convert.ToInt32(cmbProducts.SelectedValue);
+
+                if (txtQuantity.Text == "")
+                {
+                    txtQuantity.Text = "1";
+                    throw new Exception("You can only use non positive whole numbers");
+                }
+                else
+                    quantity = Convert.ToInt32(txtQuantity.Text);
+
+                if (txtDiscount.Text == "") // Needs regex.
+                    txtDiscount.Text = "0";
+                else
+                    discount = Convert.ToInt32(txtDiscount.Text);
+
+                CalcPrice(quantity, discount, index);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void CalcPrice(int quantity, decimal discount, int index)
         {
             decimal discountPrice = 0;
-            decimal totalPrice = 0;
 
             if (discount == 0)
             {
@@ -272,9 +260,26 @@ namespace InterfaceLayer
                 discountPrice = productList[index].UnitPrice * quantity * discount;
             }
 
-            totalPrice = (productList[index].UnitPrice * quantity) - discountPrice;
+            price = (productList[index].UnitPrice * quantity) - discountPrice;
+            txtPrice.Text = price.ToString("###0.00");
+        }
 
-            return totalPrice;
+        private void CalculateFreight()
+        {
+            freight = 0;
+            foreach (BrettProductPanel pnl in panelList)
+            {
+                freight += pnl.price;
+            }
+        }
+
+
+        /// <summary>
+        /// For some reason selected index doesnt want to play nice, so I call it again at the end of it all.
+        /// </summary>
+        public void WowSelectedIndexIsAnnoying()
+        {
+            cmbProducts.SelectedIndex = -1;
         }
     }
 }
