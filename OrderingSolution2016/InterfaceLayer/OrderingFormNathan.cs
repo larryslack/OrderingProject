@@ -31,7 +31,9 @@ namespace InterfaceLayer
             this.EmployeeID = EmployeeID;
             lblEmID.Text = EmployeeID.ToString();
             lblCustId.Text = CustomerID;
-            lblTDate.Text = DateTime.Now.ToString("d/MM/yyyy");
+            lblTDate.Text = DateTime.Now.ToShortDateString();
+            txtSDate.Text = lblTDate.Text;
+         
             cbShipVia.DataSource = BusinessLayer.Business.ShipperTable();
             cbShipVia.DisplayMember = "CompanyName";
             cbShipVia.ValueMember = "ShipperID";
@@ -64,11 +66,13 @@ namespace InterfaceLayer
             int ProductId = (int)cbProducts.SelectedValue;
             
             DetailsList = new List<OrderDetail>();
+            ProductList = Business.ProductList();
             Product tmp = ProductList[ProductId];
             DetailsList.Add(new OrderDetail(Test.OrderID, tmp.ProductID, tmp.UnitPrice, Convert.ToInt16(txtQuantity.Text), Convert.ToInt32(txtDisc.Text)));
             cbProducts.SelectedValue = -1;
             txtDisc.Text = "";
             txtQuantity.Text = "";
+            lblFin.Text = lblFin.Text + (tmp.UnitPrice * Convert.ToInt32(txtQuantity.Text));
             lsDetails.Items.Add(DetailsList);
         }
 
