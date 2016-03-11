@@ -16,6 +16,7 @@ namespace InterfaceLayer
         public TextBox txtQuantity;
         public TextBox txtDiscount;
         public Button btnDelete;
+        
 
         protected Panel Addto = new Panel();
 
@@ -29,13 +30,13 @@ namespace InterfaceLayer
             comboProduct.Name = "comboBox1";
             comboProduct.Size = new System.Drawing.Size(121, 21);
             comboProduct.TabIndex = 0;
-            comboProduct.DataSource = productlist;
+            comboProduct.DataSource = new List<Product>(productlist);
             comboProduct.DisplayMember = "ProductName";
             comboProduct.ValueMember = "ProductID";
             // 
             // textBox1
             // 
-            TextBox txtPrice = new TextBox();
+            txtPrice = new TextBox();
             txtPrice.Location = new System.Drawing.Point(131, 4);
             txtPrice.Name = "textBox1";
             txtPrice.Size = new System.Drawing.Size(70, 20);
@@ -43,7 +44,7 @@ namespace InterfaceLayer
             // 
             // textBox2
             // 
-            TextBox txtQuantity = new TextBox();
+            txtQuantity = new TextBox();
             txtQuantity.Location = new System.Drawing.Point(207, 4);
             txtQuantity.Name = "textBox2";
             txtQuantity.Size = new System.Drawing.Size(70, 20);
@@ -51,7 +52,7 @@ namespace InterfaceLayer
             // 
             // textBox3
             // 
-            TextBox txtDiscount = new TextBox();
+            txtDiscount = new TextBox();
             txtDiscount.Location = new System.Drawing.Point(283, 4);
             txtDiscount.Name = "textBox3";
             txtDiscount.Size = new System.Drawing.Size(70, 20);
@@ -59,7 +60,7 @@ namespace InterfaceLayer
             // 
             // button1
             // 
-            Button btnDelete = new Button();
+            btnDelete = new Button();
             btnDelete.Location = new System.Drawing.Point(359, 4);
             btnDelete.Name = "button1";
             btnDelete.Size = new System.Drawing.Size(48, 20);
@@ -79,7 +80,7 @@ namespace InterfaceLayer
             this.Location = new System.Drawing.Point(4, locationy);
             this.Name = "panel1";
             this.Size = new System.Drawing.Size(414, 28);
-            add2.Controls.Add(this);
+            //add2.Controls.Add(this);
         }
     }
 }

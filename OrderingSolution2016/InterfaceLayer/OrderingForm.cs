@@ -64,19 +64,29 @@ namespace InterfaceLayer
 
         public void GenerateProductPanel()
         {
-            int ylocation = 4;
-            foreach (ProductPanel item in listProductPanel)
-            {
-                ylocation += 28;
-            }
-
-            ProductPanel temp = new ProductPanel(panelProducts, ylocation, productList);
+            ProductPanel temp = new ProductPanel(panelProducts, 4, productList);
             temp.BringToFront();
             listProductPanel.Add(temp);
             temp.comboProduct.SelectedItem = null;
             temp.comboProduct.SelectedIndexChanged += comboProduct_SelectedIndexChanged;
+            temp.btnDelete.Click += (sender, e) =>
+            {
+                panelProducts.Controls.Remove(temp);
+                listProductPanel.Remove(temp);
+                updatepanelLocation();
+            };
+            updatepanelLocation();
         }
 
+        private void updatepanelLocation()
+        {
+            int ylocation = 4;
+            foreach (ProductPanel item in listProductPanel)
+            {
+                item.Location = new System.Drawing.Point(4, ylocation);
+                ylocation += 28;
+            }        
+        }
         private void textBox9_TextChanged(object sender, EventArgs e)
         {
 
