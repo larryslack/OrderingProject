@@ -44,7 +44,7 @@ namespace InterfaceLayer
             comboProduct.FormattingEnabled = true;
             comboProduct.Location = new System.Drawing.Point(4, 4);
             comboProduct.Name = "comboBox1";
-            comboProduct.Size = new System.Drawing.Size(121, 21);
+            comboProduct.Size = new System.Drawing.Size(200, 21);
             comboProduct.TabIndex = 0;
             comboProduct.DataSource = productlist;
             comboProduct.DisplayMember = "ProductName";
@@ -55,9 +55,9 @@ namespace InterfaceLayer
             // txtQuantityPerUnit
             // 
             txtQuantityPerUnit = new TextBox();
-            txtQuantityPerUnit.Location = new System.Drawing.Point(121, 4);
+            txtQuantityPerUnit.Location = new System.Drawing.Point(220, 4);
             txtQuantityPerUnit.Name = "txtQuantityPerUnit";
-            txtQuantityPerUnit.Size = new System.Drawing.Size(170, 20);
+            txtQuantityPerUnit.Size = new System.Drawing.Size(120, 20);
             txtQuantityPerUnit.TabStop = false;
             txtQuantityPerUnit.ReadOnly = true;
 
@@ -65,7 +65,7 @@ namespace InterfaceLayer
             // txtPrice
             // 
             txtPrice = new TextBox();
-            txtPrice.Location = new System.Drawing.Point(307, 4);
+            txtPrice.Location = new System.Drawing.Point(360, 4);
             txtPrice.Name = "txtPrice";
             txtPrice.Size = new System.Drawing.Size(70, 20);
             txtPrice.TabIndex = 1;
@@ -75,10 +75,10 @@ namespace InterfaceLayer
             // txtQuantity
             // 
             txtQuantity = new TextBox();
-            txtQuantity.Location = new System.Drawing.Point(383, 4);
+            txtQuantity.Location = new System.Drawing.Point(450, 4);
             txtQuantity.Name = "txtQuantity";
             txtQuantity.Text = "1";
-            txtQuantity.Size = new System.Drawing.Size(70, 20);
+            txtQuantity.Size = new System.Drawing.Size(40, 20);
             txtQuantity.TabIndex = 2;
             txtQuantity.Validating += txtQuantity_Validating;
             txtQuantity.TextChanged += txtQuantity_TextChanged;
@@ -89,9 +89,9 @@ namespace InterfaceLayer
             // txtDiscount
             // 
             txtDiscount = new TextBox();
-            txtDiscount.Location = new System.Drawing.Point(459, 4);
+            txtDiscount.Location = new System.Drawing.Point(510, 4);
             txtDiscount.Name = "txtDiscount";
-            txtDiscount.Size = new System.Drawing.Size(70, 20);
+            txtDiscount.Size = new System.Drawing.Size(40, 20);
             txtDiscount.TabIndex = 3;
             txtDiscount.TextChanged += txtDiscount_TextChanged;
             txtDiscount.Validating += txtDiscount_Validating;
@@ -99,9 +99,9 @@ namespace InterfaceLayer
             // txtLineTotal
             // 
             txtLineTotal = new TextBox();
-            txtLineTotal.Location = new System.Drawing.Point(540, 4);
+            txtLineTotal.Location = new System.Drawing.Point(570, 4);
             txtLineTotal.Name = "txtLineTotal";
-            txtLineTotal.Size = new System.Drawing.Size(70, 20);
+            txtLineTotal.Size = new System.Drawing.Size(40, 20);
             txtLineTotal.ReadOnly = true;
             txtLineTotal.TabIndex = 3;
 
@@ -109,13 +109,13 @@ namespace InterfaceLayer
             // btnDelete
             // 
             btnDelete = new Button();
-            btnDelete.Location = new System.Drawing.Point(610, 4);
+            btnDelete.Location = new System.Drawing.Point(630, 4);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new System.Drawing.Size(48, 20);
+            btnDelete.Size = new System.Drawing.Size(40, 20);
             btnDelete.TabIndex = 4;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.BackColor = System.Drawing.Color.LightPink;
+            btnDelete.BackColor = System.Drawing.Color.LightBlue;
             btnDelete.TabStop = false;
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.FlatAppearance.BorderSize = 0;

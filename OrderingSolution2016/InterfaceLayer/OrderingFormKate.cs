@@ -48,22 +48,20 @@ namespace InterfaceLayer
         {
             List<Product> ProductList = Business.ProductList();
             // KateDetailPanel pp = new KateDetailPanel(pnlDetails, 5, NewOrderID, ProductList);
-            //cmbShipVia.DataSource = BusinessLayer.GetShipper();
+            cmbShipVia.DataSource =Business.ShipperTable();
             cmbShipVia.ValueMember = "ShipperID";
             cmbShipVia.DisplayMember = "CompanyName";
             cmbShipVia.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbShipVia.SelectedIndex = -1;
 
-
-
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            DetailCount += 1;
             List<Product> ProductList = Business.ProductList();
-            KateDetailPanel pp = new KateDetailPanel(pnlDetails, 5 + 40 * DetailCount, NewOrderID, ProductList);
-
+            KateDetailPanel pp = new KateDetailPanel(pnlDetails, 5 + 30 * DetailCount, NewOrderID, ProductList);
+           DetailCount += 1;
+ 
         }
 
         private void btnSaveNewOrder_Click(object sender, EventArgs e)
