@@ -33,7 +33,7 @@ namespace InterfaceLayer
             lblCustId.Text = CustomerID;
             lblTDate.Text = DateTime.Now.ToShortDateString();
             txtSDate.Text = lblTDate.Text;
-         
+            txtRDate.Text = DateTime.Now.ToShortDateString();         
             cbShipVia.DataSource = BusinessLayer.Business.ShipperTable();
             cbShipVia.DisplayMember = "CompanyName";
             cbShipVia.ValueMember = "ShipperID";
@@ -72,7 +72,7 @@ namespace InterfaceLayer
             cbProducts.SelectedValue = -1;
             txtDisc.Text = "";
             txtQuantity.Text = "";
-            lblFin.Text = lblFin.Text + (tmp.UnitPrice * Convert.ToInt32(txtQuantity.Text));
+            lblFin.Text = (Convert.ToDecimal(lblFin.Text) + (tmp.UnitPrice * Convert.ToInt32(txtQuantity.Text))).ToString();
             lsDetails.Items.Add(DetailsList);
         }
 

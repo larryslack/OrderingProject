@@ -405,9 +405,9 @@
             this.lblFin.AutoSize = true;
             this.lblFin.Location = new System.Drawing.Point(334, 374);
             this.lblFin.Name = "lblFin";
-            this.lblFin.Size = new System.Drawing.Size(17, 13);
+            this.lblFin.Size = new System.Drawing.Size(13, 13);
             this.lblFin.TabIndex = 11;
-            this.lblFin.Text = "\"\"";
+            this.lblFin.Text = "0";
             // 
             // label10
             // 
