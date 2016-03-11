@@ -59,10 +59,10 @@
             this.txtTotalDiscount = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.lblCustomerID = new System.Windows.Forms.Label();
             this.lblEmployeeID = new System.Windows.Forms.Label();
+            this.lblCustomerID = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -72,15 +72,15 @@
             // 
             this.panelProducts.AutoScroll = true;
             this.panelProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelProducts.Location = new System.Drawing.Point(351, 99);
+            this.panelProducts.Location = new System.Drawing.Point(203, 99);
             this.panelProducts.Name = "panelProducts";
-            this.panelProducts.Size = new System.Drawing.Size(443, 256);
+            this.panelProducts.Size = new System.Drawing.Size(591, 256);
             this.panelProducts.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(348, 83);
+            this.label1.Location = new System.Drawing.Point(203, 83);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 2;
@@ -89,7 +89,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(486, 83);
+            this.label2.Location = new System.Drawing.Point(341, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 3;
@@ -98,7 +98,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(561, 83);
+            this.label3.Location = new System.Drawing.Point(416, 83);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 4;
@@ -107,7 +107,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(639, 83);
+            this.label4.Location = new System.Drawing.Point(494, 83);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 5;
@@ -349,14 +349,21 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
-            // label16
+            // lblEmployeeID
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 16);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(65, 13);
-            this.label16.TabIndex = 7;
-            this.label16.Text = "CustomerID:";
+            this.lblEmployeeID.AutoSize = true;
+            this.lblEmployeeID.Location = new System.Drawing.Point(79, 40);
+            this.lblEmployeeID.Name = "lblEmployeeID";
+            this.lblEmployeeID.Size = new System.Drawing.Size(0, 13);
+            this.lblEmployeeID.TabIndex = 10;
+            // 
+            // lblCustomerID
+            // 
+            this.lblCustomerID.AutoSize = true;
+            this.lblCustomerID.Location = new System.Drawing.Point(77, 16);
+            this.lblCustomerID.Name = "lblCustomerID";
+            this.lblCustomerID.Size = new System.Drawing.Size(0, 13);
+            this.lblCustomerID.TabIndex = 9;
             // 
             // label17
             // 
@@ -367,21 +374,14 @@
             this.label17.TabIndex = 8;
             this.label17.Text = "EmployeeID:";
             // 
-            // lblCustomerID
+            // label16
             // 
-            this.lblCustomerID.AutoSize = true;
-            this.lblCustomerID.Location = new System.Drawing.Point(77, 16);
-            this.lblCustomerID.Name = "lblCustomerID";
-            this.lblCustomerID.Size = new System.Drawing.Size(0, 13);
-            this.lblCustomerID.TabIndex = 9;
-            // 
-            // lblEmployeeID
-            // 
-            this.lblEmployeeID.AutoSize = true;
-            this.lblEmployeeID.Location = new System.Drawing.Point(79, 40);
-            this.lblEmployeeID.Name = "lblEmployeeID";
-            this.lblEmployeeID.Size = new System.Drawing.Size(0, 13);
-            this.lblEmployeeID.TabIndex = 10;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 16);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(65, 13);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "CustomerID:";
             // 
             // OrderingForm
             // 
