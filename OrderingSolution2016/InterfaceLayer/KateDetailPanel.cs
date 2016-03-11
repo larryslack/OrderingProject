@@ -95,7 +95,6 @@ namespace InterfaceLayer
             txtDiscount.TabIndex = 3;
             txtDiscount.TextChanged += txtDiscount_TextChanged;
             txtDiscount.Validating += txtDiscount_Validating;
-
             // 
             // txtLineTotal
             // 
@@ -138,6 +137,7 @@ namespace InterfaceLayer
 
         }
 
+
         void btnDelete_Click(object sender, EventArgs e)
         {
             mMotherPanel.Controls.Remove(this);
@@ -152,7 +152,7 @@ namespace InterfaceLayer
                 if (OD.UnitPrice < 0)
                     throw new Exception("Invalid UnitPrice - cannot be negative");
                 CalculateLineTotal();
-                ShowDiscount();
+
 
             }
             catch (Exception ex)
@@ -171,8 +171,6 @@ namespace InterfaceLayer
                 if (OD.Quantity < 1)
                     throw new Exception("Invalid UnitPrice");
                 CalculateLineTotal();
-                ShowDiscount();
-
             }
             catch (Exception) //ignore errors for now, because we have the validating event to handle these
             {
@@ -205,9 +203,8 @@ namespace InterfaceLayer
                 if (OD.Quantity < 1)
                     throw new Exception("Invalid Quantity - it must be 1 or more");
                 CalculateLineTotal();
-                ShowDiscount();
             }
-            catch (Exception ) //ignore error for now, because user might be typing and not yet finished
+            catch (Exception) //ignore error for now, because user might be typing and not yet finished
             {
 
             }
@@ -223,7 +220,7 @@ namespace InterfaceLayer
                 txtPrice.Text = mProductList[comboProduct.SelectedIndex].UnitPrice.ToString();
                 txtQuantityPerUnit.Text = mProductList[comboProduct.SelectedIndex].QuantityPerUnit;
                 OD.ProductID = (int)comboProduct.SelectedValue;
-                ShowDiscount();
+                // ShowDiscount();
             }
         }
 
@@ -234,27 +231,75 @@ namespace InterfaceLayer
 
 
         }
-        void ShowDiscount()
-        {
-            txtDiscount.Text = Convert.ToString(OD.Discount* 100);
-        }
+        //void ShowDiscount()
+        //{
+        //    txtDiscount.Text = Convert.ToString(OD.Discount * 100);
+        //}
         void txtDiscount_TextChanged(object sender, EventArgs e)
         {
-            OD.Discount = float.Parse(txtDiscount.Text )/100;
-            if (OD.Discount > 100)
-                throw new Exception("Invalid Discount-Discount should be lower than 100.");
-            else if (OD.Discount < 0)
-                throw new Exception("Invalid Discount- Discount should be bigger than 0.");
-            ShowDiscount();
+
+            try
+            {
+                if (txtDiscount.Text.Trim() != "")
+                {
+                    OD.Discount = float.Parse(txtDiscount.Text) / 100;
+                    if (OD.Discount > 1)
+                    {
+                        throw new Exception("Invalid Discount-Discount should not be greater than 100.");
+                    }
+                    else if (OD.Discount < 0)
+                    {
+                        throw new Exception("Invalid Discount- Discount can not be less  than 0.");
+                    }
+                }
+                else
+                    OD.Discount = 0;
+                CalculateLineTotal();
+            }
+            catch (Exception)
+            {
+
+
+            }
+
         }
-        void txtDiscount_Validating(object sender, EventArgs e)
+
+        void txtDiscount_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            OD.Discount = float.Parse(txtDiscount.Text) / 100;
-            if (OD.Discount > 100)
-                throw new Exception("Invalid Discount-Discount should be lower than 100.");
-            else if (OD.Discount < 0)
-                throw new Exception("Invalid Discount- Discount should be bigger than 0.");
-            ShowDiscount();
+
+            try
+            {
+                if (txtDiscount.Text.Trim() != "")
+                {
+                    OD.Discount = float.Parse(txtDiscount.Text) / 100;
+                    if (OD.Discount > 1)
+                    {
+                        throw new Exception("Invalid Discount-Discount should not be greater than 100.");
+                    }
+                    else if (OD.Discount < 0)
+                    {
+                        throw new Exception("Invalid Discount- Discount can not be less  than 0.");
+                    }
+                }
+                else
+                    OD.Discount = 0;
+                CalculateLineTotal();
+
+                //ShowDiscount();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                e.Cancel = true;
+
+            }
+
+
+
+
+
         }
+
     }
 }
