@@ -21,7 +21,7 @@ namespace InterfaceLayer
         List<OrderDetail> DetailsList = new List<OrderDetail>();
         // Customer currentCustomer;
         List<Product> ProductList = new List<Product>();
-        Order Test = new Order(50000);
+        Order Test = new Order(5000);
         List<Shipper> Shippers = new List<Shipper>();
 
 
@@ -49,8 +49,13 @@ namespace InterfaceLayer
         {
             int ShipperNameID = (int)cbShipVia.SelectedValue;
             string shippername = Shippers[ShipperNameID].CompanyName.ToString();
-            Order Commit = new Order(Test.OrderID, lblCustId.Text, Convert.ToInt32(lblEmID.Text), Convert.ToDateTime(lblTDate.Text), Convert.ToDateTime(txtRDate.Text), Convert.ToDateTime(txtSDate.Text), Convert.ToInt32(cbShipVia.SelectedValue.ToString()), Convert.ToDecimal(lblFin.Text), shippername.ToString(), txtAddress.Text, txtCity.Text, txtRegion.Text, txtPostal.Text, txtCountry.Text);
-            BusinessLayer.Business.SaveOrder(Commit);
+            Test = new Order(Test.OrderID, lblCustId.Text, Convert.ToInt32(lblEmID.Text), Convert.ToDateTime(lblTDate.Text), Convert.ToDateTime(txtRDate.Text), Convert.ToDateTime(txtSDate.Text), Convert.ToInt32(cbShipVia.SelectedValue.ToString()), Convert.ToDecimal(lblFin.Text), shippername.ToString(), txtAddress.Text, txtCity.Text, txtRegion.Text, txtPostal.Text, txtCountry.Text);
+            BusinessLayer.Business.SaveOrder(Test);
+          //Business.SaveDetails(Test.OrderID,DetailsList);
+            lsDetails.Items.Clear();
+            txtDisc.Text = "0";
+            txtQuantity.Text = "0";
+            
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -69,19 +74,15 @@ namespace InterfaceLayer
 
             ProductList = Business.ProductList();
             Product tmp = ProductList[ProductId];
-            OrderDetail newDetail = new OrderDetail(Test.OrderID, tmp.ProductID, tmp.UnitPrice, Convert.ToInt16(txtQuantity.Text), Convert.ToInt32(txtDisc.Text));
-            newDetail.ProductName = cbProducts.Text;
-            DetailsList.Add(newDetail);
+            OrderDetail Detail = new OrderDetail(Test.OrderID, tmp.ProductID, tmp.UnitPrice, Convert.ToInt16(txtQuantity.Text), Convert.ToInt32(txtDisc.Text));
+            Detail.ProductName = cbProducts.Text;
+            DetailsList.Add(Detail);
             cbProducts.SelectedValue = -1;
             lblFin.Text = (Convert.ToDecimal(lblFin.Text) + (tmp.UnitPrice * Convert.ToInt32(txtQuantity.Text))).ToString();
-            lsDetails.Items.Add(newDetail.ProductName + " " + newDetail.UnitPrice.ToString("c"));
+            lsDetails.Items.Add(Detail.ProductName + " " + Detail.UnitPrice.ToString("c"));
             txtDisc.Text = "0";
             txtQuantity.Text = "0";
         }
 
-        private void OrderingFormNathan_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            BusinessLayer.Business.SaveDetails(Test.OrderID, DetailsList);
-        }
     }
 }

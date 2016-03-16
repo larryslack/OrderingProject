@@ -520,30 +520,47 @@ namespace DatabaseLayer
 
         public static void ReplaceDetails(int OrderID, List<OrderDetail> ordDetailsList)
         {
-            sqlCon = new SqlConnection(connectionString);
-            sqlCon.Open();
-            //first remove all previous details for this order
-            SqlCommand cmdA = new SqlCommand(PROC_DELETE_DETAILS, sqlCon);
-            cmdA.CommandType = CommandType.StoredProcedure;
-            cmdA.Parameters.Add(new SqlParameter("@OrderID", OrderID));
-            cmdA.ExecuteNonQuery();
 
-            //and replace them with ones from the list supplied
-            foreach (OrderDetail od in ordDetailsList)
+            SqlTransaction trans = null;
+            try
             {
-                SqlCommand cmd = new SqlCommand(PROC_SAVE_DETAILS, sqlCon);
-                cmd.CommandType = CommandType.StoredProcedure;
+                sqlCon = new SqlConnection(connectionString);
+                sqlCon.Open();
+                trans = sqlCon.BeginTransaction(); //create new transaction
+                //first remove all previous details for this order
+                SqlCommand cmdA = new SqlCommand(PROC_DELETE_DETAILS, sqlCon);
+                cmdA.CommandType = CommandType.StoredProcedure;
+                cmdA.Parameters.Add(new SqlParameter("@OrderID", OrderID));
+                cmdA.Transaction = trans; //this command will be part of the transaction
+                cmdA.ExecuteNonQuery();
 
-                cmd.Parameters.Add(new SqlParameter("@OrderID", OrderID)); //safer to take from OrderID
-                cmd.Parameters.Add(new SqlParameter("@ProductID", od.ProductID));
-                cmd.Parameters.Add(new SqlParameter("@UnitPrice", od.UnitPrice));
-                cmd.Parameters.Add(new SqlParameter("@Quantity", od.Quantity));
-                cmd.Parameters.Add(new SqlParameter("@Discount", od.Discount));
+                //and replace them with ones from the list supplied
+                foreach (OrderDetail od in ordDetailsList)
+                {
+                    SqlCommand cmd = new SqlCommand(PROC_SAVE_DETAILS, sqlCon);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.ExecuteNonQuery();
+                    cmd.Parameters.Add(new SqlParameter("@OrderID", OrderID)); //safer to take from OrderID
+                    cmd.Parameters.Add(new SqlParameter("@ProductID", od.ProductID));
+                    cmd.Parameters.Add(new SqlParameter("@UnitPrice", od.UnitPrice));
+                    cmd.Parameters.Add(new SqlParameter("@Quantity", od.Quantity));
+                    cmd.Parameters.Add(new SqlParameter("@Discount", od.Discount));
+                    cmd.Transaction = trans;// also each of these commands in the transaction
+                    cmd.ExecuteNonQuery();
+                }
+                trans.Commit(); // the changes were successful so commit this transaction to the database
+                sqlCon.Close();
+
             }
-
-            sqlCon.Close();
+            catch (Exception ex)
+            {
+                if (sqlCon != null && sqlCon.State != ConnectionState.Closed)
+                {
+                    trans.Rollback();
+                    sqlCon.Close();
+                }
+                throw ex;
+            }
         }
 
         public static List<Shipper> GetShipper()
@@ -570,7 +587,7 @@ namespace DatabaseLayer
                 string phone = "";
 
                 shipperID = (int)row["ShipperID"];
-                
+
                 if (!(row["CompanyName"] == DBNull.Value))
                     companyName = (string)row["CompanyName"];
 

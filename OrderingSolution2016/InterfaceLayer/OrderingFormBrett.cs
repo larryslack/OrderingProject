@@ -21,6 +21,8 @@ namespace InterfaceLayer
         Customer currentCustomer;
         List<Product> productList;
 
+
+
         public OrderingFormBrett(string CustomerID, int EmployeeID)
         {
             InitializeComponent();
@@ -222,5 +224,7 @@ namespace InterfaceLayer
         {
             AddPanel();
         }
+
+        
     }
 }
