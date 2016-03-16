@@ -1,6 +1,6 @@
 ﻿namespace InterfaceLayer
 {
-    partial class OrderingFormShohei
+    partial class btnProSave
     {
         /// <summary>
         /// Required designer variable.
@@ -55,6 +55,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lblOrderID = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.btnSaveOrder = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnNewP
@@ -74,16 +79,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlProducts.AutoScroll = true;
             this.pnlProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlProducts.Location = new System.Drawing.Point(217, 75);
+            this.pnlProducts.Location = new System.Drawing.Point(235, 75);
             this.pnlProducts.Name = "pnlProducts";
-            this.pnlProducts.Size = new System.Drawing.Size(453, 313);
+            this.pnlProducts.Size = new System.Drawing.Size(505, 313);
             this.pnlProducts.TabIndex = 1;
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(554, 394);
+            this.button2.Location = new System.Drawing.Point(630, 394);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(110, 61);
             this.button2.TabIndex = 2;
@@ -291,11 +296,62 @@
             this.label13.TabIndex = 25;
             this.label13.Text = "Order ID:";
             // 
-            // OrderingFormShohei
+            // btnSaveOrder
+            // 
+            this.btnSaveOrder.Location = new System.Drawing.Point(315, 394);
+            this.btnSaveOrder.Name = "btnSaveOrder";
+            this.btnSaveOrder.Size = new System.Drawing.Size(169, 23);
+            this.btnSaveOrder.TabIndex = 27;
+            this.btnSaveOrder.Text = "save order products";
+            this.btnSaveOrder.UseVisualStyleBackColor = true;
+            this.btnSaveOrder.Click += new System.EventHandler(this.btnSaveOrder_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(241, 56);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(44, 13);
+            this.label10.TabIndex = 28;
+            this.label10.Text = "Product";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(361, 56);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(31, 13);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "Price";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(466, 56);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(44, 13);
+            this.label15.TabIndex = 30;
+            this.label15.Text = "quantity";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(564, 56);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(47, 13);
+            this.label17.TabIndex = 32;
+            this.label17.Text = "discount";
+            // 
+            // btnProSave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 463);
+            this.ClientSize = new System.Drawing.Size(747, 463);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.btnSaveOrder);
             this.Controls.Add(this.lblOrderID);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label9);
@@ -323,7 +379,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pnlProducts);
             this.Controls.Add(this.btnNewP);
-            this.Name = "OrderingFormShohei";
+            this.Name = "btnProSave";
             this.Text = "OrderingFormShohei";
             this.Load += new System.EventHandler(this.OrderingFormShohei_Load);
             this.ResumeLayout(false);
@@ -360,5 +416,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblOrderID;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnSaveOrder;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label17;
     }
 }

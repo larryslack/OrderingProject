@@ -140,6 +140,7 @@
             this.txtDisc.Name = "txtDisc";
             this.txtDisc.Size = new System.Drawing.Size(40, 20);
             this.txtDisc.TabIndex = 6;
+            this.txtDisc.Text = "0";
             // 
             // txtQuantity
             // 
@@ -147,6 +148,7 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(43, 20);
             this.txtQuantity.TabIndex = 5;
+            this.txtQuantity.Text = "0";
             // 
             // label7
             // 
@@ -405,9 +407,9 @@
             this.lblFin.AutoSize = true;
             this.lblFin.Location = new System.Drawing.Point(334, 374);
             this.lblFin.Name = "lblFin";
-            this.lblFin.Size = new System.Drawing.Size(17, 13);
+            this.lblFin.Size = new System.Drawing.Size(13, 13);
             this.lblFin.TabIndex = 11;
-            this.lblFin.Text = "\"\"";
+            this.lblFin.Text = "0";
             // 
             // label10
             // 

@@ -28,29 +28,236 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.OrderList = new System.Windows.Forms.ListBox();
+            this.ShippingPanel = new System.Windows.Forms.Panel();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.AddressBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.ShipNameBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.CompNameBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.CustIDBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8881 = new System.Windows.Forms.Label();
+            this.RequiredDatePicker = new System.Windows.Forms.DateTimePicker();
             this.ProductBox = new System.Windows.Forms.ComboBox();
             this.AddBtn = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.RemoveBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.QuantityUpdown = new System.Windows.Forms.NumericUpDown();
             this.PriceBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.QPUBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.DiscountUpDown = new System.Windows.Forms.NumericUpDown();
+            this.QPUBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.InStockBox = new System.Windows.Forms.TextBox();
+            this.DiscountUpDown = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
+            this.InStockBox = new System.Windows.Forms.TextBox();
             this.SupplierBox = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label8881 = new System.Windows.Forms.Label();
-            this.RequiredDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.FinalBtn = new System.Windows.Forms.Button();
+            this.ShippingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUpdown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiscountUpDown)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // OrderList
+            // 
+            this.OrderList.FormattingEnabled = true;
+            this.OrderList.Location = new System.Drawing.Point(260, 12);
+            this.OrderList.Name = "OrderList";
+            this.OrderList.Size = new System.Drawing.Size(337, 238);
+            this.OrderList.TabIndex = 2;
+            // 
+            // ShippingPanel
+            // 
+            this.ShippingPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ShippingPanel.Controls.Add(this.textBox4);
+            this.ShippingPanel.Controls.Add(this.label15);
+            this.ShippingPanel.Controls.Add(this.textBox3);
+            this.ShippingPanel.Controls.Add(this.label14);
+            this.ShippingPanel.Controls.Add(this.textBox2);
+            this.ShippingPanel.Controls.Add(this.label13);
+            this.ShippingPanel.Controls.Add(this.textBox1);
+            this.ShippingPanel.Controls.Add(this.label12);
+            this.ShippingPanel.Controls.Add(this.AddressBox);
+            this.ShippingPanel.Controls.Add(this.label11);
+            this.ShippingPanel.Controls.Add(this.label10);
+            this.ShippingPanel.Controls.Add(this.ShipNameBox);
+            this.ShippingPanel.Controls.Add(this.label9);
+            this.ShippingPanel.Controls.Add(this.CompNameBox);
+            this.ShippingPanel.Controls.Add(this.label8);
+            this.ShippingPanel.Controls.Add(this.CustIDBox);
+            this.ShippingPanel.Controls.Add(this.label7);
+            this.ShippingPanel.Controls.Add(this.label8881);
+            this.ShippingPanel.Controls.Add(this.RequiredDatePicker);
+            this.ShippingPanel.Location = new System.Drawing.Point(-1, 260);
+            this.ShippingPanel.Name = "ShippingPanel";
+            this.ShippingPanel.Size = new System.Drawing.Size(614, 208);
+            this.ShippingPanel.TabIndex = 55;
+            this.ShippingPanel.TabStop = true;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(414, 112);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(121, 20);
+            this.textBox4.TabIndex = 72;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(371, 115);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(43, 13);
+            this.label15.TabIndex = 71;
+            this.label15.Text = "Country";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(266, 112);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(92, 20);
+            this.textBox3.TabIndex = 70;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(202, 115);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(64, 13);
+            this.label14.TabIndex = 69;
+            this.label14.Text = "Postal Code";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(44, 109);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(137, 20);
+            this.textBox2.TabIndex = 68;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(5, 112);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(41, 13);
+            this.label13.TabIndex = 67;
+            this.label13.Text = "Region";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(429, 83);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(161, 20);
+            this.textBox1.TabIndex = 66;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(407, 86);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(24, 13);
+            this.label12.TabIndex = 65;
+            this.label12.Text = "City";
+            // 
+            // AddressBox
+            // 
+            this.AddressBox.Location = new System.Drawing.Point(241, 83);
+            this.AddressBox.Name = "AddressBox";
+            this.AddressBox.Size = new System.Drawing.Size(162, 20);
+            this.AddressBox.TabIndex = 64;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(196, 86);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(45, 13);
+            this.label11.TabIndex = 63;
+            this.label11.Text = "Address";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(19, 63);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 13);
+            this.label10.TabIndex = 62;
+            this.label10.Text = "Shipping to";
+            // 
+            // ShipNameBox
+            // 
+            this.ShipNameBox.Location = new System.Drawing.Point(41, 83);
+            this.ShipNameBox.Name = "ShipNameBox";
+            this.ShipNameBox.Size = new System.Drawing.Size(151, 20);
+            this.ShipNameBox.TabIndex = 61;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 86);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 60;
+            this.label9.Text = "Name";
+            // 
+            // CompNameBox
+            // 
+            this.CompNameBox.Location = new System.Drawing.Point(221, 37);
+            this.CompNameBox.Name = "CompNameBox";
+            this.CompNameBox.Size = new System.Drawing.Size(143, 20);
+            this.CompNameBox.TabIndex = 59;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(142, 40);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(82, 13);
+            this.label8.TabIndex = 58;
+            this.label8.Text = "Company Name";
+            // 
+            // CustIDBox
+            // 
+            this.CustIDBox.Location = new System.Drawing.Point(67, 37);
+            this.CustIDBox.Name = "CustIDBox";
+            this.CustIDBox.Size = new System.Drawing.Size(73, 20);
+            this.CustIDBox.TabIndex = 57;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 40);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.TabIndex = 56;
+            this.label7.Text = "Customer ID";
+            // 
+            // label8881
+            // 
+            this.label8881.AutoSize = true;
+            this.label8881.Location = new System.Drawing.Point(5, 13);
+            this.label8881.Name = "label8881";
+            this.label8881.Size = new System.Drawing.Size(76, 13);
+            this.label8881.TabIndex = 20;
+            this.label8881.Text = "Required Date";
+            // 
+            // RequiredDatePicker
+            // 
+            this.RequiredDatePicker.Location = new System.Drawing.Point(79, 7);
+            this.RequiredDatePicker.Name = "RequiredDatePicker";
+            this.RequiredDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.RequiredDatePicker.TabIndex = 19;
             // 
             // ProductBox
             // 
@@ -72,23 +279,15 @@
             this.AddBtn.UseVisualStyleBackColor = true;
             this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
             // 
-            // listBox1
+            // RemoveBtn
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(260, 12);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(337, 238);
-            this.listBox1.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(179, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Remove";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.RemoveBtn.Location = new System.Drawing.Point(179, 12);
+            this.RemoveBtn.Name = "RemoveBtn";
+            this.RemoveBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveBtn.TabIndex = 4;
+            this.RemoveBtn.Text = "Remove";
+            this.RemoveBtn.UseVisualStyleBackColor = true;
+            this.RemoveBtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -145,6 +344,15 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Supplier";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 103);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Quantity per Unit";
+            // 
             // QPUBox
             // 
             this.QPUBox.BackColor = System.Drawing.SystemColors.Info;
@@ -155,14 +363,14 @@
             this.QPUBox.TabIndex = 12;
             this.QPUBox.Text = "0";
             // 
-            // label4
+            // label5
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 103);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Quantity per Unit";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 184);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Discount";
             // 
             // DiscountUpDown
             // 
@@ -183,14 +391,14 @@
             this.DiscountUpDown.TabIndex = 14;
             this.DiscountUpDown.ValueChanged += new System.EventHandler(this.DiscountUpDown1_ValueChanged);
             // 
-            // label5
+            // label6
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 184);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Discount";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 128);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "In Stock";
             // 
             // InStockBox
             // 
@@ -202,15 +410,6 @@
             this.InStockBox.TabIndex = 16;
             this.InStockBox.Text = "0";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 128);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 13);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "In Stock";
-            // 
             // SupplierBox
             // 
             this.SupplierBox.BackColor = System.Drawing.SystemColors.Info;
@@ -221,39 +420,23 @@
             this.SupplierBox.TabIndex = 17;
             this.SupplierBox.Text = "0";
             // 
-            // panel1
+            // FinalBtn
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label8881);
-            this.panel1.Controls.Add(this.RequiredDatePicker);
-            this.panel1.Location = new System.Drawing.Point(-1, 260);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(614, 265);
-            this.panel1.TabIndex = 55;
-            this.panel1.TabStop = true;
-            // 
-            // label8881
-            // 
-            this.label8881.AutoSize = true;
-            this.label8881.Location = new System.Drawing.Point(5, 13);
-            this.label8881.Name = "label8881";
-            this.label8881.Size = new System.Drawing.Size(76, 13);
-            this.label8881.TabIndex = 20;
-            this.label8881.Text = "Required Date";
-            // 
-            // RequiredDatePicker
-            // 
-            this.RequiredDatePicker.Location = new System.Drawing.Point(79, 7);
-            this.RequiredDatePicker.Name = "RequiredDatePicker";
-            this.RequiredDatePicker.Size = new System.Drawing.Size(200, 20);
-            this.RequiredDatePicker.TabIndex = 19;
+            this.FinalBtn.Location = new System.Drawing.Point(187, 201);
+            this.FinalBtn.Name = "FinalBtn";
+            this.FinalBtn.Size = new System.Drawing.Size(67, 49);
+            this.FinalBtn.TabIndex = 56;
+            this.FinalBtn.Text = "Finalize";
+            this.FinalBtn.UseVisualStyleBackColor = true;
+            this.FinalBtn.Click += new System.EventHandler(this.FinalBtn_Click);
             // 
             // OrderingFormBrent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(602, 521);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(602, 458);
+            this.Controls.Add(this.FinalBtn);
+            this.Controls.Add(this.ShippingPanel);
             this.Controls.Add(this.SupplierBox);
             this.Controls.Add(this.InStockBox);
             this.Controls.Add(this.label6);
@@ -266,16 +449,17 @@
             this.Controls.Add(this.QuantityUpdown);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.RemoveBtn);
+            this.Controls.Add(this.OrderList);
             this.Controls.Add(this.AddBtn);
             this.Controls.Add(this.ProductBox);
             this.Name = "OrderingFormBrent";
             this.Text = "OrderingFormBrent";
+            this.Load += new System.EventHandler(this.OrderingFormBrent_Load);
+            this.ShippingPanel.ResumeLayout(false);
+            this.ShippingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUpdown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiscountUpDown)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,24 +467,42 @@
 
         #endregion
 
+        private System.Windows.Forms.ListBox OrderList;
+        private System.Windows.Forms.Panel ShippingPanel;
+        private System.Windows.Forms.Label label8881;
+        private System.Windows.Forms.DateTimePicker RequiredDatePicker;
+        private System.Windows.Forms.TextBox CompNameBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox CustIDBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox ShipNameBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox AddressBox;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox ProductBox;
         private System.Windows.Forms.Button AddBtn;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button RemoveBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown QuantityUpdown;
         private System.Windows.Forms.TextBox PriceBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox QPUBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown DiscountUpDown;
+        private System.Windows.Forms.TextBox QPUBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox InStockBox;
+        private System.Windows.Forms.NumericUpDown DiscountUpDown;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox InStockBox;
         private System.Windows.Forms.TextBox SupplierBox;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label8881;
-        private System.Windows.Forms.DateTimePicker RequiredDatePicker;
+        private System.Windows.Forms.Button FinalBtn;
     }
 }

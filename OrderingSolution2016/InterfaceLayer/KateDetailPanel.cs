@@ -44,7 +44,7 @@ namespace InterfaceLayer
             comboProduct.FormattingEnabled = true;
             comboProduct.Location = new System.Drawing.Point(4, 4);
             comboProduct.Name = "comboBox1";
-            comboProduct.Size = new System.Drawing.Size(121, 21);
+            comboProduct.Size = new System.Drawing.Size(200, 21);
             comboProduct.TabIndex = 0;
             comboProduct.DataSource = productlist;
             comboProduct.DisplayMember = "ProductName";
@@ -55,9 +55,9 @@ namespace InterfaceLayer
             // txtQuantityPerUnit
             // 
             txtQuantityPerUnit = new TextBox();
-            txtQuantityPerUnit.Location = new System.Drawing.Point(121, 4);
+            txtQuantityPerUnit.Location = new System.Drawing.Point(220, 4);
             txtQuantityPerUnit.Name = "txtQuantityPerUnit";
-            txtQuantityPerUnit.Size = new System.Drawing.Size(170, 20);
+            txtQuantityPerUnit.Size = new System.Drawing.Size(120, 20);
             txtQuantityPerUnit.TabStop = false;
             txtQuantityPerUnit.ReadOnly = true;
 
@@ -65,7 +65,7 @@ namespace InterfaceLayer
             // txtPrice
             // 
             txtPrice = new TextBox();
-            txtPrice.Location = new System.Drawing.Point(307, 4);
+            txtPrice.Location = new System.Drawing.Point(360, 4);
             txtPrice.Name = "txtPrice";
             txtPrice.Size = new System.Drawing.Size(70, 20);
             txtPrice.TabIndex = 1;
@@ -75,10 +75,10 @@ namespace InterfaceLayer
             // txtQuantity
             // 
             txtQuantity = new TextBox();
-            txtQuantity.Location = new System.Drawing.Point(383, 4);
+            txtQuantity.Location = new System.Drawing.Point(450, 4);
             txtQuantity.Name = "txtQuantity";
             txtQuantity.Text = "1";
-            txtQuantity.Size = new System.Drawing.Size(70, 20);
+            txtQuantity.Size = new System.Drawing.Size(40, 20);
             txtQuantity.TabIndex = 2;
             txtQuantity.Validating += txtQuantity_Validating;
             txtQuantity.TextChanged += txtQuantity_TextChanged;
@@ -89,20 +89,19 @@ namespace InterfaceLayer
             // txtDiscount
             // 
             txtDiscount = new TextBox();
-            txtDiscount.Location = new System.Drawing.Point(459, 4);
+            txtDiscount.Location = new System.Drawing.Point(510, 4);
             txtDiscount.Name = "txtDiscount";
-            txtDiscount.Size = new System.Drawing.Size(70, 20);
+            txtDiscount.Size = new System.Drawing.Size(40, 20);
             txtDiscount.TabIndex = 3;
             txtDiscount.TextChanged += txtDiscount_TextChanged;
             txtDiscount.Validating += txtDiscount_Validating;
-
             // 
             // txtLineTotal
             // 
             txtLineTotal = new TextBox();
-            txtLineTotal.Location = new System.Drawing.Point(540, 4);
+            txtLineTotal.Location = new System.Drawing.Point(570, 4);
             txtLineTotal.Name = "txtLineTotal";
-            txtLineTotal.Size = new System.Drawing.Size(70, 20);
+            txtLineTotal.Size = new System.Drawing.Size(40, 20);
             txtLineTotal.ReadOnly = true;
             txtLineTotal.TabIndex = 3;
 
@@ -110,13 +109,13 @@ namespace InterfaceLayer
             // btnDelete
             // 
             btnDelete = new Button();
-            btnDelete.Location = new System.Drawing.Point(610, 4);
+            btnDelete.Location = new System.Drawing.Point(630, 4);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new System.Drawing.Size(48, 20);
+            btnDelete.Size = new System.Drawing.Size(40, 20);
             btnDelete.TabIndex = 4;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.BackColor = System.Drawing.Color.LightPink;
+            btnDelete.BackColor = System.Drawing.Color.LightBlue;
             btnDelete.TabStop = false;
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.FlatAppearance.BorderSize = 0;
@@ -138,6 +137,7 @@ namespace InterfaceLayer
 
         }
 
+
         void btnDelete_Click(object sender, EventArgs e)
         {
             mMotherPanel.Controls.Remove(this);
@@ -152,7 +152,7 @@ namespace InterfaceLayer
                 if (OD.UnitPrice < 0)
                     throw new Exception("Invalid UnitPrice - cannot be negative");
                 CalculateLineTotal();
-                ShowDiscount();
+
 
             }
             catch (Exception ex)
@@ -171,8 +171,6 @@ namespace InterfaceLayer
                 if (OD.Quantity < 1)
                     throw new Exception("Invalid UnitPrice");
                 CalculateLineTotal();
-                ShowDiscount();
-
             }
             catch (Exception) //ignore errors for now, because we have the validating event to handle these
             {
@@ -205,9 +203,8 @@ namespace InterfaceLayer
                 if (OD.Quantity < 1)
                     throw new Exception("Invalid Quantity - it must be 1 or more");
                 CalculateLineTotal();
-                ShowDiscount();
             }
-            catch (Exception ) //ignore error for now, because user might be typing and not yet finished
+            catch (Exception) //ignore error for now, because user might be typing and not yet finished
             {
 
             }
@@ -223,7 +220,7 @@ namespace InterfaceLayer
                 txtPrice.Text = mProductList[comboProduct.SelectedIndex].UnitPrice.ToString();
                 txtQuantityPerUnit.Text = mProductList[comboProduct.SelectedIndex].QuantityPerUnit;
                 OD.ProductID = (int)comboProduct.SelectedValue;
-                ShowDiscount();
+                // ShowDiscount();
             }
         }
 
@@ -234,27 +231,75 @@ namespace InterfaceLayer
 
 
         }
-        void ShowDiscount()
-        {
-            txtDiscount.Text = Convert.ToString(OD.Discount* 100);
-        }
+        //void ShowDiscount()
+        //{
+        //    txtDiscount.Text = Convert.ToString(OD.Discount * 100);
+        //}
         void txtDiscount_TextChanged(object sender, EventArgs e)
         {
-            OD.Discount = float.Parse(txtDiscount.Text )/100;
-            if (OD.Discount > 100)
-                throw new Exception("Invalid Discount-Discount should be lower than 100.");
-            else if (OD.Discount < 0)
-                throw new Exception("Invalid Discount- Discount should be bigger than 0.");
-            ShowDiscount();
+
+            try
+            {
+                if (txtDiscount.Text.Trim() != "")
+                {
+                    OD.Discount = float.Parse(txtDiscount.Text) / 100;
+                    if (OD.Discount > 1)
+                    {
+                        throw new Exception("Invalid Discount-Discount should not be greater than 100.");
+                    }
+                    else if (OD.Discount < 0)
+                    {
+                        throw new Exception("Invalid Discount- Discount can not be less  than 0.");
+                    }
+                }
+                else
+                    OD.Discount = 0;
+                CalculateLineTotal();
+            }
+            catch (Exception)
+            {
+
+
+            }
+
         }
-        void txtDiscount_Validating(object sender, EventArgs e)
+
+        void txtDiscount_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            OD.Discount = float.Parse(txtDiscount.Text) / 100;
-            if (OD.Discount > 100)
-                throw new Exception("Invalid Discount-Discount should be lower than 100.");
-            else if (OD.Discount < 0)
-                throw new Exception("Invalid Discount- Discount should be bigger than 0.");
-            ShowDiscount();
+
+            try
+            {
+                if (txtDiscount.Text.Trim() != "")
+                {
+                    OD.Discount = float.Parse(txtDiscount.Text) / 100;
+                    if (OD.Discount > 1)
+                    {
+                        throw new Exception("Invalid Discount-Discount should not be greater than 100.");
+                    }
+                    else if (OD.Discount < 0)
+                    {
+                        throw new Exception("Invalid Discount- Discount can not be less  than 0.");
+                    }
+                }
+                else
+                    OD.Discount = 0;
+                CalculateLineTotal();
+
+                //ShowDiscount();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                e.Cancel = true;
+
+            }
+
+
+
+
+
         }
+
     }
 }

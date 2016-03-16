@@ -40,8 +40,8 @@ namespace InterfaceLayer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex >= 0)
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+            if (OrderList.SelectedIndex >= 0)
+                OrderList.Items.RemoveAt(OrderList.SelectedIndex);
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace InterfaceLayer
             //DaPrice = (DaPrice * QuantityUpdown.Value);
             //AddToOrder += DaPrice.ToString("c");
             AddToOrder += PriceBox.Text;
-            listBox1.Items.Add(AddToOrder);
+            OrderList.Items.Add(AddToOrder);
         }
 
         private void ProductBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,8 +72,8 @@ namespace InterfaceLayer
                 AddBtn.Enabled = true;
             }
             DiscountUpDown.Value = 0;
-            decimal IShouldRenameThat = fer[ProductBox.SelectedIndex].UnitPrice;
-            string IShouldRenameThisToo;
+            decimal IShouldRenameThat = fer[ProductBox.SelectedIndex].UnitPrice; //Unit Price
+            string IShouldRenameThisToo; //Quantity per Unit
             //if (fer[ProductBox.SelectedIndex].QuantityPerUnit == null)
             IShouldRenameThisToo = fer[ProductBox.SelectedIndex].QuantityPerUnit;
             QPUBox.Text = IShouldRenameThisToo;
@@ -103,6 +103,42 @@ namespace InterfaceLayer
             decimal TooLazyToRenameThem = fer[ProductBox.SelectedIndex].UnitPrice;
             TooLazyToRenameThem = TooLazyToRenameThem * QuantityUpdown.Value * (1 - DiscountUpDown.Value);
             return TooLazyToRenameThem;
+        }
+
+        private void OrderingFormBrent_Load(object sender, EventArgs e)
+        {
+            CustIDBox.Text = CurrentCustomer;
+        }
+
+        private void FinalBtn_Click(object sender, EventArgs e)
+        {
+            if (FinalBtn.Text == "Finalize")
+            {
+                FinalBtn.Text = "Unfinalize";
+                OrderingToShipping(true);
+                OrderList.Items.Add("-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -");
+                OrderList.Items.Add("Conglaturation");
+            }
+            else
+            {
+                FinalBtn.Text = "Finalize";
+                OrderingToShipping(false);
+                OrderList.Items.Remove("-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -");
+                OrderList.Items.Remove("Conglaturation");
+            }
+        }
+        private void OrderingToShipping(bool DatWay)
+        {
+            ShippingPanel.Enabled = DatWay;
+            RemoveBtn.Enabled = !DatWay;
+            AddBtn.Enabled = !DatWay;
+            ProductBox.Enabled = !DatWay;
+            QuantityUpdown.Enabled = !DatWay;
+            DiscountUpDown.Enabled = !DatWay;
+            QPUBox.Enabled = !DatWay;
+            PriceBox.Enabled = !DatWay;
+            SupplierBox.Enabled = !DatWay;
+            InStockBox.Enabled = !DatWay;
         }
     }
 }

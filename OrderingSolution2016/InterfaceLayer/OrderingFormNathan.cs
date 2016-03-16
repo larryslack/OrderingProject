@@ -18,12 +18,13 @@ namespace InterfaceLayer
         string CustomerID;
         int EmployeeID = 0;
         int OrderId = 2;
-        List<OrderDetail> DetailsList;
-       // Customer currentCustomer;
+        List<OrderDetail> DetailsList = new List<OrderDetail>();
+        // Customer currentCustomer;
         List<Product> ProductList = new List<Product>();
         Order Test = new Order(50000);
         List<Shipper> Shippers = new List<Shipper>();
-        
+
+
         public OrderingFormNathan(string CustomerID, int EmployeeID)
         {
             InitializeComponent();
@@ -31,7 +32,9 @@ namespace InterfaceLayer
             this.EmployeeID = EmployeeID;
             lblEmID.Text = EmployeeID.ToString();
             lblCustId.Text = CustomerID;
-            lblTDate.Text = DateTime.Now.ToString("d/MM/yyyy");
+            lblTDate.Text = DateTime.Now.ToShortDateString();
+            txtSDate.Text = lblTDate.Text;
+            txtRDate.Text = DateTime.Now.ToShortDateString();
             cbShipVia.DataSource = BusinessLayer.Business.ShipperTable();
             cbShipVia.DisplayMember = "CompanyName";
             cbShipVia.ValueMember = "ShipperID";
@@ -46,7 +49,7 @@ namespace InterfaceLayer
         {
             int ShipperNameID = (int)cbShipVia.SelectedValue;
             string shippername = Shippers[ShipperNameID].CompanyName.ToString();
-            Order Commit = new Order(Test.OrderID, lblCustId.Text, Convert.ToInt32(lblEmID.Text), Convert.ToDateTime(lblTDate.Text), Convert.ToDateTime(txtRDate.Text), Convert.ToDateTime(txtSDate.Text), Convert.ToInt32(cbShipVia.SelectedValue.ToString()), Convert.ToDecimal(lblFin.Text),shippername.ToString(),txtAddress.Text,txtCity.Text,txtRegion.Text,txtPostal.Text,txtCountry.Text);
+            Order Commit = new Order(Test.OrderID, lblCustId.Text, Convert.ToInt32(lblEmID.Text), Convert.ToDateTime(lblTDate.Text), Convert.ToDateTime(txtRDate.Text), Convert.ToDateTime(txtSDate.Text), Convert.ToInt32(cbShipVia.SelectedValue.ToString()), Convert.ToDecimal(lblFin.Text), shippername.ToString(), txtAddress.Text, txtCity.Text, txtRegion.Text, txtPostal.Text, txtCountry.Text);
             BusinessLayer.Business.SaveOrder(Commit);
         }
 
@@ -56,20 +59,24 @@ namespace InterfaceLayer
             cbProducts.SelectedIndex = -1;
             txtQuantity.Text = "0";
             txtDisc.Text = "0";
-       
+
         }
 
         private void btnAddtoOrder_Click(object sender, EventArgs e)
         {
             int ProductId = (int)cbProducts.SelectedValue;
-            
-            DetailsList = new List<OrderDetail>();
+
+
+            ProductList = Business.ProductList();
             Product tmp = ProductList[ProductId];
-            DetailsList.Add(new OrderDetail(Test.OrderID, tmp.ProductID, tmp.UnitPrice, Convert.ToInt16(txtQuantity.Text), Convert.ToInt32(txtDisc.Text)));
+            OrderDetail newDetail = new OrderDetail(Test.OrderID, tmp.ProductID, tmp.UnitPrice, Convert.ToInt16(txtQuantity.Text), Convert.ToInt32(txtDisc.Text));
+            newDetail.ProductName = cbProducts.Text;
+            DetailsList.Add(newDetail);
             cbProducts.SelectedValue = -1;
-            txtDisc.Text = "";
-            txtQuantity.Text = "";
-            lsDetails.Items.Add(DetailsList);
+            lblFin.Text = (Convert.ToDecimal(lblFin.Text) + (tmp.UnitPrice * Convert.ToInt32(txtQuantity.Text))).ToString();
+            lsDetails.Items.Add(newDetail.ProductName + " " + newDetail.UnitPrice.ToString("c"));
+            txtDisc.Text = "0";
+            txtQuantity.Text = "0";
         }
 
         private void OrderingFormNathan_FormClosing(object sender, FormClosingEventArgs e)

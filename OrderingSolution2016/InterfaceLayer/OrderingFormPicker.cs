@@ -74,7 +74,7 @@ namespace InterfaceLayer
 
         private void btnShohei_Click(object sender, EventArgs e)
         {
-            OrderingFormShohei OFB = new OrderingFormShohei(CustomerID, EmployeeID);
+            btnProSave OFB = new btnProSave(CustomerID, EmployeeID);
             OFB.Show();
 
         }

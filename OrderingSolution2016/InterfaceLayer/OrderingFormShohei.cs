@@ -12,19 +12,28 @@ using BusinessLayer;
 namespace InterfaceLayer
 {
 
-    public partial class OrderingFormShohei : Form
+    public partial class btnProSave : Form
     {
 
         int n = 0;
 
-        int t = 5;
-        int l = 5;
+        int l = 3;
         int employeeID;
         Customer custerd;
         List<Product> ProductList = new List<Product>();
         List<OrderDetail> OrderList = new List<OrderDetail>();
 
-        public OrderingFormShohei(string CustomerID, int EmployeeID)
+        List<Panel> pnlList = new List<Panel>();
+        List<ComboBox> cmbList = new List<ComboBox>();
+        List<TextBox> txtPriceList = new List<TextBox>();
+        List<TextBox> txtQuantityList = new List<TextBox>();
+        List<TextBox> txtDiscountList = new List<TextBox>();
+        List<Button> btnRemoveList = new List<Button>();
+        
+
+
+
+        public btnProSave(string CustomerID, int EmployeeID)
         {
             InitializeComponent();
             lblCust.Text = CustomerID;
@@ -51,66 +60,87 @@ namespace InterfaceLayer
         }
 
         private void btnNewP_Click(object sender, EventArgs e)
-        {
-            n++;
+        {            
+            
+            Panel ProductPanel = new Panel();
+            ProductPanel.Height = 30;
+            ProductPanel.Width = 500;
+            pnlProducts.Controls.Add(ProductPanel);
+            ProductPanel.BorderStyle = BorderStyle.FixedSingle;
+            pnlList.Add(ProductPanel);
+
             ComboBox cmb = new ComboBox();
-            pnlProducts.Controls.Add(cmb);
-            cmb.Top = t;
+            ProductPanel.Controls.Add(cmb);
             cmb.Left = l;
             cmb.Tag = n;
             cmb.DataSource = new List<Product>(ProductList);
             cmb.DisplayMember = "ProductName";
             cmb.ValueMember = "ProductID";
             cmb.SelectedIndexChanged += cmb_SelectedIndexChanged;
+            cmbList.Add(cmb);
 
             TextBox p = new TextBox();
             p.Text = "Where Price";
-            pnlProducts.Controls.Add(p);
-            p.Top = t;
+            ProductPanel.Controls.Add(p);
             p.Left = l + 120;
             p.Tag = n;
+            txtPriceList.Add(p);
 
             TextBox q = new TextBox();
             q.Text = "Where quantity";
-            pnlProducts.Controls.Add(q);
-            q.Top = t;
+            ProductPanel.Controls.Add(q);
             q.Left = l + 220;
             q.Tag = n;
-
-            TextBox tot = new TextBox();
-            tot.Text = "Where total";
-            pnlProducts.Controls.Add(tot);
-            tot.Top = t;
-            tot.Left = l + 320;
-            tot.Tag = n;
+            txtQuantityList.Add(q);
 
             TextBox dis = new TextBox();
             dis.Text = "Discount";
-            pnlProducts.Controls.Add(dis);
-            dis.Top = t;
-            dis.Left = l + 420;
+            ProductPanel.Controls.Add(dis);
+            dis.Left = l + 320;
             dis.Tag = n;
+            txtDiscountList.Add(dis);
 
             Button b = new Button();
-            b.Text = "Cancel Item";
-            pnlProducts.Controls.Add(b);
-            b.Top = t;
+            b.Text = "Remove";
+            ProductPanel.Controls.Add(b);
             p.Tag = n;
-            b.Left = l + 520;
+            b.Left = l + 420;
             b.Tag = n;
-            b.Click += Cancel_Order;
+            b.Click += Remove_Order;
+            btnRemoveList.Add(b);
 
-            t += 30;
+            n++;
+            sortPanel();
         }
 
         void cmb_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ComboBox thiscmb = (ComboBox)sender;
+            int index;
+            if (thiscmb.SelectedIndex >= 0)
+            {
+                index = cmbList.IndexOf(thiscmb);
+                txtPriceList[index].Text = ProductList[thiscmb.SelectedIndex].UnitPrice.ToString();
+                txtQuantityList[index].Text = ProductList[thiscmb.SelectedIndex].QuantityPerUnit.ToString();
+                
+            }
         }
 
-        void Cancel_Order(object sender, EventArgs e)
+        void Remove_Order(object sender, EventArgs e)
         {
+            Button thisbtn = (Button)sender;
+            int index;
+            index = btnRemoveList.IndexOf(thisbtn);
+            cmbList.RemoveAt(index);
+            txtPriceList.RemoveAt(index);
+            txtQuantityList.RemoveAt(index);
+            txtDiscountList.RemoveAt(index);
+            btnRemoveList.RemoveAt(index);
 
+            pnlProducts.Controls.Remove(pnlList[index]);
+            pnlList.RemoveAt(index);
+
+            sortPanel();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -138,6 +168,25 @@ namespace InterfaceLayer
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void btnSaveOrder_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < pnlList.Count; i++)
+            {
+
+            }
+        }
+
+        private void sortPanel()
+        {
+            int t = 0;
+            foreach (Panel tmp in pnlList)
+            {
+                tmp.Top = t;
+                tmp.Left = 0;
+                t += 30;
+            }
         }
     }
 }

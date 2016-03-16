@@ -17,7 +17,7 @@ namespace InterfaceLayer
         string CustomerID;
         int EmployeeID;
         List<OrderDetail> DetailList;
-        List<Panel> pnlList = new List<Panel>();
+        List<BrettProductPanel> pnlList = new List<BrettProductPanel>();
         Customer currentCustomer;
         List<Product> productList;
 
@@ -62,96 +62,23 @@ namespace InterfaceLayer
             try
             {
                 lblError.Text = "";
-                BrettProductPanel BPP = new BrettProductPanel(productList, pnlContainer.Width, pnlContainer.Height, pnlContainer.Left);
+                BrettProductPanel BPP = new BrettProductPanel(pnlList, productList, pnlContainer.Width, pnlContainer.Height, pnlContainer.Left);
                 pnlContainer.Controls.Add(BPP);
+                pnlList.Add(BPP);
                 BPP.RemovePanel += RemovePanel;
+                BPP.AddProductPanel += AddNewProductPanel;
+                BPP.CalcFreight += CalculateFreight;
+                BPP.WowSelectedIndexIsAnnoying();
 
-                // Things I need to destroy.
-                //Panel orderPnl = new Panel();
-                //orderPnl.Width = pnlContainer.Width - 25;
-                //orderPnl.Height = 40;
-                //if (pnlContainer.Controls.Count > 0)
-                //    orderPnl.Top = pnlContainer.Controls[pnlContainer.Controls.Count - 1].Height + pnlContainer.Controls[pnlContainer.Controls.Count - 1].Top + 5;
-                //else
-                //    orderPnl.Top = 5;
-                //orderPnl.Left = 4;
-                //orderPnl.BorderStyle = BorderStyle.FixedSingle;
-
-                //pnlContainer.Controls.Add(orderPnl);
-                //pnlList.Add(orderPnl);
-                //AddPanelControls(orderPnl);
+                lblProduct.Left = BrettProductPanel.lblProductX;
+                lblQuantity.Left = BrettProductPanel.lblQuantityX;
+                lblDiscount.Left = BrettProductPanel.lblDiscountX;
+                lblPrice.Left = BrettProductPanel.lblPriceX;
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
             }
-        }
-
-        private void AddPanelControls(Panel pnl)
-        {
-        }
-
-        private void SetupCombo(ComboBox cmb, Panel pnl, TextBox txtQuantity, TextBox txtDiscount, TextBox txtPrice)
-        {
-            List<Product> productList = new List<Product>(this.productList);
-            cmb.DataSource = productList;
-            cmb.DisplayMember = "ProductName";
-            cmb.ValueMember = "ProductID";
-            cmb.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            cmb.SelectedIndexChanged += (sender, e) =>
-            {
-                if (cmb.SelectedIndex == -1)
-                    return;
-
-
-                bool blnFoundSame = false;
-                foreach (Panel conPnl in pnlContainer.Controls)
-                {
-                    foreach (Control cntrl in conPnl.Controls)
-                    {
-                        if (cntrl is ComboBox)
-                        {
-                            if (cntrl != cmb)
-                            {
-                                if (((ComboBox)cntrl).SelectedValue == cmb.SelectedValue)
-                                {
-                                    blnFoundSame = true;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (blnFoundSame)
-                    pnl.BackColor = Color.Red;
-                else
-                    pnl.BackColor = Color.FromKnownColor(KnownColor.Window);
-
-                txtQuantity.Text = "1";
-                int quantity = Convert.ToInt32(txtQuantity.Text);
-                decimal discount = Convert.ToDecimal(txtDiscount.Text);
-                int index = Convert.ToInt32(cmb.SelectedValue);
-
-                txtPrice.Text = CalculatePrice(quantity, discount, index).ToString("###0.00");
-                CalculateFreight();
-
-                int currentPanelIndex = 0;
-                int panelIndexCount = pnlList.Count - 1;
-
-                for (int i = 0; i < pnlList.Count; i++)
-                {
-                    if (pnl == pnlList[i])
-                    {
-                        currentPanelIndex = i;
-                    }
-                }
-
-                if (currentPanelIndex == panelIndexCount)
-                {
-                    AddPanel();
-                }
-            };
         }
 
         private void btnRandomOrder_Click(object sender, EventArgs e)
@@ -178,45 +105,51 @@ namespace InterfaceLayer
                 Business.SaveOrder(o);
                 DetailList = new List<OrderDetail>();
 
-                foreach (Panel pnl in pnlContainer.Controls)
+                foreach (BrettProductPanel pnl in pnlList)
                 {
-                    int productID = -1;
-                    decimal unitPrice = 0;
-                    short quantity = 0;
-                    float discount = 0;
-
-                    foreach (Control cntrl in pnl.Controls)
-                    {
-                        if (((ComboBox)pnl.Controls[0]).SelectedIndex != -1)
-                        {
-                            if (cntrl is ComboBox)
-                            {
-                                productID = Convert.ToInt32(((ComboBox)cntrl).SelectedValue);
-                            }
-
-                            if (cntrl is TextBox)
-                            {
-                                if (cntrl.Name.Contains("txtQuantity"))
-                                {
-                                    quantity = Convert.ToInt16(((TextBox)cntrl).Text);
-                                }
-
-                                if (cntrl.Name.Contains("txtPrice"))
-                                {
-                                    unitPrice = Convert.ToDecimal(((TextBox)cntrl).Text);
-                                }
-
-                                if (cntrl.Name.Contains("txtDiscount"))
-                                {
-                                    discount = Convert.ToSingle(((TextBox)cntrl).Text) / 100;
-                                }
-                            }
-                        }
-                    }
-
-                    if (productID != -1 && quantity > 0)
-                        DetailList.Add(new OrderDetail(o.OrderID, productID, unitPrice, quantity, discount));
+                    if (pnl.selectedProductID != -1 && pnl.quantity > 0)
+                        DetailList.Add(new OrderDetail(o.OrderID, pnl.selectedProductID, pnl.price, pnl.quantity, pnl.discount));
                 }
+
+                //foreach (Panel pnl in pnlContainer.Controls)
+                //{
+                //    int productID = -1;
+                //    decimal unitPrice = 0;
+                //    short quantity = 0;
+                //    float discount = 0;
+
+                //    foreach (Control cntrl in pnl.Controls)
+                //    {
+                //        if (((ComboBox)pnl.Controls[0]).SelectedIndex != -1)
+                //        {
+                //            if (cntrl is ComboBox)
+                //            {
+                //                productID = Convert.ToInt32(((ComboBox)cntrl).SelectedValue);
+                //            }
+
+                //            if (cntrl is TextBox)
+                //            {
+                //                if (cntrl.Name.Contains("txtQuantity"))
+                //                {
+                //                    quantity = Convert.ToInt16(((TextBox)cntrl).Text);
+                //                }
+
+                //                if (cntrl.Name.Contains("txtPrice"))
+                //                {
+                //                    unitPrice = Convert.ToDecimal(((TextBox)cntrl).Text);
+                //                }
+
+                //                if (cntrl.Name.Contains("txtDiscount"))
+                //                {
+                //                    discount = Convert.ToSingle(((TextBox)cntrl).Text) / 100;
+                //                }
+                //            }
+                //        }
+                //    }
+
+                //    if (productID != -1 && quantity > 0)
+                //        DetailList.Add(new OrderDetail(o.OrderID, productID, unitPrice, quantity, discount));
+                //}
 
                 Business.SaveDetails(o.OrderID, DetailList);
             }
@@ -250,18 +183,9 @@ namespace InterfaceLayer
         public void CalculateFreight()
         {
             decimal freight = 0;
-            foreach (Panel pnl in pnlContainer.Controls)
+            foreach (BrettProductPanel pnl in pnlList)
             {
-                foreach (Control cntrl in pnl.Controls)
-                {
-                    if (cntrl is TextBox)
-                    {
-                        if (cntrl.Name.Contains("txtPrice"))
-                        {
-                            freight += Convert.ToDecimal(cntrl.Text);
-                        }
-                    }
-                }
+                freight += pnl.price;
             }
 
             txtFreight.Text = freight.ToString();
@@ -291,6 +215,12 @@ namespace InterfaceLayer
         public void RemovePanel(BrettProductPanel BPP)
         {
             pnlContainer.Controls.Remove(BPP);
+            pnlList.Remove(BPP);
+        }
+
+        public void AddNewProductPanel()
+        {
+            AddPanel();
         }
     }
 }
