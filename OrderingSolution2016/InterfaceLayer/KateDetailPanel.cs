@@ -111,7 +111,7 @@ namespace InterfaceLayer
             btnDelete = new Button();
             btnDelete.Location = new System.Drawing.Point(630, 4);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new System.Drawing.Size(40, 20);
+            btnDelete.Size = new System.Drawing.Size(50, 20);
             btnDelete.TabIndex = 4;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;

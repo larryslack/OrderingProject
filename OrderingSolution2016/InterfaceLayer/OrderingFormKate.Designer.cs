@@ -298,7 +298,7 @@
             // lblQuantity
             // 
             this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Location = new System.Drawing.Point(747, 67);
+            this.lblQuantity.Location = new System.Drawing.Point(796, 67);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(46, 13);
             this.lblQuantity.TabIndex = 29;
@@ -307,7 +307,7 @@
             // lblQuantityPrerUnit
             // 
             this.lblQuantityPrerUnit.AutoSize = true;
-            this.lblQuantityPrerUnit.Location = new System.Drawing.Point(516, 67);
+            this.lblQuantityPrerUnit.Location = new System.Drawing.Point(571, 67);
             this.lblQuantityPrerUnit.Name = "lblQuantityPrerUnit";
             this.lblQuantityPrerUnit.Size = new System.Drawing.Size(81, 13);
             this.lblQuantityPrerUnit.TabIndex = 30;
@@ -316,7 +316,7 @@
             // lblDiscount
             // 
             this.lblDiscount.AutoSize = true;
-            this.lblDiscount.Location = new System.Drawing.Point(832, 67);
+            this.lblDiscount.Location = new System.Drawing.Point(859, 67);
             this.lblDiscount.Name = "lblDiscount";
             this.lblDiscount.Size = new System.Drawing.Size(49, 13);
             this.lblDiscount.TabIndex = 31;
@@ -325,7 +325,7 @@
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(680, 67);
+            this.lblPrice.Location = new System.Drawing.Point(718, 67);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(31, 13);
             this.lblPrice.TabIndex = 32;
@@ -434,6 +434,7 @@
             this.label6.Size = new System.Drawing.Size(58, 13);
             this.label6.TabIndex = 38;
             this.label6.Text = "Total Price";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // OrderingFormKate
             // 
