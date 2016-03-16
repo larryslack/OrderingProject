@@ -455,7 +455,6 @@
             this.Controls.Add(this.label1);
             this.Name = "OrderingFormNathan";
             this.Text = "OrderingFormNathan";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OrderingFormNathan_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
