@@ -37,7 +37,7 @@
             this.lblProduct = new System.Windows.Forms.Label();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.lblDiscount = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
+            this.lblTotalPrice = new System.Windows.Forms.Label();
             this.txtRequiredDate = new System.Windows.Forms.TextBox();
             this.txtShipAddress = new System.Windows.Forms.TextBox();
             this.txtShipCity = new System.Windows.Forms.TextBox();
@@ -59,6 +59,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.lblError = new System.Windows.Forms.Label();
+            this.lblUnits = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnRandomOrder
@@ -113,7 +115,7 @@
             this.pnlContainer.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.pnlContainer.Location = new System.Drawing.Point(244, 60);
             this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(682, 371);
+            this.pnlContainer.Size = new System.Drawing.Size(869, 371);
             this.pnlContainer.TabIndex = 5;
             // 
             // lblProduct
@@ -128,7 +130,7 @@
             // lblQuantity
             // 
             this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Location = new System.Drawing.Point(334, 44);
+            this.lblQuantity.Location = new System.Drawing.Point(312, 44);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(46, 13);
             this.lblQuantity.TabIndex = 7;
@@ -143,14 +145,14 @@
             this.lblDiscount.TabIndex = 8;
             this.lblDiscount.Text = "Discount";
             // 
-            // lblPrice
+            // lblTotalPrice
             // 
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(526, 44);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(31, 13);
-            this.lblPrice.TabIndex = 9;
-            this.lblPrice.Text = "Price";
+            this.lblTotalPrice.AutoSize = true;
+            this.lblTotalPrice.Location = new System.Drawing.Point(526, 44);
+            this.lblTotalPrice.Name = "lblTotalPrice";
+            this.lblTotalPrice.Size = new System.Drawing.Size(58, 13);
+            this.lblTotalPrice.TabIndex = 9;
+            this.lblTotalPrice.Text = "Total Price";
             // 
             // txtRequiredDate
             // 
@@ -326,11 +328,31 @@
             this.lblError.Size = new System.Drawing.Size(0, 13);
             this.lblError.TabIndex = 32;
             // 
+            // lblUnits
+            // 
+            this.lblUnits.AutoSize = true;
+            this.lblUnits.Location = new System.Drawing.Point(364, 44);
+            this.lblUnits.Name = "lblUnits";
+            this.lblUnits.Size = new System.Drawing.Size(31, 13);
+            this.lblUnits.TabIndex = 33;
+            this.lblUnits.Text = "Units";
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Location = new System.Drawing.Point(401, 44);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(31, 13);
+            this.lblPrice.TabIndex = 34;
+            this.lblPrice.Text = "Price";
+            // 
             // OrderingFormBrett
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(936, 479);
+            this.ClientSize = new System.Drawing.Size(1131, 479);
+            this.Controls.Add(this.lblPrice);
+            this.Controls.Add(this.lblUnits);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.txtFax);
             this.Controls.Add(this.label16);
@@ -353,7 +375,7 @@
             this.Controls.Add(this.txtShipCity);
             this.Controls.Add(this.txtShipAddress);
             this.Controls.Add(this.txtRequiredDate);
-            this.Controls.Add(this.lblPrice);
+            this.Controls.Add(this.lblTotalPrice);
             this.Controls.Add(this.lblDiscount);
             this.Controls.Add(this.lblQuantity);
             this.Controls.Add(this.lblProduct);
@@ -381,7 +403,7 @@
         private System.Windows.Forms.Label lblProduct;
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.Label lblDiscount;
-        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Label lblTotalPrice;
         private System.Windows.Forms.TextBox txtRequiredDate;
         private System.Windows.Forms.TextBox txtShipAddress;
         private System.Windows.Forms.TextBox txtShipCity;
@@ -403,5 +425,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Label lblUnits;
+        private System.Windows.Forms.Label lblPrice;
     }
 }

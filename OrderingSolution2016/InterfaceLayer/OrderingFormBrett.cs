@@ -72,10 +72,13 @@ namespace InterfaceLayer
                 BPP.CalcFreight += CalculateFreight;
                 BPP.WowSelectedIndexIsAnnoying();
 
+                // I dont know if I like this way for it is efficient
                 lblProduct.Left = BrettProductPanel.lblProductX;
+                lblPrice.Left = BrettProductPanel.lblPriceX;
+                lblUnits.Left = BrettProductPanel.lblUnitsX;
                 lblQuantity.Left = BrettProductPanel.lblQuantityX;
                 lblDiscount.Left = BrettProductPanel.lblDiscountX;
-                lblPrice.Left = BrettProductPanel.lblPriceX;
+                lblTotalPrice.Left = BrettProductPanel.lblTotalPriceX;
             }
             catch (Exception ex)
             {
@@ -110,7 +113,7 @@ namespace InterfaceLayer
                 foreach (BrettProductPanel pnl in pnlList)
                 {
                     if (pnl.selectedProductID != -1 && pnl.quantity > 0)
-                        DetailList.Add(new OrderDetail(o.OrderID, pnl.selectedProductID, pnl.price, pnl.quantity, pnl.discount));
+                        DetailList.Add(new OrderDetail(o.OrderID, pnl.selectedProductID, pnl.totalPrice, pnl.quantity, pnl.discount));
                 }
 
                 //foreach (Panel pnl in pnlContainer.Controls)
@@ -187,7 +190,7 @@ namespace InterfaceLayer
             decimal freight = 0;
             foreach (BrettProductPanel pnl in pnlList)
             {
-                freight += pnl.price;
+                freight += pnl.totalPrice;
             }
 
             txtFreight.Text = freight.ToString();
