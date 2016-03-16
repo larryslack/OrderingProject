@@ -17,9 +17,10 @@ namespace InterfaceLayer
         string CustomerID;
         int EmployeeID;
         Customer Cust;
-        Product productItems;
+        List<Product> productItems;
         Order NewOrder;
-        OrderDetail NewOrderDet;
+        OrderDetail newOrderDetails;
+        List<OrderDetail> NewOrderDet;
 
         public OrderingFormLinda(string CustomerID, int EmployeeID)
         {
@@ -43,7 +44,11 @@ namespace InterfaceLayer
             txtShipRegion.Text = Cust.Region;
             txtPhoneNum.Text = Cust.Phone;
 
-            //  cbShipVia.DataSource = 
+            cbShipVia.DataSource = Business.ShipperTable();
+            cbShipVia.ValueMember = "ShipperID";
+            cbShipVia.DisplayMember = "CompanyName";
+            cbShipVia.SelectedIndex = -1;
+
             cbSelectProduct.DataSource = Business.ProductList();
             cbSelectProduct.DisplayMember = "ProductName";
             cbSelectProduct.ValueMember = "ProductID";
@@ -100,9 +105,51 @@ namespace InterfaceLayer
         {
             try
             {
+                productItems = new List<Product>();
+                NewOrderDet = new List<OrderDetail>();
+                string selectedProduct = cbSelectProduct.SelectedText;
+                //DGV.DataSource = Business.OrderDetailList(Convert.ToInt32(txtOrderId.Text));
+                DGV.CurrentRow.Cells["Product"].Value = cbSelectProduct.SelectedValue;
+                DGV.CurrentRow.Cells["Quantity"].Value = newOrderDetails.Quantity;
 
-               // NewOrder = new OrderDetail(0,prodID,, Quantity, null);
-               // Business.SaveDetails();
+                txtChangeQuantity.Text = DGV.CurrentRow.Cells["Quantity"].Value.ToString();
+
+                if (Convert.ToInt32(txtChangeQuantity.Text) < 50)
+                {
+                    double normalPrice = Convert.ToInt32(txtChangeQuantity.Text) * Convert.ToUInt32(newOrderDetails.UnitPrice);
+                    DGV.CurrentRow.Cells["Price"].Value = newOrderDetails.UnitPrice;
+                    DGV.CurrentRow.Cells["Total"].Value = normalPrice;
+                }
+                else if (Convert.ToInt32(txtChangeQuantity.Text) >= 50 || Convert.ToInt32(txtChangeQuantity.Text) < 100)
+                {
+                    double normalPrice = Convert.ToUInt32(newOrderDetails.UnitPrice) - (Convert.ToUInt32(newOrderDetails.UnitPrice) * .1);
+                    double TenPercent = Convert.ToUInt32(txtChangeQuantity.Text) * normalPrice;
+                    DGV.CurrentRow.Cells["Price50To100"].Value = normalPrice;
+                    DGV.CurrentRow.Cells["Total"].Value = TenPercent;
+                }
+                else if (Convert.ToInt32(txtChangeQuantity.Text) >= 100 || Convert.ToInt32(txtChangeQuantity.Text) < 500)
+                {
+                    double normalPrice = Convert.ToUInt32(newOrderDetails.UnitPrice) - (Convert.ToUInt32(newOrderDetails.UnitPrice) * .2);
+                    double TwentyPercent = Convert.ToUInt32(txtChangeQuantity.Text) * normalPrice;
+                    DGV.CurrentRow.Cells["Price100To500"].Value = normalPrice;
+                    DGV.CurrentRow.Cells["Total"].Value = TwentyPercent;
+                }
+                else if (Convert.ToInt32(txtChangeQuantity.Text) >= 500)
+                {
+                    double normalPrice = Convert.ToUInt32(newOrderDetails.UnitPrice) - (Convert.ToUInt32(newOrderDetails.UnitPrice) * .2);
+                    double ThirtyFivePercent = Convert.ToUInt32(txtChangeQuantity.Text) * normalPrice;
+                    DGV.CurrentRow.Cells["Price500OrMore"].Value = normalPrice;
+                    DGV.CurrentRow.Cells["Total"].Value = ThirtyFivePercent;
+                }
+
+                //foreach (DataGridView tmp in DGV.Controls)
+                //{
+                //    if (DGV.ProductName != null)
+                //    {
+
+                //    }
+                //}
+
             }
             catch (Exception ex)
             {

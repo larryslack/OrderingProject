@@ -38,6 +38,13 @@
             this.label = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.DGV = new System.Windows.Forms.DataGridView();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FiftyToHundred = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HundredToFiveHundred = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FiveHundredOrMore = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblEmpID = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -58,13 +65,9 @@
             this.btnSaveOrder = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtShipRegion = new System.Windows.Forms.TextBox();
-            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FiftyToHundred = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HundredToFiveHundred = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FiveHundredOrMore = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtChangeQuantity = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGV)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -163,6 +166,51 @@
             this.DGV.Name = "DGV";
             this.DGV.Size = new System.Drawing.Size(814, 170);
             this.DGV.TabIndex = 10;
+            // 
+            // Product
+            // 
+            this.Product.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Product.HeaderText = "Product";
+            this.Product.Name = "Product";
+            // 
+            // Quantity
+            // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            // 
+            // Price
+            // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            // 
+            // FiftyToHundred
+            // 
+            this.FiftyToHundred.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.FiftyToHundred.HeaderText = "Price50To100";
+            this.FiftyToHundred.Name = "FiftyToHundred";
+            this.FiftyToHundred.ReadOnly = true;
+            // 
+            // HundredToFiveHundred
+            // 
+            this.HundredToFiveHundred.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.HundredToFiveHundred.HeaderText = "Price100To500";
+            this.HundredToFiveHundred.Name = "HundredToFiveHundred";
+            this.HundredToFiveHundred.ReadOnly = true;
+            // 
+            // FiveHundredOrMore
+            // 
+            this.FiveHundredOrMore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.FiveHundredOrMore.HeaderText = "Price500OrMore";
+            this.FiveHundredOrMore.Name = "FiveHundredOrMore";
+            this.FiveHundredOrMore.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -349,56 +397,40 @@
             this.txtShipRegion.Size = new System.Drawing.Size(149, 22);
             this.txtShipRegion.TabIndex = 31;
             // 
-            // Product
+            // btnDel
             // 
-            this.Product.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Product.HeaderText = "Product";
-            this.Product.Name = "Product";
+            this.btnDel.Location = new System.Drawing.Point(662, 268);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(155, 24);
+            this.btnDel.TabIndex = 33;
+            this.btnDel.Text = "Delete Selected Order";
+            this.btnDel.UseVisualStyleBackColor = true;
             // 
-            // Quantity
+            // label12
             // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(13, 257);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(89, 13);
+            this.label12.TabIndex = 35;
+            this.label12.Text = "Chnage Quantity:";
             // 
-            // Price
+            // txtChangeQuantity
             // 
-            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            // 
-            // FiftyToHundred
-            // 
-            this.FiftyToHundred.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.FiftyToHundred.HeaderText = "Price50To100";
-            this.FiftyToHundred.Name = "FiftyToHundred";
-            this.FiftyToHundred.ReadOnly = true;
-            // 
-            // HundredToFiveHundred
-            // 
-            this.HundredToFiveHundred.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.HundredToFiveHundred.HeaderText = "Price100To500";
-            this.HundredToFiveHundred.Name = "HundredToFiveHundred";
-            this.HundredToFiveHundred.ReadOnly = true;
-            // 
-            // FiveHundredOrMore
-            // 
-            this.FiveHundredOrMore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.FiveHundredOrMore.HeaderText = "Price500OrMore";
-            this.FiveHundredOrMore.Name = "FiveHundredOrMore";
-            this.FiveHundredOrMore.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
+            this.txtChangeQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtChangeQuantity.Location = new System.Drawing.Point(102, 252);
+            this.txtChangeQuantity.Name = "txtChangeQuantity";
+            this.txtChangeQuantity.Size = new System.Drawing.Size(149, 22);
+            this.txtChangeQuantity.TabIndex = 34;
             // 
             // OrderingFormLinda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(817, 469);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.txtChangeQuantity);
+            this.Controls.Add(this.btnDel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtShipRegion);
             this.Controls.Add(this.btnSaveOrder);
@@ -471,5 +503,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HundredToFiveHundred;
         private System.Windows.Forms.DataGridViewTextBoxColumn FiveHundredOrMore;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtChangeQuantity;
     }
 }
