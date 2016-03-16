@@ -20,6 +20,8 @@ namespace InterfaceLayer
         List<ProductPanel> listProductPanel = new List<ProductPanel>();
         List<Product> productList = Business.ProductList();
         Customer CustomerActive;
+        bool dontcheckcombobox = false;
+
 
         public OrderingForm(string CustomerID, int EmployeeID)
         {
@@ -28,7 +30,7 @@ namespace InterfaceLayer
             this.EmployeeID = EmployeeID;
             lblCustomerID.Text = CustomerID;
             lblEmployeeID.Text = EmployeeID.ToString();
-            
+
         }
 
         private void OrderingForm_Load(object sender, EventArgs e)
@@ -41,7 +43,7 @@ namespace InterfaceLayer
             txtTotalCost.Text = zero.ToString("C");
             txtTotalQuantity.Text = zero.ToString();
             txtTotalDiscount.Text = zero.ToString("C");
-            
+
             cmbShipVia.DataSource = Business.ShipperTable();
             cmbShipVia.ValueMember = "ShipperID";
             cmbShipVia.DisplayMember = "CompanyName";
@@ -59,22 +61,53 @@ namespace InterfaceLayer
         }
 
         private void comboProduct_SelectedIndexChanged(object sender, EventArgs e)
-        {            
-            bool allUsed = true;
-            foreach (ProductPanel item in listProductPanel)
+        {
+            if (!dontcheckcombobox)
             {
-                //item.txtPrice.Text = 
-                item.updatePrice();
-                if (item.comboProduct.SelectedIndex == null)
+                bool allUsed = true;
+                foreach (ProductPanel item in listProductPanel)
                 {
-                    allUsed = false;
+                    //item.txtPrice.Text = 
+                    item.updatePrice();
+                    if (item.comboProduct.SelectedItem == null)
+                    {
+                        allUsed = false;
+                    }
                 }
-            }
-            if (allUsed)
+                if (allUsed)
+                {
+                    GenerateProductPanel();
+                }
+                updatecomboProducts();
+            } 
+        }
+
+        private void updatecomboProducts()
+        {
+            dontcheckcombobox = true;
+            foreach (ProductPanel itemupdating in listProductPanel)
             {
-                GenerateProductPanel();
-            }
-            
+                itemupdating.productListInternal = new List<Product>(productList);
+                Product tmpProduct = (Product)itemupdating.comboProduct.SelectedItem;
+
+                foreach (ProductPanel item in listProductPanel)
+                {
+                    if (itemupdating != item && item.comboProduct.SelectedItem != null)
+                    {
+                        itemupdating.productListInternal.Remove((Product)item.comboProduct.SelectedItem);
+
+                        itemupdating.comboProduct.DataSource = null;
+                        itemupdating.comboProduct.DisplayMember = "ProductName";
+                        itemupdating.comboProduct.ValueMember = "ProductID";
+                        itemupdating.comboProduct.DataSource = itemupdating.productListInternal;
+
+                        
+                    }
+                }
+
+                itemupdating.comboProduct.SelectedItem = tmpProduct;
+            }            
+            dontcheckcombobox = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,7 +130,7 @@ namespace InterfaceLayer
                 catch (Exception)
                 {
                 }
-                
+
             }
             txtTotalCost.Text = totalLineItem.ToString("C");
         }
@@ -126,16 +159,54 @@ namespace InterfaceLayer
             ProductPanel temp = new ProductPanel(panelProducts, 4, productList);
             temp.BringToFront();
             listProductPanel.Add(temp);
+
+            foreach (ProductPanel item in listProductPanel)
+            {
+                if (item.comboProduct.SelectedItem != null)
+                {
+                    temp.productListInternal.Remove((Product)item.comboProduct.SelectedItem);
+                }
+            }
+            temp.comboProduct.DataSource = temp.productListInternal;
             temp.comboProduct.SelectedItem = null;
             temp.comboProduct.SelectedIndexChanged += comboProduct_SelectedIndexChanged;
             temp.updPrice += temp_updPrice;
-            temp.btnDelete.Click += (sender, e) =>
-            {
-                panelProducts.Controls.Remove(temp);
-                listProductPanel.Remove(temp);
-                updatepanelLocation();
-            };
+            temp.updPercent += temp_updPercent;
+            temp.btnDelete.Click += btnDelete_Click;
             updatepanelLocation();
+
+        }
+
+        void temp_updPercent()
+        {
+            foreach (ProductPanel item in listProductPanel)
+            {
+                string tmp = item.txtDiscount.Text;
+                tmp = tmp.Replace("%", "");
+                item.txtDiscount.Text = string.Format("{0}%", tmp);
+            }
+        }
+
+        void btnDelete_Click(object sender, EventArgs e)
+        {
+            ProductPanel item = (ProductPanel)((Button)sender).Parent;
+
+            panelProducts.Controls.Remove(item);
+            listProductPanel.Remove(item);
+            updatepanelLocation();
+            udpateprice();
+            updatecomboProducts();
+            //foreach (ProductPanel item in listProductPanel)
+            //{
+            //    if (item.comboProduct.SelectedItem == null)
+            //    {                    
+            //        panelProducts.Controls.Remove(item);
+            //        listProductPanel.Remove(item);
+            //        GenerateProductPanel();
+            //        break;
+            //    }
+            //}
+            
         }
 
         void temp_updPrice()
@@ -150,6 +221,18 @@ namespace InterfaceLayer
             {
                 item.Location = new System.Drawing.Point(4, ylocation);
                 ylocation += 28;
+
+            }
+            foreach (ProductPanel item in listProductPanel)
+            {
+                if (item.comboProduct.SelectedItem == null)
+                {
+                    item.btnDelete.Visible = false;
+                }
+                else
+                {
+                    item.btnDelete.Visible = true;
+                }
             }
         }
         private void textBox9_TextChanged(object sender, EventArgs e)
@@ -164,6 +247,18 @@ namespace InterfaceLayer
 
         private void groupBox3_Enter(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            foreach (ProductPanel item in listProductPanel)
+            {
+                
+                
+                break;
+            }
+            
 
         }
     }

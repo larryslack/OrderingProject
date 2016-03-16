@@ -55,6 +55,8 @@
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtDate = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.txtTotalCost = new System.Windows.Forms.TextBox();
@@ -67,8 +69,7 @@
             this.lblCustomerID = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtDate = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -320,6 +321,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ship From";
             // 
+            // txtDate
+            // 
+            this.txtDate.ForeColor = System.Drawing.Color.Gray;
+            this.txtDate.Location = new System.Drawing.Point(77, 84);
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Size = new System.Drawing.Size(100, 20);
+            this.txtDate.TabIndex = 23;
+            this.txtDate.Text = "DD/MM/YYYY";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 87);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(65, 13);
+            this.label20.TabIndex = 22;
+            this.label20.Text = "Required By";
+            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -427,29 +446,22 @@
             this.label16.TabIndex = 7;
             this.label16.Text = "CustomerID:";
             // 
-            // label20
+            // button1
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(6, 87);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(65, 13);
-            this.label20.TabIndex = 22;
-            this.label20.Text = "Required By";
-            // 
-            // txtDate
-            // 
-            this.txtDate.ForeColor = System.Drawing.Color.Gray;
-            this.txtDate.Location = new System.Drawing.Point(77, 84);
-            this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(100, 20);
-            this.txtDate.TabIndex = 23;
-            this.txtDate.Text = "DD/MM/YYYY";
+            this.button1.Location = new System.Drawing.Point(612, -2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // OrderingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(828, 465);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.txtTotalDiscount);
             this.Controls.Add(this.label15);
@@ -521,5 +533,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtDate;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button button1;
     }
 }

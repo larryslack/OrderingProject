@@ -14,6 +14,11 @@ namespace InterfaceLayer
 
         public event UpdatePrice updPrice;
 
+        public delegate void UpdatePercent();
+
+        public event UpdatePercent updPercent;
+
+
         #region Protected Fields
         public ComboBox comboProduct;
         public TextBox txtPrice;
@@ -36,7 +41,6 @@ namespace InterfaceLayer
             comboProduct.Name = "comboBox1";
             comboProduct.Size = new System.Drawing.Size(121, 21);
             comboProduct.TabIndex = 0;
-            comboProduct.DataSource = productListInternal;
             comboProduct.DisplayMember = "ProductName";
             comboProduct.ValueMember = "ProductID";
             // 
@@ -70,6 +74,7 @@ namespace InterfaceLayer
             int temp = 0;
             txtDiscount.Text = temp.ToString("P");
             txtDiscount.TextChanged += txtPrice_TextChanged;
+            txtDiscount.Leave += txtDiscount_Leave;
             // 
             // button1
             // 
@@ -94,6 +99,12 @@ namespace InterfaceLayer
             this.Name = "panel1";
             this.Size = new System.Drawing.Size(414, 28);
             add2.Controls.Add(this);
+        }
+
+        void txtDiscount_Leave(object sender, EventArgs e)
+        {
+            if (updPercent != null)
+                updPercent();
         }
 
         void txtPrice_TextChanged(object sender, EventArgs e)
