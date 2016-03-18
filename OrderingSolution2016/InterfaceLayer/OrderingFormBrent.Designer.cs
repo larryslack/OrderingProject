@@ -65,6 +65,8 @@
             this.InStockBox = new System.Windows.Forms.TextBox();
             this.SupplierBox = new System.Windows.Forms.TextBox();
             this.FinalBtn = new System.Windows.Forms.Button();
+            this.UserLbl = new System.Windows.Forms.Label();
+            this.CustLbl = new System.Windows.Forms.Label();
             this.ShippingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUpdown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiscountUpDown)).BeginInit();
@@ -430,11 +432,31 @@
             this.FinalBtn.UseVisualStyleBackColor = true;
             this.FinalBtn.Click += new System.EventHandler(this.FinalBtn_Click);
             // 
+            // UserLbl
+            // 
+            this.UserLbl.AutoSize = true;
+            this.UserLbl.Location = new System.Drawing.Point(9, 12);
+            this.UserLbl.Name = "UserLbl";
+            this.UserLbl.Size = new System.Drawing.Size(56, 13);
+            this.UserLbl.TabIndex = 57;
+            this.UserLbl.Text = "Employee:";
+            // 
+            // CustLbl
+            // 
+            this.CustLbl.AutoSize = true;
+            this.CustLbl.Location = new System.Drawing.Point(9, 38);
+            this.CustLbl.Name = "CustLbl";
+            this.CustLbl.Size = new System.Drawing.Size(54, 13);
+            this.CustLbl.TabIndex = 58;
+            this.CustLbl.Text = "Customer:";
+            // 
             // OrderingFormBrent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(602, 458);
+            this.Controls.Add(this.CustLbl);
+            this.Controls.Add(this.UserLbl);
             this.Controls.Add(this.FinalBtn);
             this.Controls.Add(this.ShippingPanel);
             this.Controls.Add(this.SupplierBox);
@@ -504,5 +526,7 @@
         private System.Windows.Forms.TextBox InStockBox;
         private System.Windows.Forms.TextBox SupplierBox;
         private System.Windows.Forms.Button FinalBtn;
+        private System.Windows.Forms.Label UserLbl;
+        private System.Windows.Forms.Label CustLbl;
     }
 }
