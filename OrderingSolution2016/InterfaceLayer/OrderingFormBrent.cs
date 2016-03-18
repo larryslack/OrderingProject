@@ -50,11 +50,12 @@ namespace InterfaceLayer
         {
             string AddToOrder = "";
             AddToOrder += ProductBox.SelectedItem.ToString();
-            AddToOrder += " (" + QuantityUpdown.Value + ") : ";
-            //decimal DaPrice = fer[ProductBox.SelectedIndex].UnitPrice;
-            //DaPrice = (DaPrice * QuantityUpdown.Value);
-            //AddToOrder += DaPrice.ToString("c");
-            AddToOrder += PriceBox.Text;
+            AddToOrder += " (" + QuantityUpdown.Value + ")";
+            if (DiscountUpDown.Value != 0)
+            {
+                AddToOrder += "[" + ((DiscountUpDown.Value)*100).ToString("#") + "% Discount]";
+            }
+            AddToOrder += " : " + PriceBox.Text;
             OrderList.Items.Add(AddToOrder);
         }
 
@@ -141,6 +142,11 @@ namespace InterfaceLayer
             PriceBox.Enabled = !DatWay;
             SupplierBox.Enabled = !DatWay;
             InStockBox.Enabled = !DatWay;
+        }
+
+        private void SendBtn_Click(object sender, EventArgs e)
+        {
+            Order NewOrder = new Order(3, CurrentCustomer, CurrentEmployee, DateTime.Today, RequiredDatePicker.Value, null, null, null, ShipNameBox.Text, ShipAddressBox.Text, ShipCityBox.Text, ShipRegionBox.Text, ShipPostalBox.Text, ShipCountryBox.Text);
         }
     }
 }
