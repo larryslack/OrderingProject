@@ -21,7 +21,7 @@ namespace InterfaceLayer
         List<OrderDetail> DetailsList = new List<OrderDetail>();
         // Customer currentCustomer;
         List<Product> ProductList = new List<Product>();
-        Order Test = new Order(5000);
+        Order Test = new Order(12012);
         List<Shipper> Shippers = new List<Shipper>();
 
 
