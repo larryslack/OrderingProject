@@ -30,6 +30,7 @@
         {
             this.OrderList = new System.Windows.Forms.ListBox();
             this.ShippingPanel = new System.Windows.Forms.Panel();
+            this.SendBtn = new System.Windows.Forms.Button();
             this.ShipCountryBox = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.ShipPostalBox = new System.Windows.Forms.TextBox();
@@ -67,7 +68,6 @@
             this.FinalBtn = new System.Windows.Forms.Button();
             this.UserLbl = new System.Windows.Forms.Label();
             this.CustLbl = new System.Windows.Forms.Label();
-            this.SendBtn = new System.Windows.Forms.Button();
             this.ShippingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUpdown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiscountUpDown)).BeginInit();
@@ -110,6 +110,16 @@
             this.ShippingPanel.Size = new System.Drawing.Size(614, 208);
             this.ShippingPanel.TabIndex = 55;
             this.ShippingPanel.TabStop = true;
+            // 
+            // SendBtn
+            // 
+            this.SendBtn.Location = new System.Drawing.Point(12, 138);
+            this.SendBtn.Name = "SendBtn";
+            this.SendBtn.Size = new System.Drawing.Size(578, 47);
+            this.SendBtn.TabIndex = 73;
+            this.SendBtn.Text = "Send Order";
+            this.SendBtn.UseVisualStyleBackColor = true;
+            this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
             // 
             // ShipCountryBox
             // 
@@ -292,7 +302,7 @@
             this.RemoveBtn.TabIndex = 4;
             this.RemoveBtn.Text = "Remove";
             this.RemoveBtn.UseVisualStyleBackColor = true;
-            this.RemoveBtn.Click += new System.EventHandler(this.button1_Click);
+            this.RemoveBtn.Click += new System.EventHandler(this.RemoveBtn_Click);
             // 
             // label1
             // 
@@ -452,16 +462,6 @@
             this.CustLbl.Size = new System.Drawing.Size(54, 13);
             this.CustLbl.TabIndex = 58;
             this.CustLbl.Text = "Customer:";
-            // 
-            // SendBtn
-            // 
-            this.SendBtn.Location = new System.Drawing.Point(12, 138);
-            this.SendBtn.Name = "SendBtn";
-            this.SendBtn.Size = new System.Drawing.Size(578, 47);
-            this.SendBtn.TabIndex = 73;
-            this.SendBtn.Text = "Send Order";
-            this.SendBtn.UseVisualStyleBackColor = true;
-            this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
             // 
             // OrderingFormBrent
             // 

@@ -18,6 +18,7 @@ namespace InterfaceLayer
         int CurrentEmployee = 0;
 
         List<Product> fer = Business.ProductList();
+        List<OrderDetail> BetterNameThanFer = new List<OrderDetail>();
 
         public OrderingFormBrent()
         {
@@ -40,10 +41,13 @@ namespace InterfaceLayer
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void RemoveBtn_Click(object sender, EventArgs e)
         {
             if (OrderList.SelectedIndex >= 0)
+            {
+                BetterNameThanFer.RemoveAt(OrderList.SelectedIndex);
                 OrderList.Items.RemoveAt(OrderList.SelectedIndex);
+            }
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
@@ -53,10 +57,14 @@ namespace InterfaceLayer
             AddToOrder += " (" + QuantityUpdown.Value + ")";
             if (DiscountUpDown.Value != 0)
             {
-                AddToOrder += "[" + ((DiscountUpDown.Value)*100).ToString("#") + "% Discount]";
+                AddToOrder += " [" + ((DiscountUpDown.Value)*100).ToString("#") + "% Discount]";
             }
             AddToOrder += " : " + PriceBox.Text;
             OrderList.Items.Add(AddToOrder);
+            //Order Detail code
+            int Das = ProductBox.SelectedIndex;
+            OrderDetail ThisPart = new OrderDetail(0, fer[Das].ProductID, fer[Das].UnitPrice, Convert.ToInt16(QuantityUpdown.Value), Convert.ToSingle(DiscountUpDown.Value));
+            BetterNameThanFer.Add(ThisPart);
         }
 
         private void ProductBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -147,6 +155,10 @@ namespace InterfaceLayer
         private void SendBtn_Click(object sender, EventArgs e)
         {
             Order NewOrder = new Order(3, CurrentCustomer, CurrentEmployee, DateTime.Today, RequiredDatePicker.Value, null, null, null, ShipNameBox.Text, ShipAddressBox.Text, ShipCityBox.Text, ShipRegionBox.Text, ShipPostalBox.Text, ShipCountryBox.Text);
+            BusinessLayer.Business.SaveOrder(NewOrder);
+
+
+            //Business.SaveDetails(NewOrder.OrderID,
         }
     }
 }
