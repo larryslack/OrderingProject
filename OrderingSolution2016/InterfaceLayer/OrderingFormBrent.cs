@@ -14,8 +14,8 @@ namespace InterfaceLayer
 {
     public partial class OrderingFormBrent : Form
     {
-        string CurrentCustomer;
-        int CurrentEmployee;
+        string CurrentCustomer = "Error";
+        int CurrentEmployee = 0;
 
         List<Product> fer = Business.ProductList();
 
@@ -31,6 +31,8 @@ namespace InterfaceLayer
             InitializeComponent();
             CurrentCustomer = CustomerID;
             CurrentEmployee = EmployeeID;
+            CustLbl.Text += CurrentCustomer;
+            UserLbl.Text += CurrentEmployee.ToString();
             //ProductBox.Items
             foreach (Product er in fer)
             {
