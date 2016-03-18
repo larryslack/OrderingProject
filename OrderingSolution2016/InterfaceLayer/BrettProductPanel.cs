@@ -34,16 +34,15 @@ namespace InterfaceLayer
         private List<Product> productList = new List<Product>();
         private List<BrettProductPanel> panelList = new List<BrettProductPanel>();
         private int containerX = 0;
-
-        private short quantity = 0;
-        private decimal discount = 0;
-        private decimal price = 0;
-
+        
         #endregion
 
         #region Properties
 
         public int selectedProductID { get; private set; }
+        public short quantity { get; private set; }
+        public float discount { get; private set; }
+        public decimal price { get; private set; }
         public decimal totalPrice { get; private set; }
         public decimal freight { get; private set; }
 
@@ -346,8 +345,8 @@ namespace InterfaceLayer
                 decimal discountPrice = 0;
 
                 // Puts the discount into percentage. Then adds one so when it is used it will take the percentage off.
-                discount = discount / 100m;
-                discountPrice = productList[index].UnitPrice * quantity * discount;
+                discount = discount / 100;
+                discountPrice = productList[index].UnitPrice * quantity * Convert.ToDecimal(discount);
 
                 totalPrice = (productList[index].UnitPrice * quantity) - discountPrice;
 
