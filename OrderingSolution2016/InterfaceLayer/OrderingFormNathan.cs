@@ -50,8 +50,7 @@ namespace InterfaceLayer
             int ShipperNameID = (int)cbShipVia.SelectedValue;
             string shippername = Shippers[ShipperNameID].CompanyName.ToString();
             Test = new Order(Test.OrderID, lblCustId.Text, Convert.ToInt32(lblEmID.Text), Convert.ToDateTime(lblTDate.Text), Convert.ToDateTime(txtRDate.Text), Convert.ToDateTime(txtSDate.Text), Convert.ToInt32(cbShipVia.SelectedValue.ToString()), Convert.ToDecimal(lblFin.Text), shippername.ToString(), txtAddress.Text, txtCity.Text, txtRegion.Text, txtPostal.Text, txtCountry.Text);
-            BusinessLayer.Business.SaveOrder(Test);
-          //Business.SaveDetails(Test.OrderID,DetailsList);
+            Business.SaveDetails(Test.OrderID,DetailsList);
             lsDetails.Items.Clear();
             txtDisc.Text = "0";
             txtQuantity.Text = "0";
