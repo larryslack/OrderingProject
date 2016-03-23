@@ -27,9 +27,21 @@ namespace InterfaceLayer
         public Button btnDelete;
         public List<Product> productListInternal;
 
+
         protected Panel Addto = new Panel();
 
         #endregion
+
+        #region Public Fields
+
+        public short quantity { get; private set; }
+        public decimal totalPrice { get; public set; }
+        public decimal Price { get; private set; }
+        public float discount { get; public set; }
+
+        #endregion Public Fields
+
+
 
         public ProductPanel(Panel add2, int locationy, List<Product> productlist)
         {
@@ -63,6 +75,7 @@ namespace InterfaceLayer
             txtQuantity.TabIndex = 2;
             txtQuantity.Text = "0";
             txtQuantity.TextChanged += txtPrice_TextChanged;
+            txtQuantity.TextChanged += txtQuantity_TextChanged;
             // 
             // textBox3
             // 
@@ -75,6 +88,7 @@ namespace InterfaceLayer
             txtDiscount.Text = temp.ToString("P");
             txtDiscount.TextChanged += txtPrice_TextChanged;
             txtDiscount.Leave += txtDiscount_Leave;
+            txtDiscount.TextChanged += txtDiscount_TextChanged;
             // 
             // button1
             // 
@@ -101,6 +115,27 @@ namespace InterfaceLayer
             add2.Controls.Add(this);
         }
 
+        void txtDiscount_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                quantity = short.Parse(txtQuantity.Text);
+            }
+            catch (Exception)
+            { }
+        }
+
+        void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception)
+            {            }
+            
+        }
+
         void txtDiscount_Leave(object sender, EventArgs e)
         {
             if (updPercent != null)
@@ -112,6 +147,8 @@ namespace InterfaceLayer
             if (updPrice != null)
             updPrice();
         }
+
+
         public void updatePrice()
         {
             foreach (Product item in productListInternal)

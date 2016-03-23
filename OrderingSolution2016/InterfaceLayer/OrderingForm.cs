@@ -21,7 +21,7 @@ namespace InterfaceLayer
         List<Product> productList = Business.ProductList();
         Customer CustomerActive;
         bool dontcheckcombobox = false;
-
+        List<OrderDetail> DetailList;
 
         public OrderingForm(string CustomerID, int EmployeeID)
         {
@@ -117,22 +117,27 @@ namespace InterfaceLayer
 
         public void udpateprice()
         {
+            decimal RunningTotal = 0;
             decimal totalLineItem = 0;
 
             foreach (ProductPanel item in listProductPanel)
             {
                 try
                 {
-                    totalLineItem += (decimal.Parse(item.txtPrice.Text.Replace("$", "")) * decimal.Parse(item.txtQuantity.Text)) -
+                    totalLineItem = (decimal.Parse(item.txtPrice.Text.Replace("$", "")) * decimal.Parse(item.txtQuantity.Text)) -
                     (decimal.Parse(item.txtPrice.Text.Replace("$", "")) * decimal.Parse(item.txtQuantity.Text) *
                     (decimal.Parse(item.txtDiscount.Text.Replace("%", "")) / 100));
+
+                    RunningTotal += totalLineItem;
+                    item.discount = (float.Parse(item.txtDiscount.Text.Replace("%", "")) / 100);
+                    item.totalPrice = totalLineItem;
                 }
                 catch (Exception)
                 {
                 }
 
             }
-            txtTotalCost.Text = totalLineItem.ToString("C");
+            txtTotalCost.Text = RunningTotal.ToString("C");
         }
         public void DateMethod()
         {
@@ -260,6 +265,46 @@ namespace InterfaceLayer
             }
             
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Order neworder = new Order(1);
+                neworder.CustomerID = lblCustomerID.Text;
+                neworder.EmployeeID = Convert.ToInt32(lblEmployeeID.Text);
+                neworder.OrderDate = DateTime.Now;
+                neworder.RequiredDate = Convert.ToDateTime(txtDate.Text);
+                neworder.ShippedDate = null;
+                neworder.ShipVia = Convert.ToInt32(cmbShipVia.SelectedValue);
+                neworder.Freight = Convert.ToDecimal(txtFreight.Text); //Retrieve later.
+                neworder.ShipName = CustomerActive.CompanyName;
+                neworder.ShipAddress = txtAddress.Text;
+                neworder.ShipCity = txtCity.Text;
+                neworder.ShipRegion = txtRegion.Text;
+                neworder.ShipPostalCode = txtPostalCode.Text;
+                neworder.ShipCountry = txtCountry.Text;
+                neworder.EmployeeName = null; // I need the employee name.
+                neworder.ShipperName = cmbShipVia.Text;
+
+                Business.SaveOrder(neworder);
+                DetailList = new List<OrderDetail>();
+
+                foreach (ProductPanel panelInList in listProductPanel)
+                {
+                    if (panelInList.comboProduct.SelectedIndex > 0 && panelInList.quantity > 0)
+
+                        DetailList.Add(new OrderDetail(neworder.OrderID, panelInList.comboProduct.SelectedIndex, panelInList.totalPrice, panelInList.quantity, panelInList.discount));
+                }
+
+
+                Business.SaveDetails(neworder.OrderID, DetailList);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
