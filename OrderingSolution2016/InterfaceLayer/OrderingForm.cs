@@ -33,6 +33,16 @@ namespace InterfaceLayer
 
         }
 
+        //public OrderingForm(string CustomerID, int EmployeeID)
+        //{
+        //    InitializeComponent();
+        //    this.CustomerID = CustomerID;
+        //    this.EmployeeID = EmployeeID;
+        //    lblCustomerID.Text = CustomerID;
+        //    lblEmployeeID.Text = EmployeeID.ToString();
+
+        //}
+
         private void OrderingForm_Load(object sender, EventArgs e)
         {
             GenerateProductPanel();
@@ -79,7 +89,7 @@ namespace InterfaceLayer
                     GenerateProductPanel();
                 }
                 updatecomboProducts();
-            } 
+            }
         }
 
         private void updatecomboProducts()
@@ -101,12 +111,12 @@ namespace InterfaceLayer
                         itemupdating.comboProduct.ValueMember = "ProductID";
                         itemupdating.comboProduct.DataSource = itemupdating.productListInternal;
 
-                        
+
                     }
                 }
 
                 itemupdating.comboProduct.SelectedItem = tmpProduct;
-            }            
+            }
             dontcheckcombobox = false;
         }
 
@@ -211,7 +221,7 @@ namespace InterfaceLayer
             //        break;
             //    }
             //}
-            
+
         }
 
         void temp_updPrice()
@@ -259,11 +269,11 @@ namespace InterfaceLayer
         {
             foreach (ProductPanel item in listProductPanel)
             {
-                
-                
+
+
                 break;
             }
-            
+
 
         }
 

@@ -41,6 +41,14 @@ namespace BusinessLayer
            }
         }
 
+        public static void UpdateOrder(Order o) // check to make sure Order ID, customer ID, ship Name,PostalCode,address,city,order date, employee Id arent null
+        {
+            if (o.OrderID != null && o.CustomerID != null && o.EmployeeID != null && o.OrderDate != null && o.ShipAddress != null && o.ShipName != null && o.ShipPostalCode != null && o.ShipCity != null)
+           {
+                DB.UpdateOrder(o);
+           }
+        }
+
         public static void SaveDetails(int OrderID, List<OrderDetail> ordDetailList)
         {
             DB.ReplaceDetails(OrderID, ordDetailList);
