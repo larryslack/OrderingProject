@@ -35,9 +35,9 @@ namespace InterfaceLayer
         #region Public Fields
 
         public short quantity { get; private set; }
-        public decimal totalPrice { get; public set; }
+        public decimal totalPrice { get; set; }
         public decimal Price { get; private set; }
-        public float discount { get; public set; }
+        public float discount { get; set; }
 
         #endregion Public Fields
 

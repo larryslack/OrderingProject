@@ -116,7 +116,7 @@ namespace InterfaceLayer
 
         void cmb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBox thiscmb = (ComboBox)sender;
+            ComboBox thiscmb = (ComboBox)sender;//Check if this work
             bool once = true;
             foreach (ComboBox tmp in cmbList)
             {
@@ -195,7 +195,7 @@ namespace InterfaceLayer
                 }
                 Business.SaveDetails(OrderID, DetailList);
                 MessageBox.Show("Products saved Properly, or is it?");
-                DetailList.RemoveRange(0, DetailList.Count);
+                DetailList.RemoveRange(0, DetailList.Count);//is it changing or not?
             }
             catch (Exception ex)
             {
