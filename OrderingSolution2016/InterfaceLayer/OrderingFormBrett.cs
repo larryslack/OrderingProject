@@ -14,22 +14,30 @@ namespace InterfaceLayer
 {
     public partial class OrderingFormBrett : Form
     {
+        bool isEditting = false;
         string CustomerID;
         int EmployeeID;
         List<OrderDetail> DetailList;
+        List<OrderDetail> TempDetailList;
         List<BrettProductPanel> pnlList = new List<BrettProductPanel>();
         Customer currentCustomer;
         List<Product> productList;
-
-
+        int OrderID = 0;
 
         public OrderingFormBrett(string CustomerID, int EmployeeID)
         {
             InitializeComponent();
-            this.CustomerID = CustomerID;
-            this.EmployeeID = EmployeeID;
-            lblCustomerID.Text = CustomerID;
-            lblEmployeeID.Text = EmployeeID.ToString();
+            PreInitForm(CustomerID, EmployeeID);
+        }
+
+        public OrderingFormBrett(string CustomerID, int EmployeeID, List<OrderDetail> DetailList)
+        {
+            InitializeComponent();
+            PreInitForm(CustomerID, EmployeeID);
+            this.TempDetailList = DetailList;
+            isEditting = true;
+            OrderID = DetailList[0].OrderID;
+            lblOrderID.Text = OrderID.ToString();
         }
 
         private void OrderingFormBrett_Load(object sender, EventArgs e)
@@ -37,10 +45,8 @@ namespace InterfaceLayer
             productList = Business.ProductList();
 
             pnlContainer.BorderStyle = BorderStyle.FixedSingle;
-            AddPanel();
 
             currentCustomer = Business.GetCustomer(CustomerID);
-
             txtPostalCode.Text = currentCustomer.PostalCode;
             txtRegion.Text = currentCustomer.Region;
             txtShipAddress.Text = currentCustomer.Address;
@@ -57,20 +63,48 @@ namespace InterfaceLayer
             cmbShipVia.SelectedIndex = -1;
 
             TxtRequiredDateMethods();
+
+            if (isEditting)
+            {
+                foreach (OrderDetail detail in TempDetailList)
+                {
+                    AddPanel(detail);
+                }
+            }
+
+            AddPanel();
+        }
+
+        private void PreInitForm(string CustomerID, int EmployeeID)
+        { 
+            this.CustomerID = CustomerID;
+            this.EmployeeID = EmployeeID;
+            lblCustomerID.Text = CustomerID;
+            lblEmployeeID.Text = EmployeeID.ToString();
         }
 
         private void AddPanel()
         {
+            BrettProductPanel BPP = new BrettProductPanel(pnlList, productList, pnlContainer.Width, pnlContainer.Height, pnlContainer.Left);
+            SetupPanel(BPP);
+        }
+
+        private void AddPanel(OrderDetail detail)
+        {
+            BrettProductPanel BPP = new BrettProductPanel(pnlList, productList, pnlContainer.Width, pnlContainer.Height, pnlContainer.Left, detail.ProductID, detail.Quantity, detail.Discount, detail.UnitPrice);
+            SetupPanel(BPP);
+        }
+
+        private void SetupPanel(BrettProductPanel BPP)
+        {
             try
             {
                 lblError.Text = "";
-                BrettProductPanel BPP = new BrettProductPanel(pnlList, productList, pnlContainer.Width, pnlContainer.Height, pnlContainer.Left);
                 pnlContainer.Controls.Add(BPP);
                 pnlList.Add(BPP);
                 BPP.RemovePanel += RemovePanel;
-                BPP.AddProductPanel += AddNewProductPanel;
+                BPP.AddProductPanel += AddPanel;
                 BPP.CalcFreight += CalculateFreight;
-                BPP.WowSelectedIndexIsAnnoying();
 
                 // I dont know if I like this way for it is efficient
                 lblProduct.Left = BrettProductPanel.lblProductX;
@@ -79,6 +113,7 @@ namespace InterfaceLayer
                 lblQuantity.Left = BrettProductPanel.lblQuantityX;
                 lblDiscount.Left = BrettProductPanel.lblDiscountX;
                 lblTotalPrice.Left = BrettProductPanel.lblTotalPriceX;
+                BPP.WowSelectedIndexIsAnnoying();
             }
             catch (Exception ex)
             {
@@ -86,7 +121,7 @@ namespace InterfaceLayer
             }
         }
 
-        private void btnRandomOrder_Click(object sender, EventArgs e)
+        private void btnMakeOrder_Click(object sender, EventArgs e)
         {
             try
             {
@@ -108,55 +143,9 @@ namespace InterfaceLayer
                 o.ShipperName = cmbShipVia.Text;
 
                 Business.SaveOrder(o);
-                DetailList = new List<OrderDetail>();
-
-                foreach (BrettProductPanel pnl in pnlList)
-                {
-                    if (pnl.selectedProductID != -1 && pnl.quantity > 0)
-                        DetailList.Add(new OrderDetail(o.OrderID, pnl.selectedProductID, pnl.totalPrice, pnl.quantity, pnl.discount));
-                }
-
-                //foreach (Panel pnl in pnlContainer.Controls)
-                //{
-                //    int productID = -1;
-                //    decimal unitPrice = 0;
-                //    short quantity = 0;
-                //    float discount = 0;
-
-                //    foreach (Control cntrl in pnl.Controls)
-                //    {
-                //        if (((ComboBox)pnl.Controls[0]).SelectedIndex != -1)
-                //        {
-                //            if (cntrl is ComboBox)
-                //            {
-                //                productID = Convert.ToInt32(((ComboBox)cntrl).SelectedValue);
-                //            }
-
-                //            if (cntrl is TextBox)
-                //            {
-                //                if (cntrl.Name.Contains("txtQuantity"))
-                //                {
-                //                    quantity = Convert.ToInt16(((TextBox)cntrl).Text);
-                //                }
-
-                //                if (cntrl.Name.Contains("txtPrice"))
-                //                {
-                //                    unitPrice = Convert.ToDecimal(((TextBox)cntrl).Text);
-                //                }
-
-                //                if (cntrl.Name.Contains("txtDiscount"))
-                //                {
-                //                    discount = Convert.ToSingle(((TextBox)cntrl).Text) / 100;
-                //                }
-                //            }
-                //        }
-                //    }
-
-                //    if (productID != -1 && quantity > 0)
-                //        DetailList.Add(new OrderDetail(o.OrderID, productID, unitPrice, quantity, discount));
-                //}
-
-                Business.SaveDetails(o.OrderID, DetailList);
+                OrderID = o.OrderID;
+                lblOrderID.Text = OrderID.ToString();
+                btnCommitDetails.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -223,11 +212,18 @@ namespace InterfaceLayer
             pnlList.Remove(BPP);
         }
 
-        public void AddNewProductPanel()
+        private void btnCommitDetails_Click(object sender, EventArgs e)
         {
-            AddPanel();
-        }
+            DetailList = new List<OrderDetail>();
 
-        
+            foreach (BrettProductPanel pnl in pnlList)
+            {
+                if (pnl.selectedProductID != -1 && pnl.quantity > 0)
+                    DetailList.Add(new OrderDetail(OrderID, pnl.selectedProductID, pnl.totalPrice, pnl.quantity, pnl.discount));
+            }
+            Business.SaveDetails(OrderID, DetailList);
+
+            btnCommitDetails.Enabled = true;
+        }
     }
 }

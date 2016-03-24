@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnRandomOrder = new System.Windows.Forms.Button();
+            this.btnMakeNewOrder = new System.Windows.Forms.Button();
             this.lblCustomerID = new System.Windows.Forms.Label();
             this.lblEmployeeID = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -61,17 +61,20 @@
             this.lblError = new System.Windows.Forms.Label();
             this.lblUnits = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
+            this.btnCommitDetails = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblOrderID = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btnRandomOrder
+            // btnMakeNewOrder
             // 
-            this.btnRandomOrder.Location = new System.Drawing.Point(15, 344);
-            this.btnRandomOrder.Name = "btnRandomOrder";
-            this.btnRandomOrder.Size = new System.Drawing.Size(180, 23);
-            this.btnRandomOrder.TabIndex = 0;
-            this.btnRandomOrder.Text = "Commit Order";
-            this.btnRandomOrder.UseVisualStyleBackColor = true;
-            this.btnRandomOrder.Click += new System.EventHandler(this.btnRandomOrder_Click);
+            this.btnMakeNewOrder.Location = new System.Drawing.Point(15, 344);
+            this.btnMakeNewOrder.Name = "btnMakeNewOrder";
+            this.btnMakeNewOrder.Size = new System.Drawing.Size(180, 23);
+            this.btnMakeNewOrder.TabIndex = 0;
+            this.btnMakeNewOrder.Text = "Make New Order";
+            this.btnMakeNewOrder.UseVisualStyleBackColor = true;
+            this.btnMakeNewOrder.Click += new System.EventHandler(this.btnMakeOrder_Click);
             // 
             // lblCustomerID
             // 
@@ -113,15 +116,15 @@
             // 
             this.pnlContainer.AutoScroll = true;
             this.pnlContainer.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pnlContainer.Location = new System.Drawing.Point(244, 60);
+            this.pnlContainer.Location = new System.Drawing.Point(250, 82);
             this.pnlContainer.Name = "pnlContainer";
-            this.pnlContainer.Size = new System.Drawing.Size(869, 371);
+            this.pnlContainer.Size = new System.Drawing.Size(757, 371);
             this.pnlContainer.TabIndex = 5;
             // 
             // lblProduct
             // 
             this.lblProduct.AutoSize = true;
-            this.lblProduct.Location = new System.Drawing.Point(247, 44);
+            this.lblProduct.Location = new System.Drawing.Point(250, 66);
             this.lblProduct.Name = "lblProduct";
             this.lblProduct.Size = new System.Drawing.Size(44, 13);
             this.lblProduct.TabIndex = 6;
@@ -130,7 +133,7 @@
             // lblQuantity
             // 
             this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Location = new System.Drawing.Point(312, 44);
+            this.lblQuantity.Location = new System.Drawing.Point(315, 66);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(46, 13);
             this.lblQuantity.TabIndex = 7;
@@ -139,7 +142,7 @@
             // lblDiscount
             // 
             this.lblDiscount.AutoSize = true;
-            this.lblDiscount.Location = new System.Drawing.Point(426, 44);
+            this.lblDiscount.Location = new System.Drawing.Point(429, 66);
             this.lblDiscount.Name = "lblDiscount";
             this.lblDiscount.Size = new System.Drawing.Size(49, 13);
             this.lblDiscount.TabIndex = 8;
@@ -148,7 +151,7 @@
             // lblTotalPrice
             // 
             this.lblTotalPrice.AutoSize = true;
-            this.lblTotalPrice.Location = new System.Drawing.Point(526, 44);
+            this.lblTotalPrice.Location = new System.Drawing.Point(529, 66);
             this.lblTotalPrice.Name = "lblTotalPrice";
             this.lblTotalPrice.Size = new System.Drawing.Size(58, 13);
             this.lblTotalPrice.TabIndex = 9;
@@ -331,7 +334,7 @@
             // lblUnits
             // 
             this.lblUnits.AutoSize = true;
-            this.lblUnits.Location = new System.Drawing.Point(364, 44);
+            this.lblUnits.Location = new System.Drawing.Point(367, 66);
             this.lblUnits.Name = "lblUnits";
             this.lblUnits.Size = new System.Drawing.Size(31, 13);
             this.lblUnits.TabIndex = 33;
@@ -340,17 +343,51 @@
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(401, 44);
+            this.lblPrice.Location = new System.Drawing.Point(404, 66);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(31, 13);
             this.lblPrice.TabIndex = 34;
             this.lblPrice.Text = "Price";
             // 
+            // btnCommitDetails
+            // 
+            this.btnCommitDetails.Enabled = false;
+            this.btnCommitDetails.Location = new System.Drawing.Point(15, 430);
+            this.btnCommitDetails.Name = "btnCommitDetails";
+            this.btnCommitDetails.Size = new System.Drawing.Size(180, 23);
+            this.btnCommitDetails.TabIndex = 35;
+            this.btnCommitDetails.Text = "Commit Details";
+            this.btnCommitDetails.UseVisualStyleBackColor = true;
+            this.btnCommitDetails.Click += new System.EventHandler(this.btnCommitDetails_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(250, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 20);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "OrderID:";
+            // 
+            // lblOrderID
+            // 
+            this.lblOrderID.AutoSize = true;
+            this.lblOrderID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderID.Location = new System.Drawing.Point(326, 9);
+            this.lblOrderID.Name = "lblOrderID";
+            this.lblOrderID.Size = new System.Drawing.Size(26, 20);
+            this.lblOrderID.TabIndex = 36;
+            this.lblOrderID.Text = "[0]";
+            // 
             // OrderingFormBrett
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1131, 479);
+            this.ClientSize = new System.Drawing.Size(1016, 479);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblOrderID);
+            this.Controls.Add(this.btnCommitDetails);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblUnits);
             this.Controls.Add(this.lblError);
@@ -359,7 +396,7 @@
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cmbShipVia);
-            this.Controls.Add(this.btnRandomOrder);
+            this.Controls.Add(this.btnMakeNewOrder);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
@@ -394,7 +431,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnRandomOrder;
+        private System.Windows.Forms.Button btnMakeNewOrder;
         private System.Windows.Forms.Label lblCustomerID;
         private System.Windows.Forms.Label lblEmployeeID;
         private System.Windows.Forms.Label label3;
@@ -427,5 +464,8 @@
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Label lblUnits;
         private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Button btnCommitDetails;
+        private System.Windows.Forms.Label lblOrderID;
+        private System.Windows.Forms.Label label1;
     }
 }

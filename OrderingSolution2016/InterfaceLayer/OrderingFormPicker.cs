@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BaseLayer;
+using BusinessLayer;
 
 namespace InterfaceLayer
 {
@@ -14,6 +16,8 @@ namespace InterfaceLayer
     {
         string CustomerID = null;
         int EmployeeID = 0;
+        List<OrderDetail> detailList;
+        bool isEditting = false;
 
         public OrderingFormPicker(string CustomerID, int EmployeeID)
         {
@@ -21,6 +25,18 @@ namespace InterfaceLayer
 
             this.CustomerID = CustomerID;
             this.EmployeeID = EmployeeID;
+        }
+
+        public OrderingFormPicker(string CustomerID, int EmployeeID, int orderID)
+        {
+            InitializeComponent();
+
+            this.CustomerID = CustomerID;
+            this.EmployeeID = EmployeeID;
+
+            detailList = Business.OrderDetailList(orderID);
+
+            isEditting = true;
         }
         
         //This will be the "real one"
@@ -34,9 +50,20 @@ namespace InterfaceLayer
 
         private void btnBrett_Click(object sender, EventArgs e)
         {
-            OrderingFormBrett OFB = new OrderingFormBrett(CustomerID, EmployeeID);
+            OrderingFormBrett OFB;
+
+            if (isEditting)
+            {
+                OFB = new OrderingFormBrett(CustomerID, EmployeeID, detailList);
+            }
+            else
+            {
+                OFB = new OrderingFormBrett(CustomerID, EmployeeID);
+            }
+
             OFB.Show();
         }
+
         private void btnBrent_Click(object sender, EventArgs e)
         {
             OrderingFormBrent OFB = new OrderingFormBrent(CustomerID, EmployeeID);
@@ -62,7 +89,6 @@ namespace InterfaceLayer
         {
             OrderingFormLinda OFB = new OrderingFormLinda(CustomerID, EmployeeID);
             OFB.Show();
-
         }
 
         private void btnKate_Click(object sender, EventArgs e)
