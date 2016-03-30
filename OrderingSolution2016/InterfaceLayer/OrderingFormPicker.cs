@@ -43,7 +43,7 @@ namespace InterfaceLayer
         //This will be the "real one"
         private void btnMatt_Click(object sender, EventArgs e)
         {
-            OrderingForm OFB;
+            OrderingForm OFB = null;
             if (isEditting)
             {
                // OFB = new OrderingForm(CustomerID, EmployeeID, OrderingID);
@@ -64,7 +64,7 @@ namespace InterfaceLayer
 
             if (isEditting)
             {
-                OFB = new OrderingFormBrett(CustomerID, EmployeeID, OrderingID);
+                OFB = new OrderingFormBrett(CustomerID, EmployeeID, OrderID);
             }
             else
             {
