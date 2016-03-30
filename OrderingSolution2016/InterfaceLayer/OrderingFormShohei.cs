@@ -49,6 +49,27 @@ namespace InterfaceLayer
             txtRegion.Text = custerd.Region;
         }
 
+        public btnProSave(string CustomerID, int EmployeeID, int orderid)
+        {
+            InitializeComponent();
+            button2.Enabled = false;
+            OrderID = orderid;
+            lblOrderID.Text = OrderID.ToString();
+
+            lblCust.Text = CustomerID;
+            employeeID = EmployeeID;
+            lblEmpl.Text = employeeID.ToString();
+            custerd = Business.GetCustomer(CustomerID);
+            txtShipName.Text = custerd.CompanyName;
+            txtAddress.Text = custerd.Address;
+            txtCity.Text = custerd.City;
+            txtCountry.Text = custerd.Country;
+            txtPost.Text = custerd.PostalCode;
+            txtRegion.Text = custerd.Region;
+
+
+        }
+
         private void OrderingFormShohei_Load(object sender, EventArgs e)
         {
             ProductList = Business.ProductList();
