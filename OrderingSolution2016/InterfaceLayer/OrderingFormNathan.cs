@@ -18,12 +18,13 @@ namespace InterfaceLayer
         string CustomerID;
         int EmployeeID = 0;
         int OrderId = 2;
+        bool Editing = false;
         List<OrderDetail> DetailsList = new List<OrderDetail>();
         // Customer currentCustomer;
         List<Product> ProductList = new List<Product>();
         Order Test = new Order(12012);
         List<Shipper> Shippers = new List<Shipper>();
-
+        
 
         public OrderingFormNathan(string CustomerID, int EmployeeID)
         {
@@ -44,6 +45,20 @@ namespace InterfaceLayer
             Order test = new Order(OrderId);
             Shippers = BusinessLayer.Business.ShipperTable();
         }
+
+
+        public OrderingFormNathan(string CustomerId, int EmployeeID, int OrderID) 
+        {
+            InitializeComponent();
+            this.CustomerID = CustomerId;
+            this.EmployeeID = EmployeeID;
+            lblCustId.Text = CustomerID;
+            lblEmID.Text = EmployeeID.ToString();
+            Editing = true;
+            OrderId = OrderID;
+            lblorID.Text = OrderId.ToString();
+        }
+
 
         private void btnAddOrd_Click(object sender, EventArgs e)
         {
