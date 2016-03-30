@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BaseLayer;
 using BusinessLayer;
+using DatabaseLayer;
 namespace InterfaceLayer
 {
 
@@ -67,7 +68,62 @@ namespace InterfaceLayer
             txtPost.Text = custerd.PostalCode;
             txtRegion.Text = custerd.Region;
 
+            DetailList = DB.OrderDetailList(OrderID);
 
+            foreach (OrderDetail od in DetailList)
+            {
+                Panel ProductPanel = new Panel();
+                ProductPanel.Height = 30;
+                ProductPanel.Width = 500;
+                pnlProducts.Controls.Add(ProductPanel);
+                ProductPanel.BorderStyle = BorderStyle.FixedSingle;
+                pnlList.Add(ProductPanel);
+
+                ComboBox cmb = new ComboBox();
+                ProductPanel.Controls.Add(cmb);
+                cmb.Left = l;
+                cmb.Tag = n;
+                cmb.DataSource = new List<Product>(ProductList);
+                cmb.DisplayMember = "ProductName";
+                cmb.ValueMember = "ProductID";
+                cmb.SelectedIndexChanged += cmb_SelectedIndexChanged;
+                cmbList.Add(cmb);
+                cmb.SelectedText = od.ProductName; // not sure if this is right
+
+                TextBox p = new TextBox();
+                p.Text = od.UnitPrice.ToString();
+                ProductPanel.Controls.Add(p);
+                p.Left = l + 120;
+                p.Tag = n;
+                txtPriceList.Add(p);
+
+                TextBox q = new TextBox();
+                q.Text = od.Quantity.ToString();
+                ProductPanel.Controls.Add(q);
+                q.Left = l + 220;
+                q.Tag = n;
+                txtQuantityList.Add(q);
+
+                TextBox dis = new TextBox();
+                dis.Text = od.Discount.ToString();
+                ProductPanel.Controls.Add(dis);
+                dis.Left = l + 320;
+                dis.Tag = n;
+                txtDiscountList.Add(dis);
+
+                Button b = new Button();
+                b.Text = "Remove";
+                ProductPanel.Controls.Add(b);
+                p.Tag = n;
+                b.Left = l + 420;
+                b.Tag = n;
+                b.Click += Remove_Order;
+                btnRemoveList.Add(b);
+
+                n++;
+                sortPanel();
+            }
+            DetailList.RemoveRange(0, DetailList.Count);
         }
 
         private void OrderingFormShohei_Load(object sender, EventArgs e)
