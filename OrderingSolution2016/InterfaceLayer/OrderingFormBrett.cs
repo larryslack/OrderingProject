@@ -14,30 +14,30 @@ namespace InterfaceLayer
 {
     public partial class OrderingFormBrett : Form
     {
-        bool isEditting = false;
-        string CustomerID;
-        int EmployeeID;
-        List<OrderDetail> DetailList;
-        List<OrderDetail> TempDetailList;
-        List<BrettProductPanel> pnlList = new List<BrettProductPanel>();
-        Customer currentCustomer;
-        List<Product> productList;
-        int OrderID = 0;
+        private bool isEditting = false;
+        private string customerID;
+        private int employeeID;
+        private List<OrderDetail> detailList;
+        private List<OrderDetail> tempDetailList;
+        private List<BrettProductPanel> pnlList = new List<BrettProductPanel>();
+        private Customer currentCustomer;
+        private List<Product> productList;
+        private int orderID = 0;
 
-        public OrderingFormBrett(string CustomerID, int EmployeeID)
+        public OrderingFormBrett(string customerID, int emloyeeID)
         {
             InitializeComponent();
-            PreInitForm(CustomerID, EmployeeID);
+            PreInitForm(customerID, emloyeeID);
         }
 
-        public OrderingFormBrett(string CustomerID, int EmployeeID, int OrderID)
+        public OrderingFormBrett(string customerID, int employeeID, int orderID)
         {
             InitializeComponent();
-            PreInitForm(CustomerID, EmployeeID);
-            this.TempDetailList = DetailList;
+            PreInitForm(customerID, employeeID);
+            this.orderID = orderID;
+            this.tempDetailList = Business.OrderDetailList(orderID);
             isEditting = true;
-            OrderID = DetailList[0].OrderID;
-            lblOrderID.Text = OrderID.ToString();
+            lblOrderID.Text = orderID.ToString();
         }
 
         private void OrderingFormBrett_Load(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace InterfaceLayer
 
             pnlContainer.BorderStyle = BorderStyle.FixedSingle;
 
-            currentCustomer = Business.GetCustomer(CustomerID);
+            currentCustomer = Business.GetCustomer(customerID);
             txtPostalCode.Text = currentCustomer.PostalCode;
             txtRegion.Text = currentCustomer.Region;
             txtShipAddress.Text = currentCustomer.Address;
@@ -66,7 +66,7 @@ namespace InterfaceLayer
 
             if (isEditting)
             {
-                foreach (OrderDetail detail in TempDetailList)
+                foreach (OrderDetail detail in tempDetailList)
                 {
                     AddPanel(detail);
                 }
@@ -75,12 +75,12 @@ namespace InterfaceLayer
             AddPanel();
         }
 
-        private void PreInitForm(string CustomerID, int EmployeeID)
+        private void PreInitForm(string customerID, int employeeID)
         { 
-            this.CustomerID = CustomerID;
-            this.EmployeeID = EmployeeID;
-            lblCustomerID.Text = CustomerID;
-            lblEmployeeID.Text = EmployeeID.ToString();
+            this.customerID = customerID;
+            this.employeeID = employeeID;
+            lblCustomerID.Text = customerID;
+            lblEmployeeID.Text = employeeID.ToString();
         }
 
         private void AddPanel()
@@ -143,8 +143,8 @@ namespace InterfaceLayer
                 o.ShipperName = cmbShipVia.Text;
 
                 Business.SaveOrder(o);
-                OrderID = o.OrderID;
-                lblOrderID.Text = OrderID.ToString();
+                orderID = o.OrderID;
+                lblOrderID.Text = orderID.ToString();
                 btnCommitDetails.Enabled = true;
             }
             catch (Exception ex)
@@ -214,14 +214,14 @@ namespace InterfaceLayer
 
         private void btnCommitDetails_Click(object sender, EventArgs e)
         {
-            DetailList = new List<OrderDetail>();
+            detailList = new List<OrderDetail>();
 
             foreach (BrettProductPanel pnl in pnlList)
             {
                 if (pnl.selectedProductID != -1 && pnl.quantity > 0)
-                    DetailList.Add(new OrderDetail(OrderID, pnl.selectedProductID, pnl.totalPrice, pnl.quantity, pnl.discount));
+                    detailList.Add(new OrderDetail(orderID, pnl.selectedProductID, pnl.totalPrice, pnl.quantity, pnl.discount));
             }
-            Business.SaveDetails(OrderID, DetailList);
+            Business.SaveDetails(orderID, detailList);
 
             btnCommitDetails.Enabled = true;
         }

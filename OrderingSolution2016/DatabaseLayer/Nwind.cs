@@ -22,6 +22,7 @@ namespace DatabaseLayer
         private const string PROC_DELETE_DETAILS = "DeleteDetails";
         private const string PROC_SHIPPER_LIST = "ShipperList";
         private const string PROC_UPDATE_ORDER = "UpdateOrder";
+        private const string PROC_GET_ORDER_INFO = "GetOrderInfo";
         private static SqlConnection sqlCon;
         private static string connectionString = "Server=172.18.29.17\\PROG280; Database=nwindsql; user=sa; Password=SQL_2012;";
         //private static string connectionString = "Server=PROG280SERVER.itp.local\\PROG280; Database=nwindsql; user=sa; Password=SQL_2012;";
@@ -552,99 +553,197 @@ namespace DatabaseLayer
             return EmployList;
         }
 
-        public static void ReplaceDetails(int OrderID, List<OrderDetail> ordDetailsList)
+        public static Order GetOrder(int orderID)
         {
-
-            SqlTransaction trans = null;
-            try
-            {
-                sqlCon = new SqlConnection(connectionString);
-                sqlCon.Open();
-                trans = sqlCon.BeginTransaction(); //create new transaction
-                //first remove all previous details for this order
-                SqlCommand cmdA = new SqlCommand(PROC_DELETE_DETAILS, sqlCon);
-                cmdA.CommandType = CommandType.StoredProcedure;
-                cmdA.Parameters.Add(new SqlParameter("@OrderID", OrderID));
-                cmdA.Transaction = trans; //this command will be part of the transaction
-                cmdA.ExecuteNonQuery();
-
-                //and replace them with ones from the list supplied
-                foreach (OrderDetail od in ordDetailsList)
-                {
-                    SqlCommand cmd = new SqlCommand(PROC_SAVE_DETAILS, sqlCon);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.Add(new SqlParameter("@OrderID", OrderID)); //safer to take from OrderID
-                    cmd.Parameters.Add(new SqlParameter("@ProductID", od.ProductID));
-                    cmd.Parameters.Add(new SqlParameter("@UnitPrice", od.UnitPrice));
-                    cmd.Parameters.Add(new SqlParameter("@Quantity", od.Quantity));
-                    cmd.Parameters.Add(new SqlParameter("@Discount", od.Discount));
-                    cmd.Transaction = trans;// also each of these commands in the transaction
-                    cmd.ExecuteNonQuery();
-                }
-                trans.Commit(); // the changes were successful so commit this transaction to the database
-                sqlCon.Close();
-
-            }
-            catch (Exception ex)
-            {
-                if (sqlCon != null && sqlCon.State != ConnectionState.Closed)
-                {
-                    trans.Rollback();
-                    sqlCon.Close();
-                }
-                throw ex;
-            }
-        }
-
-        public static List<Shipper> GetShipper()
-        {
-            List<Shipper> shipperList = new List<Shipper>();
+            Order order = new Order(orderID);
 
             sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
 
             SqlDataAdapter da;
             DataTable dt = new DataTable();
-            SqlCommand cmd = new SqlCommand(PROC_SHIPPER_LIST, sqlCon);
+            SqlCommand cmd = new SqlCommand(PROC_GET_ORDER_INFO, sqlCon);
             cmd.CommandType = CommandType.StoredProcedure;
             da = new SqlDataAdapter(cmd);
             da.FillSchema(dt, SchemaType.Source);
             da.Fill(dt);
 
             sqlCon.Close();
+            
+            DataRow row = dt.Rows[0];
 
-            foreach (DataRow row in dt.Rows)
-            {
-                int shipperID = -1;
-                string companyName = null;
-                string phone = "";
+            // Start: These will always have a value and will never equal a null.
+            string CustomerID = (string)row["CustomerID"];
+            // End.
 
-                shipperID = (int)row["ShipperID"];
+            int? EmployeeID = null;
+            DateTime? OrderDate = null;
+            DateTime? RequiredDate = null;
+            DateTime? ShippedDate = null;
+            int? ShipVia = null;
+            decimal? Freight = null;
+            string ShipName = null;
+            string ShipAddress = null;
+            string ShipCity = null;
+            string ShipRegion = null;
+            string ShipPostalCode = null;
+            string ShipCountry = null;
+            string ShipperName = null;
 
-                if (!(row["CompanyName"] == DBNull.Value))
-                    companyName = (string)row["CompanyName"];
+            if (row["EmployeeID"] != DBNull.Value)
+                EmployeeID = (int)row["EmployeeID"];
 
-                if (!(row["Phone"] == DBNull.Value))
-                    phone = (string)row["Phone"];
+            if (row["OrderDate"] != DBNull.Value)
+                OrderDate = (DateTime)row["OrderDate"];
 
-                shipperList.Add(new Shipper(shipperID, companyName, phone));
-            }
+            if (row["RequiredDate"] != DBNull.Value)
+                RequiredDate = (DateTime)row["RequiredDate"];
 
-            return shipperList;
+            if (row["ShippedDate"] != DBNull.Value)
+                ShippedDate = (DateTime)row["ShippedDate"];
+
+            if (row["ShipVia"] != DBNull.Value)
+                ShipVia = null;
+            else
+                ShipVia = (int)row["ShipVia"];
+
+            if (row["Freight"] != DBNull.Value)
+                Freight = null;
+            else
+                Freight = (decimal)row["Freight"];
+
+            if (row["ShipName"] != DBNull.Value)
+                ShipName = (string)row["ShipName"];
+
+            if (row["ShipAddress"] != DBNull.Value)
+                ShipAddress = (string)row["ShipAddress"];
+
+            if (row["ShipCity"] != DBNull.Value)
+                ShipCity = (string)row["ShipCity"];
+
+            if (row["ShipRegion"] != DBNull.Value)
+                ShipRegion = (string)row["ShipRegion"];
+
+            if (row["ShipPostalCode"] != DBNull.Value)
+                ShipPostalCode = (string)row["ShipPostalCode"];
+
+            if (row["ShipCountry"] != DBNull.Value)
+                ShipCountry = (string)row["ShipCountry"];
+
+            if (row["ShipName"] != DBNull.Value)
+                ShipperName = (string)row["ShipName"];
+
+            order.CustomerID = CustomerID;
+            order.EmployeeID = EmployeeID;
+            order.OrderDate = OrderDate;
+            order.RequiredDate = RequiredDate;
+            order.ShippedDate = ShippedDate;
+            order.ShipVia = ShipVia;
+            order.Freight = Freight;
+            order.ShipName = ShipName;
+            order.ShipAddress = ShipAddress;
+            order.ShipCity = ShipCity;
+            order.ShipRegion = ShipRegion;
+            order.ShipPostalCode = ShipPostalCode;
+            order.ShipCountry = ShipCountry;
+            order.ShipperName = ShipperName;
+
+            return order;
         }
 
-         public static void UpdateCustomer(string EmployeeID)
+    public static void ReplaceDetails(int OrderID, List<OrderDetail> ordDetailsList)
+    {
+
+        SqlTransaction trans = null;
+        try
         {
             sqlCon = new SqlConnection(connectionString);
             sqlCon.Open();
+            trans = sqlCon.BeginTransaction(); //create new transaction
+                                               //first remove all previous details for this order
+            SqlCommand cmdA = new SqlCommand(PROC_DELETE_DETAILS, sqlCon);
+            cmdA.CommandType = CommandType.StoredProcedure;
+            cmdA.Parameters.Add(new SqlParameter("@OrderID", OrderID));
+            cmdA.Transaction = trans; //this command will be part of the transaction
+            cmdA.ExecuteNonQuery();
 
-            SqlCommand cmd = new SqlCommand(PROC_UPDATE_CUS, sqlCon);
-            cmd.CommandType = CommandType.StoredProcedure;
-            //cmd.Parameters.Add();
+            //and replace them with ones from the list supplied
+            foreach (OrderDetail od in ordDetailsList)
+            {
+                SqlCommand cmd = new SqlCommand(PROC_SAVE_DETAILS, sqlCon);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-
+                cmd.Parameters.Add(new SqlParameter("@OrderID", OrderID)); //safer to take from OrderID
+                cmd.Parameters.Add(new SqlParameter("@ProductID", od.ProductID));
+                cmd.Parameters.Add(new SqlParameter("@UnitPrice", od.UnitPrice));
+                cmd.Parameters.Add(new SqlParameter("@Quantity", od.Quantity));
+                cmd.Parameters.Add(new SqlParameter("@Discount", od.Discount));
+                cmd.Transaction = trans;// also each of these commands in the transaction
+                cmd.ExecuteNonQuery();
+            }
+            trans.Commit(); // the changes were successful so commit this transaction to the database
             sqlCon.Close();
+
+        }
+        catch (Exception ex)
+        {
+            if (sqlCon != null && sqlCon.State != ConnectionState.Closed)
+            {
+                trans.Rollback();
+                sqlCon.Close();
+            }
+            throw ex;
         }
     }
+
+    public static List<Shipper> GetShipper()
+    {
+        List<Shipper> shipperList = new List<Shipper>();
+
+        sqlCon = new SqlConnection(connectionString);
+        sqlCon.Open();
+
+        SqlDataAdapter da;
+        DataTable dt = new DataTable();
+        SqlCommand cmd = new SqlCommand(PROC_SHIPPER_LIST, sqlCon);
+        cmd.CommandType = CommandType.StoredProcedure;
+        da = new SqlDataAdapter(cmd);
+        da.FillSchema(dt, SchemaType.Source);
+        da.Fill(dt);
+
+        sqlCon.Close();
+
+        foreach (DataRow row in dt.Rows)
+        {
+            int shipperID = -1;
+            string companyName = null;
+            string phone = "";
+
+            shipperID = (int)row["ShipperID"];
+
+            if (!(row["CompanyName"] == DBNull.Value))
+                companyName = (string)row["CompanyName"];
+
+            if (!(row["Phone"] == DBNull.Value))
+                phone = (string)row["Phone"];
+
+            shipperList.Add(new Shipper(shipperID, companyName, phone));
+        }
+
+        return shipperList;
+    }
+
+    public static void UpdateCustomer(string EmployeeID)
+    {
+        sqlCon = new SqlConnection(connectionString);
+        sqlCon.Open();
+
+        SqlCommand cmd = new SqlCommand(PROC_UPDATE_CUS, sqlCon);
+        cmd.CommandType = CommandType.StoredProcedure;
+        //cmd.Parameters.Add();
+
+
+        sqlCon.Close();
+    }
+}
 }
