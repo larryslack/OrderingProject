@@ -16,17 +16,20 @@ namespace InterfaceLayer
 
         string CustomerID;
         int EmployeeID;
+        int OrderID;
         Customer Cust;
         List<Product> productItems;
         Order NewOrder;
         OrderDetail newOrderDetails;
         List<OrderDetail> NewOrderDet;
 
-        public OrderingFormLinda(string CustomerID, int EmployeeID)
+        public OrderingFormLinda(string CustomerID, int EmployeeID, int OrderID)
         {
             InitializeComponent();
             this.CustomerID = CustomerID;
             this.EmployeeID = EmployeeID;
+            this.OrderID = OrderID;
+
             lblCustomerID.Text = CustomerID;
             List<Customer> Clist = Business.CustomerList();
             foreach (Customer C in Clist)

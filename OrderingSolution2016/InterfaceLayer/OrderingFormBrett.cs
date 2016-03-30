@@ -30,7 +30,7 @@ namespace InterfaceLayer
             PreInitForm(CustomerID, EmployeeID);
         }
 
-        public OrderingFormBrett(string CustomerID, int EmployeeID, List<OrderDetail> DetailList)
+        public OrderingFormBrett(string CustomerID, int EmployeeID, int OrderID)
         {
             InitializeComponent();
             PreInitForm(CustomerID, EmployeeID);
