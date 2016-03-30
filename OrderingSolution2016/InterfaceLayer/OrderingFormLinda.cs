@@ -19,17 +19,16 @@ namespace InterfaceLayer
         int OrderID;
         Customer Cust;
         List<Product> productItems;
-        Order NewOrder;
+        Order ThisOrder;
         OrderDetail newOrderDetails;
         List<OrderDetail> NewOrderDet;
 
-        public OrderingFormLinda(string CustomerID, int EmployeeID, int OrderID)
+        public OrderingFormLinda(string CustomerID, int EmployeeID) //this constructor will be called if we are supposed to add a new order
         {
             InitializeComponent();
             this.CustomerID = CustomerID;
             this.EmployeeID = EmployeeID;
-            this.OrderID = OrderID;
-
+  
             lblCustomerID.Text = CustomerID;
             List<Customer> Clist = Business.CustomerList();
             foreach (Customer C in Clist)
@@ -57,6 +56,47 @@ namespace InterfaceLayer
             cbSelectProduct.ValueMember = "ProductID";
             cbSelectProduct.SelectedIndex = -1;
         }
+
+        public OrderingFormLinda(string CustomerID, int EmployeeID, int OrderID) //this constructor will be called if we are editing an existing order with orderid OrderID
+        {
+            InitializeComponent();
+            this.CustomerID = CustomerID;
+            this.EmployeeID = EmployeeID;
+            this.OrderID = OrderID;
+
+            lblCustomerID.Text = CustomerID;
+
+
+            //get order and details from business layer
+            //display order information
+
+            List<Customer> Clist = Business.CustomerList();
+            foreach (Customer C in Clist)
+            {
+                if (C.CustomerID == CustomerID)
+                    Cust = C;
+            }
+            lblCompanyName.Text = Cust.CompanyName;
+            txtCustName.Text = Cust.CompanyName;
+            txtPostCode.Text = Cust.PostalCode;
+            txtShipAdd.Text = Cust.Address;
+            txtShipCity.Text = Cust.City;
+            txtshipCountry.Text = Cust.Country;
+            lblEmpID.Text = EmployeeID.ToString();
+            txtShipRegion.Text = Cust.Region;
+            txtPhoneNum.Text = Cust.Phone;
+
+            cbShipVia.DataSource = Business.ShipperTable();
+            cbShipVia.ValueMember = "ShipperID";
+            cbShipVia.DisplayMember = "CompanyName";
+            cbShipVia.SelectedIndex = -1;
+
+            cbSelectProduct.DataSource = Business.ProductList();
+            cbSelectProduct.DisplayMember = "ProductName";
+            cbSelectProduct.ValueMember = "ProductID";
+            cbSelectProduct.SelectedIndex = -1;
+        }
+
 
         private void OrderingFormLinda_Load(object sender, EventArgs e)
         {
@@ -92,10 +132,10 @@ namespace InterfaceLayer
                     int? shipvia = null;
 
                     shipvia = (int?)cbShipVia.SelectedValue;
-                    NewOrder = new Order(0, CustomerID, EmployeeID, DateTime.Now, dtReqDate.Value.Date, null, shipvia, null, txtCustName.Text,
+                    ThisOrder = new Order(0, CustomerID, EmployeeID, DateTime.Now, dtReqDate.Value.Date, null, shipvia, null, txtCustName.Text,
                        txtShipAdd.Text, txtShipCity.Text, txtShipRegion.Text, txtPostCode.Text, txtshipCountry.Text);
-                    Business.SaveOrder(NewOrder);
-                    txtOrderId.Text = NewOrder.OrderID.ToString();
+                    Business.SaveOrder(ThisOrder);
+                    txtOrderId.Text = ThisOrder.OrderID.ToString();
                 }
             }
             catch (Exception ex)

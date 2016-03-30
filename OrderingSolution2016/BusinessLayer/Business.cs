@@ -33,6 +33,11 @@ namespace BusinessLayer
             return DB.ProductList();
         }
 
+        public static Order FindOrder(int OrderID) 
+        {
+            return DB.GetOrder(OrderID);
+        }
+
         public static void SaveOrder(Order o) // check to make sure customer ID, ship Name,PostalCode,address,city,order date, employee Id arent null
         {
             if (o.CustomerID != null && o.EmployeeID != null && o.OrderDate != null && o.ShipAddress != null && o.ShipName != null && o.ShipPostalCode != null && o.ShipCity != null)
