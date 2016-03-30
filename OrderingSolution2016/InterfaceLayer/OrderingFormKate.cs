@@ -19,7 +19,7 @@ namespace InterfaceLayer
         string CompanyName;
         int EmployeeID;
         Customer Cust;
-        int NewOrderID;
+        int ThisOrderID;
         int DetailCount = 0;
         int OrderDiscount;
         Order NewOrder;
@@ -43,6 +43,16 @@ namespace InterfaceLayer
             dtpOrderDate.Value = DateTime.Now;
             dtpRequiredDate.Value = DateTime.Now + new TimeSpan(7, 0, 0, 0);
         }
+        public OrderingFormKate(string CustomerID, int EmployeeID, int OrderID)
+        {
+            InitializeComponent();
+            this.CustomerID = CustomerID;
+            this.EmployeeID = EmployeeID;
+            this.ThisOrderID = OrderID;
+            // get the order and the details from the business layer and show everything on the form
+
+            DetailList = Business.OrderDetailList(ThisOrderID);
+        }
 
         private void OrderingFormKate_Load(object sender, EventArgs e) 
         {
@@ -59,7 +69,7 @@ namespace InterfaceLayer
         private void btnNew_Click(object sender, EventArgs e)
         {
             List<Product> ProductList = Business.ProductList();
-            KateDetailPanel pp = new KateDetailPanel(pnlDetails, 5 + 30 * DetailCount, NewOrderID, ProductList);
+            KateDetailPanel pp = new KateDetailPanel(pnlDetails, 5 + 30 * DetailCount, ThisOrderID, ProductList);
            DetailCount += 1;
  
         }
@@ -71,8 +81,8 @@ namespace InterfaceLayer
                 NewOrder = new Order(0, CustomerID, EmployeeID, dtpOrderDate.Value, dtpRequiredDate.Value, null, (int?)cmbShipVia.SelectedValue, null,
                  txtName.Text, txtAddress.Text, txtCity.Text, txtRegion.Text, txtPostalCode.Text, txtCountry.Text);
                 Business.SaveOrder(NewOrder);
-                NewOrderID = NewOrder.OrderID;
-                lblNewOrderID.Text = NewOrderID.ToString();
+                ThisOrderID = NewOrder.OrderID;
+                lblNewOrderID.Text = ThisOrderID.ToString();
                 btnNew.Enabled = true;
                 btnSaveNewOrder.Enabled = false;
             }
@@ -98,7 +108,7 @@ namespace InterfaceLayer
                     DetailList.Add(panel.OD);
                 }
 
-                Business.SaveDetails(NewOrderID, DetailList);
+                Business.SaveDetails(ThisOrderID, DetailList);
 
                 MessageBox.Show("Your order has been saved!");
 
