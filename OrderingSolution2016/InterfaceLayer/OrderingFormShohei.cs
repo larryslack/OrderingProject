@@ -88,7 +88,7 @@ namespace InterfaceLayer
                 cmb.ValueMember = "ProductID";
                 cmb.SelectedIndexChanged += cmb_SelectedIndexChanged;
                 cmbList.Add(cmb);
-                cmb.SelectedText = od.ProductName; // not sure if this is right
+                cmb.SelectedValue = od.ProductID;
 
                 TextBox p = new TextBox();
                 p.Text = od.UnitPrice.ToString();
