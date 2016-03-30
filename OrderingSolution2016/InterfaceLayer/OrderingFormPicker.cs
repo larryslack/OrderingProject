@@ -117,35 +117,33 @@ namespace InterfaceLayer
 
         }
 
-        //private void btnLinda_Click(object sender, EventArgs e)
-        //{
-        //    OrderingFormLinda OFB;
-        //    if (isEditting)
-        //    {
-        //        OFB = new OrderingFormLinda(CustomerID, EmployeeID, OrderID);
-        //    }
-        //    else
-        //    {
-        //        OFB = new OrderingFormLinda(CustomerID, EmployeeID);
-        //    }
-        //    OFB.Show();
+        private void btnLinda_Click(object sender, EventArgs e)
+        {
+            OrderingFormLinda OFB;
+            if (isEditting)
+            {
+                OFB = new OrderingFormLinda(CustomerID, EmployeeID, OrderID);
+            }
+            else
+            {
+                OFB = new OrderingFormLinda(CustomerID, EmployeeID);
+            }
+            OFB.Show();
+        }
 
+        private void btnKate_Click(object sender, EventArgs e)
+        {
+            OrderingFormKate OFB;
+            if (isEditting)
+            {
+                OFB = new OrderingFormKate(CustomerID, EmployeeID, OrderID);
+            }
+            else
+                OFB = new OrderingFormKate(CustomerID, EmployeeID);
+            OFB.Show();
+        }
 
-        //}
-
-        //private void btnKate_Click(object sender, EventArgs e)
-        //{
-        //    OrderingFormKate OFB;
-        //    if (isEditting)
-        //    {
-        //        OFB = new OrderingFormKate(CustomerID, EmployeeID, OrderID);
-        //    }
-        //    else
-        //        OFB = new OrderingFormKate(CustomerID, EmployeeID);
-        //    OFB.Show();
-        //}
-
-        private void btnShohei_Click(object sender, EventArgs e)
+    private void btnShohei_Click(object sender, EventArgs e)
         {
             btnProSave OFB;
             if (isEditting)

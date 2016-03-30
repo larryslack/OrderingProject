@@ -23,6 +23,7 @@ namespace InterfaceLayer
         private Customer currentCustomer;
         private List<Product> productList;
         private int orderID = 0;
+        private Order curOrder;
 
         public OrderingFormBrett(string customerID, int emloyeeID)
         {
@@ -76,7 +77,7 @@ namespace InterfaceLayer
         }
 
         private void PreInitForm(string customerID, int employeeID)
-        { 
+        {
             this.customerID = customerID;
             this.employeeID = employeeID;
             lblCustomerID.Text = customerID;
@@ -125,25 +126,27 @@ namespace InterfaceLayer
         {
             try
             {
-                Order o = new Order(1);
-                o.CustomerID = lblCustomerID.Text;
-                o.EmployeeID = Convert.ToInt32(lblEmployeeID.Text);
-                o.OrderDate = DateTime.Now;
-                o.RequiredDate = Convert.ToDateTime(txtRequiredDate.Text);
-                o.ShippedDate = null;
-                o.ShipVia = Convert.ToInt32(cmbShipVia.SelectedValue);
-                o.Freight = Convert.ToDecimal(txtFreight.Text); //Retrieve later.
-                o.ShipName = currentCustomer.CompanyName;
-                o.ShipAddress = txtShipAddress.Text;
-                o.ShipCity = txtShipCity.Text;
-                o.ShipRegion = txtRegion.Text;
-                o.ShipPostalCode = txtPostalCode.Text;
-                o.ShipCountry = txtShipCountry.Text;
-                o.EmployeeName = null; // I need the employee name.
-                o.ShipperName = cmbShipVia.Text;
+                if (curOrder != null)
+                    curOrder = new Order(1);
 
-                Business.SaveOrder(o);
-                orderID = o.OrderID;
+                curOrder.CustomerID = lblCustomerID.Text;
+                curOrder.EmployeeID = Convert.ToInt32(lblEmployeeID.Text);
+                curOrder.OrderDate = DateTime.Now;
+                curOrder.RequiredDate = Convert.ToDateTime(txtRequiredDate.Text);
+                curOrder.ShippedDate = null;
+                curOrder.ShipVia = Convert.ToInt32(cmbShipVia.SelectedValue);
+                curOrder.Freight = Convert.ToDecimal(txtFreight.Text); //Retrieve later.
+                curOrder.ShipName = currentCustomer.CompanyName;
+                curOrder.ShipAddress = txtShipAddress.Text;
+                curOrder.ShipCity = txtShipCity.Text;
+                curOrder.ShipRegion = txtRegion.Text;
+                curOrder.ShipPostalCode = txtPostalCode.Text;
+                curOrder.ShipCountry = txtShipCountry.Text;
+                curOrder.EmployeeName = null; // I need the employee name.
+                curOrder.ShipperName = cmbShipVia.Text;
+
+                Business.SaveOrder(curOrder);
+                orderID = curOrder.OrderID;
                 lblOrderID.Text = orderID.ToString();
                 btnCommitDetails.Enabled = true;
             }
