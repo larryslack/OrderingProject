@@ -1,0 +1,18 @@
+﻿USE [nwindsql]
+GO
+/****** Object:  StoredProcedure [dbo].[CustomerIDCount]    Script Date: 01/04/2016 1:01:04 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Kate Ye
+-- Create date: 1st April 2016
+-- Description:	To check if customerID exists - returns the count of customers having this customerid ( will be 0 or 1)
+-- =============================================
+ALTER PROCEDURE [dbo].[CustomerIDCount]
+@CustomerID nvarchar(5)
+AS
+BEGIN
+  SELECT Count(*) FROM Customers WHERE CustomerID = @CustomerID
+END

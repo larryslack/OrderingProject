@@ -114,5 +114,22 @@ namespace InterfaceLayer
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Customer C = Business.GetCustomer("VADER");
+            C.Address = "Slacks farm";
+            Business.UpdateExistingCustomer(C);
+            string Message = null;
+            if (Business.CustomerIDAvailableAndSuitable("Varod", ref Message))
+            {
+            C = new Customer("Varod");
+            C.CompanyName = "Varoddddd";
+            Business.SaveNewCustomer(C);
+            }
+            else
+                MessageBox.Show (Message);
+
+        }
     }
 }
