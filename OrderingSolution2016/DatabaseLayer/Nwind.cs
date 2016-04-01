@@ -564,6 +564,8 @@ namespace DatabaseLayer
             DataTable dt = new DataTable();
             SqlCommand cmd = new SqlCommand(PROC_GET_ORDER_INFO, sqlCon);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@OrderID", orderID));
+
             da = new SqlDataAdapter(cmd);
             da.FillSchema(dt, SchemaType.Source);
             da.Fill(dt);
@@ -603,13 +605,9 @@ namespace DatabaseLayer
                 ShippedDate = (DateTime)row["ShippedDate"];
 
             if (row["ShipVia"] != DBNull.Value)
-                ShipVia = null;
-            else
                 ShipVia = (int)row["ShipVia"];
 
             if (row["Freight"] != DBNull.Value)
-                Freight = null;
-            else
                 Freight = (decimal)row["Freight"];
 
             if (row["ShipName"] != DBNull.Value)

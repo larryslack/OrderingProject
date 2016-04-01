@@ -25,6 +25,8 @@ namespace InterfaceLayer
         private int orderID = 0;
         private Order curOrder;
 
+        private List<Shipper> shipperList;
+
         public OrderingFormBrett(string customerID, int emloyeeID)
         {
             InitializeComponent();
@@ -35,10 +37,10 @@ namespace InterfaceLayer
         {
             InitializeComponent();
             PreInitForm(customerID, employeeID);
-            this.orderID = orderID;
-            this.tempDetailList = Business.OrderDetailList(orderID);
+            curOrder = Business.FindOrder(orderID);
+            this.orderID = curOrder.OrderID;
+            tempDetailList = Business.OrderDetailList(orderID);
             isEditting = true;
-            lblOrderID.Text = orderID.ToString();
         }
 
         private void OrderingFormBrett_Load(object sender, EventArgs e)
@@ -57,7 +59,8 @@ namespace InterfaceLayer
             txtFax.Text = currentCustomer.Fax;
             txtPhone.Text = currentCustomer.Phone;
 
-            cmbShipVia.DataSource = Business.ShipperTable();
+            shipperList = Business.ShipperTable();
+            cmbShipVia.DataSource = shipperList;
             cmbShipVia.ValueMember = "ShipperID";
             cmbShipVia.DisplayMember = "CompanyName";
             cmbShipVia.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -67,6 +70,7 @@ namespace InterfaceLayer
 
             if (isEditting)
             {
+                LoadOrder();
                 foreach (OrderDetail detail in tempDetailList)
                 {
                     AddPanel(detail);
@@ -82,6 +86,16 @@ namespace InterfaceLayer
             this.employeeID = employeeID;
             lblCustomerID.Text = customerID;
             lblEmployeeID.Text = employeeID.ToString();
+        }
+
+        private void LoadOrder()
+        {
+            lblOrderID.Text = orderID.ToString();
+            txtRequiredDate.Text = curOrder.RequiredDate.ToString();
+            
+            for (int i = 0; i < shipperList.Count; i++)
+                if (shipperList[i].ShipperID == curOrder.ShipVia)
+                    cmbShipVia.SelectedIndex = i;
         }
 
         private void AddPanel()
