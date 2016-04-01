@@ -28,7 +28,7 @@ namespace InterfaceLayer
             InitializeComponent();
             this.CustomerID = CustomerID;
             this.EmployeeID = EmployeeID;
-  
+
             lblCustomerID.Text = CustomerID;
             List<Customer> Clist = Business.CustomerList();
             foreach (Customer C in Clist)

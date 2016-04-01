@@ -98,5 +98,34 @@ namespace InterfaceLayer
             txtQuantity.Text = "0";
         }
 
+        private void cbEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbEdit.Checked == true)
+            {
+                txtOrdID.Visible = true;
+                btnFetchOrder.Visible = true;
+            }
+            else 
+            {
+                txtOrdID.Visible = false;
+                btnFetchOrder.Visible = false;
+                txtOrdID.Text = "";
+            }
+        }
+
+        private void btnFetchOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Test = (Business.FindOrder(Convert.ToInt32(txtOrdID.Text)));
+                lblorID.Text = txtOrdID.Text;
+                txtSDate.Text = Convert.ToString(Test.ShippedDate);
+            }
+            catch 
+            {
+
+            }
+        }
+
     }
 }
