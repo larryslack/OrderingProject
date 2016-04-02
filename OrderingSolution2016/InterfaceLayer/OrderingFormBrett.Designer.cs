@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.btnMakeNewOrder = new System.Windows.Forms.Button();
-            this.lblCustomerID = new System.Windows.Forms.Label();
             this.lblEmployeeID = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pnlContainer = new System.Windows.Forms.Panel();
             this.lblProduct = new System.Windows.Forms.Label();
@@ -39,53 +37,58 @@
             this.lblDiscount = new System.Windows.Forms.Label();
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.txtRequiredDate = new System.Windows.Forms.TextBox();
-            this.txtShipAddress = new System.Windows.Forms.TextBox();
-            this.txtShipCity = new System.Windows.Forms.TextBox();
-            this.txtRegion = new System.Windows.Forms.TextBox();
             this.txtFreight = new System.Windows.Forms.TextBox();
-            this.txtPostalCode = new System.Windows.Forms.TextBox();
-            this.txtShipCountry = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.cmbShipVia = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtFax = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtPhone = new System.Windows.Forms.TextBox();
             this.lblError = new System.Windows.Forms.Label();
             this.lblUnits = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.btnCommitDetails = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblOrderID = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpOrder = new System.Windows.Forms.GroupBox();
+            this.grpCustomer = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblCustomerID = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblCompanyName = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtContactTitle = new System.Windows.Forms.TextBox();
+            this.txtContactName = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtCity = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.txtCountry = new System.Windows.Forms.TextBox();
+            this.txtPostalCode = new System.Windows.Forms.TextBox();
+            this.txtRegion = new System.Windows.Forms.TextBox();
+            this.txtFax = new System.Windows.Forms.TextBox();
+            this.txtOrderDate = new System.Windows.Forms.TextBox();
+            this.OrderDate = new System.Windows.Forms.Label();
+            this.txtShippedDate = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.grpOrder.SuspendLayout();
+            this.grpCustomer.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnMakeNewOrder
             // 
-            this.btnMakeNewOrder.Location = new System.Drawing.Point(801, 266);
+            this.btnMakeNewOrder.Location = new System.Drawing.Point(1081, 233);
             this.btnMakeNewOrder.Name = "btnMakeNewOrder";
             this.btnMakeNewOrder.Size = new System.Drawing.Size(180, 23);
             this.btnMakeNewOrder.TabIndex = 0;
             this.btnMakeNewOrder.Text = "Make New Order";
             this.btnMakeNewOrder.UseVisualStyleBackColor = true;
             this.btnMakeNewOrder.Click += new System.EventHandler(this.btnMakeOrder_Click);
-            // 
-            // lblCustomerID
-            // 
-            this.lblCustomerID.AutoSize = true;
-            this.lblCustomerID.Location = new System.Drawing.Point(487, 16);
-            this.lblCustomerID.Name = "lblCustomerID";
-            this.lblCustomerID.Size = new System.Drawing.Size(72, 13);
-            this.lblCustomerID.TabIndex = 1;
-            this.lblCustomerID.Text = "lblCustomerID";
             // 
             // lblEmployeeID
             // 
@@ -95,15 +98,6 @@
             this.lblEmployeeID.Size = new System.Drawing.Size(74, 13);
             this.lblEmployeeID.TabIndex = 2;
             this.lblEmployeeID.Text = "lblEmployeeID";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(407, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "CustomerID:";
             // 
             // label4
             // 
@@ -162,167 +156,57 @@
             // txtRequiredDate
             // 
             this.txtRequiredDate.ForeColor = System.Drawing.Color.Gray;
-            this.txtRequiredDate.Location = new System.Drawing.Point(881, 4);
+            this.txtRequiredDate.Location = new System.Drawing.Point(93, 44);
             this.txtRequiredDate.Name = "txtRequiredDate";
             this.txtRequiredDate.Size = new System.Drawing.Size(143, 20);
             this.txtRequiredDate.TabIndex = 10;
             this.txtRequiredDate.Text = "DD/MM/YYYY";
-            // 
-            // txtShipAddress
-            // 
-            this.txtShipAddress.Location = new System.Drawing.Point(881, 82);
-            this.txtShipAddress.Name = "txtShipAddress";
-            this.txtShipAddress.Size = new System.Drawing.Size(143, 20);
-            this.txtShipAddress.TabIndex = 12;
-            // 
-            // txtShipCity
-            // 
-            this.txtShipCity.Location = new System.Drawing.Point(881, 108);
-            this.txtShipCity.Name = "txtShipCity";
-            this.txtShipCity.Size = new System.Drawing.Size(143, 20);
-            this.txtShipCity.TabIndex = 13;
-            // 
-            // txtRegion
-            // 
-            this.txtRegion.Location = new System.Drawing.Point(881, 134);
-            this.txtRegion.Name = "txtRegion";
-            this.txtRegion.Size = new System.Drawing.Size(143, 20);
-            this.txtRegion.TabIndex = 14;
+            this.txtRequiredDate.Enter += new System.EventHandler(this.DateEnter);
+            this.txtRequiredDate.Leave += new System.EventHandler(this.DateLeave);
             // 
             // txtFreight
             // 
-            this.txtFreight.Location = new System.Drawing.Point(881, 56);
+            this.txtFreight.Location = new System.Drawing.Point(93, 130);
             this.txtFreight.Name = "txtFreight";
             this.txtFreight.ReadOnly = true;
             this.txtFreight.Size = new System.Drawing.Size(143, 20);
             this.txtFreight.TabIndex = 15;
             this.txtFreight.Text = "0.00";
             // 
-            // txtPostalCode
-            // 
-            this.txtPostalCode.Location = new System.Drawing.Point(881, 160);
-            this.txtPostalCode.Name = "txtPostalCode";
-            this.txtPostalCode.Size = new System.Drawing.Size(143, 20);
-            this.txtPostalCode.TabIndex = 16;
-            // 
-            // txtShipCountry
-            // 
-            this.txtShipCountry.Location = new System.Drawing.Point(881, 186);
-            this.txtShipCountry.Name = "txtShipCountry";
-            this.txtShipCountry.Size = new System.Drawing.Size(143, 20);
-            this.txtShipCountry.TabIndex = 17;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(802, 7);
+            this.label7.Location = new System.Drawing.Point(14, 47);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 13);
+            this.label7.Size = new System.Drawing.Size(76, 13);
             this.label7.TabIndex = 18;
-            this.label7.Text = "RequiredDate";
+            this.label7.Text = "Required Date";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(802, 33);
+            this.label8.Location = new System.Drawing.Point(14, 100);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(43, 13);
             this.label8.TabIndex = 19;
             this.label8.Text = "ShipVia";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(802, 189);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 13);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "Ship Country";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(802, 137);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(41, 13);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Region";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(802, 163);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(64, 13);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "Postal Code";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(802, 59);
+            this.label13.Location = new System.Drawing.Point(14, 133);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(39, 13);
             this.label13.TabIndex = 24;
             this.label13.Text = "Freight";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(802, 111);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(48, 13);
-            this.label14.TabIndex = 25;
-            this.label14.Text = "Ship City";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(802, 85);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(69, 13);
-            this.label15.TabIndex = 26;
-            this.label15.Text = "Ship Address";
-            // 
             // cmbShipVia
             // 
             this.cmbShipVia.FormattingEnabled = true;
-            this.cmbShipVia.Location = new System.Drawing.Point(881, 29);
+            this.cmbShipVia.Location = new System.Drawing.Point(93, 96);
             this.cmbShipVia.Name = "cmbShipVia";
             this.cmbShipVia.Size = new System.Drawing.Size(143, 21);
             this.cmbShipVia.TabIndex = 27;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(802, 241);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(24, 13);
-            this.label10.TabIndex = 29;
-            this.label10.Text = "Fax";
-            // 
-            // txtFax
-            // 
-            this.txtFax.Location = new System.Drawing.Point(881, 238);
-            this.txtFax.Name = "txtFax";
-            this.txtFax.Size = new System.Drawing.Size(143, 20);
-            this.txtFax.TabIndex = 28;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(802, 215);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(38, 13);
-            this.label16.TabIndex = 31;
-            this.label16.Text = "Phone";
-            // 
-            // txtPhone
-            // 
-            this.txtPhone.Location = new System.Drawing.Point(881, 212);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(143, 20);
-            this.txtPhone.TabIndex = 30;
             // 
             // lblError
             // 
@@ -354,7 +238,7 @@
             // btnCommitDetails
             // 
             this.btnCommitDetails.Enabled = false;
-            this.btnCommitDetails.Location = new System.Drawing.Point(801, 352);
+            this.btnCommitDetails.Location = new System.Drawing.Point(1081, 262);
             this.btnCommitDetails.Name = "btnCommitDetails";
             this.btnCommitDetails.Size = new System.Drawing.Size(180, 23);
             this.btnCommitDetails.TabIndex = 35;
@@ -382,70 +266,305 @@
             this.lblOrderID.TabIndex = 36;
             this.lblOrderID.Text = "[0]";
             // 
-            // groupBox1
+            // grpOrder
             // 
-            this.groupBox1.Location = new System.Drawing.Point(1030, 7);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 381);
-            this.groupBox1.TabIndex = 38;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.grpOrder.Controls.Add(this.txtShippedDate);
+            this.grpOrder.Controls.Add(this.label9);
+            this.grpOrder.Controls.Add(this.txtOrderDate);
+            this.grpOrder.Controls.Add(this.OrderDate);
+            this.grpOrder.Controls.Add(this.txtRequiredDate);
+            this.grpOrder.Controls.Add(this.txtFreight);
+            this.grpOrder.Controls.Add(this.label7);
+            this.grpOrder.Controls.Add(this.label8);
+            this.grpOrder.Controls.Add(this.cmbShipVia);
+            this.grpOrder.Controls.Add(this.label13);
+            this.grpOrder.Location = new System.Drawing.Point(1045, 56);
+            this.grpOrder.Name = "grpOrder";
+            this.grpOrder.Size = new System.Drawing.Size(242, 164);
+            this.grpOrder.TabIndex = 38;
+            this.grpOrder.TabStop = false;
+            this.grpOrder.Text = "Order Information";
             // 
-            // groupBox2
+            // grpCustomer
             // 
-            this.groupBox2.Location = new System.Drawing.Point(188, 447);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(165, 141);
-            this.groupBox2.TabIndex = 39;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.grpCustomer.Controls.Add(this.txtFax);
+            this.grpCustomer.Controls.Add(this.txtPhone);
+            this.grpCustomer.Controls.Add(this.txtCountry);
+            this.grpCustomer.Controls.Add(this.txtPostalCode);
+            this.grpCustomer.Controls.Add(this.txtRegion);
+            this.grpCustomer.Controls.Add(this.txtCity);
+            this.grpCustomer.Controls.Add(this.txtAddress);
+            this.grpCustomer.Controls.Add(this.txtContactName);
+            this.grpCustomer.Controls.Add(this.txtContactTitle);
+            this.grpCustomer.Controls.Add(this.label23);
+            this.grpCustomer.Controls.Add(this.label22);
+            this.grpCustomer.Controls.Add(this.label21);
+            this.grpCustomer.Controls.Add(this.label20);
+            this.grpCustomer.Controls.Add(this.label19);
+            this.grpCustomer.Controls.Add(this.label18);
+            this.grpCustomer.Controls.Add(this.label17);
+            this.grpCustomer.Controls.Add(this.label6);
+            this.grpCustomer.Controls.Add(this.label5);
+            this.grpCustomer.Controls.Add(this.label2);
+            this.grpCustomer.Controls.Add(this.lblCompanyName);
+            this.grpCustomer.Controls.Add(this.label3);
+            this.grpCustomer.Controls.Add(this.lblCustomerID);
+            this.grpCustomer.Location = new System.Drawing.Point(797, 56);
+            this.grpCustomer.Name = "grpCustomer";
+            this.grpCustomer.Size = new System.Drawing.Size(242, 313);
+            this.grpCustomer.TabIndex = 39;
+            this.grpCustomer.TabStop = false;
+            this.grpCustomer.Text = "Customer Information";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 21);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 41;
+            this.label3.Text = "CustomerID:";
+            // 
+            // lblCustomerID
+            // 
+            this.lblCustomerID.AutoSize = true;
+            this.lblCustomerID.Location = new System.Drawing.Point(102, 21);
+            this.lblCustomerID.Name = "lblCustomerID";
+            this.lblCustomerID.Size = new System.Drawing.Size(72, 13);
+            this.lblCustomerID.TabIndex = 40;
+            this.lblCustomerID.Text = "lblCustomerID";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 13);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "Company Name";
+            // 
+            // lblCompanyName
+            // 
+            this.lblCompanyName.AutoSize = true;
+            this.lblCompanyName.Location = new System.Drawing.Point(102, 47);
+            this.lblCompanyName.Name = "lblCompanyName";
+            this.lblCompanyName.Size = new System.Drawing.Size(60, 13);
+            this.lblCompanyName.TabIndex = 42;
+            this.lblCompanyName.Text = "Compname";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 73);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.TabIndex = 44;
+            this.label5.Text = "Contact Title";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 99);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 13);
+            this.label6.TabIndex = 45;
+            this.label6.Text = "Contact Name";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(12, 125);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(45, 13);
+            this.label17.TabIndex = 46;
+            this.label17.Text = "Address";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(12, 151);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(24, 13);
+            this.label18.TabIndex = 47;
+            this.label18.Text = "City";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(12, 177);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(41, 13);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "Region";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(12, 203);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(64, 13);
+            this.label20.TabIndex = 49;
+            this.label20.Text = "Postal Code";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(12, 229);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(43, 13);
+            this.label21.TabIndex = 50;
+            this.label21.Text = "Country";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(12, 283);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(24, 13);
+            this.label22.TabIndex = 51;
+            this.label22.Text = "Fax";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(12, 255);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(38, 13);
+            this.label23.TabIndex = 52;
+            this.label23.Text = "Phone";
+            // 
+            // txtContactTitle
+            // 
+            this.txtContactTitle.Location = new System.Drawing.Point(105, 70);
+            this.txtContactTitle.Name = "txtContactTitle";
+            this.txtContactTitle.Size = new System.Drawing.Size(131, 20);
+            this.txtContactTitle.TabIndex = 53;
+            // 
+            // txtContactName
+            // 
+            this.txtContactName.Location = new System.Drawing.Point(105, 96);
+            this.txtContactName.Name = "txtContactName";
+            this.txtContactName.Size = new System.Drawing.Size(131, 20);
+            this.txtContactName.TabIndex = 54;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(105, 122);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(131, 20);
+            this.txtAddress.TabIndex = 55;
+            // 
+            // txtCity
+            // 
+            this.txtCity.Location = new System.Drawing.Point(105, 148);
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(131, 20);
+            this.txtCity.TabIndex = 56;
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(105, 252);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(131, 20);
+            this.txtPhone.TabIndex = 60;
+            // 
+            // txtCountry
+            // 
+            this.txtCountry.Location = new System.Drawing.Point(105, 226);
+            this.txtCountry.Name = "txtCountry";
+            this.txtCountry.Size = new System.Drawing.Size(131, 20);
+            this.txtCountry.TabIndex = 59;
+            // 
+            // txtPostalCode
+            // 
+            this.txtPostalCode.Location = new System.Drawing.Point(105, 200);
+            this.txtPostalCode.Name = "txtPostalCode";
+            this.txtPostalCode.Size = new System.Drawing.Size(131, 20);
+            this.txtPostalCode.TabIndex = 58;
+            // 
+            // txtRegion
+            // 
+            this.txtRegion.Location = new System.Drawing.Point(105, 174);
+            this.txtRegion.Name = "txtRegion";
+            this.txtRegion.Size = new System.Drawing.Size(131, 20);
+            this.txtRegion.TabIndex = 57;
+            // 
+            // txtFax
+            // 
+            this.txtFax.Location = new System.Drawing.Point(105, 280);
+            this.txtFax.Name = "txtFax";
+            this.txtFax.Size = new System.Drawing.Size(131, 20);
+            this.txtFax.TabIndex = 61;
+            // 
+            // txtOrderDate
+            // 
+            this.txtOrderDate.ForeColor = System.Drawing.Color.Gray;
+            this.txtOrderDate.Location = new System.Drawing.Point(93, 18);
+            this.txtOrderDate.Name = "txtOrderDate";
+            this.txtOrderDate.Size = new System.Drawing.Size(143, 20);
+            this.txtOrderDate.TabIndex = 32;
+            this.txtOrderDate.Text = "DD/MM/YYYY";
+            this.txtOrderDate.Enter += new System.EventHandler(this.DateEnter);
+            this.txtOrderDate.Leave += new System.EventHandler(this.DateLeave);
+            // 
+            // OrderDate
+            // 
+            this.OrderDate.AutoSize = true;
+            this.OrderDate.Location = new System.Drawing.Point(14, 21);
+            this.OrderDate.Name = "OrderDate";
+            this.OrderDate.Size = new System.Drawing.Size(59, 13);
+            this.OrderDate.TabIndex = 33;
+            this.OrderDate.Text = "Order Date";
+            // 
+            // txtShippedDate
+            // 
+            this.txtShippedDate.Enabled = false;
+            this.txtShippedDate.ForeColor = System.Drawing.Color.Gray;
+            this.txtShippedDate.Location = new System.Drawing.Point(93, 70);
+            this.txtShippedDate.Name = "txtShippedDate";
+            this.txtShippedDate.Size = new System.Drawing.Size(143, 20);
+            this.txtShippedDate.TabIndex = 34;
+            this.txtShippedDate.Text = "DD/MM/YYYY";
+            this.txtShippedDate.Enter += new System.EventHandler(this.DateEnter);
+            this.txtShippedDate.Leave += new System.EventHandler(this.DateLeave);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(14, 73);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(72, 13);
+            this.label9.TabIndex = 35;
+            this.label9.Text = "Shipped Date";
             // 
             // OrderingFormBrett
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 600);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1295, 600);
+            this.Controls.Add(this.grpCustomer);
+            this.Controls.Add(this.grpOrder);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblOrderID);
             this.Controls.Add(this.btnCommitDetails);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblUnits);
             this.Controls.Add(this.lblError);
-            this.Controls.Add(this.txtFax);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.txtPhone);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.cmbShipVia);
             this.Controls.Add(this.btnMakeNewOrder);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtShipCountry);
-            this.Controls.Add(this.txtPostalCode);
-            this.Controls.Add(this.txtFreight);
-            this.Controls.Add(this.txtRegion);
-            this.Controls.Add(this.txtShipCity);
-            this.Controls.Add(this.txtShipAddress);
-            this.Controls.Add(this.txtRequiredDate);
             this.Controls.Add(this.lblTotalPrice);
             this.Controls.Add(this.lblDiscount);
             this.Controls.Add(this.lblQuantity);
             this.Controls.Add(this.lblProduct);
             this.Controls.Add(this.pnlContainer);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.lblEmployeeID);
-            this.Controls.Add(this.lblCustomerID);
             this.Name = "OrderingFormBrett";
             this.Text = "OrderingFromBrett";
             this.Load += new System.EventHandler(this.OrderingFormBrett_Load);
+            this.grpOrder.ResumeLayout(false);
+            this.grpOrder.PerformLayout();
+            this.grpCustomer.ResumeLayout(false);
+            this.grpCustomer.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -454,9 +573,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnMakeNewOrder;
-        private System.Windows.Forms.Label lblCustomerID;
         private System.Windows.Forms.Label lblEmployeeID;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel pnlContainer;
         private System.Windows.Forms.Label lblProduct;
@@ -464,32 +581,44 @@
         private System.Windows.Forms.Label lblDiscount;
         private System.Windows.Forms.Label lblTotalPrice;
         private System.Windows.Forms.TextBox txtRequiredDate;
-        private System.Windows.Forms.TextBox txtShipAddress;
-        private System.Windows.Forms.TextBox txtShipCity;
-        private System.Windows.Forms.TextBox txtRegion;
         private System.Windows.Forms.TextBox txtFreight;
-        private System.Windows.Forms.TextBox txtPostalCode;
-        private System.Windows.Forms.TextBox txtShipCountry;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox cmbShipVia;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtFax;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Label lblUnits;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Button btnCommitDetails;
         private System.Windows.Forms.Label lblOrderID;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpOrder;
+        private System.Windows.Forms.GroupBox grpCustomer;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblCustomerID;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblCompanyName;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtFax;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.TextBox txtCountry;
+        private System.Windows.Forms.TextBox txtPostalCode;
+        private System.Windows.Forms.TextBox txtRegion;
+        private System.Windows.Forms.TextBox txtCity;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.TextBox txtContactName;
+        private System.Windows.Forms.TextBox txtContactTitle;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtShippedDate;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtOrderDate;
+        private System.Windows.Forms.Label OrderDate;
     }
 }
