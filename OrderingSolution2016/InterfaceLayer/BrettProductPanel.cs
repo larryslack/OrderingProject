@@ -22,6 +22,9 @@ namespace InterfaceLayer
         public delegate void CalculateFreight();
         public event CalculateFreight CalcFreight;
 
+        public delegate void ErrorOccured(bool error);
+        public event ErrorOccured ErrorInCommit;
+
         #region Fields
 
         public ComboBox cmbProducts;
@@ -62,7 +65,7 @@ namespace InterfaceLayer
         public BrettProductPanel(List<BrettProductPanel> panelList, List<Product> productList, int containerWidth, int containerHeight, int containerLeft)
         {
             this.selectedProductID = 0;
-            this.quantity = 0;
+            this.quantity = 1;
             this.discount = 0;
             this.price = 0.00m;
             this.totalPrice = 0.00m;
@@ -280,6 +283,11 @@ namespace InterfaceLayer
                 if (panelList[i] != this && panelList[i].selectedProductID == this.selectedProductID)
                 {
                     this.BackColor = Color.Red;
+                    ErrorInCommit(true);
+                }
+                else
+                {
+                    ErrorInCommit(false);
                 }
             }
 
@@ -329,13 +337,13 @@ namespace InterfaceLayer
                 string priceExpression = @"^([0-9,]+)([.][0-9]{0,2})?$";
                 Regex priceRegex = new Regex(priceExpression);
 
-                string quantityExpression = @"^[1-9]\d{0,3}$";
+                string quantityExpression = @"^([1-9]\d{0,3})$";
                 Regex quantityRegex = new Regex(quantityExpression);
 
-                string discountExpression = @"^[0-9]\d{0,2}$";
+                string discountExpression = @"^([0-9]\d{0,2})$";
                 Regex discountRegex = new Regex(discountExpression);
 
-                quantity = 0;
+                quantity = 1;
                 discount = 0;
                 price = 0;
 

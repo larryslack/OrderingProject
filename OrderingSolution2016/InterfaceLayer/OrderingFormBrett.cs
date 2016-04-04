@@ -24,6 +24,7 @@ namespace InterfaceLayer
         private List<Product> productList;
         private int orderID = 0;
         private Order curOrder;
+        private bool blnErrorOccured = false;
 
         private List<Shipper> shipperList;
 
@@ -61,6 +62,19 @@ namespace InterfaceLayer
             txtFax.Text = currentCustomer.Fax;
             txtPhone.Text = currentCustomer.Phone;
 
+            int dateLength = DateTime.Now.Date.ToString().Length;
+            int dateWantedLength = 0;
+            string date = DateTime.Now.Date.ToString();
+            for (int i = 0; i< dateLength; i++)
+            {
+                if (date.Substring(i, 1) == " ")
+                {
+                    dateWantedLength = i;
+                    break;
+                }
+            }
+            txtOrderDate.Text = date.Substring(0, dateWantedLength);
+
             if (isEditting)
                 txtShippedDate.Enabled = true;
             else
@@ -96,7 +110,23 @@ namespace InterfaceLayer
         private void LoadOrder()
         {
             lblOrderID.Text = orderID.ToString();
-            txtRequiredDate.Text = curOrder.RequiredDate.ToString();
+
+            
+
+            int dateLength = DateTime.Now.Date.ToString().Length;
+            int dateWantedLength = 0;
+            string date = curOrder.RequiredDate.ToString();
+            for (int i = 0; i< dateLength; i++)
+            {
+                if (date.Substring(i, 1) == " ")
+                {
+                    dateWantedLength = i;
+                    break;
+                }
+            }
+
+            txtRequiredDate.Text = date.Substring(0, dateWantedLength);
+            //txtRequiredDate.Text = curOrder.RequiredDate.ToString();
 
             for (int i = 0; i < shipperList.Count; i++)
                 if (shipperList[i].ShipperID == curOrder.ShipVia)
@@ -125,6 +155,7 @@ namespace InterfaceLayer
                 BPP.RemovePanel += RemovePanel;
                 BPP.AddProductPanel += AddPanel;
                 BPP.CalcFreight += CalculateFreight;
+                BPP.ErrorInCommit += BPP_ErrorInCommit;
 
                 // I dont know if I like this way for it is efficient
                 lblProduct.Left = BrettProductPanel.lblProductX;
@@ -157,9 +188,9 @@ namespace InterfaceLayer
                 currentCustomer.Region = region;
                 currentCustomer.PostalCode = postalCode;
                 currentCustomer.Country = country;
-                // Need a method to update a customer
+                Business.UpdateExistingCustomer(currentCustomer);
 
-                if (curOrder != null)
+                if (curOrder == null)
                     curOrder = new Order(1);
 
                 curOrder.CustomerID = lblCustomerID.Text;
@@ -247,16 +278,32 @@ namespace InterfaceLayer
 
         private void btnCommitDetails_Click(object sender, EventArgs e)
         {
-            detailList = new List<OrderDetail>();
-
-            foreach (BrettProductPanel pnl in pnlList)
+            try
             {
-                if (pnl.selectedProductID != -1 && pnl.quantity > 0)
-                    detailList.Add(new OrderDetail(orderID, pnl.selectedProductID, pnl.totalPrice, pnl.quantity, pnl.discount));
-            }
-            Business.SaveDetails(orderID, detailList);
+                if (!blnErrorOccured)
+                {
+                    detailList = new List<OrderDetail>();
 
-            btnCommitDetails.Enabled = true;
+                    foreach (BrettProductPanel pnl in pnlList)
+                    {
+                        if (pnl.selectedProductID != -1 && pnl.quantity > 0)
+                            detailList.Add(new OrderDetail(orderID, pnl.selectedProductID, pnl.totalPrice, pnl.quantity, pnl.discount));
+                    }
+                    Business.SaveDetails(orderID, detailList);
+                    //btnCommitDetails.Enabled = true;
+                }
+                else
+                    throw new Exception("You can't order the same product twice");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BPP_ErrorInCommit(bool error)
+        {
+            blnErrorOccured = error;
         }
     }
 }
