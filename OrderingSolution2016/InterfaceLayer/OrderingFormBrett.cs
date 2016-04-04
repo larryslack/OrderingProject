@@ -258,5 +258,11 @@ namespace InterfaceLayer
 
             btnCommitDetails.Enabled = true;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            WebForms.BrettWebForm BWF = new WebForms.BrettWebForm();
+            
+        }
     }
 }

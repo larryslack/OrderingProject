@@ -49,33 +49,34 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblOrderID = new System.Windows.Forms.Label();
             this.grpOrder = new System.Windows.Forms.GroupBox();
+            this.txtShippedDate = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtOrderDate = new System.Windows.Forms.TextBox();
+            this.OrderDate = new System.Windows.Forms.Label();
             this.grpCustomer = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblCustomerID = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblCompanyName = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtContactTitle = new System.Windows.Forms.TextBox();
-            this.txtContactName = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.txtCity = new System.Windows.Forms.TextBox();
+            this.txtFax = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
             this.txtPostalCode = new System.Windows.Forms.TextBox();
             this.txtRegion = new System.Windows.Forms.TextBox();
-            this.txtFax = new System.Windows.Forms.TextBox();
-            this.txtOrderDate = new System.Windows.Forms.TextBox();
-            this.OrderDate = new System.Windows.Forms.Label();
-            this.txtShippedDate = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.txtCity = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtContactName = new System.Windows.Forms.TextBox();
+            this.txtContactTitle = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblCompanyName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblCustomerID = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.grpOrder.SuspendLayout();
             this.grpCustomer.SuspendLayout();
             this.SuspendLayout();
@@ -285,6 +286,47 @@
             this.grpOrder.TabStop = false;
             this.grpOrder.Text = "Order Information";
             // 
+            // txtShippedDate
+            // 
+            this.txtShippedDate.Enabled = false;
+            this.txtShippedDate.ForeColor = System.Drawing.Color.Gray;
+            this.txtShippedDate.Location = new System.Drawing.Point(93, 70);
+            this.txtShippedDate.Name = "txtShippedDate";
+            this.txtShippedDate.Size = new System.Drawing.Size(143, 20);
+            this.txtShippedDate.TabIndex = 34;
+            this.txtShippedDate.Text = "DD/MM/YYYY";
+            this.txtShippedDate.Enter += new System.EventHandler(this.DateEnter);
+            this.txtShippedDate.Leave += new System.EventHandler(this.DateLeave);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(14, 73);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(72, 13);
+            this.label9.TabIndex = 35;
+            this.label9.Text = "Shipped Date";
+            // 
+            // txtOrderDate
+            // 
+            this.txtOrderDate.ForeColor = System.Drawing.Color.Gray;
+            this.txtOrderDate.Location = new System.Drawing.Point(93, 18);
+            this.txtOrderDate.Name = "txtOrderDate";
+            this.txtOrderDate.Size = new System.Drawing.Size(143, 20);
+            this.txtOrderDate.TabIndex = 32;
+            this.txtOrderDate.Text = "DD/MM/YYYY";
+            this.txtOrderDate.Enter += new System.EventHandler(this.DateEnter);
+            this.txtOrderDate.Leave += new System.EventHandler(this.DateLeave);
+            // 
+            // OrderDate
+            // 
+            this.OrderDate.AutoSize = true;
+            this.OrderDate.Location = new System.Drawing.Point(14, 21);
+            this.OrderDate.Name = "OrderDate";
+            this.OrderDate.Size = new System.Drawing.Size(59, 13);
+            this.OrderDate.TabIndex = 33;
+            this.OrderDate.Text = "Order Date";
+            // 
             // grpCustomer
             // 
             this.grpCustomer.Controls.Add(this.txtFax);
@@ -316,150 +358,12 @@
             this.grpCustomer.TabStop = false;
             this.grpCustomer.Text = "Customer Information";
             // 
-            // label3
+            // txtFax
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 21);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 41;
-            this.label3.Text = "CustomerID:";
-            // 
-            // lblCustomerID
-            // 
-            this.lblCustomerID.AutoSize = true;
-            this.lblCustomerID.Location = new System.Drawing.Point(102, 21);
-            this.lblCustomerID.Name = "lblCustomerID";
-            this.lblCustomerID.Size = new System.Drawing.Size(72, 13);
-            this.lblCustomerID.TabIndex = 40;
-            this.lblCustomerID.Text = "lblCustomerID";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 47);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 13);
-            this.label2.TabIndex = 43;
-            this.label2.Text = "Company Name";
-            // 
-            // lblCompanyName
-            // 
-            this.lblCompanyName.AutoSize = true;
-            this.lblCompanyName.Location = new System.Drawing.Point(102, 47);
-            this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(60, 13);
-            this.lblCompanyName.TabIndex = 42;
-            this.lblCompanyName.Text = "Compname";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 73);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 13);
-            this.label5.TabIndex = 44;
-            this.label5.Text = "Contact Title";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 99);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 13);
-            this.label6.TabIndex = 45;
-            this.label6.Text = "Contact Name";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(12, 125);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(45, 13);
-            this.label17.TabIndex = 46;
-            this.label17.Text = "Address";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(12, 151);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(24, 13);
-            this.label18.TabIndex = 47;
-            this.label18.Text = "City";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(12, 177);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 13);
-            this.label19.TabIndex = 48;
-            this.label19.Text = "Region";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(12, 203);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(64, 13);
-            this.label20.TabIndex = 49;
-            this.label20.Text = "Postal Code";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(12, 229);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(43, 13);
-            this.label21.TabIndex = 50;
-            this.label21.Text = "Country";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(12, 283);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(24, 13);
-            this.label22.TabIndex = 51;
-            this.label22.Text = "Fax";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(12, 255);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(38, 13);
-            this.label23.TabIndex = 52;
-            this.label23.Text = "Phone";
-            // 
-            // txtContactTitle
-            // 
-            this.txtContactTitle.Location = new System.Drawing.Point(105, 70);
-            this.txtContactTitle.Name = "txtContactTitle";
-            this.txtContactTitle.Size = new System.Drawing.Size(131, 20);
-            this.txtContactTitle.TabIndex = 53;
-            // 
-            // txtContactName
-            // 
-            this.txtContactName.Location = new System.Drawing.Point(105, 96);
-            this.txtContactName.Name = "txtContactName";
-            this.txtContactName.Size = new System.Drawing.Size(131, 20);
-            this.txtContactName.TabIndex = 54;
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Location = new System.Drawing.Point(105, 122);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(131, 20);
-            this.txtAddress.TabIndex = 55;
-            // 
-            // txtCity
-            // 
-            this.txtCity.Location = new System.Drawing.Point(105, 148);
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(131, 20);
-            this.txtCity.TabIndex = 56;
+            this.txtFax.Location = new System.Drawing.Point(105, 280);
+            this.txtFax.Name = "txtFax";
+            this.txtFax.Size = new System.Drawing.Size(131, 20);
+            this.txtFax.TabIndex = 61;
             // 
             // txtPhone
             // 
@@ -489,59 +393,167 @@
             this.txtRegion.Size = new System.Drawing.Size(131, 20);
             this.txtRegion.TabIndex = 57;
             // 
-            // txtFax
+            // txtCity
             // 
-            this.txtFax.Location = new System.Drawing.Point(105, 280);
-            this.txtFax.Name = "txtFax";
-            this.txtFax.Size = new System.Drawing.Size(131, 20);
-            this.txtFax.TabIndex = 61;
+            this.txtCity.Location = new System.Drawing.Point(105, 148);
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(131, 20);
+            this.txtCity.TabIndex = 56;
             // 
-            // txtOrderDate
+            // txtAddress
             // 
-            this.txtOrderDate.ForeColor = System.Drawing.Color.Gray;
-            this.txtOrderDate.Location = new System.Drawing.Point(93, 18);
-            this.txtOrderDate.Name = "txtOrderDate";
-            this.txtOrderDate.Size = new System.Drawing.Size(143, 20);
-            this.txtOrderDate.TabIndex = 32;
-            this.txtOrderDate.Text = "DD/MM/YYYY";
-            this.txtOrderDate.Enter += new System.EventHandler(this.DateEnter);
-            this.txtOrderDate.Leave += new System.EventHandler(this.DateLeave);
+            this.txtAddress.Location = new System.Drawing.Point(105, 122);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(131, 20);
+            this.txtAddress.TabIndex = 55;
             // 
-            // OrderDate
+            // txtContactName
             // 
-            this.OrderDate.AutoSize = true;
-            this.OrderDate.Location = new System.Drawing.Point(14, 21);
-            this.OrderDate.Name = "OrderDate";
-            this.OrderDate.Size = new System.Drawing.Size(59, 13);
-            this.OrderDate.TabIndex = 33;
-            this.OrderDate.Text = "Order Date";
+            this.txtContactName.Location = new System.Drawing.Point(105, 96);
+            this.txtContactName.Name = "txtContactName";
+            this.txtContactName.Size = new System.Drawing.Size(131, 20);
+            this.txtContactName.TabIndex = 54;
             // 
-            // txtShippedDate
+            // txtContactTitle
             // 
-            this.txtShippedDate.Enabled = false;
-            this.txtShippedDate.ForeColor = System.Drawing.Color.Gray;
-            this.txtShippedDate.Location = new System.Drawing.Point(93, 70);
-            this.txtShippedDate.Name = "txtShippedDate";
-            this.txtShippedDate.Size = new System.Drawing.Size(143, 20);
-            this.txtShippedDate.TabIndex = 34;
-            this.txtShippedDate.Text = "DD/MM/YYYY";
-            this.txtShippedDate.Enter += new System.EventHandler(this.DateEnter);
-            this.txtShippedDate.Leave += new System.EventHandler(this.DateLeave);
+            this.txtContactTitle.Location = new System.Drawing.Point(105, 70);
+            this.txtContactTitle.Name = "txtContactTitle";
+            this.txtContactTitle.Size = new System.Drawing.Size(131, 20);
+            this.txtContactTitle.TabIndex = 53;
             // 
-            // label9
+            // label23
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(14, 73);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(72, 13);
-            this.label9.TabIndex = 35;
-            this.label9.Text = "Shipped Date";
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(12, 255);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(38, 13);
+            this.label23.TabIndex = 52;
+            this.label23.Text = "Phone";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(12, 283);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(24, 13);
+            this.label22.TabIndex = 51;
+            this.label22.Text = "Fax";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(12, 229);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(43, 13);
+            this.label21.TabIndex = 50;
+            this.label21.Text = "Country";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(12, 203);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(64, 13);
+            this.label20.TabIndex = 49;
+            this.label20.Text = "Postal Code";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(12, 177);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(41, 13);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "Region";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(12, 151);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(24, 13);
+            this.label18.TabIndex = 47;
+            this.label18.Text = "City";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(12, 125);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(45, 13);
+            this.label17.TabIndex = 46;
+            this.label17.Text = "Address";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 99);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 13);
+            this.label6.TabIndex = 45;
+            this.label6.Text = "Contact Name";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 73);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.TabIndex = 44;
+            this.label5.Text = "Contact Title";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 13);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "Company Name";
+            // 
+            // lblCompanyName
+            // 
+            this.lblCompanyName.AutoSize = true;
+            this.lblCompanyName.Location = new System.Drawing.Point(102, 47);
+            this.lblCompanyName.Name = "lblCompanyName";
+            this.lblCompanyName.Size = new System.Drawing.Size(60, 13);
+            this.lblCompanyName.TabIndex = 42;
+            this.lblCompanyName.Text = "Compname";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 21);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 41;
+            this.label3.Text = "CustomerID:";
+            // 
+            // lblCustomerID
+            // 
+            this.lblCustomerID.AutoSize = true;
+            this.lblCustomerID.Location = new System.Drawing.Point(102, 21);
+            this.lblCustomerID.Name = "lblCustomerID";
+            this.lblCustomerID.Size = new System.Drawing.Size(72, 13);
+            this.lblCustomerID.TabIndex = 40;
+            this.lblCustomerID.Text = "lblCustomerID";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1081, 301);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 40;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // OrderingFormBrett
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1295, 600);
+            this.ClientSize = new System.Drawing.Size(1295, 444);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.grpCustomer);
             this.Controls.Add(this.grpOrder);
             this.Controls.Add(this.label1);
@@ -620,5 +632,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtOrderDate;
         private System.Windows.Forms.Label OrderDate;
+        private System.Windows.Forms.Button button1;
     }
 }
