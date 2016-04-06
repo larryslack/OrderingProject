@@ -69,14 +69,13 @@ namespace InterfaceLayer
 
 
             //get order and details from business layer
-            //ThisOrder = Business.GetOrder(OrderID);
+            ThisOrder = Business.FindOrder(OrderID);
             this.OrderDetailList = Business.OrderDetailList(OrderID);
 
             //display order information and detail information
 
             Cust = Business.GetCustomer(CustomerID);
 
-           //lblCompanyName.Name = "CompanyID";
             txtCustName.Name = "CustomerID";
             txtCustName.Text = CustomerID;
             txtPostCode.Text = ThisOrder.ShipPostalCode;
@@ -87,7 +86,7 @@ namespace InterfaceLayer
             txtShipRegion.Text = ThisOrder.ShipRegion;
             txtPhoneNum.Name = "OrderID";
             txtPhoneNum.Text = OrderID.ToString();
-            
+
 
             cbShipVia.DataSource = Business.ShipperTable();
             cbShipVia.ValueMember = "ShipperID";
@@ -154,7 +153,7 @@ namespace InterfaceLayer
                 productItems = new List<Product>();
                 OrderDetailList = new List<OrderDetail>();
                 string selectedProduct = cbSelectProduct.SelectedText;
-                //DGV.DataSource = Business.OrderDetailList(Convert.ToInt32(txtOrderId.Text));
+
                 DGV.CurrentRow.Cells["Product"].Value = cbSelectProduct.SelectedValue;
                 DGV.CurrentRow.Cells["Quantity"].Value = newOrderDetail.Quantity;
 
@@ -187,6 +186,83 @@ namespace InterfaceLayer
                     DGV.CurrentRow.Cells["Price500OrMore"].Value = normalPrice;
                     DGV.CurrentRow.Cells["Total"].Value = ThirtyFivePercent;
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            short qty=1;
+            decimal unitPrice=0;
+            decimal normalPrice=0, TenPercent=0, TwentyPercent=0, ThirtyFivePercent=0, TotalLinePrice=0; 
+            try
+            {
+                //DGV.Rows.Add("Chai",1, 1,10,20,10,0);
+                string selectedProduct = cbSelectProduct.SelectedText;
+                if (cbSelectProduct.SelectedValue != null)
+                {
+
+
+
+                    if (txtChangeQuantity.Text != null)
+                    {
+                        qty = short.Parse(txtChangeQuantity.Text);
+
+
+                        if (qty < 50)
+                        {
+                             normalPrice = Convert.ToInt32(txtChangeQuantity.Text) * Convert.ToUInt32(newOrderDetail.UnitPrice);
+                            DGV.Rows.Add("Price");
+                            //DGV.CurrentRow.Cells["Price"].Value = newOrderDetail.UnitPrice;
+                            //DGV.CurrentRow.Cells["Total"].Value = normalPrice;
+                        }
+                        else if (qty >= 50 || qty < 100)
+                        {
+                            // normalPrice = Convert.ToUInt32(newOrderDetail.UnitPrice) - (Convert.ToUInt32(newOrderDetail.UnitPrice) * .1);
+                             TenPercent = Convert.ToUInt32(txtChangeQuantity.Text) * normalPrice;
+                            //DGV.CurrentRow.Cells["Price50To100"].Value = normalPrice;
+                            //DGV.CurrentRow.Cells["Total"].Value = TenPercent;
+                        }
+                        else if (qty>= 100 || qty < 500)
+                        {
+                           //  normalPrice = Convert.ToUInt32(newOrderDetail.UnitPrice) - (Convert.ToUInt32(newOrderDetail.UnitPrice) * .2);
+                             TwentyPercent = Convert.ToUInt32(txtChangeQuantity.Text) * normalPrice;
+                            //DGV.CurrentRow.Cells["Price100To500"].Value = normalPrice;
+                            //DGV.CurrentRow.Cells["Total"].Value = TwentyPercent;
+                        }
+                        else if (Convert.ToInt32(txtChangeQuantity.Text) >= 500)
+                        {
+                            // normalPrice = Convert.ToUInt32(newOrderDetail.UnitPrice) - (Convert.ToUInt32(newOrderDetail.UnitPrice) * .2);
+                             ThirtyFivePercent = Convert.ToUInt32(txtChangeQuantity.Text) * normalPrice;
+                            //DGV.CurrentRow.Cells["Price500OrMore"].Value = normalPrice;
+                            //DGV.CurrentRow.Cells["Total"].Value = ThirtyFivePercent;
+                        }
+
+
+
+
+
+
+
+                    }
+
+
+
+
+
+
+
+                    DGV.Rows.Add(cbSelectProduct.SelectedText, qty, normalPrice,TenPercent);
+
+                }
+                DGV.CurrentRow.Cells["Product"].Value = cbSelectProduct.SelectedValue;
+                DGV.CurrentRow.Cells["Quantity"].Value = newOrderDetail.Quantity;
+
+                txtChangeQuantity.Text = DGV.CurrentRow.Cells["Quantity"].Value.ToString();
+
             }
             catch (Exception ex)
             {

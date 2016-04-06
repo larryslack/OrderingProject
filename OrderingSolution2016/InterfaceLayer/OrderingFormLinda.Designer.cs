@@ -68,6 +68,7 @@
             this.btnDel = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.txtChangeQuantity = new System.Windows.Forms.TextBox();
+            this.btnAddProduct = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGV)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -153,6 +154,10 @@
             // 
             // DGV
             // 
+            this.DGV.AllowUserToAddRows = false;
+            this.DGV.AllowUserToDeleteRows = false;
+            this.DGV.AllowUserToResizeColumns = false;
+            this.DGV.AllowUserToResizeRows = false;
             this.DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Product,
@@ -164,6 +169,7 @@
             this.Total});
             this.DGV.Location = new System.Drawing.Point(3, 298);
             this.DGV.Name = "DGV";
+            this.DGV.ReadOnly = true;
             this.DGV.Size = new System.Drawing.Size(814, 170);
             this.DGV.TabIndex = 10;
             // 
@@ -359,7 +365,6 @@
             this.cbSelectProduct.Name = "cbSelectProduct";
             this.cbSelectProduct.Size = new System.Drawing.Size(149, 21);
             this.cbSelectProduct.TabIndex = 28;
-            this.cbSelectProduct.SelectedValueChanged += new System.EventHandler(this.cbSelectProduct_SelectedValueChanged);
             // 
             // txtOrderId
             // 
@@ -423,11 +428,22 @@
             this.txtChangeQuantity.Size = new System.Drawing.Size(149, 22);
             this.txtChangeQuantity.TabIndex = 34;
             // 
+            // btnAddProduct
+            // 
+            this.btnAddProduct.Location = new System.Drawing.Point(288, 211);
+            this.btnAddProduct.Name = "btnAddProduct";
+            this.btnAddProduct.Size = new System.Drawing.Size(145, 24);
+            this.btnAddProduct.TabIndex = 36;
+            this.btnAddProduct.Text = "Add  This Product";
+            this.btnAddProduct.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
+            // 
             // OrderingFormLinda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(817, 469);
+            this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtChangeQuantity);
             this.Controls.Add(this.btnDel);
@@ -506,5 +522,6 @@
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtChangeQuantity;
+        private System.Windows.Forms.Button btnAddProduct;
     }
 }
