@@ -349,7 +349,10 @@ namespace InterfaceLayer
                 neworder.ShipCountry = txtCountry.Text;
                 neworder.EmployeeName = null; // I need the employee name.
                 neworder.ShipperName = cmbShipVia.Text;
-
+                if (currentOrder != null)
+                {
+                    neworder.OrderID = currentOrder.OrderID;
+                }                
                 Business.SaveOrder(neworder);
                 DetailList = new List<OrderDetail>();
 
