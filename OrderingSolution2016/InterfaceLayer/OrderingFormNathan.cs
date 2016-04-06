@@ -59,7 +59,8 @@ namespace InterfaceLayer
             OrderId = OrderID;
             lblorID.Text = OrderId.ToString();
             Order Get = Business.FindOrder(OrderId);
-            Customer Cust = Business.GetCustomer((OrderId.ToString()));
+            Customer Cust = Business.GetCustomer((CustomerID));
+            DetailsList = Business.OrderDetailList(OrderId);
             txtSDate.Text = Get.ShippedDate.ToString();
             txtRDate.Text = Get.RequiredDate.ToString();
             txtAddress.Text = Get.ShipAddress.ToString();
@@ -71,7 +72,11 @@ namespace InterfaceLayer
             txtFax.Text = Cust.Fax.ToString();
             txtPhone.Text = Cust.Phone.ToString();
             Editing = true;
-
+            ProductList = Business.ProductList();
+            foreach (OrderDetail d in DetailsList) 
+            {
+                lsDetails.Items.Add(d.ProductName + " " + d.Quantity.ToString());
+            }
             Test = Get;
         }
 

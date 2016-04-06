@@ -28,7 +28,7 @@ namespace BaseLayer
             this.CustomerID = CustomerID;
         }
 
-        public Customer(string CustomerID, string CompanyName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, string Phone, string Fax)
+        public Customer(string CustomerID, string CompanyName, string Contactname, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, string Phone, string Fax)
         {
             this.CustomerID = CustomerID;
             this.CompanyName = CompanyName;
@@ -40,7 +40,7 @@ namespace BaseLayer
             this.Country = Country;
             this.Phone = Phone;
             this.Fax = Fax;
-            this.ContactName = ContactName;
+            this.ContactName = Contactname;
         }
         #endregion
     }
