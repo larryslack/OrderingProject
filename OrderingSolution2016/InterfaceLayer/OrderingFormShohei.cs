@@ -38,6 +38,12 @@ namespace InterfaceLayer
         public btnProSave(string CustomerID, int EmployeeID)
         {
             InitializeComponent();
+
+            ProductList = Business.ProductList();
+            ShipList.DataSource = Business.ShipperTable();
+            ShipList.DisplayMember = "CompanyName";
+            ShipList.ValueMember = "ShipperID";
+
             lblCust.Text = CustomerID;
             employeeID = EmployeeID;
             lblEmpl.Text = employeeID.ToString();
@@ -52,7 +58,14 @@ namespace InterfaceLayer
 
         public btnProSave(string CustomerID, int EmployeeID, int orderid)
         {
+
             InitializeComponent();
+
+            ProductList = Business.ProductList();
+            ShipList.DataSource = Business.ShipperTable();
+            ShipList.DisplayMember = "CompanyName";
+            ShipList.ValueMember = "ShipperID";
+
             button2.Enabled = false;
             OrderID = orderid;
             lblOrderID.Text = OrderID.ToString();
@@ -72,6 +85,8 @@ namespace InterfaceLayer
 
             foreach (OrderDetail od in DetailList)
             {
+
+
                 Panel ProductPanel = new Panel();
                 ProductPanel.Height = 30;
                 ProductPanel.Width = 500;
@@ -88,7 +103,7 @@ namespace InterfaceLayer
                 cmb.ValueMember = "ProductID";
                 cmb.SelectedIndexChanged += cmb_SelectedIndexChanged;
                 cmbList.Add(cmb);
-                cmb.SelectedValue = od.ProductID;
+                
 
                 TextBox p = new TextBox();
                 p.Text = od.UnitPrice.ToString();
@@ -96,7 +111,7 @@ namespace InterfaceLayer
                 p.Left = l + 120;
                 p.Tag = n;
                 txtPriceList.Add(p);
-
+                
                 TextBox q = new TextBox();
                 q.Text = od.Quantity.ToString();
                 ProductPanel.Controls.Add(q);
@@ -119,6 +134,7 @@ namespace InterfaceLayer
                 b.Tag = n;
                 b.Click += Remove_Order;
                 btnRemoveList.Add(b);
+                cmb.SelectedValue = od.ProductID;
 
                 n++;
                 sortPanel();
@@ -128,10 +144,7 @@ namespace InterfaceLayer
 
         private void OrderingFormShohei_Load(object sender, EventArgs e)
         {
-            ProductList = Business.ProductList();
-            ShipList.DataSource = Business.ShipperTable();
-            ShipList.DisplayMember = "CompanyName";
-            ShipList.ValueMember = "ShipperID";
+            
 
 
 

@@ -100,7 +100,7 @@ namespace InterfaceLayer
 
         private void btnEditOrder_Click(object sender, EventArgs e)
         {
-            OrderingFormPicker OFP = new OrderingFormPicker(CurCustomer.CustomerID, 11, 10643);
+            OrderingFormPicker OFP = new OrderingFormPicker(CurCustomer.CustomerID, 11, 12300);
             OFP.Show();
         }
 
