@@ -24,6 +24,9 @@ namespace InterfaceLayer
         private List<Product> productList;
         private int orderID = 0;
         private Order curOrder;
+        private bool blnErrorOccured = false;
+
+        private List<Shipper> shipperList;
 
         public OrderingFormBrett(string customerID, int emloyeeID)
         {
@@ -35,10 +38,10 @@ namespace InterfaceLayer
         {
             InitializeComponent();
             PreInitForm(customerID, employeeID);
-            this.orderID = orderID;
-            this.tempDetailList = Business.OrderDetailList(orderID);
+            curOrder = Business.FindOrder(orderID);
+            this.orderID = curOrder.OrderID;
+            tempDetailList = Business.OrderDetailList(orderID);
             isEditting = true;
-            lblOrderID.Text = orderID.ToString();
         }
 
         private void OrderingFormBrett_Load(object sender, EventArgs e)
@@ -46,27 +49,47 @@ namespace InterfaceLayer
             productList = Business.ProductList();
 
             pnlContainer.BorderStyle = BorderStyle.FixedSingle;
-
+            
             currentCustomer = Business.GetCustomer(customerID);
+            txtContactTitle.Text = currentCustomer.ContactTitle;
+            txtContactName.Text = currentCustomer.ContactName;
             txtPostalCode.Text = currentCustomer.PostalCode;
             txtRegion.Text = currentCustomer.Region;
-            txtShipAddress.Text = currentCustomer.Address;
-            txtShipCity.Text = currentCustomer.City;
-            txtShipCountry.Text = currentCustomer.Country;
+            txtAddress.Text = currentCustomer.Address;
+            txtCity.Text = currentCustomer.City;
+            txtCountry.Text = currentCustomer.Country;
             txtRegion.Text = currentCustomer.Region;
             txtFax.Text = currentCustomer.Fax;
             txtPhone.Text = currentCustomer.Phone;
 
-            cmbShipVia.DataSource = Business.ShipperTable();
+            int dateLength = DateTime.Now.Date.ToString().Length;
+            int dateWantedLength = 0;
+            string date = DateTime.Now.Date.ToString();
+            for (int i = 0; i< dateLength; i++)
+            {
+                if (date.Substring(i, 1) == " ")
+                {
+                    dateWantedLength = i;
+                    break;
+                }
+            }
+            txtOrderDate.Text = date.Substring(0, dateWantedLength);
+
+            if (isEditting)
+                txtShippedDate.Enabled = true;
+            else
+                txtShippedDate.Enabled = false;
+
+            shipperList = Business.ShipperTable();
+            cmbShipVia.DataSource = shipperList;
             cmbShipVia.ValueMember = "ShipperID";
             cmbShipVia.DisplayMember = "CompanyName";
             cmbShipVia.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbShipVia.SelectedIndex = -1;
 
-            TxtRequiredDateMethods();
-
             if (isEditting)
             {
+                LoadOrder();
                 foreach (OrderDetail detail in tempDetailList)
                 {
                     AddPanel(detail);
@@ -82,6 +105,32 @@ namespace InterfaceLayer
             this.employeeID = employeeID;
             lblCustomerID.Text = customerID;
             lblEmployeeID.Text = employeeID.ToString();
+        }
+
+        private void LoadOrder()
+        {
+            lblOrderID.Text = orderID.ToString();
+
+            
+
+            int dateLength = DateTime.Now.Date.ToString().Length;
+            int dateWantedLength = 0;
+            string date = curOrder.RequiredDate.ToString();
+            for (int i = 0; i< dateLength; i++)
+            {
+                if (date.Substring(i, 1) == " ")
+                {
+                    dateWantedLength = i;
+                    break;
+                }
+            }
+
+            txtRequiredDate.Text = date.Substring(0, dateWantedLength);
+            //txtRequiredDate.Text = curOrder.RequiredDate.ToString();
+
+            for (int i = 0; i < shipperList.Count; i++)
+                if (shipperList[i].ShipperID == curOrder.ShipVia)
+                    cmbShipVia.SelectedIndex = i;
         }
 
         private void AddPanel()
@@ -106,6 +155,7 @@ namespace InterfaceLayer
                 BPP.RemovePanel += RemovePanel;
                 BPP.AddProductPanel += AddPanel;
                 BPP.CalcFreight += CalculateFreight;
+                BPP.ErrorInCommit += BPP_ErrorInCommit;
 
                 // I dont know if I like this way for it is efficient
                 lblProduct.Left = BrettProductPanel.lblProductX;
@@ -126,7 +176,21 @@ namespace InterfaceLayer
         {
             try
             {
-                if (curOrder != null)
+                string companyName = currentCustomer.CompanyName;
+                string address = currentCustomer.Address;
+                string city = txtCity.Text;
+                string region = txtRegion.Text;
+                string postalCode = txtPostalCode.Text;
+                string country = txtCountry.Text;
+
+                currentCustomer.CompanyName = companyName;
+                currentCustomer.City = city;
+                currentCustomer.Region = region;
+                currentCustomer.PostalCode = postalCode;
+                currentCustomer.Country = country;
+                Business.UpdateExistingCustomer(currentCustomer);
+
+                if (curOrder == null)
                     curOrder = new Order(1);
 
                 curOrder.CustomerID = lblCustomerID.Text;
@@ -136,12 +200,12 @@ namespace InterfaceLayer
                 curOrder.ShippedDate = null;
                 curOrder.ShipVia = Convert.ToInt32(cmbShipVia.SelectedValue);
                 curOrder.Freight = Convert.ToDecimal(txtFreight.Text); //Retrieve later.
-                curOrder.ShipName = currentCustomer.CompanyName;
-                curOrder.ShipAddress = txtShipAddress.Text;
-                curOrder.ShipCity = txtShipCity.Text;
-                curOrder.ShipRegion = txtRegion.Text;
-                curOrder.ShipPostalCode = txtPostalCode.Text;
-                curOrder.ShipCountry = txtShipCountry.Text;
+                curOrder.ShipName = companyName;
+                curOrder.ShipAddress = address;
+                curOrder.ShipCity = city;
+                curOrder.ShipRegion = region;
+                curOrder.ShipPostalCode = postalCode;
+                curOrder.ShipCountry = country;
                 curOrder.EmployeeName = null; // I need the employee name.
                 curOrder.ShipperName = cmbShipVia.Text;
 
@@ -188,25 +252,22 @@ namespace InterfaceLayer
             txtFreight.Text = freight.ToString();
         }
 
-        public void TxtRequiredDateMethods()
+        private void DateEnter(object sender, EventArgs e)
         {
-            txtRequiredDate.Enter += (sender, e) =>
+            if (((TextBox)sender).Text == "DD/MM/YYYY")
             {
-                if (txtRequiredDate.Text == "DD/MM/YYYY")
-                {
-                    txtRequiredDate.ForeColor = Color.FromKnownColor(KnownColor.WindowText);
-                    txtRequiredDate.Text = "";
-                }
-            };
+                ((TextBox)sender).ForeColor = Color.FromKnownColor(KnownColor.WindowText);
+                ((TextBox)sender).Text = "";
+            }
+        }
 
-            txtRequiredDate.Leave += (sender, e) =>
+        private void DateLeave(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text == "")
             {
-                if (txtRequiredDate.Text == "")
-                {
-                    txtRequiredDate.ForeColor = Color.Gray;
-                    txtRequiredDate.Text = "DD/MM/YYYY";
-                }
-            };
+                ((TextBox)sender).ForeColor = Color.Gray;
+                ((TextBox)sender).Text = "DD/MM/YYYY";
+            }
         }
 
         public void RemovePanel(BrettProductPanel BPP)
@@ -217,16 +278,38 @@ namespace InterfaceLayer
 
         private void btnCommitDetails_Click(object sender, EventArgs e)
         {
-            detailList = new List<OrderDetail>();
-
-            foreach (BrettProductPanel pnl in pnlList)
+            try
             {
-                if (pnl.selectedProductID != -1 && pnl.quantity > 0)
-                    detailList.Add(new OrderDetail(orderID, pnl.selectedProductID, pnl.totalPrice, pnl.quantity, pnl.discount));
-            }
-            Business.SaveDetails(orderID, detailList);
+                if (!blnErrorOccured)
+                {
+                    detailList = new List<OrderDetail>();
 
-            btnCommitDetails.Enabled = true;
+                    foreach (BrettProductPanel pnl in pnlList)
+                    {
+                        if (pnl.selectedProductID != -1 && pnl.quantity > 0)
+                            detailList.Add(new OrderDetail(orderID, pnl.selectedProductID, pnl.totalPrice, pnl.quantity, pnl.discount));
+                    }
+                    Business.SaveDetails(orderID, detailList);
+                    //btnCommitDetails.Enabled = true;
+                }
+                else
+                    throw new Exception("You can't order the same product twice");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BPP_ErrorInCommit(bool error)
+        {
+            blnErrorOccured = error;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            WebForms.BrettWebForm BWF = new WebForms.BrettWebForm();
+            
         }
     }
 }

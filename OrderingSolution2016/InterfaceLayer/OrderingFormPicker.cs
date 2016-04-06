@@ -93,17 +93,16 @@ namespace InterfaceLayer
 
         private void brnNathan_Click(object sender, EventArgs e)
         {
-            //OrderingFormNathan OFB;
-            //if (isEditting)
-            //{
-            //    OFB = new OrderingFormNathan(CustomerID, EmployeeID, OrderID);
-            //}
-            //else
-            //{
-            //    OFB = new OrderingFormNathan(CustomerID, EmployeeID);
-            //}
-            //OFB.Show();
-            //OFB.Show();
+            OrderingFormNathan OFB;
+            if (isEditting)
+            {
+                OFB = new OrderingFormNathan(CustomerID, EmployeeID, OrderID);
+            }
+            else
+            {
+                OFB = new OrderingFormNathan(CustomerID, EmployeeID);
+            }
+            OFB.Show();
 
         }
 

@@ -417,9 +417,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(334, 346);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(110, 13);
+            this.label10.Size = new System.Drawing.Size(31, 13);
             this.label10.TabIndex = 14;
-            this.label10.Text = "Final Cost After Taxes";
+            this.label10.Text = "Cost ";
             // 
             // lsDetails
             // 

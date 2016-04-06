@@ -88,11 +88,11 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(630, 394);
+            this.button2.Location = new System.Drawing.Point(567, 394);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 61);
+            this.button2.Size = new System.Drawing.Size(173, 61);
             this.button2.TabIndex = 2;
-            this.button2.Text = "Order!";
+            this.button2.Text = "New Order!";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
