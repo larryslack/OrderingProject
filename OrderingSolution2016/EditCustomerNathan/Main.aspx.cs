@@ -37,5 +37,10 @@ namespace EditCustomerNathan
                 }
             }
         }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Edit.aspx");
+        }
     }
 }
