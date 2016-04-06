@@ -328,7 +328,7 @@ namespace InterfaceLayer
                     curOrder.EmployeeName = null; // I need the employee name.
                     curOrder.ShipperName = cmbShipVia.Text;
 
-                    string message = "Order has been sucessfully saved";
+                    string message = "Order has been successfully saved";
                     if (!isEditting)
                     {
                         Business.SaveOrder(curOrder);
@@ -337,7 +337,7 @@ namespace InterfaceLayer
                     else
                     {
                         Business.UpdateOrder(curOrder);
-                        message = "Editting this " + message;
+                        message = "Editing this " + message;
                     }
 
                     orderID = curOrder.OrderID;

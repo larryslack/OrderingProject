@@ -104,7 +104,7 @@
                             <section class="col-md-12 col-md-offset-2 confirmCancel">
                                 <section class="col-md-2 col-md-offset-3">
                                     <section class="controlGroup">
-                                        <asp:Button ID="btnCancel" runat="server" Text="Canel" OnClientClick="return confirmDeletion('Are you sure you want to canel?');" OnClick="btnCancel_Click" />
+                                        <asp:Button ID="btnCancel" runat="server" Text="Canel" OnClientClick="return confirmDeletion('Are you sure you want to cancel?');" OnClick="btnCancel_Click" />
                                         <asp:Button ID="btnConfirm" runat="server" Text="Confirm" OnClick="btnConfirm_Click" OnClientClick="return confirmDeletion('Are you sure you want to commit these changes?');" />
                                     </section>
                                 </section>

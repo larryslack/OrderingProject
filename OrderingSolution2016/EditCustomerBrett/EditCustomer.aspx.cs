@@ -15,6 +15,7 @@ namespace EditCustomerBrett
         private const string CUSTOMER_TABLE = "CustomerTable";
         private const string CUSTOMER_LIST = "CustomerList";
         private const string CUR_CUSTOMER = "CurrentCustomer";
+        private const string IS_ADDING = "isAdding";
         private const int TABLE_BUTTON_INDEX = 11;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -111,10 +112,12 @@ namespace EditCustomerBrett
         {
             lblCustomer.InnerText = "New Customer";
             HideTable();
+            Session[IS_ADDING] = true;
         }
 
         private void DynButtRemove_Click(object sender, EventArgs e)
         {
+            Session[IS_ADDING] = false;
             Customer curCustomer = ((List<Customer>)Session[CUSTOMER_LIST])[Convert.ToInt32(((Button)sender).ID.Substring(6))];
             Session[CUR_CUSTOMER] = curCustomer;
 
@@ -157,19 +160,16 @@ namespace EditCustomerBrett
                 Customer cus;
                 string customerID = txtCustomerID.Text;
 
-                if (customerID.Length == 5)
+                if ((bool)Session[IS_ADDING])
                 {
-                    bool blnExists = false;
-
-                    if (((Button)sender) == btnAdd)
-                    {
+                    string message = "";
+                    if (Business.CustomerIDAvailableAndSuitable(customerID, ref message))
                         cus = new Customer(customerID);
-                    }
                     else
-                    {
-                        cus = (Customer)Session[CUR_CUSTOMER];
-                        blnExists = true;
-                    }
+                        throw new Exception(message);
+                }
+                else
+                    cus = (Customer)Session[CUR_CUSTOMER];
 
                     cus.CompanyName = txtCompanyName.Text;
                     cus.ContactName = txtContactName.Text;
@@ -182,16 +182,14 @@ namespace EditCustomerBrett
                     cus.Phone = txtPhone.Text;
                     cus.Fax = txtFax.Text;
 
-                    if (blnExists)
-                        Business.UpdateExistingCustomer(cus);
-                    else
+                    if ((bool)Session[IS_ADDING])
                         Business.SaveNewCustomer(cus);
+                    else
+                        Business.UpdateExistingCustomer(cus);
 
                     CreateGridRows();
                     BindGrid();
-                }
-                else
-                    throw new Exception("The CustomerID must be atleast 5 characters long");
+                    ClearTextBoxes();
             }
             catch (Exception ex)
             {
@@ -200,6 +198,11 @@ namespace EditCustomerBrett
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            ClearTextBoxes();
+        }
+
+        private void ClearTextBoxes()
         {
             txtCustomerID.Text = "";
             txtCompanyName.Text = "";

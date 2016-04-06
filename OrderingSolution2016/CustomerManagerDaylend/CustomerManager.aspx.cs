@@ -36,7 +36,7 @@ namespace CustomerManager
             {
                 ddCompanyName.Items.Add(new ListItem(cust.CompanyName, cust.CustomerID));
             }
-            ddCompanyName_SelectedIndexChanged(null, null);
+            //ddCompanyName_SelectedIndexChanged(null, null);
         }
 
         private void updateCustControls()   // Does not include ddCompanyName
