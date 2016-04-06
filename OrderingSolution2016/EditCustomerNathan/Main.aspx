@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Panel ID="Panel1" runat="server" Height="287px" Width="700px">
+        <asp:Panel ID="pnlCon" runat="server" Height="287px" Width="700px">
             <asp:Label ID="Label1" runat="server" Text="CustomerID" style="z-index: 1; left: 17px; top: 55px; position: absolute"></asp:Label>
             <asp:Label ID="Label3" runat="server" Text="Name" style="z-index: 1; left: 17px; top: 75px; position: absolute"></asp:Label>
             <asp:Label ID="Label4" runat="server" Text="Title" style="z-index: 1; left: 17px; top: 95px; position: absolute"></asp:Label>
@@ -31,6 +31,9 @@
             <asp:TextBox ID="txtPhone" runat="server" style="z-index: 1; left: 157px; top: 215px; position: absolute"></asp:TextBox>
             <asp:TextBox ID="txtFax" runat="server" style="z-index: 1; left: 157px; top: 235px; position: absolute"></asp:TextBox>
             <asp:TextBox ID="txtContactName" runat="server" style="z-index: 1; left: 157px; top: 255px; position: absolute"></asp:TextBox>
+            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" style="z-index: 1; left: 303px; top: 220px; position: absolute" Text="Add Customer to DataBase" />
+            <asp:Button ID="btnEdit" runat="server" style="z-index: 1; left: 555px; top: 221px; position: absolute" Text="Go To Edit Page" />
+            <asp:Label ID="lblError" runat="server" Text="&quot;&quot;"></asp:Label>
         </asp:Panel>
     </form>
 </body>
