@@ -1,0 +1,58 @@
+﻿body
+{
+    background-color: rgb(40,40,40);
+}
+
+h1
+{
+    color: aquamarine;
+    text-align: center;
+}
+
+table
+{
+    display: block;
+    width: 95%;
+    height: 100%;
+    background-color: rgb(200,200,200);
+    border-radius: 10px;
+    padding: 1%;
+    margin: 2%;
+}
+
+table tr, table tbody
+{
+    display: block;
+    width: 100%;
+}
+
+table td
+{
+    width: 8%;
+}
+
+table tr td:nth-child(2) *
+{
+    text-align: right;
+    float: right;
+}
+
+.textBox, .cnTextBox
+{
+    display: block;
+    width: 60%;
+    max-width: 400px;
+}
+
+.buttonRow, .buttonCell
+{
+    display: block;
+    width: 80%;
+    margin: 0px 10%;
+}
+
+.btnSave
+{
+    display: block;
+    width: 100%;
+}

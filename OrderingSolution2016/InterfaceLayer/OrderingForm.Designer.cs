@@ -248,6 +248,7 @@
             this.txtFreight.Name = "txtFreight";
             this.txtFreight.Size = new System.Drawing.Size(100, 20);
             this.txtFreight.TabIndex = 21;
+            this.txtFreight.Text = "0";
             // 
             // groupBox1
             // 

@@ -84,8 +84,7 @@ namespace InterfaceLayer
             txtDiscount.Name = "textBox3";
             txtDiscount.Size = new System.Drawing.Size(70, 20);
             txtDiscount.TabIndex = 3;
-            int temp = 0;
-            txtDiscount.Text = temp.ToString("P");
+            txtDiscount.Text = "0%";
             txtDiscount.TextChanged += txtPrice_TextChanged;
             txtDiscount.Leave += txtDiscount_Leave;
             txtDiscount.TextChanged += txtDiscount_TextChanged;
