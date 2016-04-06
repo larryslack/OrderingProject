@@ -143,7 +143,7 @@ namespace CustomerManager
                     if(txtAddress.Text.Length > 0 && txtCity.Text.Length > 0 && txtConName.Text.Length > 0 && txtCountry.Text.Length > 0 && txtFax.Text.Length > 0 && txtPCode.Text.Length > 0
                         && txtPhone.Text.Length > 0 && txtRegion.Text.Length > 0 && txtCompanyName.Text.Length > 0)
                     {
-                        Customer cust = new Customer(txtCustID.Text, txtCompanyName.Text, txtConName.Text, txtAddress.Text, txtCity.Text, txtRegion.Text, txtPCode.Text, txtCountry.Text, txtPhone.Text, txtFax.Text);
+                        Customer cust = new Customer(txtCustID.Text, txtCompanyName.Text, txtConName.Text, null, txtAddress.Text, txtCity.Text, txtRegion.Text, txtPCode.Text, txtCountry.Text, txtPhone.Text, txtFax.Text);
                         Business.SaveNewCustomer(cust);
                     }
                 }
