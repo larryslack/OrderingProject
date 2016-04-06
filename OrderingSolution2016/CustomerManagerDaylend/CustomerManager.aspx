@@ -13,7 +13,7 @@
                 <tr>
                     <td>
                         <asp:Label ID="lblOp" runat="server" Text="Operation"></asp:Label>
-                        <asp:RadioButtonList ID="rbList" runat="server">
+                        <asp:RadioButtonList ID="rbList" runat="server" OnSelectedIndexChanged="rbList_SelectedIndexChanged">
                             <asp:ListItem Selected="True">Edit</asp:ListItem>
                             <asp:ListItem>Create</asp:ListItem>
                         </asp:RadioButtonList>
@@ -21,19 +21,19 @@
                     <td>
                         <asp:Label ID="lblCompanyName" runat="server" Text="Company Name"></asp:Label>
                         <br />
-                        <asp:DropDownList ID="ddCompanyName" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddCompanyName" runat="server" OnSelectedIndexChanged="ddCompanyName_SelectedIndexChanged"></asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <asp:Label ID="lblCustID" runat="server" Text="Customer ID"></asp:Label>
                         <br />
-                        <asp:TextBox ID="txtCustID" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtCustID" runat="server" ReadOnly="True"></asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="lblCName" runat="server" Text="Contact Name"></asp:Label>
                         <br />
-                        <asp:TextBox ID="txtCName" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtConName" runat="server"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -79,7 +79,7 @@
                         <asp:TextBox ID="txtFax" runat="server"></asp:TextBox>
                     </td>
                     <td>
-                        <asp:Button ID="btnSave" runat="server" Text="Save" />
+                        <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
                     </td>
                 </tr>
             </table>
