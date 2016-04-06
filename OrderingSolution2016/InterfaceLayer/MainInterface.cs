@@ -100,7 +100,13 @@ namespace InterfaceLayer
 
         private void btnEditOrder_Click(object sender, EventArgs e)
         {
-            OrderingFormPicker OFP = new OrderingFormPicker(CurCustomer.CustomerID, 11, 12300);
+            if (OrderGrid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("You must first select an order by clicking at the beginning of a row");
+                return;
+            }
+            int orderId = (int)OrderGrid.SelectedRows[0].Cells[0].Value;
+            OrderingFormPicker OFP = new OrderingFormPicker(CurCustomer.CustomerID, 11, orderId);
             OFP.Show();
         }
 
