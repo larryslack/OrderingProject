@@ -22,6 +22,9 @@ namespace InterfaceLayer
         Customer CustomerActive;
         bool dontcheckcombobox = false;
         List<OrderDetail> DetailList;
+        List<OrderDetail> LoadedDetailList = null;
+        Order currentOrder;
+
 
         public OrderingForm(string CustomerID, int EmployeeID)
         {
@@ -33,19 +36,24 @@ namespace InterfaceLayer
 
         }
 
-        //public OrderingForm(string CustomerID, int EmployeeID)
-        //{
-        //    InitializeComponent();
-        //    this.CustomerID = CustomerID;
-        //    this.EmployeeID = EmployeeID;
-        //    lblCustomerID.Text = CustomerID;
-        //    lblEmployeeID.Text = EmployeeID.ToString();
-
-        //}
+        public OrderingForm(string CustomerID, int EmployeeID, int orderID)
+        {
+            InitializeComponent();
+            this.CustomerID = CustomerID;
+            this.EmployeeID = EmployeeID;
+            lblCustomerID.Text = CustomerID;
+            lblEmployeeID.Text = EmployeeID.ToString();
+            currentOrder = Business.FindOrder(orderID);
+            LoadedDetailList = Business.OrderDetailList(orderID);
+        }
 
         private void OrderingForm_Load(object sender, EventArgs e)
         {
-            GenerateProductPanel();
+            if (currentOrder == null)
+            {
+                GenerateProductPanel();
+            }
+            
             DateMethod();
             CustomerActive = Business.GetCustomer(CustomerID);
 
@@ -68,6 +76,22 @@ namespace InterfaceLayer
             txtRegion.Text = CustomerActive.Region;
             txtFax.Text = CustomerActive.Fax;
             txtPhone.Text = CustomerActive.Phone;
+
+            if (LoadedDetailList != null)
+            {
+                foreach (OrderDetail detail in LoadedDetailList)
+                {
+                    GenerateProductPanel(detail);
+                }
+            }
+            if (currentOrder != null)
+            {
+                GenerateProductPanel();
+                cmbShipVia.SelectedIndex = (int)currentOrder.ShipVia;
+                txtFreight.Text = currentOrder.Freight.ToString();
+                txtName.Text = currentOrder.ShipName;
+                button2.Text = "Update Order";
+            }
         }
 
         private void comboProduct_SelectedIndexChanged(object sender, EventArgs e)
@@ -129,7 +153,7 @@ namespace InterfaceLayer
         {
             decimal RunningTotal = 0;
             decimal totalLineItem = 0;
-
+            int quantity = 0;
             foreach (ProductPanel item in listProductPanel)
             {
                 try
@@ -141,6 +165,8 @@ namespace InterfaceLayer
                     RunningTotal += totalLineItem;
                     item.discount = (float.Parse(item.txtDiscount.Text.Replace("%", "")) / 100);
                     item.totalPrice = totalLineItem;
+                    quantity += Int32.Parse(item.txtQuantity.Text);
+
                 }
                 catch (Exception)
                 {
@@ -148,6 +174,7 @@ namespace InterfaceLayer
 
             }
             txtTotalCost.Text = RunningTotal.ToString("C");
+            txtTotalQuantity.Text = quantity.ToString();
         }
         public void DateMethod()
         {
@@ -191,7 +218,32 @@ namespace InterfaceLayer
             updatepanelLocation();
 
         }
+        public void GenerateProductPanel(OrderDetail generatedOrder)
+        {
+            ProductPanel temp = new ProductPanel(panelProducts, 4, productList);
+            temp.BringToFront();
+            listProductPanel.Add(temp);
 
+            foreach (ProductPanel item in listProductPanel)
+            {
+                if (item.comboProduct.SelectedItem != null)
+                {
+                    temp.productListInternal.Remove((Product)item.comboProduct.SelectedItem);
+                }
+            }
+            temp.txtDiscount.Text = generatedOrder.Discount.ToString();
+            temp.txtPrice.Text = generatedOrder.UnitPrice.ToString();
+            temp.txtQuantity.Text = generatedOrder.Quantity.ToString();
+            temp.comboProduct.DataSource = temp.productListInternal;
+            temp.comboProduct.SelectedItem = generatedOrder.ProductID;
+            temp.comboProduct.SelectedIndexChanged += comboProduct_SelectedIndexChanged;
+            temp.updPrice += temp_updPrice;
+            temp.updPercent += temp_updPercent;
+            temp.btnDelete.Click += btnDelete_Click;
+            updatepanelLocation();
+            temp_updPercent();
+
+        }
         void temp_updPercent()
         {
             foreach (ProductPanel item in listProductPanel)
