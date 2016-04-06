@@ -221,8 +221,8 @@ namespace InterfaceLayer
             {
                 index = cmbList.IndexOf(thiscmb);
                 txtPriceList[index].Text = ProductList[thiscmb.SelectedIndex].UnitPrice.ToString();
-                txtQuantityList[index].Text = "0";//ProductList[thiscmb.SelectedIndex].QuantityPerUnit.ToString();
-
+                //txtQuantityList[index].Text = "0";//ProductList[thiscmb.SelectedIndex].QuantityPerUnit.ToString();
+                
             }
         }
 
