@@ -36,6 +36,7 @@ namespace CustomerManager
             {
                 ddCompanyName.Items.Add(new ListItem(cust.CompanyName, cust.CustomerID));
             }
+            ddCompanyName_SelectedIndexChanged(null, null);
         }
 
         private void updateCustControls()   // Does not include ddCompanyName
@@ -44,6 +45,7 @@ namespace CustomerManager
 
             txtAddress.Text = cust.Address;
             txtCity.Text = cust.City;
+            txtCompanyName.Text = cust.CompanyName;
             txtConName.Text = cust.ContactName;
             txtCountry.Text = cust.Country;
             txtCustID.Text = cust.CustomerID;
@@ -61,6 +63,7 @@ namespace CustomerManager
             ddCompanyName.Text = "";
             txtAddress.Text = "";
             txtCity.Text = "";
+            txtCompanyName.Text = "";
             txtConName.Text = "";
             txtCountry.Text = "";
             txtCustID.Text = "";
@@ -122,6 +125,7 @@ namespace CustomerManager
 
                 cust.Address = txtAddress.Text;
                 cust.City = txtCity.Text;
+                cust.CompanyName = txtCompanyName.Text;
                 cust.ContactName = txtConName.Text;
                 cust.Country = txtCountry.Text;
                 cust.CustomerID = txtCustID.Text;
@@ -136,11 +140,18 @@ namespace CustomerManager
             {
                 if(txtCustID.Text.Length == 5)
                 {
-
+                    if(txtAddress.Text.Length > 0 && txtCity.Text.Length > 0 && txtConName.Text.Length > 0 && txtCountry.Text.Length > 0 && txtFax.Text.Length > 0 && txtPCode.Text.Length > 0
+                        && txtPhone.Text.Length > 0 && txtRegion.Text.Length > 0 && txtCompanyName.Text.Length > 0)
+                    {
+                        Customer cust = new Customer(txtCustID.Text, txtCompanyName.Text, txtConName.Text, txtAddress.Text, txtCity.Text, txtRegion.Text, txtPCode.Text, txtCountry.Text, txtPhone.Text, txtFax.Text);
+                        Business.SaveNewCustomer(cust);
+                    }
                 }
             }
             else
                 throw new Exception("Operation mode not recognized on save.");
+
+            getDBCustomers();
         }
     }
 }
