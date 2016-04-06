@@ -19,7 +19,7 @@
 <body>
     <form id="form1" runat="server">
         <section class="container-fluid">
-            <section class="row">
+            <section class="row-fluid">
                 <section class="contentWrapper">
                     <header class="col-md-12">
                         <!-- Three states, Customer Form, New Customer, or Edit Customer -->
@@ -104,7 +104,7 @@
                             <section class="col-md-12 col-md-offset-2 confirmCancel">
                                 <section class="col-md-2 col-md-offset-3">
                                     <section class="controlGroup">
-                                        <asp:Button ID="btnCancel" runat="server" Text="Canel" OnClientClick="return confirmDeletion('Are you sure you want to canel?');" />
+                                        <asp:Button ID="btnCancel" runat="server" Text="Canel" OnClientClick="return confirmDeletion('Are you sure you want to canel?');" OnClick="btnCancel_Click" />
                                         <asp:Button ID="btnConfirm" runat="server" Text="Confirm" OnClick="btnConfirm_Click" OnClientClick="return confirmDeletion('Are you sure you want to commit these changes?');" />
                                     </section>
                                 </section>
