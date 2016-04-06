@@ -185,5 +185,21 @@ namespace EditCustomerBrett
             CreateGridRows();
             BindGrid();
         }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            txtCustomerID.Text = "";
+            txtCompanyName.Text = "";
+            txtAddress.Text = "";
+            txtCity.Text = "";
+            txtContactName.Text = "";
+            txtContactTitle.Text = "";
+            txtCountry.Text = "";
+            txtFax.Text = "";
+            txtPhone.Text = "";
+            txtPostalCode.Text = "";
+            txtRegion.Text = "";
+            txtAddress.Text = "";
+        }
     }
 }
