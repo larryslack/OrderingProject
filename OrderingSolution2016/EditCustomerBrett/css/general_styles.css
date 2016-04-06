@@ -99,6 +99,7 @@ table
     /*width: 87.7%;
     display: block;*/
     margin: auto;
+    background-color: rgb(40,40,40);
 }
 
 .cusTable tr th
@@ -110,6 +111,7 @@ table
 {
     margin-left: 10px;
     margin-right: 10px;
+    color: black;
 }
 
 .confirmCancel 
