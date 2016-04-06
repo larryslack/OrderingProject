@@ -46,7 +46,7 @@ namespace InterfaceLayer
             OrderingForm OFB = null;
             if (isEditting)
             {
-               // OFB = new OrderingForm(CustomerID, EmployeeID, OrderingID);
+                OFB = new OrderingForm(CustomerID, EmployeeID, OrderID);
             }
             else
             {
