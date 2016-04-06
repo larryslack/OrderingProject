@@ -32,12 +32,6 @@ namespace InterfaceLayer
             this.EmployeeID = EmployeeID;
 
             lblCustomerID.Text = CustomerID;
-            //List<Customer> Clist = Business.CustomerList();
-            //foreach (Customer C in Clist)
-            //{
-            //    if (C.CustomerID == CustomerID)
-            //        Cust = C;
-            //}
             Cust = Business.GetCustomer(CustomerID);
 
 
@@ -60,6 +54,7 @@ namespace InterfaceLayer
             cbSelectProduct.DisplayMember = "ProductName";
             cbSelectProduct.ValueMember = "ProductID";
             cbSelectProduct.SelectedIndex = -1;
+
         }
 
         public OrderingFormLinda(string CustomerID, int EmployeeID, int OrderID) //this constructor will be called if we are editing an existing order with orderid OrderID
@@ -81,18 +76,18 @@ namespace InterfaceLayer
 
             Cust = Business.GetCustomer(CustomerID);
 
-            //lblCompanyName.Text = Cust.CompanyName;
-            //txtCustName.Text = Cust.CompanyName;
-            //txtPostCode.Text = Cust.PostalCode;
-            //txtShipAdd.Text = Cust.Address;
-            //txtShipCity.Text = Cust.City;
-            //txtshipCountry.Text = Cust.Country;
-            //lblEmpID.Text = EmployeeID.ToString();
-            //txtShipRegion.Text = Cust.Region;
-            //txtPhoneNum.Text = Cust.Phone;
-
-
-
+           //lblCompanyName.Name = "CompanyID";
+            txtCustName.Name = "CustomerID";
+            txtCustName.Text = CustomerID;
+            txtPostCode.Text = ThisOrder.ShipPostalCode;
+            txtShipAdd.Text = ThisOrder.ShipAddress;
+            txtShipCity.Text = ThisOrder.ShipCity;
+            txtshipCountry.Text = ThisOrder.ShipCountry;
+            lblEmpID.Text = EmployeeID.ToString();
+            txtShipRegion.Text = ThisOrder.ShipRegion;
+            txtPhoneNum.Name = "OrderID";
+            txtPhoneNum.Text = OrderID.ToString();
+            
 
             cbShipVia.DataSource = Business.ShipperTable();
             cbShipVia.ValueMember = "ShipperID";
