@@ -69,9 +69,6 @@
             this.lsDetails = new System.Windows.Forms.ListBox();
             this.lblTDate = new System.Windows.Forms.Label();
             this.lblorID = new System.Windows.Forms.Label();
-            this.cbEdit = new System.Windows.Forms.CheckBox();
-            this.txtOrdID = new System.Windows.Forms.TextBox();
-            this.btnFetchOrder = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -420,9 +417,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(334, 346);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(110, 13);
+            this.label10.Size = new System.Drawing.Size(31, 13);
             this.label10.TabIndex = 14;
-            this.label10.Text = "Final Cost After Taxes";
+            this.label10.Text = "Cost ";
             // 
             // lsDetails
             // 
@@ -450,44 +447,11 @@
             this.lblorID.TabIndex = 17;
             this.lblorID.Text = "\"\"";
             // 
-            // cbEdit
-            // 
-            this.cbEdit.AutoSize = true;
-            this.cbEdit.Location = new System.Drawing.Point(296, 309);
-            this.cbEdit.Name = "cbEdit";
-            this.cbEdit.Size = new System.Drawing.Size(213, 17);
-            this.cbEdit.TabIndex = 18;
-            this.cbEdit.Text = "Are you editing a already existing order?";
-            this.cbEdit.UseVisualStyleBackColor = true;
-            this.cbEdit.CheckedChanged += new System.EventHandler(this.cbEdit_CheckedChanged);
-            // 
-            // txtOrdID
-            // 
-            this.txtOrdID.Location = new System.Drawing.Point(515, 309);
-            this.txtOrdID.Name = "txtOrdID";
-            this.txtOrdID.Size = new System.Drawing.Size(100, 20);
-            this.txtOrdID.TabIndex = 19;
-            this.txtOrdID.Visible = false;
-            // 
-            // btnFetchOrder
-            // 
-            this.btnFetchOrder.Location = new System.Drawing.Point(635, 309);
-            this.btnFetchOrder.Name = "btnFetchOrder";
-            this.btnFetchOrder.Size = new System.Drawing.Size(75, 23);
-            this.btnFetchOrder.TabIndex = 20;
-            this.btnFetchOrder.Text = "Fetch Order";
-            this.btnFetchOrder.UseVisualStyleBackColor = true;
-            this.btnFetchOrder.Visible = false;
-            this.btnFetchOrder.Click += new System.EventHandler(this.btnFetchOrder_Click);
-            // 
             // OrderingFormNathan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(836, 396);
-            this.Controls.Add(this.btnFetchOrder);
-            this.Controls.Add(this.txtOrdID);
-            this.Controls.Add(this.cbEdit);
             this.Controls.Add(this.lblorID);
             this.Controls.Add(this.lblTDate);
             this.Controls.Add(this.lsDetails);
@@ -554,8 +518,5 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtRegion;
         private System.Windows.Forms.Label lblorID;
-        private System.Windows.Forms.CheckBox cbEdit;
-        private System.Windows.Forms.TextBox txtOrdID;
-        private System.Windows.Forms.Button btnFetchOrder;
     }
 }
