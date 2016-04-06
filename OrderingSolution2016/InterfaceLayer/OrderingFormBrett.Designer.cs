@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnMakeNewOrder = new System.Windows.Forms.Button();
             this.lblEmployeeID = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pnlContainer = new System.Windows.Forms.Panel();
@@ -45,7 +44,7 @@
             this.lblError = new System.Windows.Forms.Label();
             this.lblUnits = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
-            this.btnCommitDetails = new System.Windows.Forms.Button();
+            this.btnFinalizeOrder = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblOrderID = new System.Windows.Forms.Label();
             this.grpOrder = new System.Windows.Forms.GroupBox();
@@ -79,16 +78,6 @@
             this.grpOrder.SuspendLayout();
             this.grpCustomer.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnMakeNewOrder
-            // 
-            this.btnMakeNewOrder.Location = new System.Drawing.Point(1081, 233);
-            this.btnMakeNewOrder.Name = "btnMakeNewOrder";
-            this.btnMakeNewOrder.Size = new System.Drawing.Size(180, 23);
-            this.btnMakeNewOrder.TabIndex = 0;
-            this.btnMakeNewOrder.Text = "Make New Order";
-            this.btnMakeNewOrder.UseVisualStyleBackColor = true;
-            this.btnMakeNewOrder.Click += new System.EventHandler(this.btnMakeOrder_Click);
             // 
             // lblEmployeeID
             // 
@@ -235,15 +224,15 @@
             this.lblPrice.TabIndex = 34;
             this.lblPrice.Text = "Price";
             // 
-            // btnCommitDetails
+            // btnFinalizeOrder
             // 
-            this.btnCommitDetails.Location = new System.Drawing.Point(1081, 262);
-            this.btnCommitDetails.Name = "btnCommitDetails";
-            this.btnCommitDetails.Size = new System.Drawing.Size(180, 23);
-            this.btnCommitDetails.TabIndex = 35;
-            this.btnCommitDetails.Text = "Commit Details";
-            this.btnCommitDetails.UseVisualStyleBackColor = true;
-            this.btnCommitDetails.Click += new System.EventHandler(this.btnCommitDetails_Click);
+            this.btnFinalizeOrder.Location = new System.Drawing.Point(1081, 223);
+            this.btnFinalizeOrder.Name = "btnFinalizeOrder";
+            this.btnFinalizeOrder.Size = new System.Drawing.Size(180, 23);
+            this.btnFinalizeOrder.TabIndex = 35;
+            this.btnFinalizeOrder.Text = "Finalize New Order";
+            this.btnFinalizeOrder.UseVisualStyleBackColor = true;
+            this.btnFinalizeOrder.Click += new System.EventHandler(this.btnFinializeOrder_Click);
             // 
             // label1
             // 
@@ -545,11 +534,10 @@
             this.Controls.Add(this.grpOrder);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblOrderID);
-            this.Controls.Add(this.btnCommitDetails);
+            this.Controls.Add(this.btnFinalizeOrder);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblUnits);
             this.Controls.Add(this.lblError);
-            this.Controls.Add(this.btnMakeNewOrder);
             this.Controls.Add(this.lblTotalPrice);
             this.Controls.Add(this.lblDiscount);
             this.Controls.Add(this.lblQuantity);
@@ -570,8 +558,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnMakeNewOrder;
         private System.Windows.Forms.Label lblEmployeeID;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel pnlContainer;
@@ -588,7 +574,7 @@
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Label lblUnits;
         private System.Windows.Forms.Label lblPrice;
-        private System.Windows.Forms.Button btnCommitDetails;
+        private System.Windows.Forms.Button btnFinalizeOrder;
         private System.Windows.Forms.Label lblOrderID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox grpOrder;

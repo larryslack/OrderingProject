@@ -32,6 +32,8 @@ namespace InterfaceLayer
         {
             InitializeComponent();
             PreInitForm(customerID, emloyeeID);
+            btnFinalizeOrder.Text = "Finalize New Order";
+            this.Text = "New Order - Brett";
         }
 
         public OrderingFormBrett(string customerID, int employeeID, int orderID)
@@ -42,6 +44,8 @@ namespace InterfaceLayer
             this.orderID = curOrder.OrderID;
             tempDetailList = Business.OrderDetailList(orderID);
             isEditting = true;
+            btnFinalizeOrder.Text = "Finalize Edit Of Order";
+            this.Text = "Edit Order - Brett";
         }
 
         private void OrderingFormBrett_Load(object sender, EventArgs e)
@@ -216,7 +220,7 @@ namespace InterfaceLayer
 
                 orderID = curOrder.OrderID;
                 lblOrderID.Text = orderID.ToString();
-                btnCommitDetails.Enabled = true;
+                btnFinalizeOrder.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -280,7 +284,7 @@ namespace InterfaceLayer
             pnlList.Remove(BPP);
         }
 
-        private void btnCommitDetails_Click(object sender, EventArgs e)
+        private void btnFinializeOrder_Click(object sender, EventArgs e)
         {
             try
             {
@@ -319,24 +323,32 @@ namespace InterfaceLayer
                     curOrder.EmployeeName = null; // I need the employee name.
                     curOrder.ShipperName = cmbShipVia.Text;
 
+                    string message = "Order has been sucessfully saved";
                     if (!isEditting)
+                    {
                         Business.SaveOrder(curOrder);
+                        message = "New " + message;
+                    }
                     else
+                    {
                         Business.UpdateOrder(curOrder);
+                        message = "Editting this " + message;
+                    }
 
                     orderID = curOrder.OrderID;
                     lblOrderID.Text = orderID.ToString();
-                    btnCommitDetails.Enabled = true;
+                    btnFinalizeOrder.Enabled = true;
 
                     detailList = new List<OrderDetail>();
 
                     foreach (BrettProductPanel pnl in pnlList)
                     {
                         if (pnl.selectedProductID != -1 && pnl.quantity > 0 && pnl.selectedProductID != 0)
-                            detailList.Add(new OrderDetail(orderID, pnl.selectedProductID, pnl.totalPrice, pnl.quantity, pnl.discount));
+                            detailList.Add(new OrderDetail(orderID, pnl.selectedProductID, pnl.price, pnl.quantity, pnl.discount));
                     }
                     Business.SaveDetails(orderID, detailList);
-                    //btnCommitDetails.Enabled = true;
+                    
+                    MessageBox.Show("Order has been successfully ");
                 }
                 else
                     throw new Exception("You can't order the same product twice");

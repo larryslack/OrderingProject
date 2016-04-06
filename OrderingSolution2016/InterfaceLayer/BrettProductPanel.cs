@@ -93,6 +93,7 @@ namespace InterfaceLayer
             }
 
             isEdittingStart = true;
+            PrepForCalculation();
         }
 
         private void SetupPanel(List<BrettProductPanel> panelList, List<Product> productList, int containerWidth, int containerHeight, int containerLeft)
@@ -221,6 +222,11 @@ namespace InterfaceLayer
                 CalcFreight();
             };
 
+            txtPrice.TextChanged += (sender, e) =>
+            {
+                PrepForCalculation();
+            };
+            
             txtQuantity.TextChanged += (sender, e) =>
             {
                 PrepForCalculation();
@@ -402,9 +408,9 @@ namespace InterfaceLayer
 
                 // Puts the discount into percentage. Then adds one so when it is used it will take the percentage off.
                 discount = discount / 100;
-                discountPrice = productList[index].UnitPrice * quantity * Convert.ToDecimal(discount);
+                discountPrice = price * quantity * Convert.ToDecimal(discount);
 
-                totalPrice = (productList[index].UnitPrice * quantity) - discountPrice;
+                totalPrice = (price * quantity) - discountPrice;
 
                 txtTotalPrice.Text = totalPrice.ToString("###0.00");
                 CalcFreight();
