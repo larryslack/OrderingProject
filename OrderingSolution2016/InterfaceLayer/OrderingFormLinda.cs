@@ -95,7 +95,7 @@ namespace InterfaceLayer
             cbShipVia.SelectedIndex = -1;
 
             cbSelectProduct.DataSource = Business.ProductList();
-            cbSelectProduct.DisplayMember = "ProductName";
+            cbSelectProduct.DisplayMember = newOrderDetail.ProductName;
             cbSelectProduct.ValueMember = "ProductID";
             cbSelectProduct.SelectedIndex = -1;
         }
