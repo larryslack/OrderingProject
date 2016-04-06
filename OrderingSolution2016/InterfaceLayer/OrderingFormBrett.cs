@@ -209,7 +209,11 @@ namespace InterfaceLayer
                 curOrder.EmployeeName = null; // I need the employee name.
                 curOrder.ShipperName = cmbShipVia.Text;
 
-                Business.SaveOrder(curOrder);
+                if (!isEditting)
+                    Business.SaveOrder(curOrder);
+                else
+                    Business.UpdateOrder(curOrder);
+
                 orderID = curOrder.OrderID;
                 lblOrderID.Text = orderID.ToString();
                 btnCommitDetails.Enabled = true;
@@ -282,11 +286,53 @@ namespace InterfaceLayer
             {
                 if (!blnErrorOccured)
                 {
+                    string companyName = currentCustomer.CompanyName;
+                    string address = currentCustomer.Address;
+                    string city = txtCity.Text;
+                    string region = txtRegion.Text;
+                    string postalCode = txtPostalCode.Text;
+                    string country = txtCountry.Text;
+
+                    currentCustomer.CompanyName = companyName;
+                    currentCustomer.City = city;
+                    currentCustomer.Region = region;
+                    currentCustomer.PostalCode = postalCode;
+                    currentCustomer.Country = country;
+                    Business.UpdateExistingCustomer(currentCustomer);
+
+                    if (curOrder == null)
+                        curOrder = new Order(1);
+
+                    curOrder.CustomerID = lblCustomerID.Text;
+                    curOrder.EmployeeID = Convert.ToInt32(lblEmployeeID.Text);
+                    curOrder.OrderDate = DateTime.Now;
+                    curOrder.RequiredDate = Convert.ToDateTime(txtRequiredDate.Text);
+                    curOrder.ShippedDate = null;
+                    curOrder.ShipVia = Convert.ToInt32(cmbShipVia.SelectedValue);
+                    curOrder.Freight = Convert.ToDecimal(txtFreight.Text); //Retrieve later.
+                    curOrder.ShipName = companyName;
+                    curOrder.ShipAddress = address;
+                    curOrder.ShipCity = city;
+                    curOrder.ShipRegion = region;
+                    curOrder.ShipPostalCode = postalCode;
+                    curOrder.ShipCountry = country;
+                    curOrder.EmployeeName = null; // I need the employee name.
+                    curOrder.ShipperName = cmbShipVia.Text;
+
+                    if (!isEditting)
+                        Business.SaveOrder(curOrder);
+                    else
+                        Business.UpdateOrder(curOrder);
+
+                    orderID = curOrder.OrderID;
+                    lblOrderID.Text = orderID.ToString();
+                    btnCommitDetails.Enabled = true;
+
                     detailList = new List<OrderDetail>();
 
                     foreach (BrettProductPanel pnl in pnlList)
                     {
-                        if (pnl.selectedProductID != -1 && pnl.quantity > 0)
+                        if (pnl.selectedProductID != -1 && pnl.quantity > 0 && pnl.selectedProductID != 0)
                             detailList.Add(new OrderDetail(orderID, pnl.selectedProductID, pnl.totalPrice, pnl.quantity, pnl.discount));
                     }
                     Business.SaveDetails(orderID, detailList);
