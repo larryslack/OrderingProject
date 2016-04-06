@@ -152,38 +152,51 @@ namespace EditCustomerBrett
 
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
-            Customer cus;
-            string customerID = txtCustomerID.Text;
-            bool blnExists = false;
-
-            if (((Button)sender) == btnAdd)
+            try
             {
-                cus = new Customer(customerID);
+                Customer cus;
+                string customerID = txtCustomerID.Text;
+
+                if (customerID.Length == 5)
+                {
+                    bool blnExists = false;
+
+                    if (((Button)sender) == btnAdd)
+                    {
+                        cus = new Customer(customerID);
+                    }
+                    else
+                    {
+                        cus = (Customer)Session[CUR_CUSTOMER];
+                        blnExists = true;
+                    }
+
+                    cus.CompanyName = txtCompanyName.Text;
+                    cus.ContactName = txtContactName.Text;
+                    cus.ContactTitle = txtContactTitle.Text;
+                    cus.Address = txtAddress.Text;
+                    cus.City = txtCity.Text;
+                    cus.Region = txtRegion.Text;
+                    cus.PostalCode = txtPostalCode.Text;
+                    cus.Country = txtCountry.Text;
+                    cus.Phone = txtPhone.Text;
+                    cus.Fax = txtFax.Text;
+
+                    if (blnExists)
+                        Business.UpdateExistingCustomer(cus);
+                    else
+                        Business.SaveNewCustomer(cus);
+
+                    CreateGridRows();
+                    BindGrid();
+                }
+                else
+                    throw new Exception("The CustomerID must be atleast 5 characters long");
             }
-            else
+            catch (Exception ex)
             {
-                cus = (Customer)Session[CUR_CUSTOMER];
-                blnExists = true;
+                Response.Write("<SCRIPT type=\"text/javascript\">alert(\"" + ex.Message + "\")</SCRIPT>");
             }
-
-            cus.CompanyName = txtCompanyName.Text;
-            cus.ContactName = txtContactName.Text;
-            cus.ContactTitle = txtContactTitle.Text;
-            cus.Address = txtAddress.Text;
-            cus.City = txtCity.Text;
-            cus.Region = txtRegion.Text;
-            cus.PostalCode = txtPostalCode.Text;
-            cus.Country = txtCountry.Text;
-            cus.Phone = txtPhone.Text;
-            cus.Fax = txtFax.Text;
-
-            if (blnExists)
-                Business.UpdateExistingCustomer(cus);
-            else
-                Business.SaveNewCustomer(cus);
-
-            CreateGridRows();
-            BindGrid();
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
