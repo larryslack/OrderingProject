@@ -55,6 +55,7 @@ namespace InterfaceLayer
             pnlContainer.BorderStyle = BorderStyle.FixedSingle;
             
             currentCustomer = Business.GetCustomer(customerID);
+            lblCompanyName.Text = currentCustomer.CompanyName;
             txtContactTitle.Text = currentCustomer.ContactTitle;
             txtContactName.Text = currentCustomer.ContactName;
             txtPostalCode.Text = currentCustomer.PostalCode;
@@ -297,11 +298,15 @@ namespace InterfaceLayer
                     string postalCode = txtPostalCode.Text;
                     string country = txtCountry.Text;
 
+                    currentCustomer.ContactName = txtContactName.Text;
+                    currentCustomer.ContactTitle = txtContactTitle.Text;
                     currentCustomer.CompanyName = companyName;
                     currentCustomer.City = city;
                     currentCustomer.Region = region;
                     currentCustomer.PostalCode = postalCode;
                     currentCustomer.Country = country;
+                    currentCustomer.Phone = txtPhone.Text;
+                    currentCustomer.Fax = txtFax.Text;
                     Business.UpdateExistingCustomer(currentCustomer);
 
                     if (curOrder == null)
@@ -348,7 +353,7 @@ namespace InterfaceLayer
                     }
                     Business.SaveDetails(orderID, detailList);
                     
-                    MessageBox.Show("Order has been successfully ");
+                    MessageBox.Show(message);
                 }
                 else
                     throw new Exception("You can't order the same product twice");

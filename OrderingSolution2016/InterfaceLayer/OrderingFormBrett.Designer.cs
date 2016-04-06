@@ -503,9 +503,8 @@
             this.lblCompanyName.AutoSize = true;
             this.lblCompanyName.Location = new System.Drawing.Point(102, 47);
             this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(60, 13);
+            this.lblCompanyName.Size = new System.Drawing.Size(0, 13);
             this.lblCompanyName.TabIndex = 42;
-            this.lblCompanyName.Text = "Compname";
             // 
             // label3
             // 
