@@ -292,7 +292,7 @@ namespace InterfaceLayer
                 if (!blnErrorOccured)
                 {
                     string companyName = currentCustomer.CompanyName;
-                    string address = currentCustomer.Address;
+                    string address = txtAddress.Text;
                     string city = txtCity.Text;
                     string region = txtRegion.Text;
                     string postalCode = txtPostalCode.Text;
@@ -307,9 +307,9 @@ namespace InterfaceLayer
                     currentCustomer.Country = country;
                     currentCustomer.Phone = txtPhone.Text;
                     currentCustomer.Fax = txtFax.Text;
-                    Business.UpdateExistingCustomer(currentCustomer);
+                    //Business.UpdateExistingCustomer(currentCustomer);
 
-                    if (curOrder == null)
+                    if (!isEditting)
                         curOrder = new Order(1);
 
                     curOrder.CustomerID = lblCustomerID.Text;
