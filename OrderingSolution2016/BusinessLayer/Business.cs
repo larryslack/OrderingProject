@@ -44,6 +44,10 @@ namespace BusinessLayer
             {
                 DB.CommitOrder(o);
             }
+            else
+            {
+                throw new Exception("Order is missing vital information - please make sure all fields are filled in");
+            }
         }
 
         public static void UpdateOrder(Order o) // check to make sure Order ID, customer ID, ship Name,PostalCode,address,city,order date, employee Id arent null
