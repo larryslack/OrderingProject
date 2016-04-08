@@ -309,7 +309,7 @@ namespace InterfaceLayer
                     currentCustomer.Fax = txtFax.Text;
                     Business.UpdateExistingCustomer(currentCustomer);
 
-                    if (curOrder == null)
+                    if (!isEditting)
                         curOrder = new Order(1);
 
                     curOrder.CustomerID = lblCustomerID.Text;
