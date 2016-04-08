@@ -52,9 +52,38 @@ namespace InterfaceLayer
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
+            int InStock = Convert.ToInt16(InStockBox.Text);
+            //Still need to make it check for multiple things with the same product but different discounts
+            bool EdittingEntry = false;
+            if (InStock <= 0)
+                return;
             string AddToOrder = "";
             AddToOrder += ProductBox.SelectedItem.ToString();
-            AddToOrder += " (" + QuantityUpdown.Value + ")";
+            for (int j = 0; j < OrderList.Items.Count; j++)
+            {
+                if ((BetterNameThanFer[j].ProductName == ProductBox.SelectedItem.ToString()) && (BetterNameThanFer[j].Discount == Convert.ToSingle(DiscountUpDown.Value)))
+                {
+                    if (BetterNameThanFer[j].Quantity + Convert.ToInt16(QuantityUpdown.Value) <= InStock)
+                    {
+                        BetterNameThanFer[j].Quantity += Convert.ToInt16(QuantityUpdown.Value);
+                        EdittingEntry = true;
+                        AddToOrder += " (" + BetterNameThanFer[j].Quantity + ")";
+                        if (DiscountUpDown.Value != 0)
+                        {
+                            AddToOrder += " [" + ((DiscountUpDown.Value) * 100).ToString("#") + "% Discount]";
+                        }
+                        decimal garb = fer[ProductBox.SelectedIndex].UnitPrice;
+                        garb = garb * (BetterNameThanFer[j].Quantity * (1 - DiscountUpDown.Value));
+                        AddToOrder += " : " + garb.ToString("c");
+                        OrderList.Items[j] = AddToOrder;
+                        return;
+                    }
+                    else
+                        return;
+                    //float Fisher = Convert.ToSingle(DiscountUpDown.Value * 1);
+                }
+            }
+            AddToOrder += " (" + QuantityUpdown.Value + ")"; 
             if (DiscountUpDown.Value != 0)
             {
                 AddToOrder += " [" + ((DiscountUpDown.Value)*100).ToString("#") + "% Discount]";
@@ -64,7 +93,9 @@ namespace InterfaceLayer
             //Order Detail code
             int Das = ProductBox.SelectedIndex;
             OrderDetail ThisPart = new OrderDetail(0, fer[Das].ProductID, fer[Das].UnitPrice, Convert.ToInt16(QuantityUpdown.Value), Convert.ToSingle(DiscountUpDown.Value));
+            ThisPart.ProductName = ProductBox.SelectedItem.ToString();
             BetterNameThanFer.Add(ThisPart);
+            InStockBox.Text = (InStock - (Convert.ToInt16(QuantityUpdown.Value))).ToString();
         }
 
         private void ProductBox_SelectedIndexChanged(object sender, EventArgs e)
