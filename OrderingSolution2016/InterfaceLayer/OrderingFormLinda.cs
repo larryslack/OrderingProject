@@ -105,21 +105,6 @@ namespace InterfaceLayer
 
         }
 
-        void EditCustomerInfo()
-        {
-
-        }
-
-        void PlacingOrder()
-        {
-
-        }
-
-        private void lblCustomerID_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSaveOrder_Click(object sender, EventArgs e)
         {
             try
@@ -195,18 +180,18 @@ namespace InterfaceLayer
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            short qty=1;
-            decimal unitPrice=0;
-            decimal normalPrice=0, TenPercent=0, TwentyPercent=0, ThirtyFivePercent=0, TotalLinePrice=0; 
+            short qty = 1;
+            decimal normalPrice = 0, TenPercent = 0, TwentyFivePercent = 0, FortyFivePercent = 0, TotalLinePrice = 0;
+            decimal unitPrice = int.Parse(newOrderDetail.UnitPrice.ToString());
+            decimal ten = 0.10m;
+            decimal twentyFive = 0.25m;
+            decimal fortyFive = 0.45m;
             try
             {
                 //DGV.Rows.Add("Chai",1, 1,10,20,10,0);
                 string selectedProduct = cbSelectProduct.SelectedText;
                 if (cbSelectProduct.SelectedValue != null)
                 {
-
-
-
                     if (txtChangeQuantity.Text != null)
                     {
                         qty = short.Parse(txtChangeQuantity.Text);
@@ -214,49 +199,26 @@ namespace InterfaceLayer
 
                         if (qty < 50)
                         {
-                             normalPrice = Convert.ToInt32(txtChangeQuantity.Text) * Convert.ToUInt32(newOrderDetail.UnitPrice);
-                            DGV.Rows.Add("Price");
-                            //DGV.CurrentRow.Cells["Price"].Value = newOrderDetail.UnitPrice;
-                            //DGV.CurrentRow.Cells["Total"].Value = normalPrice;
+                            normalPrice = qty * unitPrice;
+                            TotalLinePrice = normalPrice;
                         }
                         else if (qty >= 50 || qty < 100)
                         {
-                            // normalPrice = Convert.ToUInt32(newOrderDetail.UnitPrice) - (Convert.ToUInt32(newOrderDetail.UnitPrice) * .1);
-                             TenPercent = Convert.ToUInt32(txtChangeQuantity.Text) * normalPrice;
-                            //DGV.CurrentRow.Cells["Price50To100"].Value = normalPrice;
-                            //DGV.CurrentRow.Cells["Total"].Value = TenPercent;
-                        }
-                        else if (qty>= 100 || qty < 500)
+                            normalPrice = unitPrice - (unitPrice * ten);
+                            TenPercent = qty * normalPrice;
+                         }
+                        else if (qty >= 100 || qty < 500)
                         {
-                           //  normalPrice = Convert.ToUInt32(newOrderDetail.UnitPrice) - (Convert.ToUInt32(newOrderDetail.UnitPrice) * .2);
-                             TwentyPercent = Convert.ToUInt32(txtChangeQuantity.Text) * normalPrice;
-                            //DGV.CurrentRow.Cells["Price100To500"].Value = normalPrice;
-                            //DGV.CurrentRow.Cells["Total"].Value = TwentyPercent;
+                            normalPrice = unitPrice - (unitPrice * twentyFive);
+                            TwentyFivePercent = qty * normalPrice;
                         }
                         else if (Convert.ToInt32(txtChangeQuantity.Text) >= 500)
                         {
-                            // normalPrice = Convert.ToUInt32(newOrderDetail.UnitPrice) - (Convert.ToUInt32(newOrderDetail.UnitPrice) * .2);
-                             ThirtyFivePercent = Convert.ToUInt32(txtChangeQuantity.Text) * normalPrice;
-                            //DGV.CurrentRow.Cells["Price500OrMore"].Value = normalPrice;
-                            //DGV.CurrentRow.Cells["Total"].Value = ThirtyFivePercent;
+                            normalPrice = unitPrice - (unitPrice * fortyFive);
+                            FortyFivePercent = qty * normalPrice;
                         }
-
-
-
-
-
-
-
+                        DGV.Rows.Add(cbSelectProduct.SelectedText, qty, unitPrice, TenPercent, TwentyFivePercent, FortyFivePercent);
                     }
-
-
-
-
-
-
-
-                    DGV.Rows.Add(cbSelectProduct.SelectedText, qty, normalPrice,TenPercent);
-
                 }
                 DGV.CurrentRow.Cells["Product"].Value = cbSelectProduct.SelectedValue;
                 DGV.CurrentRow.Cells["Quantity"].Value = newOrderDetail.Quantity;
@@ -270,5 +232,12 @@ namespace InterfaceLayer
             }
         }
 
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if (DGV.SelectedRows != null)
+            {
+                
+            }
+        }
     }
 }

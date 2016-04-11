@@ -81,7 +81,6 @@
             this.lblCustomerID.Size = new System.Drawing.Size(62, 13);
             this.lblCustomerID.TabIndex = 0;
             this.lblCustomerID.Text = "CustomerID";
-            this.lblCustomerID.Click += new System.EventHandler(this.lblCustomerID_Click);
             // 
             // lblCompanyName
             // 
@@ -178,18 +177,21 @@
             this.Product.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Product.HeaderText = "Product";
             this.Product.Name = "Product";
+            this.Product.ReadOnly = true;
             // 
             // Quantity
             // 
             this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Quantity.HeaderText = "Quantity";
             this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
             // 
             // Price
             // 
             this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Price.HeaderText = "Price";
             this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
             // 
             // FiftyToHundred
             // 
@@ -410,6 +412,7 @@
             this.btnDel.TabIndex = 33;
             this.btnDel.Text = "Delete Selected Order";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // label12
             // 
