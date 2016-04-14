@@ -99,7 +99,6 @@ namespace InterfaceLayer
             cbSelectProduct.SelectedIndex = -1;
         }
 
-
         private void OrderingFormLinda_Load(object sender, EventArgs e)
         {
 
